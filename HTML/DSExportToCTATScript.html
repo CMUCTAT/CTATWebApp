@@ -1,0 +1,270 @@
+<html>
+<head>
+
+    <script src="Assets/jquery.min.js"></script>
+    <script src="Assets/papaparse.min.js"></script>
+
+ 
+    <script src="Assets/base.js"></script>
+
+    <script src="Assets/ctat.full.js"></script>
+    <script src="Assets/ctatloader.js"></script>
+    <script src="Assets/DSExportToCTATScript.js"></script>
+    <script src='Assets/cytoscape.js'></script>
+    <script src="Assets/task1.js"></script>
+
+    <link rel="stylesheet" href="Assets/Test_Rig.css"></link>
+
+    <script>
+    parseConfig = {
+                    delimiter: "",  // auto-detect
+                    newline: "",    // auto-detect
+                    quoteChar: '"',
+                    header: false,
+                    dynamicTyping: false,
+                    preview: 0,
+                    encoding: "",
+                    worker: false,
+                    comments: false,
+                    step: function(results, parser) {
+                        simulateDataStream(results, parser)
+                    },
+                    complete: function() {buildOptions()},
+                    error: undefined,
+                    download: false,
+                    skipEmptyLines: false,
+                    chunk: undefined,
+                    fastMode: undefined,
+                    beforeFirstChunk: undefined,
+                    withCredentials: undefined
+                };
+
+    var scriptIndex = 4;
+    function runSimulation(){
+        //update detector list with user-selected values
+        //...
+        let inputFilePath = null;
+        location.search.split(/[?&]/).forEach(function(q) {
+            let NV=q.split(/=/); 
+            if(NV.length>1 && NV[0]=="inputFilePath") 
+                inputFilePath=NV[1]
+        });
+        inputFilePath = (inputFilePath || document.getElementById('fileItem').files[0]);
+        console.log(inputFilePath);
+        
+        problemsAndPaths = {};
+        problems = [];
+        edgesToHide = null;
+        nodesToHide = null;
+        i=0;
+        var problemChoices = document.getElementById("problemChoicesForm");
+        var l = problemChoices.children.length;
+        //need to remove all the problems
+        for (var tmp = 0; tmp < l; tmp++) {
+            problemChoices.removeChild(problemChoices.children[0]);
+        }
+
+        Papa.parse(inputFilePath, parseConfig);
+
+        location.search.split(/[?&]/).forEach(function(q) {
+            let NV=q.split(/=/);
+            if(NV.length>1 && NV[0]=="scriptIndex") 
+                scriptIndex=NV[1]
+        });
+        if(scriptIndex===null) {
+            console.log("no problemScripts[scriptIndex]", scriptIndex, problemScripts);
+            return;
+        }
+    }
+    function genScript() {
+        if(!(problemScripts && problemScripts.length && problemScripts[scriptIndex])) {
+            console.log("no problemScripts or scriptIndex", problemScripts, scriptIndex)
+            alert("no problemScripts or scriptIndex");
+            return;
+        }
+        let script=problemScripts[scriptIndex].script;
+        for(let m=0; m<script.length; ++m) {
+            console.log("process[",m,"]:", script[m]);
+            alert("CTAT.ToolTutor.sendToTutor(script["+m+"]): "+script[m]);
+            CTATCommShell.commShell.getCommLibrary().sendXML(script[m].replace("UntutoredAction","InterfaceAction"));
+        }
+    }
+
+    function changeColor(str){
+        document.getElementById(str).style.background='#000000';
+    }
+
+    function downloadAfterSave(d) {
+        console.log("downloadAfterSave(",d,")");
+        let a=document.createElement("a");
+        a.id="a"+(new Date()).getTime();
+        a.download=d.replace(/.*[\/]/, "");
+        a.href=d;
+        a.style="display: none;";
+        document.body.appendChild(a);
+        console.log("downloadAfterSave(): to click a", a);
+        a.click();
+        $(a).remove();
+    }
+
+    function saveFile(fileName, fileContent) {
+        console.log("saveFile(", fileName, ", ",fileContent, ")")
+        let fsAddr = (/127[.]0[.]0[.]1|localhost/.test(document.location.origin) ? "http://127.0.0.1:3000" : "/cgi-bin/htmlsave.sh");
+        $.post(fsAddr+"?file="+fileName+"&guid="+CTATGuid.guid(), fileContent == null ? document.head.outerHTML+"\n"+document.body.outerHTML+"\n" : fileContent, null, "text").then(
+            downloadAfterSave,
+            function(j,t,r){console.log("err j", j, "; t", t, "; r", r, ";enderr")
+        });
+    }
+
+    function saveBRD() {
+        saveFile((CTATConfiguration.get("question_file") || 'DSExportToCTATScript.brd').replace(/.*\//,""),
+                CTAT.ToolTutor.tutor.getGraph().toXML(CTAT.ToolTutor.tutor) || '<?xml version="1.0" encoding="UTF-8"?><stateGraph/>');
+	}
+    </script>
+
+</head>
+
+<style>
+#graphs {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#graphs > * {
+    position: absolute;
+}
+
+.graph1 {
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #EDF1FA;
+}
+<.graph2 {
+    bottom: 0px;
+    height: 50%;
+    width: 100%;
+    background-color: #FAEDEF;
+}
+</style>
+
+<body>
+    <div class=outer-block id='mainDiv'><center><b><p  style="font-size:22px">Untutored Data<br>Graph Builder<p></b>
+        <div class=inner-block>
+            <p style="font-size:16px"><b>1. Import</b></p>
+            <label id="one" for="fileItem" class="myButton" onclick="changeColor('one')">Select dataset</b> <input id="fileItem" type="file" style="display:none" /></label>
+            </div>
+
+            <br>
+
+            <div class=inner-block>
+                <p style="font-size:16px"><b>2. Analyze</b></p>
+                <input id="runButton" class="myButton" type="button" value="Parse Dataset" onclick="runSimulation();" />
+            </div>
+
+            <br>
+
+
+            <div class=inner-block>
+                <p style="font-size:16px"><b>3. Export</b></p>
+                <center style="width: 80%;">
+                    <a href='#' class="myButton" onclick='downloadCSV({ filename: "output.csv" });'><b>Download CSV</b></a>
+                    <a href='#' class="myButton" onclick='saveBRD();'><b>Save BRD</b></a>
+                </center>
+                </div>
+
+            </div>
+
+            <div class=outer-block>
+                <div class=inner-block id="options">
+                    Graph Options
+                    <br>
+                    Pick a Problem
+                    <form id="problemChoicesForm">
+                    </form>
+                    <br>
+                    <br>
+                    <label id="one" for="interfaceFilePath" class="myButton" onclick="changeColor('one')">Select interface</b> <input id="interfaceFilePath" type="file" style="display:none" /></label>
+                    <label id="two" class="myButton" onclick="(PT=(new CTATPathTracer())).OpenInterface()">Open Interface</b> </label>
+                    <br>
+                    <br><br>
+                    Ordered?
+                    <form id="orderedChoiceForm">
+                        <input type="radio" name="ordered" value="ordered" checked="checked">Ordered<br>
+                        <input type="radio" name="ordered" value="unordered">Unordered
+                    </form>
+                    <br>
+                        <input type="button" value="Show graph" id="MyButton" onclick="runTask1GivenJSON()" />
+                        <input type="button" value="See Selected Path in Interface" id="pathButton" onclick="addPathToInterface()" />
+                        <input type="button" value="Add Selected (correct) Path to BG" id="bgAddButton" onclick="addPathToBG(1)" />
+                        <input type="button" value="Add Selected (incorrect) Path to BG" id="bgAddButton" onclick="addPathToBG(0)" />
+                        <input type="button" value="Mark Selected Path as Incomplete" id="bgAddButton" onclick="addPathToBG(-1)" />
+                    <br>
+                    <br>
+                    N most frequent paths starting from a:
+                        <br>
+                        N
+                        <br>
+                        <input type="text" name="N_form" id="N_form" value="0">
+                        <br>
+                        a
+                        <br>
+                        <input type="text" name="a_form" id="a_form" value="1">
+                        <br>
+                        <input type="submit" value="Submit" onClick="displayNMostFrequentPaths()">
+                        <br>
+
+                    <br>
+                    Currently displaying path
+                    <input type="text" id="currentPathNum" value="1">
+                    <br>
+                    <input type="submit" value="Submit" onClick="addPathXToInterface()">
+                    <input type="button" value="Previous Path" id="prevPathButton" onclick="prevPath()" />
+                    <input type="button" value="Next Path" id="nextPathButton" onclick="nextPath()" />
+                    <br>
+                    <br>
+
+                    Dataset info (overall)
+                        <br>
+                        Total students
+                        <input type="text" id="numStudents" readonly>
+                        <br>
+                        Number of problems
+                        <input type="text" id="numProblems" readonly>
+                        <br>
+                        Dataset info (for selected problem)
+                        <br>
+                        Average Path Length
+                        <input type="text" id="averagePathLength" readonly>
+                        <br>
+                        Longest Path Length
+                        <input type="text" id="longestPath" readonly>
+                        <br>
+                        Shortest Path Length
+                        <input type="text" id="shortestPath" readonly>
+                        <br>
+                        Total students
+                        <input type="text" id="numStudentsProblem" readonly>
+                        <br>
+                        Total number of SAIs
+                        <input type="text" id="numSAIs" readonly>
+                        <br>
+                        Total number of SAs
+                        <input type="text" id="numSAs" readonly>
+                        <br>
+                        Average edge frequency
+                        <input type="text" id="averageEdgeFrequency" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="graphs">
+        <div id="GivenBRD" class="graph1"></div>   
+        <div id="cy" class="graph1"></div>
+        <!--<div id="cy2" class="graph2"></div>-->
+    </div>
+</body>
+
+
+</html>

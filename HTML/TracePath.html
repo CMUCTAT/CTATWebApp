@@ -1,0 +1,236 @@
+<html>
+<head>
+
+    <script src="Assets/jquery.min.js"></script>
+    <script src="Assets/papaparse.min.js"></script>
+
+
+    <script src="Assets/base.js"></script>
+
+    <script src="Assets/ctat.full.js"></script>
+    <script src="Assets/ctatloader.js"></script>
+    <script src="Assets/DSExportToCTATScript.js"></script>
+    <script src='Assets/cytoscape.js'></script>
+    <script src="Assets/task1.js"></script>
+
+    <script>
+    parseConfig = {
+                    delimiter: "",  // auto-detect
+                    newline: "",    // auto-detect
+                    quoteChar: '"',
+                    header: false,
+                    dynamicTyping: false,
+                    preview: 0,
+                    encoding: "",
+                    worker: false,
+                    comments: false,
+                    step: function(results, parser) {
+                        simulateDataStream(results, parser)
+                    },
+                    complete: function() {buildOptions()},
+                    error: undefined,
+                    download: false,
+                    skipEmptyLines: false,
+                    chunk: undefined,
+                    fastMode: undefined,
+                    beforeFirstChunk: undefined,
+                    withCredentials: undefined
+                };
+
+    var scriptIndex = 4;
+
+    function runSimulation(){
+        //update detector list with user-selected values
+        //...
+        let inputFilePath = null;
+        location.search.split(/[?&]/).forEach(function(q) {
+            let NV=q.split(/=/);
+            if(NV.length>1 && NV[0]=="inputFilePath")
+                inputFilePath=NV[1]
+        });
+        inputFilePath = (inputFilePath || document.getElementById('fileItem').files[0]);
+        console.log(inputFilePath);
+
+        problemsAndPaths = {};
+        problems = [];
+        edgesToHide = null;
+        nodesToHide = null;
+        i=0;
+        var problemChoices = document.getElementById("problemChoicesForm");
+        var l = problemChoices.children.length;
+        //need to remove all the problems
+        for (var tmp = 0; tmp < l; tmp++) {
+            problemChoices.removeChild(problemChoices.children[0]);
+        }
+
+        Papa.parse(inputFilePath, parseConfig);
+
+        location.search.split(/[?&]/).forEach(function(q) {
+            let NV=q.split(/=/);
+            if(NV.length>1 && NV[0]=="scriptIndex")
+                scriptIndex=NV[1]
+        });
+        if(scriptIndex===null) {
+            console.log("no problemScripts[scriptIndex]", scriptIndex, problemScripts);
+            return;
+        }
+    }
+    function genScript() {
+        if(!(problemScripts && problemScripts.length && problemScripts[scriptIndex])) {
+            console.log("no problemScripts or scriptIndex", problemScripts, scriptIndex)
+            alert("no problemScripts or scriptIndex");
+            return;
+        }
+        let script=problemScripts[scriptIndex].script;
+        for(let m=0; m<script.length; ++m) {
+            console.log("process[",m,"]:", script[m]);
+            alert("CTAT.ToolTutor.sendToTutor(script["+m+"]): "+script[m]);
+            CTATCommShell.commShell.getCommLibrary().sendXML(script[m].replace("UntutoredAction","InterfaceAction"));
+        }
+    }
+
+    function changeColor(str){
+        document.getElementById(str).style.background='#000000';
+    }
+
+    function downloadAfterSave(d) {
+        console.log("downloadAfterSave(",d,")");
+        let a=document.createElement("a");
+        a.id="a"+(new Date()).getTime();
+        a.download=d.replace(/.*[\/]/, "");
+        a.href=d;
+        a.style="display: none;";
+        document.body.appendChild(a);
+        console.log("downloadAfterSave(): to click a", a);
+        a.click();
+        $(a).remove();
+    }
+
+    function saveFile(fileName, fileContent) {
+        console.log("saveFile(", fileName, ", ",fileContent, ")")
+        let fsAddr = (/127[.]0[.]0[.]1|localhost/.test(document.location.origin) ? "http://127.0.0.1:3000" : "/cgi-bin/htmlsave.sh");
+        $.post(fsAddr+"?file="+fileName+"&guid="+CTATGuid.guid(), fileContent == null ? document.head.outerHTML+"\n"+document.body.outerHTML+"\n" : fileContent, null, "text").then(
+            downloadAfterSave,
+            function(j,t,r){console.log("err j", j, "; t", t, "; r", r, ";enderr")
+        });
+    }
+
+    function saveBRD() {
+        saveFile((CTATConfiguration.get("question_file") || 'DSExportToCTATScript.brd').replace(/.*\//,""),
+                CTAT.ToolTutor.tutor.getGraph().toXML(CTAT.ToolTutor.tutor) || '<?xml version="1.0" encoding="UTF-8"?><stateGraph/>');
+	}
+    </script>
+
+</head>
+
+<style>
+#graphs {
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 95%;
+}
+#graphs > * {
+    position: absolute;
+}
+#ctatinterface {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 130%;
+}
+.graph1 {
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #EDF1FA;
+}
+<.graph2 {
+    bottom: 0px;
+    height: 50%;
+    width: 100%;
+    background-color: #FAEDEF;
+}
+#cy {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        shape: 'rectangle';
+    }
+.inner-block{
+    	padding: 5px;
+    }
+.myButton {
+    	background-color:#A9A9A9;
+    	border:1px solid #696969;
+    	display:inline-block;
+    	cursor:pointer;
+    	color:#ffffff;
+    	font-family:Arial;
+    	font-size:13px;
+    	font-weight: bold;
+    	padding:4px 15px;
+    	text-shadow:0px 1px 0px #2f6627;
+    }
+.myButton:hover {
+    	background-color:#C0C0C0;
+    }
+.myButton:active {
+    	position:relative;
+      background-color:#C0C0C0;
+    	top:1px;
+    }
+</style>
+
+<body style="background-color:#DCDCDC">
+    <div class=outer-block id='mainDiv'>
+            <div class=inner-block>
+                    <label id="one" for="interfaceFilePath" class="myButton" onclick="changeColor('one')">Select interface</b> <input id="interfaceFilePath" type="file" style="display:none" /></label>
+                    <label id="two" class="myButton" onclick="(PT=(new CTATPathTracer())).OpenInterface()">Open Interface</b> </label>
+                    <!--<label id="three" class="myButton" onclick="PT.findPathToNode()">Add listener the Graph</b></label>
+                    <label id="three" class="myButton" onclick="PT.TracePathToNode()">Trace Path To Node</b></label>
+                    <input class="myButton" type="button" value="Add Selected Path to BG" id="bgAddButton" onclick="addPathToBG()" />-->
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div id="graphs">
+        <div id="GivenBRD" class="graph1"></div>
+        <div id="cy" class="graph1"></div>
+        <!--<div id="cy2" class="graph2"></div>-->
+    </div>
+    <iframe id="ctatinterface" name="ctatinterface" style="height:800px;width:800px"></iframe>
+<script>
+onmessage=function(m) {
+  console.log('m', m);
+  document.getElementById("ctatinterface").contentWindow.CTATCommShell.commShell.addGlobalEventListener(assocRulesListener);
+
+  if(PA){
+  PA.forEach(function(link){
+    if (pathflag==1)
+    {
+    ChosenUI.CTATCommShell.commShell.processComponentAction(link.getDefaultSAI());
+      cy.getElementById(link.getNextNode()).unselect();
+      cy.getElementById("-"+link.getUniqueID()).select();
+      pathflag=0;
+    }
+    else {
+      {
+        cy.getElementById(link.getNextNode()).unselect();
+        cy.getElementById("-"+link.getUniqueID()).select();
+      }
+    }
+  });
+}
+
+}
+</script>
+</body>
+
+
+</html>
