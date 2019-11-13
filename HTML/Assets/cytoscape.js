@@ -24217,9 +24217,9 @@ BRp.load = function () {
       && !r.hoverData.dragged // didn't pan
       && !isMultSelKeyDown(e)) {
 
-        cy.$(function (ele) {
-          return ele.selected();
-        }).unselect();
+        // cy.$(function (ele) {
+        //   return ele.selected();
+        // }).unselect();
 
         if (draggedElements.length > 0) {
           r.redrawHint('eles', true);

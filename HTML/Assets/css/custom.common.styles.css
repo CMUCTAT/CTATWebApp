@@ -1,0 +1,693 @@
+.testItemContainer {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-top: 20px !important;
+    padding-bottom: 5px !important;
+}
+
+body {
+    font-size: 1em;
+}
+
+.pull-left {
+    margin-left: 0px;
+}
+
+.pull-right {
+    right: 0px;
+}
+
+.same-line {
+    float: left;
+    padding-top: 10px;
+}
+
+.form-horizontal .control-label {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.top-padding-sm {
+    padding-top: 5px !important;
+}
+
+.top-padding-sm2 {
+    padding-top: 15px !important;
+}
+
+.top-padding-sm3 {
+    padding-top: 10px !important;
+}
+
+.bottom-padding-sm {
+    padding-bottom: 5px !important;
+}
+
+.bottom-padding {
+    padding-bottom: 15px !important;
+}
+
+.bottom-padding-md {
+    padding-bottom: 40px !important;
+}
+
+.top-padding-md {
+    padding-top: 30px !important;
+}
+
+.left-padding {
+    padding-left: 70vw !important;
+}
+
+.right-padding {
+    margin-right: 30px !important;
+}
+
+.top-padding-lg {
+    padding-top: 5vw !important;
+    padding-bottom: 5vw !important;
+}
+
+.left-padding2 {
+    padding-left: 15px !important;
+}
+
+.left-padding3 {
+    padding-left: 5vw !important;
+}
+
+.left-padding4 {
+    padding-left: 10vw !important;
+}
+
+.bold-title {
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+}
+
+.hiddenElement {
+    display: none !important;
+}
+
+
+.bluebg {
+    background-color: #bcebff !important;
+}
+
+.bluetxt {
+    color: #bcebff;
+    font-weight: bold;
+}
+
+.dotted-border {
+    border: 1px dotted black !important;
+}
+
+.animation-duration-2sec {
+    animation-duration: 2s;
+}
+
+.oneline {
+    display: inline;
+}
+
+#scrim {
+    display: none !important;
+}
+
+.bold-text {
+    font-weight: bold !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.digit-box {
+    border-style: solid;
+    border-width: thin;
+}
+
+.digit-box2 {
+    margin-left: 30%;
+    width: 75%;
+    border-style: solid;
+    border-width: thin;
+}
+
+.dragging:hover {
+    cursor: move !important;
+
+}
+
+.centeritems {
+    display: flex;
+    justify-content: center;
+}
+.dragging {
+    background-color: white !important;
+}
+
+.CTATNumberLine {
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+}
+
+.CTATNumberLine--cursor {
+    fill: black;
+    fill-opacity: 0.5;
+    stroke-width: 0px;
+    stroke: black;
+    stroke-opacity: 0.5;
+}
+
+.CTATNumberLine--point {
+    fill: black;
+    stroke-width: 0px;
+}
+
+.dragmargin {
+    padding-right: 3em;
+    padding-left: 3em;
+}
+
+.CTATNumberLine--axis {
+    stroke: black;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    fill-opacity: 0;
+    width: 100px;
+}
+
+
+.CTATNumberLine--tickmark {
+    stroke: black;
+    stroke-width: 2px;
+}
+
+.CTATNumberLine--tickmark-label {
+    stroke: none;
+    fill: black;
+}
+
+.CTATNumberLine--large-tickmark {
+    stroke-width: 4px;
+}
+
+.CTATNumberLine--large-tickmark-label {
+    transform: translateY(55px);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.CTATNumberLine--small-tickmark {}
+
+.CTATNumberLine--small-tickmark-label {
+    padding-bottom: 10px;
+    stroke: none;
+    fill: black;
+}
+
+.CTATNumberLine--denominator-tickmark {
+    stroke: purple;
+}
+
+.CTATNumberLine--denominator-tickmark-label {
+    display: none;
+}
+
+.turned {
+    transform: rotate(-90deg)translateX(-15px);
+    white-space: nowrap;
+    position: relative;
+    height: 200%;
+    width: 1px;
+}
+
+.text-blue {
+    color: #0066ff;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield !important;
+    box-shadow: none !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    margin: 0 !important;
+}
+
+.no-pad {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media screen and (min-width:650px) {
+    .skinny {
+        width: 50%;
+        margin: auto;
+    }
+
+    .mob {
+        display: none;
+    }
+
+    .overlap-table {
+        position: absolute;
+    }
+}
+
+@media screen and (max-width:650px) {
+    .skinny {
+        width: 100%;
+    }
+
+    .mob {
+        display: inherit;
+    }
+
+    .overlap-table {
+        position: relative;
+    }
+}
+
+.overlapped {
+    position: relative;
+}
+
+.digit-cell {
+    padding: 0px;
+}
+
+.table-digit-box {
+    width: 100%;
+    height: 100%;
+    border: none !important;
+}
+
+.vertical-align {
+    display: flex;
+    flex-direction: row;
+}
+
+.popover-font {
+    font-weight: bold !important;
+    font-size: 1.1em !important;
+    color: #0066ff !important;
+}
+
+.modal {
+    font-size: 1.2em;
+    position: absolute !important;
+    top: 10%;
+}
+
+@media screen and (min-height:500px) {
+    .modal {
+        top: 30% !important;
+        height: 30% !important;
+        margin-top: -15% !important;
+
+    }
+}
+
+.rel-block {
+    position: relative;
+}
+
+.uggo-align {
+    display: inline;
+    padding: 50px 0;
+}
+
+#ptlabel {
+    position: absolute !important;
+    top: 180px;
+
+}
+
+@media screen and (min-width:600px) {
+    .CTATNumberLine--container {
+        width: 60vw;
+    }
+}
+
+.medium-input-box {
+    width: 70px;
+}
+
+.seq-align {
+    padding-top: 10px;
+}
+
+.seq-align2 {
+    padding-top: 15px;
+}
+
+
+/* Summer 2019 */
+.margin-bottom-label {
+    margin-bottom: 15px !important;
+}
+
+input,
+select {
+    margin-right: 3px !important;
+    margin-bottom: 3px !important;
+}
+
+.black-bold-bottom-border {
+    border-bottom: 3px solid black !important;
+}
+
+.small-top-bottom-margin {
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+}
+
+.header-label {
+    margin-right: 3px !important;
+}
+
+.problem-element-label {
+    font-size: 85% !important;
+}
+
+.multiplication-column {
+    width: 5px !important;
+}
+
+.large-bullet-font {
+    font-size: 1.5em !important;
+}
+
+#overlay {
+    position: fixed !important;
+    z-index: 99 !important;
+    background: white !important;
+}
+
+.hidden {
+    visibility: hidden !important;
+}
+
+ion-spinner {
+    width: 70px !important;
+    height: 70px !important;
+}
+
+.problem {
+    background-color:#f4f4f4;
+    margin: auto;
+}
+
+.center {
+    margin:auto;
+}
+
+.box {
+    padding: 1.5em;
+    border:1px rgba(189, 182, 182, 0.253) solid;
+    border-radius: 10px;
+}
+
+.top-pad {
+    padding-top: 2em;
+}
+
+.table {
+    text-align: left;
+    list-style-type: none;
+    width: 6em;
+    margin:auto;
+    padding-left: 1em;
+}
+
+.hidden {
+    visibility:hidden;
+}
+
+.table-border {
+    border: 1px rgba(189, 182, 182, 0.253) transparent;
+    width: 40px;
+    height: 23px;
+}
+
+.right {
+    float: right !important;
+}
+
+.scrollable-page {
+    height: 100%;
+    overflow: auto;
+}
+
+.wrong-answer {
+    color: red!important;
+}
+
+.right-answer {
+    color: green!important;
+}
+
+.red-border {
+    border: 2px red solid !important;
+}
+
+.green-border {
+    border: 2px green solid !important;
+}
+
+ion-card {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 5px !important;
+}
+
+.fixed-width {
+    width:50% !important;
+}
+
+.text-box-border {
+    border: 2px black solid;
+}
+
+.white-background {
+    background-color: white;
+}
+
+.curved-border {
+    border-radius: 5px;
+}
+
+.full-width-center {
+    font-size: 2em;
+    margin:0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center-pad {
+    position: absolute;
+    top: 50%;
+}
+
+.horizontal {
+    overflow-x: scroll !important;
+    height:19vw;
+}
+
+.small-font {
+    font-size: 0.75em;
+}
+
+.space-between {
+    justify-content: space-between
+}
+
+ion-card-content {
+    padding: 0px !important;
+}
+
+ion-button {
+    size: small;
+}
+
+.line {
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+
+.show-top {
+    z-index: 99 !important;
+}
+
+.correct-check {
+    --background-checked: green;
+    --border-color-checked: green;
+}
+
+.wrong-check {
+    --background-checked: red;
+    --border-color-checked: red;
+}
+
+.first-answer {
+    color:black !important;
+}
+
+.hint-box {
+    display: flex;
+    flex-direction: column;
+    width: 50% !important;
+    margin: 0 !important;
+    height: 10em;
+}
+
+.move-bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.done-button {
+    --background:  rgb(44, 149, 44) !important;
+    --color: white;
+    --border-radius: 12px !important;
+}
+.zero-padding{
+    padding: 0 !important;
+}
+
+.slideshow {
+    background: white;
+    height: 7em;
+    width: 100%;
+}
+
+#worked-example-text {
+    width:100%;
+    text-align: center;
+}
+
+.top-border {
+    border-top: 2px black solid;
+    padding-top: 10px;
+}
+
+.text-white{
+    color: #fff;
+}
+
+.no-decoration {
+    text-decoration: none!important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape){
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+    .btnHint{
+        float: left;
+        --width: 50%;
+        
+    }
+    .zero-padding{
+        padding:3px !important;
+    }
+}
+
+.CTATHintWindow { /* hint window container styling */
+	width: 350px; height: 140px; /* default size */
+	border-radius: 5px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	padding: 5px;
+	box-sizing: border-box;
+	background-color: #DDDDDD;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.CTATHintWindow--hint-content { /* Hint window content (eg) hints */
+	text-align: left;
+	padding: 2px;
+	overflow: auto;
+	background: white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	cursor: default;
+	margin-bottom: 5px;
+	flex: auto;
+	pointer-events: none;
+}
+.CTATHintWindow--hint-button-area { /* area containing the buttons */
+	flex: none;
+	display: flex;
+	justify-content: space-between;
+}
+.CTATHintWindow--button { /* hint window buttons */
+	border-radius: 5px;
+	font: 11px Helvetica Neue, Helvetical, Arial, sans-serif;
+	stroke-width: 0px;
+	width: 82px;
+	height: 20px;
+	outline: none; /* No focus highlighting */
+}
+.CTATHintWindow--button-icon { /* the arrows in the buttons */
+	margin-left:3px;
+	margin-right:3px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.CTATHintWindow--previous {} /* hint window previous button */
+
+.CTATHintWindow--next {} /* hint window next button */
+
+/* Also used on CTATHintButton */
+.CTAT-hint-button { /* on the <button> */
+	overflow: hidden;
+	padding: 3px;
+    font: inherit;
+    color: rgb(236, 227, 227);
+	border-radius: 5px;
+	background-color: rgb(70, 130, 243);
+ 	border: 1px solid rgb(61, 111, 247);
+ 	cursor: pointer;
+ 	width: inherit;
+ 	height: inherit;
+}
+.CTAT-hint-button:focus { outline: none; }
+.CTAT-hint-button--hover { /* added when moused over */
+	background-color: rgb(70, 130, 243);
+}
+.CTAT-hint-button--clicked { /* added when it is clicked */
+	background-color: rgb(70, 130, 243);
+}

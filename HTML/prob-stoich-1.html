@@ -1,0 +1,1139 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Fav Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="Assets/images/favicon/site.webmanifest">
+    <title> Chemistry Tutor Template </title>
+</head>
+
+<body>
+    <!-- Generated content goes into this div -->
+    <div id="content" class="scrollable-page"></div>
+
+    <!-- We load all our scripts here, after the empty content div has rendered. -->
+    <!-- Lodash -->
+    <script src="Assets/lodash/lodash.min.js"></script>
+    <!-- jQuery -->
+    <script src="Assets/jquery/jquery-1.12.4.min.js"></script>
+    <!-- Standard CTAT libraries -->
+    <script data-silex-static="true" type="text/javascript" src="Assets/ctat.min.js"></script>
+    <script src="Assets/ctat/ctatloader.js"></script>
+    <!-- Include the Ionic Framework in your project -->
+    <script src="Assets/ionic/core/dist/ionic.js"></script>
+    <link href="Assets/ionic/core/css/ionic.bundle.css" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="Assets/css/animate.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="Assets/css/custom.common.styles.css">
+    <!-- Static text used in the document-->
+    <script src="Assets/js/custom/utils.js"></script>
+    <script src="Assets/js/custom/final.strings.js"></script>
+    <script src="Assets/js/custom/dom.manipulations.js"></script>
+    <script src="Assets/js/custom/globals.js"></script>
+    <script src="Assets/js/custom/grade.answer.js"></script>
+    <script src="Assets/js/custom/ctat.communications.js"></script>
+    <script src="Assets/js/custom/event.handling.js"></script>
+
+    <!-- This is where we implement the tutor interface in HTML5/CSS3/JS -->
+    <script type="text/html" id="chem-template">
+        <!-- Overlay that covers content until all elements are loaded and positioned properly. -->
+    <ion-content id="overlay" overflow-scroll="true" scrollY="true" padding>
+        <ion-grid style="height: 100%; width: 100%;">
+            <ion-row class="ion-align-items-center ion-justify-content-center"
+                style="height: 100%; flex-direction: column;">
+                <ion-spinner name="dots" color="primary" duration="1500"></ion-spinner>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+
+    <div id="templateDiv" class="hidden animated fadeIn animation-duration-2sec">
+        <ion-grid class="zero-padding">
+
+            <!-- PROBLEM CARD -->
+            <ion-row
+                style="background-image: linear-gradient(to top right, rgba(102, 130, 175,0), rgba(102, 130, 175,1));"
+                class="ion-align-items-start ion-justify-content-center">
+                <!-- PROBLEM STATEMENT -->
+                <ion-col size="6">
+                    <span class="bold-text text-blue"> <%= LABEL_PROBLEM_STATEMENT %> </span>
+                    <ion-card class="box problem no-top-pad">
+                        <ion-card-content class="bold-text big-text"> <%= TEXT_PROBLEM_STATEMENT_CONTENT %>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+
+                <ion-col size="0.7" class="rightitems"></ion-col>
+
+                <!-- Hint Box -->
+                <ion-col>
+                    <ion-grid>
+                        <ion-row class="ion-justify-content-center">
+                            <ion-label position="stacked" class="bold-title" color="primary">
+                            </ion-label>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size="2.1" class="btnHint">
+                                <ion-button id="btnHint" mode="md"><%= BUTTON_HINT %></ion-button>
+                            </ion-col>
+                            <ion-col size="8" class="ion-justify-content-center">
+                                <ion-grid>
+                                    <ion-row>
+                                        <div id="hintWindow" class="slideshow CTATHintWindow"></div>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-col>
+                            <ion-col size="0.3">
+                                <ion-button id="btnHelp" mode="md">
+                                    <a class="text-white no-decoration" href="https://preview.ctat.cs.cmu.edu/tutors/packages/Stoich6.1_Intervention_TutoredProblemsToSolve/Flash/Assets/Web/VideoTPS.html" target="_blank"><%= BUTTON_HELP %></a>
+                                </ion-button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ion-row>
+            <ion-row class="space-between">
+                <ion-col size="2.2">
+                    <span class="bold-title text-center"> <%= LABEL_PROBLEM %> </span>
+                </ion-col>
+                <ion-col size="2.2"></ion-col>
+                <ion-col size="2.2"></ion-col>
+                <ion-col size="2.2"></ion-col>
+                <ion-col size="2.2">
+                    <span class="bold-title text-center"> <%= LABEL_RESULT %> </span>
+                </ion-col>
+            </ion-row>
+
+            <!-- START BLOCKS -->
+            <ion-row class="space-between">
+
+                <!-- BLOCKS WITH CHOICES IN 3X4 GRID -->
+                <ion-col size="2.2" id="block1">
+
+                    <ion-grid class="small-font digit-cell">
+                        <!-- TITLES FOR EACH BOX -->
+                        <ion-row>
+                            <ion-col size="3.66" class="text-blue">
+                                <%= LABEL_NUMBER_SYMBOL %>
+                            </ion-col>
+                            <ion-col size="3.66" class="text-blue">
+                                <%= LABEL_UNITS %>
+                            </ion-col>
+                            <ion-col size="3.66" class="text-blue">
+                                <%= LABEL_SUBSTANCE %>
+                            </ion-col>
+                            <ion-col size="1" class="text-right text-blue">
+                                <%= LABEL_CANCEL_OUT %>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- ITEMS IN NUMERATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input1a" class="text-box-border curved-border" type="number" value="10.6"
+                                    readonly="true">
+
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" interface="popover" id="input1b" class="white-background curved-border text-box-border right-answer first-answer" value="<%= UNIT_51 %>" disabled="true">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input1c"
+                                    class="white-background curved-border text-box-border right-answer first-answer" value="COH4" disabled="true">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check1a" data-id="Numerator0CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- ITEMS IN DENOMINATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input1d" data-id="Denominator0Value" class="text-box-border curved-border" type="number">
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input1e" data-id="Denominator0Units" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select (change)="onChange()" interface="popover" id="input1f" data-id="Denominator0Substance" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check1b" data-id="Denominator0CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+                        <!-- REASON BUTTTON -->
+                        <ion-row>
+                            <ion-col class="bold-title">
+                                <%= LABEL_REASON %>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-select interface="popover" id="reason1" data-id="Term0Definition" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_1 %>"><%= REASON_1 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_2 %>"><%= REASON_2 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_3 %>"><%= REASON_3 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_4 %>"><%= REASON_4 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_5 %>"><%= REASON_5 %> </ion-select-option>
+                                    <ion-select-option value="<%= REASON_6 %>"><%= REASON_6 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <svg class="line">
+                        <line id="strike1a" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+                    <svg class="line">
+                        <line id="strike1b" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+                </ion-col>
+                <ion-col size="auto">
+                    <ion-row>&nbsp;</ion-row>
+                    <ion-row class="large-text">&nbsp;</ion-row>
+                    <ion-row class="large-bullet-font ion-align-items-center top-padding-sm2">&bull;</ion-row>
+                </ion-col>
+                <!-- SECOND BOX -->
+                <ion-col size="2.2" id="block2">
+                    <ion-grid class="small-font digit-cell">
+                        <!-- TITLES FOR EACH BOX -->
+                        <ion-row>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_NUMBER_SYMBOL %></ion-col>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_UNITS %></ion-col>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_SUBSTANCE %></ion-col>
+                            <ion-col size="1" class="text-right text-blue"><%= LABEL_CANCEL_OUT %></ion-col>
+                        </ion-row>
+                        <!-- ITEMS IN NUMERATOR -->
+                        <ion-row id="row2a">
+                            <ion-col size="3.66">
+                                <ion-input id="input2a" data-id="Numerator1Value" class="text-box-border curved-border" type="number">
+
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input2b" data-id="Numerator1Units" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input2c" data-id="Numerator1Substance" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check2a" data-id="Numerator1CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- ITEMS IN DENOMINATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input2d" data-id="Denominator1Value" class="text-box-border curved-border" type="number">
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input2e" data-id="Denominator1Units" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input2f" data-id="Denominator1Substance" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check2b" data-id="Denominator1CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- REASON BUTTTON -->
+                        <ion-row>
+                            <ion-col class="bold-title">
+                                <%= LABEL_REASON %>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-select interface="popover" id="reason2" data-id="Term1Definition" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_1 %>"><%= REASON_1 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_2 %>"><%= REASON_2 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_3 %>"><%= REASON_3 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_4 %>"><%= REASON_4 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_5 %>"><%= REASON_5 %> </ion-select-option>
+                                    <ion-select-option value="<%= REASON_6 %>"><%= REASON_6 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <svg class="line">
+                        <line id="strike2a" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+                    <svg class="line">
+                        <line id="strike2b" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+
+                </ion-col>
+                <ion-col size="auto">
+                    <ion-row>&nbsp;</ion-row>
+                    <ion-row class="large-text">&nbsp;</ion-row>
+                    <ion-row class="large-bullet-font ion-align-items-center top-padding-sm2">&bull;</ion-row>
+                </ion-col>
+                <!-- Third BOX -->
+                <ion-col size="2.2" id="block3">
+                    <ion-grid class="small-font digit-cell">
+                        <!-- TITLES FOR EACH BOX -->
+                        <ion-row>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_NUMBER_SYMBOL %></ion-col>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_UNITS %></ion-col>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_SUBSTANCE %></ion-col>
+                            <ion-col size="1" class="text-right text-blue"><%= LABEL_CANCEL_OUT %></ion-col>
+                        </ion-row>
+
+                        <!-- ITEMS IN NUMERATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input3a" data-id="Numerator2Value" class="text-box-border curved-border" type="number">
+
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input3b" data-id="Numerator2Units" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input3c" data-id="Numerator2Substance" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check3a" data-id="Numerator2CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- ITEMS IN DENOMINATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input3d" data-id="Denominator2Value" class="text-box-border curved-border" type="number">
+
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input3e" data-id="Denominator2Units" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input3f" data-id="Denominator2Substance" class="white-background curved-border text-box-border"
+                                    value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check3b" data-id="Denominator2CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+                        <!-- REASON BUTTTON -->
+                        <ion-row>
+                            <ion-col class="bold-title">
+                                <%= LABEL_REASON %>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-select interface="popover" id="reason3" data-id="Term2Definition" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_1 %>"><%= REASON_1 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_2 %>"><%= REASON_2 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_3 %>"><%= REASON_3 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_4 %>"><%= REASON_4 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_5 %>"><%= REASON_5 %> </ion-select-option>
+                                    <ion-select-option value="<%= REASON_6 %>"><%= REASON_6 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <svg class="line">
+                        <line id="strike3a" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+                    <svg class="line">
+                        <line id="strike3b" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+                </ion-col>
+                <ion-col size="auto">
+                    <ion-row>&nbsp;</ion-row>
+                    <ion-row class="large-text">&nbsp;</ion-row>
+                    <ion-row class="large-bullet-font ion-align-items-center top-padding-sm2">&bull;</ion-row>
+                </ion-col>
+                <!-- Fourth BOX -->
+                <ion-col size="2.2" id="block4">
+                    <ion-grid class="small-font digit-cell">
+                        <!-- TITLES FOR EACH BOX -->
+                        <ion-row>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_NUMBER_SYMBOL %></ion-col>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_UNITS %></ion-col>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_SUBSTANCE %></ion-col>
+                            <ion-col size="1" class="text-right text-blue"><%= LABEL_CANCEL_OUT %></ion-col>
+                        </ion-row>
+                        <!-- ITEMS IN NUMERATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input4a" data-id="Numerator3Value" class="text-box-border curved-border" type="number">
+
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input4b" data-id="Numerator3Units" class="white-background curved-border text-box-border"
+                                    value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input4c" data-id="Numerator3Substance" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check4a" data-id="Numerator3CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+                        <!-- ITEMS IN DENOMINATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input4d" data-id="Denominator3Value" class="text-box-border curved-border" type="number">
+
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input4e" data-id="Denominator3Units"  class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input4f" data-id="Denominator3Substance" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check4b" data-id="Denominator3CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- REASON BUTTTON -->
+                        <ion-row>
+                            <ion-col class="bold-title">
+                                <%= LABEL_REASON %>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                                <ion-select interface="popover" id="reason4" data-id="Term3Definition" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_1 %>"><%= REASON_1 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_2 %>"><%= REASON_2 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_3 %>"><%= REASON_3 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_4 %>"><%= REASON_4 %></ion-select-option>
+                                    <ion-select-option value="<%= REASON_5 %>"><%= REASON_5 %> </ion-select-option>
+                                    <ion-select-option value="<%= REASON_6 %>"><%= REASON_6 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <svg class="line">
+                        <line id="strike4a" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+                    <svg class="line">
+                        <line id="strike4b" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+
+                </ion-col>
+
+                <ion-col size="auto">
+                    <ion-row>&nbsp;</ion-row>
+                    <ion-row class="large-text">&nbsp;</ion-row>
+                    <ion-row class="large-bullet-font ion-align-items-center top-padding-sm2">&#61;</ion-row>
+                </ion-col>
+
+                <!-- RESULTS BOX -->
+                <ion-col size="2.2" id="block5">
+
+                    <ion-grid class="small-font digit-cell">
+                        <!-- TITLES FOR EACH BOX -->
+                        <ion-row>
+                            <ion-col size="3.66" class="text-blue">
+
+                                <%= LABEL_NUMBER_SYMBOL %></ion-col>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_UNITS %></ion-col>
+                            <ion-col size="3.66" class="text-blue"><%= LABEL_SUBSTANCE %></ion-col>
+                            <ion-col size="1" class="text-right text-blue"><%= LABEL_CANCEL_OUT %></ion-col>
+                        </ion-row>
+
+                        <!-- ITEMS IN NUMERATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input5a" data-id="Numerator4Value" class="text-box-border curved-border" type="number">
+
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input5b" data-id="Numerator4Units" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input5c" data-id="Numerator4Substance" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check5a" data-id="Numerator4CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+
+                        <!-- ITEMS IN DENOMINATOR -->
+                        <ion-row>
+                            <ion-col size="3.66">
+                                <ion-input id="input5d" data-id="Denominator4Value" class="text-box-border curved-border" type="number">
+
+                                </ion-input>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input5e" data-id="Denominator4Units" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_41 %>"><%= TEXT_UNIT_41 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_42 %>"><%= TEXT_UNIT_42 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_43 %>"><%= TEXT_UNIT_43 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_44 %>"><%= TEXT_UNIT_44 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_45 %>"><%= TEXT_UNIT_45 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_46 %>"><%= TEXT_UNIT_46 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_47 %>"><%= TEXT_UNIT_47 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_48 %>"><%= TEXT_UNIT_48 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_49 %>"><%= TEXT_UNIT_49 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_50 %>"><%= TEXT_UNIT_50 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_51 %>"><%= TEXT_UNIT_51 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_52 %>"><%= TEXT_UNIT_52 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_53 %>"><%= TEXT_UNIT_53 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_54 %>"><%= TEXT_UNIT_54 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_55 %>"><%= TEXT_UNIT_55 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_56 %>"><%= TEXT_UNIT_56 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_57 %>"><%= TEXT_UNIT_57 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="3.66">
+                                <ion-select interface="popover" id="input5f" data-id="Denominator4Substance" class="white-background curved-border text-box-border" value="<%= EMPTY_BOX %>">
+                                    <ion-select-option value="<%= EMPTY_BOX %>"><%= EMPTY_BOX %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_1 %>"><%= TEXT_UNIT_1 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_2 %>"><%= TEXT_UNIT_2 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_3 %>"><%= TEXT_UNIT_3 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_4 %>"><%= TEXT_UNIT_4 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_5 %>"><%= TEXT_UNIT_5 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_6 %>"><%= TEXT_UNIT_6 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_7 %>"><%= TEXT_UNIT_7 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_8 %>"><%= TEXT_UNIT_8 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_9 %>"><%= TEXT_UNIT_9 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_10 %>"><%= TEXT_UNIT_10 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_11 %>"><%= TEXT_UNIT_11 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_12 %>"><%= TEXT_UNIT_12 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_13 %>"><%= TEXT_UNIT_13 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_14 %>"><%= TEXT_UNIT_14 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_15 %>"><%= TEXT_UNIT_15 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_16 %>"><%= TEXT_UNIT_16 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_17 %>"><%= TEXT_UNIT_17 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_18 %>"><%= TEXT_UNIT_18 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_19 %>"><%= TEXT_UNIT_19 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_20 %>"><%= TEXT_UNIT_20 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_21 %>"><%= TEXT_UNIT_21 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_22 %>"><%= TEXT_UNIT_22 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_23 %>"><%= TEXT_UNIT_23 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_24 %>"><%= TEXT_UNIT_24 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_25 %>"><%= TEXT_UNIT_25 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_26 %>"><%= TEXT_UNIT_26 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_27 %>"><%= TEXT_UNIT_27 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_28 %>"><%= TEXT_UNIT_28 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_29 %>"><%= TEXT_UNIT_29 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_30 %>"><%= TEXT_UNIT_30 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_31 %>"><%= TEXT_UNIT_31 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_32 %>"><%= TEXT_UNIT_32 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_33 %>"><%= TEXT_UNIT_33 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_34 %>"><%= TEXT_UNIT_34 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_35 %>"><%= TEXT_UNIT_35 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_36 %>"><%= TEXT_UNIT_36 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_37 %>"><%= TEXT_UNIT_37 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_38 %>"><%= TEXT_UNIT_38 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_39 %>"><%= TEXT_UNIT_39 %></ion-select-option>
+                                    <ion-select-option value="<%= UNIT_40 %>"><%= TEXT_UNIT_40 %></ion-select-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col size="1">
+                                <ion-checkbox class="checks" id="check5b" data-id="Denominator4CancelGroup"></ion-checkbox>
+                            </ion-col>
+                        </ion-row>
+
+                    </ion-grid>
+                    <svg class="line">
+                        <line id="strike5a" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+                    <svg class="line">
+                        <line id="strike5b" x1="0" y1="0" x2="0" y2="0" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </svg>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col class="bold-title right-padding">
+                    <ion-button id="btnDone" class="right"> <%= BUTTON_DONE %> </ion-button>
+                </ion-col>
+            </ion-row>
+
+            <ion-row id="finalText" class="hiddenElement">
+                <ion-col size="8">
+                    <%= FINAL_DONE_TEXT %>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-button id="btnNextProblem">
+                        <%= BUTTON_NEXT_PROBLEM %>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    </script>
+
+    <script>
+        compileAndLoadTemplate("chem-template");
+    </script>
+
+</body>
+
+</html>
