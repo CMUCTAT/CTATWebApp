@@ -1,91 +1,53 @@
-function runTask1() {
-    //console.log("button pressed");
-    var cy = cytoscape({
-        container: document.getElementById('cy')
-    });
-    var g = CTAT.ToolTutor.tutor.getGraph();
-    cy.json(JSON.parse(buildJSON(g)));
-    var layout = cy.layout({name: 'cose'});
-    layout.run();
-}
+var addedNodes = [];
+var addedEdges = [];
+var jsonGraph = {
+    elements: [],
 
-function buildJSON(graph, edgeFreqs) {
-    var maxFreq = Math.max.apply(null, Object.values(edgeFreqs));
-    var jsonGraph = {
-        elements: [],
+    style: [
+        {
+            selector: 'node',
+            style: {
+                'label': 'data(id)',
+                "text-valign": "center",
+                "text-halign": "center"
+            }
+        },
 
-        style: [
-            {
-                selector: 'node',
-                style: {
+        {
+            selector: 'node[id="1"]',
+            style: {
+              'width': '50',
+              'height': '50',
                     'label': 'data(id)',
                     "text-valign": "center",
                     "text-halign": "center"
-                }
-            },
+            }
+        },
 
-            {
-                selector: 'node[id="1"]',
-                style: {
-                  'width': '50',
-                  'height': '50',
-                        'label': 'data(id)',
-                        "text-valign": "center",
-                        "text-halign": "center"
-                }
-            },
-
-            {
-                selector: 'edge',
-                style: {
-                    //'line-color': 'green',
-                    'label': 'data(info2)',
-                    'width': '8',
-                    'target-arrow-shape': 'triangle',
-                    'curve-style': 'bezier',
-                    'min-zoomed-font-size': '10'
-                }
-            },
-
-            // {
-            //     selector: 'edge[correct=1]',
-            //     style: {'line-color': 'gray',
-            //             'target-arrow-color': 'gray',
-            //             'label': 'data(info)',
-            //             //'width': 'mapData(freq, 0, '+maxFreq+', 1, 20)',
-            //             'target-arrow-shape': 'triangle',
-            //             'curve-style': 'bezier',
-            //             'min-zoomed-font-size': '10'
-            //     }
-            // },
-            //
-            // {
-            //     selector: 'edge[correct=-1]',
-            //     style: {'line-color': 'red',
-            //             'target-arrow-color': 'red',
-            //             'label': 'data(info)',
-            //             //'width': 'mapData(freq, 0, '+maxFreq+', 1, 20)',
-            //             'target-arrow-shape': 'triangle',
-            //             'curve-style': 'bezier',
-            //             'min-zoomed-font-size': '10'
-            //     }
-            // },
-            //
-            // {
-            //     selector: 'edge[correct=0]',
-            //     style: {'line-color': 'red',
-            //             'target-arrow-color': 'red',
-            //             'label': 'data(info)',
-            //             //'width': 'mapData(freq, 0, '+maxFreq+', 1, 20)',
-            //             'target-arrow-shape': 'triangle',
-            //             'curve-style': 'bezier',
-            //             'min-zoomed-font-size': '10'
-            //     }
-            // }
-        ]
-    };
-
-    var addedNodes = [];
+        {
+            selector: 'edge',
+            style: {
+                //'line-color': 'green',
+                'label': 'data(info2)',
+                'width': '8',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'min-zoomed-font-size': '10'
+            }
+        },
+    ]
+};
+// function runTask1() {
+//     //console.log("button pressed");
+//     var cy = cytoscape({
+//         container: document.getElementById('cy')
+//     });
+//     var g = CTAT.ToolTutor.tutor.getGraph();
+//     cy.json(JSON.parse(buildJSON(g)));
+//     var layout = cy.layout({name: 'cose'});
+//     layout.run();
+// }
+function buildJSON(graph) {
 
     //so graph has no way of getting the # of nodes... guess i have to start with edges
 
@@ -108,14 +70,9 @@ function buildJSON(graph, edgeFreqs) {
             addNode(jsonGraph, nextId, pos ? parseInt(pos.x) : null, pos ? parseInt(pos.y) : null);
             addedNodes.push(nextId);
         }
-
-        //add edge
-        //console.log(defaultsai.getAction());
-        var freq = edgeFreqs[links[i].getUniqueID()];
-        //if (freq < edgeFreq)
-        //freq = 0;
         addEdge(jsonGraph, links[i].getUniqueID(), prevId, nextId,
-                defaultsai.getSelection(), defaultsai.getAction(), defaultsai.getInput(), freq, maxFreq);
+                defaultsai.getSelection(), defaultsai.getAction(), defaultsai.getInput());
+        addedEdges.push(links[i].getUniqueID());
     }
     BRDjson = jsonGraph;
 
@@ -180,7 +137,7 @@ function addNode(jsonGraph, id, x, y) {
     }
 }
 
-function addEdge(jsonGraph, id, source, target, selection, action, input, freq, maxFreq) {
+function addEdge(jsonGraph, id, source, target, selection, action, input) {
     var edge = {
         group: 'edges',
 
@@ -193,10 +150,8 @@ function addEdge(jsonGraph, id, source, target, selection, action, input, freq, 
             action: action,
             input: input,
             info: "["+selection+","+action+","+input+"]",
-            info2: "["+selection+","+input+"]",
-            freq: freq,
-            maxFreq: maxFreq
-        }
+            info2: "["+selection+","+input+"]"
+                  }
     };
     jsonGraph.elements.push(edge);
 }

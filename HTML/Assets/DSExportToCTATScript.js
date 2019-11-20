@@ -5,26 +5,17 @@ var problems = [];
 var cy;
 var edgesToHide, nodesToHide;
 var graph;
-var edgeFreqs = {};
 var allPaths;
 var cy2;
 var ui;
+var currentnode;
+var layout;
+
 var PT = null;
 var ChosenUI;
 var interfaceFilePath;
 var elts = [];
 var g = null;
-// function runTask2() {
-//     //console.log("button pressed");
-//
-//     g = CTAT.ToolTutor.tutor.getGraph();
-//     /*var Gjson = buildJSON(g, []);
-//     console.log("Gjson", Gjson);
-//     cy.json(JSON.parse(Gjson));
-//     var layout = cy.layout({name: 'cose'});
-//     layout.run();*/
-//     runTask1GivenJSON(g);
-// }
 
 
 function getInterface() {
@@ -67,8 +58,9 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
     var cytoDivID = graphDivID||"cy";
     var cyContainer= document.getElementById(cytoDivID);
     var flagg = false;
+    var graphName = location.toString().substring(location.toString().lastIndexOf("/") + 1)
     ChosenUI = null;
-    var g = CTAT.ToolTutor.tutor.getGraph();
+    g = CTAT.ToolTutor.tutor.getGraph();
     cy = cytoscape({                                   //runTask1GivenJSON(ggraph) {
         container: cyContainer,
         hideLabelsOnViewport: true
@@ -86,17 +78,15 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         var lin = msg.getProperty("StepID");
         var sai = "["+msg.getProperty("StudentSelection")+","+msg.getProperty("StudentAction")+","+msg.getProperty("StudentInput")+"]";//msg.getSAI();                               // selection-action-input from tutor engine
         console.log("indicator",indicator,"indicator",sai.toString(),"getProperty",msg.getXMLString(true));
-        // highlightedge=cy.getElementById("39-89-36");
-        // console.log("edge", highlightedge);
-        // if("correct" == indicator.toLowerCase())
         highlightedge=null;
         if(msg.getProperty("TraceOutcome")=="Correct Action")
         {
           lind = parseInt(lin,10);
           highlightedge=cy.getElementById("-"+lin);
           highlightedge.select();
-          console.log(highlightedge);
           console.log(cy);
+          var ret = highlightedge[0].id().replace("-",'');
+          currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
         }
         else if (msg.getProperty("TraceOutcome")=="Buggy Action")
         {
@@ -104,23 +94,70 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
               return ele.data('info') == sai.toString();
           })
           highlightedge.select();
+          var ret = highlightedge[0].id().replace("-",'');
+          currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
         }
-        if(highlightedge==null)               //highlightedge.length==0)
+        var selectMode = document.getElementById("mySelect").value;
+        //layout.run();
+        console.log("currentnode",currentnode);
+        if(highlightedge==null && selectMode=="Demonstrate")
         {
-          //add demonstrate mode here
-          cy.elements().makeLayout();
+          //add demonstrate mode here for cytoscape
+          //var pos = currentnode.getVisualData();
+          var addNodeId =  addedNodes.reduce(function(a, b) {
+                        return Math.max(a, b);
+                      });
+          addNodeId=addNodeId+1;
+          addNode(jsonGraph, addNodeId, null, null);
+          addedNodes.push(addNodeId);
+          var addEdgeId =  addedEdges.reduce(function(a, b) {
+                        return Math.max(a, b);
+                      });
+          addEdgeId=addEdgeId+1;
+          addEdge(jsonGraph, addEdgeId, currentnode.id(), addNodeId, msg.getProperty("StudentSelection"), msg.getProperty("StudentAction"), msg.getProperty("StudentInput"));
+          addedEdges.push(addEdgeId);
+
+          //add demonstrate mode here for CTAT
+          var newNode = new CTATExampleTracerNode(addNodeId);
+          g.addNode(newNode);
+          var newLink = new CTATExampleTracerLink(addEdgeId, currentnode.id(), addNodeId);
+          var SelectionMatchers = new CTATMatcher();
+          var ActionMatchers = new CTATMatcher();
+          var InputMatchers = new CTATMatcher();
+          var actor = "Student";
+          var vectorMatcher = new CTATVectorMatcher(SelectionMatchers, ActionMatchers, InputMatchers, actor);
+          vectorMatcher.setDefaultSAI(new CTATSAI(msg.getProperty("StudentSelection"), msg.getProperty("StudentAction"), msg.getProperty("StudentInput"), "Student"));
+          newLink.setMatcher(vectorMatcher);
+          // OK so I need to make a new matcher and give it the selection, action, and input
+          g.addLink(newLink, null); //don't worry about groups for now
+          g.getNode(currentnode.id()).addOutLink(newLink);
+          newNode.addInLink(newLink);
+
+          cy.json(JSON.parse(buildJSON(g)));
+          layout = cy.layout({
+                          name: 'cose',
+                          fit: true,
+                          padding: 30,
+                          boundingBox: undefined,
+                          nodeDimensionsIncludeLabels: false,
+                          randomize: true,
+                          componentSpacing: 40,
+                          nodeRepulsion: function( node ){ return 1020480; },
+                          nodeOverlap: 4,
+                          idealEdgeLength: function( edge ){ return 50; },
+                          edgeElasticity: function( edge ){ return 32; },
+                          nestingFactor: 1.2,
+                          gravity: 0.1
+                       });
+            layout.run();
+            highlightedge=cy.getElementById("-"+addEdgeId);
+            highlightedge.select();
+            currentnode=cy.getElementById(addNodeId);
         }
-        //var selection = (sai ? sai.getSelection() : "_noSuchComponent_");
-        //var comps = CTATShellTools.findComponent(selection);  // array of components with this name
-        //var component = (comps && comps.length ? comps[0] : null);
-        //if(component && "incorrect" == indicator.toLowerCase())
-        //{
-        //    console.log("Tutor's answer is "+sai.toString());
-        //}
       }
     };
-    cy.json(JSON.parse(buildJSON(g, {})));
-    var layout = cy.layout({
+    cy.json(JSON.parse(buildJSON(g)));
+    layout = cy.layout({
                     name: 'cose',
                     fit: true,
                     padding: 30,
@@ -135,47 +172,43 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
                     nestingFactor: 1.2,
                     gravity: 0.1
                  });
-                 layout.run();
-                 var currentnode=cy.getElementById(1);
-                 currentnode.select();
-                 cy.bind('click', 'node', function(nodeselected) {
-                   PA=null;
-                   pathflag=1;
-                   console.log('ChosenUI', ChosenUI);
-                   var destNodeID = nodeselected.target.id();
-                   if (destNodeID==1)
-                   {
+    layout.run();
+    currentnode=cy.getElementById(1);
+    currentnode.select();
+    cy.bind('click', 'node', function(nodeselected) {
+      PA=null;
+      pathflag=1;
+      console.log('ChosenUI', ChosenUI);
+      var destNodeID = nodeselected.target.id();
+      currentnode=cy.getElementById(destNodeID);
+      if (destNodeID==1)
+      {
+        ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
+        window.onmessage(function(m){console.log("m",m);});
+        return;
+      }
+      var destNode = g.getNode(destNodeID);
+      console.log("ChosenUI.CTAT.ToolTutor.tutor", ChosenUI.CTAT.ToolTutor.tutor);
+      ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
+      let tp = g.getBestSubpath(g.getStartNode(), destNode);
+      if (tp == null)
+      {
+          //tp = findPathToNode(destNode, null); //cy.getElementById(1),
+          console.log("tp",tp);
+      }
+      PA =tp.getSortedLinks();
 
-                     ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
-                     window.onmessage(function(m){console.log("m",m);});
-                     return;
-                   }
-                   console.log('node clicked: ', nodeselected.target.id(), destNodeID);
-                   var destNode = g.getNode(destNodeID);
-                   console.log("ChosenUI.CTAT.ToolTutor.tutor", ChosenUI.CTAT.ToolTutor.tutor);
-                   ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
-                   let tp = g.getBestSubpath(g.getStartNode(), destNode);
-                   if (tp == null)
-                   {
-                       //tp = findPathToNode(destNode, null); //cy.getElementById(1),
-                       console.log("tp",tp);
-                   }
-                   PA =tp.getSortedLinks();
 
-
-                   console.log("PA",PA);
-                   // PA.forEach(function(link){
-                   //     console.log('link', link);
-                   //     ChosenUI.CTATCommShell.commShell.processComponentAction(link.getDefaultSAI());
-                   // });
-                   window.onmessage(function(m){console.log("m",m);});
-                 });
+      console.log("PA",PA);
+      // PA.forEach(function(link){
+      //     console.log('link', link);
+      //     ChosenUI.CTATCommShell.commShell.processComponentAction(link.getDefaultSAI());
+      // });
+      window.onmessage(function(m){console.log("m",m);});
+    });
                  //document.getElementById("cy").ondblclick = function(e) {cy.$(':selected').remove();};
                  /*var nid = 23;
-                 document.getElementById("cy").ondblclick = function(e) {
-        cy.add({ data: { id: nid }, renderedPosition: { x: e.x, y: e.y } });
-        nid++;
-        };
+
                          ,{data: { id: nid+e.target.id(), source: nodeselected.target.id(), target: nid}}
                          layout.pon('layoutstop').then(function( event ){
                              cy.nodes().positions(function(node, i){
@@ -213,6 +246,10 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         flagg=true;
     }
 
+    this.saveGraph = function() {
+      CTATFS.writeFile(graphName, g.toXML(CTAT.ToolTutor.tutor));
+    }
+
     this.findPathToNode = function(n, p) {
         var destnode = g.getNode(4);
         console.log(destnode);
@@ -235,348 +272,3 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         ChosenUI.CTATCommShell.commShell.addGlobalEventListener(assocRulesListener)
     }
 }
-//
-// function getSelectedPath() {
-//     console.log("called");
-//     //get all selected nodes
-//     var selectedNodes = cy.$(":selected");
-//     if (selectedNodes.length < 1)
-//         return null;
-//     var firstSelect = selectedNodes[0];
-//     console.log(firstSelect);
-//     var root = cy.$('node[id="0"]');
-//     //use dijkstra's to get path
-//     var dijkstra = cy.elements().dijkstra('node[id="0"]',
-//         function() {
-//               return 1;
-//             }, false);
-//     var path = dijkstra.pathTo(firstSelect);
-//     path.select();
-//
-//     //first log the SAIs in path
-//     path.edges().forEach(function(edge) {
-//         console.log(edge.data("info"))
-//     });
-//     return path;
-// }
-//
-//
-//
-//
-//
-//
-// function addPathXToInterface() {
-//     console.log("addPathXToInterface called");
-//
-//     getInterface();
-//
-//     cy.$().unselect();
-//     x = document.getElementById("currentPathNum").value;
-//     pathNum = parseInt(x);
-//     console.log(x);
-//     if (!isNaN(pathNum)) {
-//         path = allPaths[pathNum-1];
-//         path.select();
-//         var msgs = [], builder = new CTATTutoringServiceMessageBuilder();
-//         path.edges().forEach(function(edge) {
-//             msgs.push(builder.createInterfaceActionMessage(CTATGuid.guid(), new CTATSAI(edge.data("selection"),
-//                                                                                         edge.data("action"),
-//                                                                                         edge.data("input"))));
-//         });
-//         if (ui == null || ui.closed) {
-//             //this is hardcoded-ish for now
-//             ui=window.open(interfaceFilePath.name+"?question_file=../FinalBRDs/empty.brd&show_debug_traces=basic", "_blank");
-//             ui.window.onload = (function() {
-//                 console.log("onload");
-//                 for(let m in msgs) ui.window.CTAT.ToolTutor.sendToInterface(msgs[m]);
-//             }).bind(this);
-//             ui.window.onclose = (function() {
-//                 ui = null;
-//             }).bind(this);
-//         }
-//         else {
-//             ui.window.close();
-//             //we want to reset the UI somehow
-//             ui=window.open(interfaceFilePath.name+"?question_file=../FinalBRDs/empty.brd&show_debug_traces=basic", "_blank");
-//             ui.window.onload = (function() {
-//                 console.log("onload");
-//                 for(let m in msgs) ui.window.CTAT.ToolTutor.sendToInterface(msgs[m]);
-//             }).bind(this);
-//             ui.window.onclose = (function() {
-//                 ui = null;
-//             }).bind(this);
-//             /*for(let m in msgs) {
-//                 ui.window.CTAT.ToolTutor.sendToInterface(msgs[m]);
-//             }*/
-//         }
-//     }
-// }
-//
-//
-// function addPathToInterface() {
-//     console.log("addPathToInterface called");
-//
-//     getInterface();
-//
-//     //get all selected nodes/edges
-//     //path = getSelectedPath();
-//     path = cy.$(":selected");
-//     /*var selectedNodes = cy.$(":selected");
-//     var firstSelect = selectedNodes[0];
-//     var root = cy.$('node[id="0"]');
-//     //use dijkstra's to get path
-//     var dijkstra = cy.elements().dijkstra('node[id="0"]',
-//         function() {
-//               return 1;
-//             }, false);
-//     var path = dijkstra.pathTo(firstSelect);
-//     */
-//     //path.select();
-//
-//     //first log the SAIs in path
-//     path.edges().forEach(function(edge) {
-//         console.log(edge.data("info"))
-//
-//     });
-//
-//
-//     //now we need to pass it on somehow
-//     var msgs = [], builder = new CTATTutoringServiceMessageBuilder();
-//     path.edges().forEach(function(edge) {
-//         msgs.push(builder.createInterfaceActionMessage(CTATGuid.guid(), new CTATSAI(edge.data("selection"),
-//                                                                                     edge.data("action"),
-//                                                                                     edge.data("input"))));
-//     });
-//
-//     msgs.forEach(function(msg) {
-//         console.log(msg)
-//     });
-//
-//     if (ui == null || ui.closed) {
-//         ui=window.open(interfaceFilePath.name+"?question_file=empty.brd&show_debug_traces=basic", "_blank");
-//         ui.window.onload = (function() {
-//             for(let m in msgs) ui.window.CTAT.ToolTutor.sendToInterface(msgs[m]);
-//         }).bind(this);
-//         ui.window.onclose = (function() {
-//             ui = null;
-//         }).bind(this);
-//     }
-//     else {
-//         /*for(let m in msgs) {
-//             ui.window.CTAT.ToolTutor.sendToInterface(msgs[m]);
-//         }*/
-//         ui.window.close();
-//         //we want to reset the UI somehow
-//         ui=window.open(interfaceFilePath.name+"?question_file=../FinalBRDs/empty.brd&show_debug_traces=basic", "_blank");
-//         ui.window.onload = (function() {
-//             console.log("onload");
-//             for(let m in msgs) ui.window.CTAT.ToolTutor.sendToInterface(msgs[m]);
-//         }).bind(this);
-//         ui.window.onclose = (function() {
-//             ui = null;
-//         }).bind(this);
-//     }
-//
-//
-//     /*
-//     ui=window.open("fractionAddition.html?question_file=empty.brd&show_debug_traces=basic", "_blank");
-//     ui.window.onload = (function() {
-//         console.log("hi");
-//         for(let m in msgs) ui.window.CTAT.ToolTutor.sendToInterface(msgs[m]);
-//     }).bind(this);*/
-//
-//     //why is it that when I copypaste this into console, it works
-//     //but when i run it through the button, it doesn't work?
-//     //oh I changed it from this.msgs to msgs...
-//     //idk if the bind() is necessary?
-// }
-//
-//
-//
-// function runTask1GivenJSON(ggraph) {
-//     cy = cytoscape({
-//         container: document.getElementById('cy'),
-//         hideLabelsOnViewport: true
-//     });
-//     /*cy2 = cytoscape({
-//         container: document.getElementById('cy2'),
-//         hideLabelsOnViewport: true
-//     });
-//
-//     cy2.json({
-//         style: [
-//             {
-//                 selector: 'node',
-//                 style: {'background-color': 'green',
-//                         'label': 'data(id)',
-//                         "text-valign": "center",
-//                         "text-halign": "center"
-//                 }
-//             },
-//
-//             {
-//                 selector: 'node[id="0"]',
-//                 style: {'background-color': 'purple',
-//                         'label': 'data(id)',
-//                         "text-valign": "center",
-//                         "text-halign": "center"
-//                 }
-//             },
-//
-//             {
-//                 selector: 'edge[?correct]',
-//                 style: {'line-color': 'blue',
-//                         'target-arrow-color': 'blue',
-//                         'label': 'data(info)',
-//                         //'width': 'mapData(freq, 0, '+maxFreq+', 1, 20)',
-//                         'target-arrow-shape': 'triangle',
-//                         'curve-style': 'bezier',
-//                         'min-zoomed-font-size': '10'
-//                 }
-//             },
-//
-//             {
-//                 selector: 'edge[!correct]',
-//                 style: {'line-color': 'red',
-//                         'target-arrow-color': 'red',
-//                         'label': 'data(info)',
-//                         //'width': 'mapData(freq, 0, '+maxFreq+', 1, 20)',
-//                         'target-arrow-shape': 'triangle',
-//                         'curve-style': 'bezier',
-//                         'min-zoomed-font-size': '10'
-//                 }
-//             }
-//         ]
-//     });*/
-//
-//
-//
-//
-//
-//     if(ggraph)
-//     {
-//         graph = ggraph;
-//     }
-//     else
-//     {
-//         buildGraphForProblem();  //sets global graph
-//     }
-//     //console.log("button pressed 2");
-//     cy.json(JSON.parse(buildJSON(graph, edgeFreqs)));
-//     var layout = cy.layout({
-//                     name: 'cose',
-//                     fit: true,
-//                     padding: 30,
-//                     boundingBox: undefined,
-//                     nodeDimensionsIncludeLabels: false,
-//                     randomize: true,
-//                     componentSpacing: 40,
-//                     nodeRepulsion: function( node ){ return 1020480; },
-//                     nodeOverlap: 4,
-//                     idealEdgeLength: function( edge ){ return 50; },
-//                     edgeElasticity: function( edge ){ return 32; },
-//                     nestingFactor: 1.2,
-//                     gravity: 0.1
-//                  });
-//
-//         layout.pon('layoutstop').then(function( event ){
-//             cy.nodes().positions(function(node, i){
-//                 return CTAT.ToolTutor.tutor.getGraph().getNode(node.data().id).getDimension();
-//                 });
-//             });
-//
-//     layout.run();
-//
-//
-//     allPaths = [];
-//     cy.nodes().leaves().forEach(function(leaf) {
-//         var dijkstra = cy.elements().dijkstra('node[id="0"]',
-//             function() {
-//                   return 1;
-//                 }, false);
-//         var path = dijkstra.pathTo(leaf);
-//         allPaths.push(path);
-//     });
-//
-//     pathFreqs = [];//entries are [original index, path freq]
-//     for (var i = 0; i < allPaths.length; i++) {
-//         //freq of path i = min freq of its edges
-//         total = 0;
-//         allPaths[i].edges().forEach(function(e){total += e.data("freq")});
-//         //pathFreqs[i] = [i,allPaths[i].edges().min(function(e){return e.data("freq")})];
-//         //or instead do average freq because that's probably more useful it seems
-//         pathFreqs[i] = [i,total/allPaths[i].edges().length];
-//     }
-//     pathFreqs.sort(function(a,b) {return b[1]-a[1]});
-//     sortedAllPaths = []
-//     for (var i = 0; i < allPaths.length; i++) {
-//         sortedAllPaths.push(allPaths[pathFreqs[i][0]])
-//     }
-//     allPaths = sortedAllPaths
-//
-//     cy.nodes().on('select', function(event) {
-//             getSelectedPath();
-//     });
-//
-//
-//
-//     document.getElementById("N_form").value = allPaths.length
-//     document.getElementById("N_form").text = allPaths.length
-//
-//     //populate overall info fields
-//     document.getElementById("numStudents").value = students.size;
-//     document.getElementById("numProblems").value = problems.length;
-//
-//     //populate problem-specific info
-//     //need to update on switching problem too...
-//     pathLens = allPaths.map(function(path) {//path length is = to # of edges
-//         return path.edges().length;
-//     });
-//     totalLen = 0;
-//     for (i=0;i<pathLens.length;i++) {
-//         totalLen += pathLens[i];
-//     }
-//     document.getElementById("averagePathLength").value = Math.round(totalLen/pathLens.length)
-//     document.getElementById("longestPath").value = Math.min(...pathLens)
-//     document.getElementById("shortestPath").value = Math.max(...pathLens)
-//
-//     var chosenProblem = 0;
-//     var problemRadios = document.getElementsByName("problem");
-//     for (var k = 0; k < problems.length; k++) {
-//         if (problemRadios[k].checked) {
-//             chosenProblem = k;
-//             break;
-//         }
-//     }
-//
-//     if(ggraph)
-//         return;
-//     document.getElementById("numStudentsProblem").value = Object.entries(problemsAndPaths[problems[chosenProblem]]).length;
-//
-//     totalSAIs=0;
-//     objectified = Object.entries(edgeFreqs)
-//     objectified.forEach(function(entry) {totalSAIs += entry[1]});
-//     document.getElementById("numSAIs").value = totalSAIs;
-//
-//     //totalSAs = 0;
-//     allSAs = {};
-//     bigArray = Object.entries(problemsAndPaths)
-//     for (var problemInd = 0; problemInd < bigArray.length; problemInd++) {
-//         problemArray = Object.entries(bigArray[problemInd][1]);
-//         for (var studentInd = 0; studentInd < problemArray.length; studentInd++) {
-//             saiList = Object.entries(problemArray[studentInd][1])
-//             for (var SAind = 0; SAind < saiList.length; SAind++) {
-//                 if (!allSAs.hasOwnProperty(saiList[SAind][0])) {
-//                     allSAs[saiList[SAind][0]] = 1;
-//                 }
-//             }
-//         }
-//     }
-//
-//     //totalSAs = Object.entries(allSAs)
-//     document.getElementById("numSAs").value = Object.entries(allSAs).length;
-//
-//     document.getElementById("averageEdgeFrequency").value = Math.round(totalSAIs/objectified.length)
-//
-//     document.getElementById("currentPathNum").value = 1//reset
-// }

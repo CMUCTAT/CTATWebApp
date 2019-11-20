@@ -7,8 +7,8 @@
  Copyright (c) Jon Nylander
 */
 var jstz = function() {
-  var HEMISPHERE_SOUTH = "s", consts = {DAY:864E5, HOUR:36E5, MINUTE:6E4, SECOND:1E3, BASELINE_YEAR:2014, MAX_SCORE:864E6, AMBIGUITIES:{"America/Denver":["America/Mazatlan"], "Europe/London":["Africa/Casablanca"], "America/Chicago":["America/Mexico_City"], "America/Asuncion":["America/Campo_Grande", "America/Santiago"], "America/Montevideo":["America/Sao_Paulo", "America/Santiago"], "Asia/Beirut":["Asia/Amman", "Asia/Jerusalem", "Europe/Helsinki", "Asia/Damascus", "Africa/Cairo", "Asia/Gaza", "Europe/Minsk"],
-  "Pacific/Auckland":["Pacific/Fiji"], "America/Los_Angeles":["America/Santa_Isabel"], "America/New_York":["America/Havana"], "America/Halifax":["America/Goose_Bay"], "America/Godthab":["America/Miquelon"], "Asia/Dubai":["Asia/Yerevan"], "Asia/Jakarta":["Asia/Krasnoyarsk"], "Asia/Shanghai":["Asia/Irkutsk", "Australia/Perth"], "Australia/Sydney":["Australia/Lord_Howe"], "Asia/Tokyo":["Asia/Yakutsk"], "Asia/Dhaka":["Asia/Omsk"], "Asia/Baku":["Asia/Yerevan"], "Australia/Brisbane":["Asia/Vladivostok"],
+  var HEMISPHERE_SOUTH = "s", consts = {DAY:864E5, HOUR:36E5, MINUTE:6E4, SECOND:1E3, BASELINE_YEAR:2014, MAX_SCORE:864E6, AMBIGUITIES:{"America/Denver":["America/Mazatlan"], "Europe/London":["Africa/Casablanca"], "America/Chicago":["America/Mexico_City"], "America/Asuncion":["America/Campo_Grande", "America/Santiago"], "America/Montevideo":["America/Sao_Paulo", "America/Santiago"], "Asia/Beirut":["Asia/Amman", "Asia/Jerusalem", "Europe/Helsinki", "Asia/Damascus", "Africa/Cairo", "Asia/Gaza", "Europe/Minsk"], 
+  "Pacific/Auckland":["Pacific/Fiji"], "America/Los_Angeles":["America/Santa_Isabel"], "America/New_York":["America/Havana"], "America/Halifax":["America/Goose_Bay"], "America/Godthab":["America/Miquelon"], "Asia/Dubai":["Asia/Yerevan"], "Asia/Jakarta":["Asia/Krasnoyarsk"], "Asia/Shanghai":["Asia/Irkutsk", "Australia/Perth"], "Australia/Sydney":["Australia/Lord_Howe"], "Asia/Tokyo":["Asia/Yakutsk"], "Asia/Dhaka":["Asia/Omsk"], "Asia/Baku":["Asia/Yerevan"], "Australia/Brisbane":["Asia/Vladivostok"], 
   "Pacific/Noumea":["Asia/Vladivostok"], "Pacific/Majuro":["Asia/Kamchatka", "Pacific/Fiji"], "Pacific/Tongatapu":["Pacific/Apia"], "Asia/Baghdad":["Europe/Minsk", "Europe/Moscow"], "Asia/Karachi":["Asia/Yekaterinburg"], "Africa/Johannesburg":["Asia/Gaza", "Africa/Cairo"]}}, get_date_offset = function get_date_offset(date) {
     var offset = -date.getTimezoneOffset();
     return offset !== null ? offset : 0;
@@ -213,24 +213,24 @@ var jstz = function() {
   return {determine:determine};
 }();
 jstz.olson = jstz.olson || {};
-jstz.olson.timezones = {"-720,0":"Etc/GMT+12", "-660,0":"Pacific/Pago_Pago", "-660,1,s":"Pacific/Apia", "-600,1":"America/Adak", "-600,0":"Pacific/Honolulu", "-570,0":"Pacific/Marquesas", "-540,0":"Pacific/Gambier", "-540,1":"America/Anchorage", "-480,1":"America/Los_Angeles", "-480,0":"Pacific/Pitcairn", "-420,0":"America/Phoenix", "-420,1":"America/Denver", "-360,0":"America/Guatemala", "-360,1":"America/Chicago", "-360,1,s":"Pacific/Easter", "-300,0":"America/Bogota", "-300,1":"America/New_York",
-"-270,0":"America/Caracas", "-240,1":"America/Halifax", "-240,0":"America/Santo_Domingo", "-240,1,s":"America/Asuncion", "-210,1":"America/St_Johns", "-180,1":"America/Godthab", "-180,0":"America/Argentina/Buenos_Aires", "-180,1,s":"America/Montevideo", "-120,0":"America/Noronha", "-120,1":"America/Noronha", "-60,1":"Atlantic/Azores", "-60,0":"Atlantic/Cape_Verde", "0,0":"UTC", "0,1":"Europe/London", "60,1":"Europe/Berlin", "60,0":"Africa/Lagos", "60,1,s":"Africa/Windhoek", "120,1":"Asia/Beirut",
-"120,0":"Africa/Johannesburg", "180,0":"Asia/Baghdad", "180,1":"Europe/Moscow", "210,1":"Asia/Tehran", "240,0":"Asia/Dubai", "240,1":"Asia/Baku", "270,0":"Asia/Kabul", "300,1":"Asia/Yekaterinburg", "300,0":"Asia/Karachi", "330,0":"Asia/Kolkata", "345,0":"Asia/Kathmandu", "360,0":"Asia/Dhaka", "360,1":"Asia/Omsk", "390,0":"Asia/Rangoon", "420,1":"Asia/Krasnoyarsk", "420,0":"Asia/Jakarta", "480,0":"Asia/Shanghai", "480,1":"Asia/Irkutsk", "525,0":"Australia/Eucla", "525,1,s":"Australia/Eucla", "540,1":"Asia/Yakutsk",
+jstz.olson.timezones = {"-720,0":"Etc/GMT+12", "-660,0":"Pacific/Pago_Pago", "-660,1,s":"Pacific/Apia", "-600,1":"America/Adak", "-600,0":"Pacific/Honolulu", "-570,0":"Pacific/Marquesas", "-540,0":"Pacific/Gambier", "-540,1":"America/Anchorage", "-480,1":"America/Los_Angeles", "-480,0":"Pacific/Pitcairn", "-420,0":"America/Phoenix", "-420,1":"America/Denver", "-360,0":"America/Guatemala", "-360,1":"America/Chicago", "-360,1,s":"Pacific/Easter", "-300,0":"America/Bogota", "-300,1":"America/New_York", 
+"-270,0":"America/Caracas", "-240,1":"America/Halifax", "-240,0":"America/Santo_Domingo", "-240,1,s":"America/Asuncion", "-210,1":"America/St_Johns", "-180,1":"America/Godthab", "-180,0":"America/Argentina/Buenos_Aires", "-180,1,s":"America/Montevideo", "-120,0":"America/Noronha", "-120,1":"America/Noronha", "-60,1":"Atlantic/Azores", "-60,0":"Atlantic/Cape_Verde", "0,0":"UTC", "0,1":"Europe/London", "60,1":"Europe/Berlin", "60,0":"Africa/Lagos", "60,1,s":"Africa/Windhoek", "120,1":"Asia/Beirut", 
+"120,0":"Africa/Johannesburg", "180,0":"Asia/Baghdad", "180,1":"Europe/Moscow", "210,1":"Asia/Tehran", "240,0":"Asia/Dubai", "240,1":"Asia/Baku", "270,0":"Asia/Kabul", "300,1":"Asia/Yekaterinburg", "300,0":"Asia/Karachi", "330,0":"Asia/Kolkata", "345,0":"Asia/Kathmandu", "360,0":"Asia/Dhaka", "360,1":"Asia/Omsk", "390,0":"Asia/Rangoon", "420,1":"Asia/Krasnoyarsk", "420,0":"Asia/Jakarta", "480,0":"Asia/Shanghai", "480,1":"Asia/Irkutsk", "525,0":"Australia/Eucla", "525,1,s":"Australia/Eucla", "540,1":"Asia/Yakutsk", 
 "540,0":"Asia/Tokyo", "570,0":"Australia/Darwin", "570,1,s":"Australia/Adelaide", "600,0":"Australia/Brisbane", "600,1":"Asia/Vladivostok", "600,1,s":"Australia/Sydney", "630,1,s":"Australia/Lord_Howe", "660,1":"Asia/Kamchatka", "660,0":"Pacific/Noumea", "690,0":"Pacific/Norfolk", "720,1,s":"Pacific/Auckland", "720,0":"Pacific/Majuro", "765,1,s":"Pacific/Chatham", "780,0":"Pacific/Tongatapu", "780,1,s":"Pacific/Apia", "840,0":"Pacific/Kiritimati"};
-jstz.olson.dst_rules = {"years":[2008, 2009, 2010, 2011, 2012, 2013, 2014], "zones":[{"name":"Africa/Cairo", "rules":[{"e":12199572E5, "s":12090744E5}, {"e":1250802E6, "s":1240524E6}, {"e":12858804E5, "s":12840696E5}, false, false, false, {"e":14116788E5, "s":1406844E6}]}, {"name":"Africa/Casablanca", "rules":[{"e":12202236E5, "s":12122784E5}, {"e":12508092E5, "s":12438144E5}, {"e":1281222E6, "s":12727584E5}, {"e":13120668E5, "s":13017888E5}, {"e":13489704E5, "s":1345428E6}, {"e":13828392E5, "s":13761E8},
-{"e":14142888E5, "s":14069448E5}]}, {"name":"America/Asuncion", "rules":[{"e":12050316E5, "s":12243888E5}, {"e":12364812E5, "s":12558384E5}, {"e":12709548E5, "s":12860784E5}, {"e":13024044E5, "s":1317528E6}, {"e":1333854E6, "s":13495824E5}, {"e":1364094E6, "s":1381032E6}, {"e":13955436E5, "s":14124816E5}]}, {"name":"America/Campo_Grande", "rules":[{"e":12032172E5, "s":12243888E5}, {"e":12346668E5, "s":12558384E5}, {"e":12667212E5, "s":1287288E6}, {"e":12981708E5, "s":13187376E5}, {"e":13302252E5,
-"s":1350792E6}, {"e":136107E7, "s":13822416E5}, {"e":13925196E5, "s":14136912E5}]}, {"name":"America/Goose_Bay", "rules":[{"e":122559486E4, "s":120503526E4}, {"e":125704446E4, "s":123648486E4}, {"e":128909886E4, "s":126853926E4}, {"e":13205556E5, "s":129998886E4}, {"e":13520052E5, "s":13314456E5}, {"e":13834548E5, "s":13628952E5}, {"e":14149044E5, "s":13943448E5}]}, {"name":"America/Havana", "rules":[{"e":12249972E5, "s":12056436E5}, {"e":12564468E5, "s":12364884E5}, {"e":12885012E5, "s":12685428E5},
-{"e":13211604E5, "s":13005972E5}, {"e":13520052E5, "s":13332564E5}, {"e":13834548E5, "s":13628916E5}, {"e":14149044E5, "s":13943412E5}]}, {"name":"America/Mazatlan", "rules":[{"e":1225008E6, "s":12074724E5}, {"e":12564576E5, "s":1238922E6}, {"e":1288512E6, "s":12703716E5}, {"e":13199616E5, "s":13018212E5}, {"e":13514112E5, "s":13332708E5}, {"e":13828608E5, "s":13653252E5}, {"e":14143104E5, "s":13967748E5}]}, {"name":"America/Mexico_City", "rules":[{"e":12250044E5, "s":12074688E5}, {"e":1256454E6,
-"s":12389184E5}, {"e":12885084E5, "s":1270368E6}, {"e":1319958E6, "s":13018176E5}, {"e":13514076E5, "s":13332672E5}, {"e":13828572E5, "s":13653216E5}, {"e":14143068E5, "s":13967712E5}]}, {"name":"America/Miquelon", "rules":[{"e":12255984E5, "s":12050388E5}, {"e":1257048E6, "s":12364884E5}, {"e":12891024E5, "s":12685428E5}, {"e":1320552E6, "s":12999924E5}, {"e":13520016E5, "s":1331442E6}, {"e":13834512E5, "s":13628916E5}, {"e":14149008E5, "s":13943412E5}]}, {"name":"America/Santa_Isabel", "rules":[{"e":12250116E5,
-"s":1207476E6}, {"e":12564612E5, "s":12389256E5}, {"e":12885156E5, "s":12703752E5}, {"e":13199652E5, "s":13018248E5}, {"e":13514148E5, "s":13332744E5}, {"e":13828644E5, "s":13653288E5}, {"e":1414314E6, "s":13967784E5}]}, {"name":"America/Santiago", "rules":[{"e":1206846E6, "s":1223784E6}, {"e":1237086E6, "s":12552336E5}, {"e":127035E7, "s":12866832E5}, {"e":13048236E5, "s":13138992E5}, {"e":13356684E5, "s":13465584E5}, {"e":1367118E6, "s":13786128E5}, {"e":13985676E5, "s":14100624E5}]}, {"name":"America/Sao_Paulo",
-"rules":[{"e":12032136E5, "s":12243852E5}, {"e":12346632E5, "s":12558348E5}, {"e":12667176E5, "s":12872844E5}, {"e":12981672E5, "s":1318734E6}, {"e":13302216E5, "s":13507884E5}, {"e":13610664E5, "s":1382238E6}, {"e":1392516E6, "s":14136876E5}]}, {"name":"Asia/Amman", "rules":[{"e":1225404E6, "s":12066552E5}, {"e":12568536E5, "s":12381048E5}, {"e":12883032E5, "s":12695544E5}, {"e":13197528E5, "s":13016088E5}, false, false, {"e":14147064E5, "s":13959576E5}]}, {"name":"Asia/Damascus", "rules":[{"e":12254868E5,
-"s":120726E7}, {"e":125685E7, "s":12381048E5}, {"e":12882996E5, "s":12701592E5}, {"e":13197492E5, "s":13016088E5}, {"e":13511988E5, "s":13330584E5}, {"e":13826484E5, "s":1364508E6}, {"e":14147028E5, "s":13959576E5}]}, {"name":"Asia/Dubai", "rules":[false, false, false, false, false, false, false]}, {"name":"Asia/Gaza", "rules":[{"e":12199572E5, "s":12066552E5}, {"e":12520152E5, "s":12381048E5}, {"e":1281474E6, "s":126964086E4}, {"e":1312146E6, "s":130160886E4}, {"e":13481784E5, "s":13330584E5}, {"e":13802292E5,
-"s":1364508E6}, {"e":1414098E6, "s":13959576E5}]}, {"name":"Asia/Irkutsk", "rules":[{"e":12249576E5, "s":12068136E5}, {"e":12564072E5, "s":12382632E5}, {"e":12884616E5, "s":12697128E5}, false, false, false, false]}, {"name":"Asia/Jerusalem", "rules":[{"e":12231612E5, "s":12066624E5}, {"e":1254006E6, "s":1238112E6}, {"e":1284246E6, "s":12695616E5}, {"e":131751E7, "s":1301616E6}, {"e":13483548E5, "s":13330656E5}, {"e":13828284E5, "s":13645152E5}, {"e":1414278E6, "s":13959648E5}]}, {"name":"Asia/Kamchatka",
-"rules":[{"e":12249432E5, "s":12067992E5}, {"e":12563928E5, "s":12382488E5}, {"e":12884508E5, "s":12696984E5}, false, false, false, false]}, {"name":"Asia/Krasnoyarsk", "rules":[{"e":12249612E5, "s":12068172E5}, {"e":12564108E5, "s":12382668E5}, {"e":12884652E5, "s":12697164E5}, false, false, false, false]}, {"name":"Asia/Omsk", "rules":[{"e":12249648E5, "s":12068208E5}, {"e":12564144E5, "s":12382704E5}, {"e":12884688E5, "s":126972E7}, false, false, false, false]}, {"name":"Asia/Vladivostok", "rules":[{"e":12249504E5,
-"s":12068064E5}, {"e":12564E8, "s":1238256E6}, {"e":12884544E5, "s":12697056E5}, false, false, false, false]}, {"name":"Asia/Yakutsk", "rules":[{"e":1224954E6, "s":120681E7}, {"e":12564036E5, "s":12382596E5}, {"e":1288458E6, "s":12697092E5}, false, false, false, false]}, {"name":"Asia/Yekaterinburg", "rules":[{"e":12249684E5, "s":12068244E5}, {"e":1256418E6, "s":1238274E6}, {"e":12884724E5, "s":12697236E5}, false, false, false, false]}, {"name":"Asia/Yerevan", "rules":[{"e":1224972E6, "s":1206828E6},
-{"e":12564216E5, "s":12382776E5}, {"e":1288476E6, "s":12697272E5}, {"e":13199256E5, "s":13011768E5}, false, false, false]}, {"name":"Australia/Lord_Howe", "rules":[{"e":12074076E5, "s":12231342E5}, {"e":12388572E5, "s":12545838E5}, {"e":12703068E5, "s":12860334E5}, {"e":13017564E5, "s":1317483E6}, {"e":1333206E6, "s":13495374E5}, {"e":13652604E5, "s":1380987E6}, {"e":139671E7, "s":14124366E5}]}, {"name":"Australia/Perth", "rules":[{"e":12068136E5, "s":12249576E5}, false, false, false, false, false,
-false]}, {"name":"Europe/Helsinki", "rules":[{"e":12249828E5, "s":12068388E5}, {"e":12564324E5, "s":12382884E5}, {"e":12884868E5, "s":1269738E6}, {"e":13199364E5, "s":13011876E5}, {"e":1351386E6, "s":13326372E5}, {"e":13828356E5, "s":13646916E5}, {"e":14142852E5, "s":13961412E5}]}, {"name":"Europe/Minsk", "rules":[{"e":12249792E5, "s":12068352E5}, {"e":12564288E5, "s":12382848E5}, {"e":12884832E5, "s":12697344E5}, false, false, false, false]}, {"name":"Europe/Moscow", "rules":[{"e":12249756E5, "s":12068316E5},
-{"e":12564252E5, "s":12382812E5}, {"e":12884796E5, "s":12697308E5}, false, false, false, false]}, {"name":"Pacific/Apia", "rules":[false, false, false, {"e":13017528E5, "s":13168728E5}, {"e":13332024E5, "s":13489272E5}, {"e":13652568E5, "s":13803768E5}, {"e":13967064E5, "s":14118264E5}]}, {"name":"Pacific/Fiji", "rules":[false, false, {"e":12696984E5, "s":12878424E5}, {"e":13271544E5, "s":1319292E6}, {"e":1358604E6, "s":13507416E5}, {"e":139005E7, "s":1382796E6}, {"e":14215032E5, "s":14148504E5}]},
+jstz.olson.dst_rules = {"years":[2008, 2009, 2010, 2011, 2012, 2013, 2014], "zones":[{"name":"Africa/Cairo", "rules":[{"e":12199572E5, "s":12090744E5}, {"e":1250802E6, "s":1240524E6}, {"e":12858804E5, "s":12840696E5}, false, false, false, {"e":14116788E5, "s":1406844E6}]}, {"name":"Africa/Casablanca", "rules":[{"e":12202236E5, "s":12122784E5}, {"e":12508092E5, "s":12438144E5}, {"e":1281222E6, "s":12727584E5}, {"e":13120668E5, "s":13017888E5}, {"e":13489704E5, "s":1345428E6}, {"e":13828392E5, "s":13761E8}, 
+{"e":14142888E5, "s":14069448E5}]}, {"name":"America/Asuncion", "rules":[{"e":12050316E5, "s":12243888E5}, {"e":12364812E5, "s":12558384E5}, {"e":12709548E5, "s":12860784E5}, {"e":13024044E5, "s":1317528E6}, {"e":1333854E6, "s":13495824E5}, {"e":1364094E6, "s":1381032E6}, {"e":13955436E5, "s":14124816E5}]}, {"name":"America/Campo_Grande", "rules":[{"e":12032172E5, "s":12243888E5}, {"e":12346668E5, "s":12558384E5}, {"e":12667212E5, "s":1287288E6}, {"e":12981708E5, "s":13187376E5}, {"e":13302252E5, 
+"s":1350792E6}, {"e":136107E7, "s":13822416E5}, {"e":13925196E5, "s":14136912E5}]}, {"name":"America/Goose_Bay", "rules":[{"e":122559486E4, "s":120503526E4}, {"e":125704446E4, "s":123648486E4}, {"e":128909886E4, "s":126853926E4}, {"e":13205556E5, "s":129998886E4}, {"e":13520052E5, "s":13314456E5}, {"e":13834548E5, "s":13628952E5}, {"e":14149044E5, "s":13943448E5}]}, {"name":"America/Havana", "rules":[{"e":12249972E5, "s":12056436E5}, {"e":12564468E5, "s":12364884E5}, {"e":12885012E5, "s":12685428E5}, 
+{"e":13211604E5, "s":13005972E5}, {"e":13520052E5, "s":13332564E5}, {"e":13834548E5, "s":13628916E5}, {"e":14149044E5, "s":13943412E5}]}, {"name":"America/Mazatlan", "rules":[{"e":1225008E6, "s":12074724E5}, {"e":12564576E5, "s":1238922E6}, {"e":1288512E6, "s":12703716E5}, {"e":13199616E5, "s":13018212E5}, {"e":13514112E5, "s":13332708E5}, {"e":13828608E5, "s":13653252E5}, {"e":14143104E5, "s":13967748E5}]}, {"name":"America/Mexico_City", "rules":[{"e":12250044E5, "s":12074688E5}, {"e":1256454E6, 
+"s":12389184E5}, {"e":12885084E5, "s":1270368E6}, {"e":1319958E6, "s":13018176E5}, {"e":13514076E5, "s":13332672E5}, {"e":13828572E5, "s":13653216E5}, {"e":14143068E5, "s":13967712E5}]}, {"name":"America/Miquelon", "rules":[{"e":12255984E5, "s":12050388E5}, {"e":1257048E6, "s":12364884E5}, {"e":12891024E5, "s":12685428E5}, {"e":1320552E6, "s":12999924E5}, {"e":13520016E5, "s":1331442E6}, {"e":13834512E5, "s":13628916E5}, {"e":14149008E5, "s":13943412E5}]}, {"name":"America/Santa_Isabel", "rules":[{"e":12250116E5, 
+"s":1207476E6}, {"e":12564612E5, "s":12389256E5}, {"e":12885156E5, "s":12703752E5}, {"e":13199652E5, "s":13018248E5}, {"e":13514148E5, "s":13332744E5}, {"e":13828644E5, "s":13653288E5}, {"e":1414314E6, "s":13967784E5}]}, {"name":"America/Santiago", "rules":[{"e":1206846E6, "s":1223784E6}, {"e":1237086E6, "s":12552336E5}, {"e":127035E7, "s":12866832E5}, {"e":13048236E5, "s":13138992E5}, {"e":13356684E5, "s":13465584E5}, {"e":1367118E6, "s":13786128E5}, {"e":13985676E5, "s":14100624E5}]}, {"name":"America/Sao_Paulo", 
+"rules":[{"e":12032136E5, "s":12243852E5}, {"e":12346632E5, "s":12558348E5}, {"e":12667176E5, "s":12872844E5}, {"e":12981672E5, "s":1318734E6}, {"e":13302216E5, "s":13507884E5}, {"e":13610664E5, "s":1382238E6}, {"e":1392516E6, "s":14136876E5}]}, {"name":"Asia/Amman", "rules":[{"e":1225404E6, "s":12066552E5}, {"e":12568536E5, "s":12381048E5}, {"e":12883032E5, "s":12695544E5}, {"e":13197528E5, "s":13016088E5}, false, false, {"e":14147064E5, "s":13959576E5}]}, {"name":"Asia/Damascus", "rules":[{"e":12254868E5, 
+"s":120726E7}, {"e":125685E7, "s":12381048E5}, {"e":12882996E5, "s":12701592E5}, {"e":13197492E5, "s":13016088E5}, {"e":13511988E5, "s":13330584E5}, {"e":13826484E5, "s":1364508E6}, {"e":14147028E5, "s":13959576E5}]}, {"name":"Asia/Dubai", "rules":[false, false, false, false, false, false, false]}, {"name":"Asia/Gaza", "rules":[{"e":12199572E5, "s":12066552E5}, {"e":12520152E5, "s":12381048E5}, {"e":1281474E6, "s":126964086E4}, {"e":1312146E6, "s":130160886E4}, {"e":13481784E5, "s":13330584E5}, {"e":13802292E5, 
+"s":1364508E6}, {"e":1414098E6, "s":13959576E5}]}, {"name":"Asia/Irkutsk", "rules":[{"e":12249576E5, "s":12068136E5}, {"e":12564072E5, "s":12382632E5}, {"e":12884616E5, "s":12697128E5}, false, false, false, false]}, {"name":"Asia/Jerusalem", "rules":[{"e":12231612E5, "s":12066624E5}, {"e":1254006E6, "s":1238112E6}, {"e":1284246E6, "s":12695616E5}, {"e":131751E7, "s":1301616E6}, {"e":13483548E5, "s":13330656E5}, {"e":13828284E5, "s":13645152E5}, {"e":1414278E6, "s":13959648E5}]}, {"name":"Asia/Kamchatka", 
+"rules":[{"e":12249432E5, "s":12067992E5}, {"e":12563928E5, "s":12382488E5}, {"e":12884508E5, "s":12696984E5}, false, false, false, false]}, {"name":"Asia/Krasnoyarsk", "rules":[{"e":12249612E5, "s":12068172E5}, {"e":12564108E5, "s":12382668E5}, {"e":12884652E5, "s":12697164E5}, false, false, false, false]}, {"name":"Asia/Omsk", "rules":[{"e":12249648E5, "s":12068208E5}, {"e":12564144E5, "s":12382704E5}, {"e":12884688E5, "s":126972E7}, false, false, false, false]}, {"name":"Asia/Vladivostok", "rules":[{"e":12249504E5, 
+"s":12068064E5}, {"e":12564E8, "s":1238256E6}, {"e":12884544E5, "s":12697056E5}, false, false, false, false]}, {"name":"Asia/Yakutsk", "rules":[{"e":1224954E6, "s":120681E7}, {"e":12564036E5, "s":12382596E5}, {"e":1288458E6, "s":12697092E5}, false, false, false, false]}, {"name":"Asia/Yekaterinburg", "rules":[{"e":12249684E5, "s":12068244E5}, {"e":1256418E6, "s":1238274E6}, {"e":12884724E5, "s":12697236E5}, false, false, false, false]}, {"name":"Asia/Yerevan", "rules":[{"e":1224972E6, "s":1206828E6}, 
+{"e":12564216E5, "s":12382776E5}, {"e":1288476E6, "s":12697272E5}, {"e":13199256E5, "s":13011768E5}, false, false, false]}, {"name":"Australia/Lord_Howe", "rules":[{"e":12074076E5, "s":12231342E5}, {"e":12388572E5, "s":12545838E5}, {"e":12703068E5, "s":12860334E5}, {"e":13017564E5, "s":1317483E6}, {"e":1333206E6, "s":13495374E5}, {"e":13652604E5, "s":1380987E6}, {"e":139671E7, "s":14124366E5}]}, {"name":"Australia/Perth", "rules":[{"e":12068136E5, "s":12249576E5}, false, false, false, false, false, 
+false]}, {"name":"Europe/Helsinki", "rules":[{"e":12249828E5, "s":12068388E5}, {"e":12564324E5, "s":12382884E5}, {"e":12884868E5, "s":1269738E6}, {"e":13199364E5, "s":13011876E5}, {"e":1351386E6, "s":13326372E5}, {"e":13828356E5, "s":13646916E5}, {"e":14142852E5, "s":13961412E5}]}, {"name":"Europe/Minsk", "rules":[{"e":12249792E5, "s":12068352E5}, {"e":12564288E5, "s":12382848E5}, {"e":12884832E5, "s":12697344E5}, false, false, false, false]}, {"name":"Europe/Moscow", "rules":[{"e":12249756E5, "s":12068316E5}, 
+{"e":12564252E5, "s":12382812E5}, {"e":12884796E5, "s":12697308E5}, false, false, false, false]}, {"name":"Pacific/Apia", "rules":[false, false, false, {"e":13017528E5, "s":13168728E5}, {"e":13332024E5, "s":13489272E5}, {"e":13652568E5, "s":13803768E5}, {"e":13967064E5, "s":14118264E5}]}, {"name":"Pacific/Fiji", "rules":[false, false, {"e":12696984E5, "s":12878424E5}, {"e":13271544E5, "s":1319292E6}, {"e":1358604E6, "s":13507416E5}, {"e":139005E7, "s":1382796E6}, {"e":14215032E5, "s":14148504E5}]}, 
 {"name":"Europe/London", "rules":[{"e":12249828E5, "s":12068388E5}, {"e":12564324E5, "s":12382884E5}, {"e":12884868E5, "s":1269738E6}, {"e":13199364E5, "s":13011876E5}, {"e":1351386E6, "s":13326372E5}, {"e":13828356E5, "s":13646916E5}, {"e":14142852E5, "s":13961412E5}]}]};
 (function(root, factory) {
   if (typeof module == "object" && module.exports) {
@@ -1670,8 +1670,8 @@ CTATCanvasComponent = function(aName) {
 };
 goog.provide("CTATLanguageManager");
 goog.require("CTATBase");
-var CTATDefaultLanguagePack = {"HORIZONTAL":"LR", "VERTICAL":"TB", "LOADING":"Please wait while the tutor is being loaded", "NEXTPROBLEM":"Retrieving the Next Problem...", "CONGRATULATIONS_YOU_ARE_DONE":"Congratulations, you are done with this problem.", "SURE_YOU_ARE_DONE":"Are you sure you are done?", "TUTORDISCONNECTED":"The tutor has disconnected. Please refresh the page.", "OUTOFORDER":"You need to do other steps first, before doing the step you just worked on. You might request a hint for more help.",
-"DONE":"Done", "HINT":"Hint", "NEXT":"Next", "PREVIOUS":"Previous", "HIGHLIGHTEDSTEP":"Instead of the step you are working on, please work on the highlighted step.", "NO_HINT_AVAILABLE":"No hint is available at this step.", "NOTDONE":"I'm sorry, but you are not done yet. Please continue working.", "AUTHORPLEASECLOSE":"Authoring Tools disconnected. Please close this page.", "ERROR_502":"Error contacting the server, please refresh the page and try again (HTTP status 502: gateway response).", "ERROR_CONN_TS":"Connection refused by tutoring service, please check your server or contact an administrator.",
+var CTATDefaultLanguagePack = {"HORIZONTAL":"LR", "VERTICAL":"TB", "LOADING":"Please wait while the tutor is being loaded", "NEXTPROBLEM":"Retrieving the Next Problem...", "CONGRATULATIONS_YOU_ARE_DONE":"Congratulations, you are done with this problem.", "SURE_YOU_ARE_DONE":"Are you sure you are done?", "TUTORDISCONNECTED":"The tutor has disconnected. Please refresh the page.", "OUTOFORDER":"You need to do other steps first, before doing the step you just worked on. You might request a hint for more help.", 
+"DONE":"Done", "HINT":"Hint", "NEXT":"Next", "PREVIOUS":"Previous", "HIGHLIGHTEDSTEP":"Instead of the step you are working on, please work on the highlighted step.", "NO_HINT_AVAILABLE":"No hint is available at this step.", "NOTDONE":"I'm sorry, but you are not done yet. Please continue working.", "AUTHORPLEASECLOSE":"Authoring Tools disconnected. Please close this page.", "ERROR_502":"Error contacting the server, please refresh the page and try again (HTTP status 502: gateway response).", "ERROR_CONN_TS":"Connection refused by tutoring service, please check your server or contact an administrator.", 
 "ERROR_CONN_LS":"Connection refused by the logging server, please check your connection or contact an administrator.", "AWAITING_OTHER_COLLABORATORS":"Waiting for other team members..."};
 CTATLanguageManager = function() {
   CTATBase.call(this, "CTATLanguageManager", "theLanguagePack");
@@ -2169,8 +2169,8 @@ CTATConfiguration = function() {
   var tDescNames = null;
   var tDescTypes = null;
   var tDesc = null;
-  this.raw = {"admit_code":"ies", "authenticity_token":"", "auth_token":"none", "BehaviorRecorderMode":"AuthorTimeTutoring", "class_name":"DefaultClass", "curriculum_service_url":"", "connection":"javascript", "dataset_level_name":"none", "dataset_level_type":"ProblemSet", "dataset_name":"none", "expire_logout_url":"none", "info":"", "instructor_name":"none", "instrumentation_log":"off", "lcId":"none", "Logging":"None", "log_service_url":"http://pslc-qa.andrew.cmu.edu/log/server", "log_to_disk_directory":".",
-  "problem_name":"none", "problem_position":"none", "problem_started_url":"none", "problem_state_status":"empty", "question_file":"none", "refresh_session_url":"none", "remoteSocketPort":"20080", "remoteSocketSecurePort":"20443", "remoteSocketURL":"127.0.0.1", "restore_problem_url":"", "reuse_swf":"false", "run_problem_url":"none", "school_name":"none", "SessionLog":"true", "session_id":CTATGuid.guid(), "session_timeout":"none", "show_debug_traces":"false", "skills":"", "source_id":"PACT_CTAT_HTML5",
+  this.raw = {"admit_code":"ies", "authenticity_token":"", "auth_token":"none", "BehaviorRecorderMode":"AuthorTimeTutoring", "class_name":"DefaultClass", "curriculum_service_url":"", "connection":"javascript", "dataset_level_name":"none", "dataset_level_type":"ProblemSet", "dataset_name":"none", "expire_logout_url":"none", "info":"", "instructor_name":"none", "instrumentation_log":"off", "lcId":"none", "Logging":"None", "log_service_url":"http://pslc-qa.andrew.cmu.edu/log/server", "log_to_disk_directory":".", 
+  "problem_name":"none", "problem_position":"none", "problem_started_url":"none", "problem_state_status":"empty", "question_file":"none", "refresh_session_url":"none", "remoteSocketPort":"20080", "remoteSocketSecurePort":"20443", "remoteSocketURL":"127.0.0.1", "restore_problem_url":"", "reuse_swf":"false", "run_problem_url":"none", "school_name":"none", "SessionLog":"true", "session_id":CTATGuid.guid(), "session_timeout":"none", "show_debug_traces":"false", "skills":"", "source_id":"PACT_CTAT_HTML5", 
   "student_interface":"none", "student_problem_id":"none", "study_condition_name":"none", "study_condition_type":"none", "study_condition_description":"none", "study_name":"Study1", "target_frame":"_parent", "TutorShopDeliveryMethod":"sendandload", "tutoring_service_communication":"javascript", "user_guid":"none", "wmode":"opaque", "ssl":"off", "sui":"", "centerTutor":false, "previewMode":false, "width":550, "height":450};
   function parseQueryString() {
     ctatdebug("parseQueryString ()");
@@ -3428,7 +3428,7 @@ CTATCommLibrary = function(aHandler, aUseScrim) {
     var res = url;
     if (pointer.hasWebSocket()) {
       ctatdebug("opening websocket connection: url " + url);
-      res = url.replace("http:", "ws:");
+      res = url.replace(/https?:/, "ws:");
       res = pointer.editSocketURLForHTTPS(res);
       ctatdebug("opening websocket connection to " + res);
       newConnection = pointer.createConnection(vars, res);
@@ -3759,56 +3759,6 @@ CTATSequencer = function() {
   var retriever = null;
   var algorithm = "sequential";
   var sequenceReadyHandler = null;
-  var lms = null;
-  var currentProblemIndex = -1;
-  this.setLMSSequencer = function(lmsSequencer) {
-    lms = lmsSequencer;
-  };
-  this.loadProblem = function(problemToLoad) {
-    olidebug("sequenceLoadProblem() problemToLoad " + problemToLoad);
-    if (!problemToLoad) {
-      return false;
-    }
-    var tutorIFrame = document.getElementById("ctat-tutor");
-    console.trace("loadProblem() problemToLoad", problemToLoad, "tutorIFrame", tutorIFrame);
-    if (!tutorIFrame) {
-      return false;
-    }
-    var re = new RegExp("^(.*/)?(.*)$");
-    var qf = problemToLoad.getProblemFile();
-    var si = problemToLoad.getStudentInterface();
-    tutorIFrame.setAttribute("data-params", '{"question_file":"' + qf + '","brdName":"' + qf.replace(re, "$2") + '","student_interface":"' + si + '"}');
-    tutorIFrame.src = si;
-    tutorIFrame.width = parseInt(window.frameElement.width) - 4;
-    tutorIFrame.height = parseInt(window.frameElement.height) - 4;
-    Initialize_CTAT_OLI.CTATConfiguration.question_file = qf;
-    Initialize_CTAT_OLI.CTATConfiguration.brdName = Initialize_CTAT_OLI.CTATConfiguration.question_file;
-    Initialize_CTAT_OLI.CTATConfiguration = problemToLoad.getStudentInterface();
-    tutorIFrame.addEventListener("load", Initialize_CTAT_OLI.onLoadListener);
-    return true;
-  };
-  this.loadNextProblem = function(callAtStart) {
-    olidebug("loadNextProblem() pointer.getCurrentProblemIndex() " + pointer.getCurrentProblemIndex());
-    console.log("loadNextProblem() pointer.getCurrentProblemIndex()", pointer.getCurrentProblemIndex(), callAtStart);
-    var np = pointer.getProblem(pointer.advanceCurrentProblemIndex());
-    if (!np) {
-      return false;
-    } else {
-      if (!callAtStart) {
-        return pointer.loadProblem(np);
-      } else {
-        return callAtStart(pointer.getCurrentProblemIndex()).then(function() {
-          return pointer.loadProblem(np);
-        });
-      }
-    }
-  };
-  this.getCurrentProblemIndex = function() {
-    return lms && lms.getCurrentProblemIndex ? lms.getCurrentProblemIndex() : currentProblemIndex;
-  };
-  this.advanceCurrentProblemIndex = function() {
-    return lms && lms.advanceCurrentProblemIndex ? lms.advanceCurrentProblemIndex() : ++currentProblemIndex;
-  };
   this.setAlgorithm = function setAlgorithm(anAlgorithm) {
     algorithm = anAlgorithm;
   };
@@ -3819,32 +3769,23 @@ CTATSequencer = function() {
     pointer.ctatdebug("handlePackageRetrieval ()");
     packageManager.init(aData);
     if (sequenceReadyHandler != null) {
-      sequenceReadyHandler(packageManager, currentIndex);
+      sequenceReadyHandler(packageManager);
     }
   };
   this.processXML = function processXML(aRoot) {
     pointer.ctatdebug("parseXML ()");
     packageManager.init(aRoot);
     if (sequenceReadyHandler != null) {
-      sequenceReadyHandler(packageManager, currentIndex);
+      sequenceReadyHandler(packageManager);
     }
   };
-  this.init = function init(aPackageURL, currentIndex, aHandler, aURLPrefix) {
-    pointer.ctatdebug("init (" + aPackageURL + ", " + currentIndex + ", " + aHandler + ", " + aURLPrefix + ")");
+  this.init = function init(aPackageURL, aHandler, aURLPrefix) {
+    useDebuggingBasic = true;
+    pointer.ctatdebug("init (" + aPackageURL + ", " + aHandler + ", " + aURLPrefix + ")");
     packageManager.setURLPrefix(aURLPrefix);
-    sequenceReadyHandler = aHandler ? aHandler : pointer.ready;
-    currentProblemIndex = currentIndex;
+    sequenceReadyHandler = aHandler;
     retriever = new CTATCommLibrary(null, false);
     retriever.retrieveXMLFile(aPackageURL, parser, this);
-  };
-  this.ready = function() {
-    olidebug("CTATSequencer.ready ()");
-    var firstProblem = pointer.getProblem(pointer.getCurrentProblemIndex());
-    if (firstProblem != null) {
-      pointer.loadProblem(firstProblem);
-    } else {
-      document.getElementById("ctat-tutor").contentWindow.document.write("<html><body>Error: unable to retrieve first problem in sequence!</body></html>");
-    }
   };
   this.getSequenceType = function() {
     return "fixed";
@@ -3887,8 +3828,8 @@ CTATSequencer = function() {
     }
     return null;
   };
-  this.getProblem = function(currentIndex) {
-    pointer.ctatdebug("getProblem(" + currentIndex + ")");
+  this.getNextProblem = function getNextProblem(currentIndex) {
+    pointer.ctatdebug("getNextProblem ()");
     var pSets = packageManager.getProblemSets();
     if (pSets.length == 0) {
       pointer.ctatdebug("Error: no problem sets available, trying list of problems directly ...");
@@ -4314,9 +4255,11 @@ CTATLogMessageBuilder = function() {
     var cFields = flashVars.getCustomFields();
     for (var aField in cFields) {
       if (cFields.hasOwnProperty(aField)) {
+        var v = String(cFields[aField]);
+        v = v.indexOf("<![CDATA[") < 0 ? "<![CDATA[" + v + "]]\x3e" : v;
         messageString += "<custom_field>";
         messageString += "<name>" + aField + "</name>";
-        messageString += "<value>" + cFields[aField] + "</value>";
+        messageString += "<value>" + v + "</value>";
         messageString += "</custom_field>";
       }
     }
@@ -4522,15 +4465,17 @@ CTATLogMessageBuilder = function() {
     var message = "";
     for (var dex = 0;dex < aCustomFieldNames.length;dex++) {
       pointer.ctatdebug("Adding custom field: [" + aCustomFieldNames[dex] + "],[" + aCustomFieldValues[dex] + "]");
+      var v = String(aCustomFieldValues[dex]);
+      v = v.indexOf("<![CDATA[") < 0 ? "<![CDATA[" + v + "]]\x3e" : v;
       message += "<custom_field>";
       message += "<name>" + aCustomFieldNames[dex] + "</name>";
-      message += "<value>" + aCustomFieldValues[dex] + "</value>";
+      message += "<value>" + v + "</value>";
       message += "</custom_field>";
     }
     return message;
   };
   this.addCustomFields = function addCustomFields(aCustomFieldNames, aCustomFieldValues) {
-    pointer.ctatdebug("addCustomFields ()");
+    pointer.ctatdebug("addCustomFields () " + (aCustomFieldNames ? aCustomFieldNames.length : "null"));
     if (aCustomFieldNames == undefined) {
       return;
     }
@@ -4750,14 +4695,15 @@ CTATLoggingLibrary = function(anInternalUsage) {
         pointer.ctatdebug("Reconfigured the logging url to be: " + logURL);
       }
       pointer.ctatdebug("Pre encoded log message: " + message);
+      var encoded_message = message;
       if (message.indexOf("<log_session_start") < 0) {
-        message = xmlProlog + '<tutor_related_message_sequence version_number="' + DTDVersion + '">' + message + "</tutor_related_message_sequence>";
-        message = CTATLogMessageBuilder.commLogMessageBuilder.wrapForOLI(message);
+        encoded_message = xmlProlog + '<tutor_related_message_sequence version_number="' + DTDVersion + '">' + message + "</tutor_related_message_sequence>";
+        encoded_message = CTATLogMessageBuilder.commLogMessageBuilder.wrapForOLI(encoded_message);
       }
-      pointer.ctatdebug("Encoded log message: " + message);
-      CTATLMS.logEvent(message);
+      pointer.ctatdebug("Encoded log message: " + encoded_message);
+      CTATLMS.logEvent(encoded_message, message);
       if (CTATConfiguration.get("log_service_url")) {
-        loggingCommLibrary.sendXMLNoBundle(message);
+        loggingCommLibrary.sendXMLNoBundle(encoded_message);
       }
     } else {
       pointer.ctatdebug("Use internal: " + useInternal);
@@ -4821,8 +4767,9 @@ CTATLoggingLibrary = function(anInternalUsage) {
       formattedFeedback = "";
     }
     pointer.ctatdebug("Creating tutor message ...");
-    var message = CTATLogMessageBuilder.commLogMessageBuilder.createTutorMessage(sai, transactionID, semanticName, anEval, formattedFeedback, semanticSubtype, aSkillObject, true);
-    this.sendMessage(message);
+    var logmsg = CTATLogMessageBuilder.commLogMessageBuilder.createTutorMessage(sai, transactionID, semanticName, anEval, formattedFeedback, semanticSubtype, aSkillObject, true);
+    this.sendMessage(logmsg);
+    return logmsg;
   };
   this.processMessage = function processMessage(aMessage) {
     pointer.ctatdebug("processMessage ()");
@@ -6849,11 +6796,7 @@ CTATShellTools = {ctat_base:new CTATBase("CTATShellTools", "shelltools"), compon
     return [];
   }
   var queriesToTry = ['div[data-ctat-component]:has(input[name="' + aName + '"])', aName.toLowerCase() == "done" ? ".CTATDoneButton" : "", aName.toLowerCase() == "hint" || aName.toLowerCase() == "help" ? ".CTATHintButton" : ""];
-  if (aName.indexOf(".") > -1) {
-    jqn = $('[id="' + aName + '"]');
-  } else {
-    jqn = $("#" + aName);
-  }
+  jqn = $('[id="' + aName + '"]');
   for (var i$4 = 0;jqn.length === 0 && i$4 < queriesToTry.length;i$4++) {
     jqn = $(queriesToTry[i$4]);
   }
@@ -7294,8 +7237,8 @@ CTATMessageHandler = function(commShell) {
                       break;
                   }
                 }
-                messageHandler.processAssociatedRules(aMessage, indicator, advice, toolSelection);
-                commShell.propagateShellEvent("AssociatedRules", aMessage);
+                var logmsg = messageHandler.processAssociatedRules(aMessage, indicator, advice, toolSelection);
+                commShell.propagateShellEvent("AssociatedRules", aMessage, actor);
                 break;
               case "BuggyMessage":
                 pointer.ctatdebug("Found: BuggyMessage");
@@ -7752,7 +7695,7 @@ CTATMessageHandler = function(commShell) {
     var lockWidgetsSetInStartState = checkForSendWidgetLock();
     for (var j = 0;j < startStateMessages.length;j++) {
       var aMessage = startStateMessages[j];
-      pointer.ctatdebug("Processing startstate message type: " + aMessage.getMessageType());
+      pointer.ctatdebug("Processing startstate message[" + j + "] type: " + aMessage.getMessageType());
       switch(aMessage.getMessageType()) {
         case "InterfaceAction":
           messageHandler.processInterfaceAction(aMessage, lockWidgetsSetInStartState);
@@ -7993,7 +7936,7 @@ CTATTransactionListener = function(transactionURL) {
   function makeMailer() {
     if (typeof TransactionMailerUsers != "undefined" && typeof TransactionMailerUsers.create == "function") {
       try {
-        var result = TransactionMailerUsers.create("Assets", process_transactions_url, CTATConfiguration.get("process_detectors_url"), CTATConfiguration.get("authenticity_token"), CTATConfiguration.get("detectors"));
+        var result = TransactionMailerUsers.create("Assets", process_transactions_url, CTATConfiguration.get("process_detectors_url"), CTATConfiguration.get("authenticity_token"), CTATConfiguration.get("detectors"), CTATConfiguration.get("provider_key"));
         return mailerProxy = result;
       } catch (error) {
         console.trace("Error creating transaction mailer: " + error);
@@ -8560,10 +8503,10 @@ CTATCommShell = function() {
   this.getLoggingLibrary = function getLoggingLibrary() {
     return commLoggingLibrary;
   };
-  this.propagateShellEvent = function propagateShellEvent(anEvent, aMessage, actor) {
-    ctatdebug("propagateShellEvent (" + anEvent + ", " + typeof aMessage + ")");
+  this.propagateShellEvent = function propagateShellEvent(anEvent, aMessage, actor, logmsg) {
+    ctatdebug("propagateShellEvent (" + anEvent + ", " + typeof aMessage + ", logmsg len " + (typeof logmsg == "string" ? logmsg.length : logmsg) + ")");
     for (var i = 0;i < eventListenersGlobal.length;i++) {
-      eventListenersGlobal[i].processCommShellEvent(anEvent, aMessage, actor);
+      eventListenersGlobal[i].processCommShellEvent(anEvent, aMessage, actor, logmsg);
     }
   };
   this.reset = function reset() {
@@ -8768,6 +8711,7 @@ CTATCommShell = function() {
       pointer.propagateShellEvent("UntutoredAction", tsMessage);
     }
     commLibrary.sendXML(tsMessage);
+    CTAT.SAI && typeof CTAT.SAI.storeForReplay == "function" && CTAT.SAI.storeForReplay(tsMessage);
   };
   this.onEditSuccess = function onEditSuccess(selectedRange) {
     pointer.ctatdebug("onEditSuccess (" + selectedRange + ")");
@@ -8932,7 +8876,9 @@ CTATCommShell = function() {
     var comp = CTATShellTools.findComponent(sel);
     if (comp != null) {
       for (var t = 0;t < comp.length;t++) {
-        comp[t].setHintHighlight(true, aMessage);
+        if (typeof comp[t].setHintHighlight == "function") {
+          comp[t].setHintHighlight(true, aMessage);
+        }
       }
     } else {
       pointer.ctatdebug("Error: component is null for selection " + sel);
@@ -8945,13 +8891,16 @@ CTATCommShell = function() {
     var comp = CTATShellTools.findComponent(sel);
     if (comp != null) {
       for (var t = 0;t < comp.length;t++) {
-        comp[t].setHintHighlight(false, null, aMessage);
+        if (typeof comp[t].setHintHighlight == "function") {
+          comp[t].setHintHighlight(false, null, aMessage);
+        }
       }
     } else {
       pointer.ctatdebug("Error: component is null for selection " + sel);
     }
   };
   this.processAssociatedRules = function processAssociatedRules(aMessage, indicator, advice, studentSelection) {
+    var logmsg = "";
     pointer.ctatdebug("processAssociatedRules()");
     if (commMessageHandler.getInStartState() == false) {
       logHintSAI = aMessage.getSAI();
@@ -8980,6 +8929,12 @@ CTATCommShell = function() {
       var customFieldValues = new Array;
       customFieldNames.push("step_id");
       customFieldValues.push(aMessage.getProperty("StepID"));
+      var tutorInput = aMessage.getInput();
+      ctatdebug("CTATCommShell.processAssociatedRules() tutorInput: " + tutorInput);
+      if (tutorInput) {
+        customFieldNames.push("tutor_input");
+        customFieldValues.push(tutorInput.toString());
+      }
       var ruleNames = aMessage.getRules();
       if (ruleNames) {
         customFieldNames.push("rule_names");
@@ -8995,7 +8950,7 @@ CTATCommShell = function() {
       ctatdebug("Sending log message ...");
       if (commLoggingLibrary != null) {
         if (gotProblemRestoreEnd) {
-          commLoggingLibrary.logTutorResponse(aMessage.getTransactionID(), logHintSAI, semanticEvent, "", evalObj, advice, skillObject, customFieldNames, customFieldValues);
+          logmsg = commLoggingLibrary.logTutorResponse(aMessage.getTransactionID(), logHintSAI, semanticEvent, "", evalObj, advice, skillObject, customFieldNames, customFieldValues);
         } else {
           aMessage.suppressLogging();
         }
@@ -9016,11 +8971,12 @@ CTATCommShell = function() {
       for (var t = 0;t < comp.length;t++) {
         ctatdebug("Calling processAssociatedRules on component (" + comp[t].getClassName() + ")...");
         if (comp[t].processAssociatedRules) {
-          comp[t].processAssociatedRules(aMessage, indicator, advice);
+          comp[t].processAssociatedRules(aMessage, indicator, advice, logmsg);
         }
       }
     }
     pointer.ctatdebug("processAssociatedRules() done");
+    return logmsg;
   };
   this.processBuggyMessage = function processBuggyMessage(aMessage) {
     pointer.ctatdebug("processBuggyMessage()");
@@ -9078,7 +9034,9 @@ CTATCommShell = function() {
     for (var t = 0;t < nrComponents;t++) {
       pointer.ctatdebug("About to call " + aMessage.getAction() + " (" + aMessage.getInput() + ") on: " + aMessage.getSelection());
       var target = targetComponent[t];
-      target.executeSAI(aMessage);
+      if (typeof target.executeSAI == "function") {
+        target.executeSAI(aMessage);
+      }
       pointer.ctatdebug("Method executed, continuing with post-processing ...");
       if (commMessageHandler.getInStartState() == true) {
         var action = aMessage.getAction();
@@ -9088,6 +9046,9 @@ CTATCommShell = function() {
       }
     }
     pointer.ctatdebug("processInterfaceAction() Done");
+  };
+  this.removeComponent = function(id) {
+    CTATTutor.removeComponent(id);
   };
   this.processInterfaceIdentification = function processInterfaceIdentification(aMessage) {
     pointer.ctatdebug("processInterfaceIdentification()");
@@ -9161,7 +9122,7 @@ CTATCommShell = function() {
     }
     var generator = new CTATXML;
     if (doneProcessor != null) {
-      doneProcessor(generator.xmlToString(aMessage.getXMLObject()));
+      doneProcessor(generator.xmlToString(aMessage.getXMLObject()), commLMSService.sendSummary.bind(commLMSService, aMessage));
     } else {
       commLMSService.sendSummary(aMessage);
     }
@@ -9173,6 +9134,13 @@ CTATCommShell = function() {
     pointer.ctatdebug("processProblemRestoreEnd() scrimIsUp " + scrimIsUp);
     gotProblemRestoreEnd = true;
     CTATScrim.scrim.scrimDown();
+    var myId = window && window.frameElement && window.frameElement.getAttribute("id") || "tutorFrame";
+    if (typeof CustomEvent == "function") {
+      var tutorReadyEvent = {name:"tutorReady", "detail":myId};
+      if (window) {
+        window.parent.postMessage(tutorReadyEvent, "*");
+      }
+    }
   };
   this.clearFeedbackComponents = function clearFeedbackComponents() {
     pointer.ctatdebug("clearFeedbackComponents ()");
@@ -9191,7 +9159,9 @@ CTATCommShell = function() {
         if (aComponent != null) {
           for (var t = 0;t < aComponent.length;t++) {
             if (CTATCommShell.detailedFeedback == true) {
-              aComponent[t].setHintHighlight(true, aMessage);
+              if (typeof aComponent[t].setHintHighlight == "function") {
+                aComponent[t].setHintHighlight(true, aMessage);
+              }
             }
           }
         } else {
@@ -9484,8 +9454,9 @@ CTATCompBase = function(aClassName, aName, aX, aY, aWidth, aHeight) {
     topDiv.appendChild(divWrapper);
   };
   this.setDivWrapper = function(aDiv) {
-    divWrapper = aDiv;
-    divWrapper.setAttribute("data-ctat-component", this.getClassName());
+    if (divWrapper = aDiv) {
+      divWrapper.setAttribute("data-ctat-component", this.getClassName());
+    }
   };
   var super_setClassName = this.setClassName;
   this.setClassName = function(sClassName) {
@@ -9829,8 +9800,9 @@ CTATCompBase = function(aClassName, aName, aX, aY, aWidth, aHeight) {
   };
   this.processFocus = function processFocus(e) {
     pointer.ctatdebug("processFocus ()");
-    var id = e.currentTarget.getAttribute("id");
     var comp = pointer;
+    pointer.ctatdebug("***processFocus(", e, "): comp.getName ", pointer && typeof pointer.getName == "function" ? pointer.getName() : pointer, "\n  CTATGlobals.Tab.Focus ", CTATGlobals.Tab.Focus && typeof CTATGlobals.Tab.Focus.getName == "function" ? CTATGlobals.Tab.Focus.getName() : CTATGlobals.Tab.Focus, "\n  CTATGlobals.Tab.Focus.isCorrect ", CTATGlobals.Tab.Focus && typeof CTATGlobals.Tab.Focus.isCorrect == "function" ? CTATGlobals.Tab.Focus.isCorrect() : "no isCorrect", "\n  CTATGlobals.Tab.Focus == comp ", 
+    CTATGlobals.Tab.Focus == pointer, "\n  CTATGlobals.Tab.Focus.backgrade ", CTATGlobals.Tab.Focus && typeof CTATGlobals.Tab.Focus.backgrade != "undefined" ? CTATGlobals.Tab.Focus.backgrade : "no backgrade", "\n  comp.getClassName ", pointer && typeof pointer.getClassName == "function" ? pointer.getClassName() : pointer, "\n  CTATGlobals.Tab.previousFocus ", CTATGlobals.Tab.previousFocus);
     if (!comp) {
       pointer.ctatdebug("Error: component reference is null");
       return;
@@ -11252,7 +11224,7 @@ CTATCheckBox = function(aDescription, aX, aY, aWidth, aHeight) {
     checkbox.checked = sel;
   };
   this.updateSAI = function() {
-    var checkboxes = $('div[data-ctat-component]:has(input[type="checkbox"][name="' + checkbox.name + '"])');
+    var checkboxes = $("." + this.getClassName() + '[data-ctat-component]:has(input[type="checkbox"][name="' + checkbox.name + '"])');
     var cbs_sorted = checkboxes.sort(function(a, b) {
       var an = a.id;
       var bn = b.id;
@@ -11492,7 +11464,6 @@ CTATDoneButton = function(aDescription, aX, aY, aWidth, aHeight) {
   this.init = function() {
     this.setInitialized(true);
     var comp = document.createElement("button");
-    comp.classList.add("unselectable");
     comp.classList.add("CTAT-done-button");
     this.setComponent(comp);
     var button_content = document.createElement("div");
@@ -11530,6 +11501,8 @@ CTATDoneButton = function(aDescription, aX, aY, aWidth, aHeight) {
   };
   this.processClick = function(e) {
     if (pointer.getEnabled() && CTATCommShell.commShell) {
+      var focusEvent = new FocusEvent(pointer.getName(), {currentTarget:pointer, relatedTarget:CTATGlobals.Tab.Focus && typeof CTATGlobals.Tab.Focus.getComponent == "function" ? CTATGlobals.Tab.Focus.getComponent() : null});
+      pointer.processFocus(focusEvent);
       CTATCommShell.commShell.processDone(pointer.getCompletionStatus());
     }
   };
@@ -11756,6 +11729,347 @@ CTATDragNDrop.default_groupname = "DragNDropGroup";
 CTATDragNDrop.prototype = Object.create(CTAT.Component.Base.Tutorable.prototype);
 CTATDragNDrop.prototype.constructor = CTATDragNDrop;
 CTAT.ComponentRegistry.addComponentType("CTATDragNDrop", CTATDragNDrop);
+goog.provide("CTATDragSource");
+goog.require("CTAT.Component.Base.Tutorable");
+goog.require("CTAT.ComponentRegistry");
+goog.require("CTATGlobalFunctions");
+goog.require("CTATSAI");
+var CTATDragSource = function() {
+  CTAT.Component.Base.Tutorable.call(this, "CTATDragSource", "aDnD");
+  this.setParameterHandler("groupname", function(aName) {
+    if (this.getDivWrap()) {
+      $(this.getDivWrap()).attr("name", aName);
+    }
+  });
+  this.set_child_limit = function(aNum) {
+    var val = parseInt(aNum);
+    if (!isNaN(val)) {
+      $(this.component).attr("data-ctat-max-cardinality", val);
+    }
+  };
+  this.setParameterHandler("MaxObjects", this.set_child_limit);
+  this.get_child_limit = function() {
+    var lim = parseInt($(this.component).attr("data-ctat-max-cardinality"));
+    return isNaN(lim) ? -1 : lim;
+  };
+  this.set_child_overflow = function(aNum) {
+    var val = parseInt(aNum);
+    if (!isNaN(val)) {
+      $(this.component).attr("data-ctat-max-overflow", val);
+    }
+  };
+  this.setParameterHandler("MaxOverflow", this.set_child_overflow);
+  this.get_child_overflow = function() {
+    var lim = parseInt($(this.component).attr("data-ctat-max-overflow"));
+    return isNaN(lim) ? -1 : lim;
+  };
+  this.set_purpose = function(aString) {
+    if (aString) {
+      $(this.component).attr("data-ctat-purpose", aString);
+    } else {
+      $(this.component).attr("data-ctat-purpose", "destination");
+    }
+  };
+  this.setParameterHandler("Purpose", this.set_purpose);
+  this.get_purpose = function() {
+    if ($(this.component).attr("data-ctat-purpose")) {
+      return $(this.component).attr("data-ctat-purpose");
+    } else {
+      return "destination";
+    }
+  };
+  var hash = function(s) {
+    return s.split("").reduce(function(a, b) {
+      a = (a << 5) - a + b.charCodeAt(0);
+      return a & a;
+    }, 0);
+  };
+  var handle_drag_start = function(e) {
+    var groupname = $(this).parent().attr("name");
+    var parent = $(this).parent().attr("id");
+    e.dataTransfer.setData("ctat/group", groupname);
+    e.dataTransfer.setData("ctat/source", parent);
+    e.dataTransfer.setData("original", this.id);
+    if ($("#" + parent).attr("data-ctat-purpose") === "source") {
+      var cloneId = this.id + "--" + CTATGlobalFunctions.gensym.div_id().slice(7);
+      e.dataTransfer.setData("text", cloneId);
+      var hid = hash(cloneId);
+      e.dataTransfer.setData("ctat/id/" + hid, hid);
+      CTATDragSource.dragging[hid] = {id:cloneId, group:groupname, source:parent};
+    } else {
+      e.dataTransfer.setData("text", this.id);
+      var hid = hash(this.id);
+      e.dataTransfer.setData("ctat/id/" + hid, hid);
+      CTATDragSource.dragging[hid] = {id:this.id, group:groupname, source:parent};
+    }
+  };
+  var handle_drag_end = function(e) {
+    var dndid;
+    for (var i = 0;i < e.dataTransfer.types.length;i++) {
+      dndid = /^ctat\/id\/(.+)$/.exec(e.dataTransfer.types[i]);
+      if (dndid) {
+        var hid = dndid[1];
+        if (CTATDragSource.dragging.hasOwnProperty(hid)) {
+          delete CTATDragSource.dragging[hid];
+        }
+      }
+    }
+  };
+  var pointer = this;
+  pointer.setDisabled = function(x) {
+    try {
+      if (x.type !== "button") {
+        x.disabled = true;
+      }
+      if (x.children.length > 0) {
+        for (var i = 0;i < x.children.length;i++) {
+          pointer.setDisabled(x.children[i]);
+        }
+      }
+    } catch (err) {
+    }
+  };
+  pointer.removeDisabled = function(x) {
+    x.disabled = false;
+    if (x.children.length > 0) {
+      for (var i = 0;i < x.children.length;i++) {
+        pointer.removeDisabled(x.children[i]);
+      }
+    }
+  };
+  pointer.animatedRemove = function(childID) {
+    $("#" + childID).animate({opacity:.1, zoom:1.3}, 500, "swing", function() {
+      var focus = document.getElementById(childID);
+      var parent = focus.parentNode;
+      parent.removeChild(focus);
+    });
+  };
+  var dnd = null;
+  this.init = function() {
+    dnd = this.getDivWrap();
+    if (!$(dnd).attr("name")) {
+      var gname = CTATDragSource.default_groupname;
+      if (this.getComponentGroup()) {
+        gname = this.getComponentGroup();
+      }
+      $(dnd).attr("name", gname);
+    }
+    this.setComponent(dnd);
+    CTATComponentReference.add(this, dnd);
+    if (!CTATConfiguration.get("previewMode")) {
+      $(dnd).children().addClass("CTATDragSource--item").attr({unselectable:"on", draggable:true}).each(function() {
+        if (!this.id) {
+          this.id = CTATGlobalFunctions.gensym.div_id();
+        }
+        this.addEventListener("dragstart", handle_drag_start, false);
+        this.addEventListener("dragend", handle_drag_end, false);
+      });
+    }
+    if (dnd.getAttribute("data-ctat-purpose") === "source") {
+      window.onload = function() {
+        pointer.setDisabled(dnd);
+      };
+    }
+    this.component.addEventListener("dragover", function(e) {
+      var allow_drop = false;
+      if ($(this).data("CTATComponent").getEnabled()) {
+        var limit = parseInt($(this).attr("data-ctat-max-cardinality"));
+        if (isNaN(limit) || limit < 0 || $(this).children().length < limit) {
+          var types = new Set(e.dataTransfer.types);
+          if (types.has("ctat/group")) {
+            if (e.dataTransfer.getData("text")) {
+              if (e.dataTransfer.getData("ctat/group") === $(this).attr("name") && e.dataTransfer.getData("ctat/source") !== this.id) {
+                allow_drop = true;
+              }
+            } else {
+              var dndid;
+              for (var i = 0;i < e.dataTransfer.types.length;i++) {
+                dndid = /^ctat\/id\/(.+)$/.exec(e.dataTransfer.types[i]);
+                if (dndid) {
+                  var hid = dndid[1];
+                  if (CTATDragSource.dragging.hasOwnProperty(hid) && CTATDragSource.dragging[hid].group === $(this).attr("name") && CTATDragSource.dragging[hid].source !== this.id) {
+                    allow_drop = true;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      if ($(e.target).attr("data-ctat-purpose") === "source") {
+        allow_drop = false;
+      }
+      if (allow_drop) {
+        e.preventDefault();
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.dropEffect = "move";
+        this.classList.add("CTATDragSource--valid-drop");
+      }
+    }, false);
+    this.component.addEventListener("drop", function(e) {
+      e.preventDefault();
+      this.classList.remove("CTATDragSource--valid-drop");
+      var comp = $(this).data("CTATComponent");
+      if (comp.getEnabled()) {
+        var item_id = e.dataTransfer.getData("text");
+        var item;
+        if (document.getElementById(item_id)) {
+          item = document.getElementById(item_id);
+          this.appendChild(item);
+        }
+        if (!document.getElementById(item_id)) {
+          var original = document.getElementById(e.dataTransfer.getData("original"));
+          item = original.cloneNode(false);
+          this.append(item);
+          item.id = item_id;
+          item.addEventListener("dragstart", handle_drag_start, false);
+          item.addEventListener("dragend", handle_drag_end, false);
+          var componentType;
+          var CTATClassRegex = /(CTAT[A-z]*)(\s|$)/g;
+          var ctatClass = CTATClassRegex.exec(item.className);
+          if (ctatClass) {
+            for (var i = 0;i < ctatClass.length;i++) {
+              if (CTAT.ComponentRegistry[ctatClass[i]]) {
+                componentType = ctatClass[i];
+              }
+            }
+          }
+          if (componentType) {
+            CTATTutor.initializeHTMLComponent(item, componentType);
+          }
+          item.setAttribute("draggable", true);
+          item.setAttribute("unselectable", "on");
+          var oldLength = original.childNodes.length;
+          var newLength = item.childNodes.length;
+          original.classList.remove("CTAT--correct");
+          original.classList.remove("CTAT--incorrect");
+          original.classList.remove("CTAT--hint");
+          if (newLength === oldLength) {
+            for (var i = 0;i < newLength;i++) {
+              item.childNodes[i].setAttribute("class", original.childNodes[i].className);
+              item.childNodes[i].setAttribute("value", original.childNodes[i].value);
+              item.childNodes[i].innerHTML = original.childNodes[i].innerHTML;
+            }
+          }
+          if (oldLength !== newLength) {
+            while (item.hasChildNodes()) {
+              item.removeChild(item.lastChild);
+            }
+            for (var i = 0;i < oldLength;i++) {
+              item.appendChild(original.childNodes[i].cloneNode(true));
+            }
+          }
+        }
+        if ($(this).attr("data-ctat-purpose") === "trashcan") {
+          this.removeChild(item);
+        }
+        if ($(this).attr("data-ctat-purpose") === "source") {
+          this.removeChild(item);
+        }
+        if ($(this).attr("data-ctat-purpose") === "destination" || !$(this).attr("data-ctat-purpose")) {
+          $("#" + item.id).removeClass("CTAT--correct CTAT--incorrect CTAT--hint");
+          pointer.removeDisabled(item);
+          comp.setActionInput("Add", item_id);
+          comp.processAction();
+          if ($(this).attr("data-ctat-max-overflow") !== null && this.childNodes.length > $(this).attr("data-ctat-max-overflow")) {
+            pointer.animatedRemove(this.firstChild.id);
+          }
+        }
+      }
+    }, false);
+    this.component.addEventListener("dragleave", function(e) {
+      this.classList.remove("CTATDragSource--valid-drop");
+    }, false);
+    this.setInitialized(true);
+  };
+  this.getConfigurationActions = function() {
+    var actions = [];
+    var items = [];
+    $(this.component).children().each(function() {
+      items.push($(this).attr("id"));
+    });
+    if (items.length > 0) {
+      var sai = new CTATSAI;
+      sai.setSelection(this.getName());
+      sai.setAction("SetChildren");
+      sai.setInput(items.sort().join(";"));
+      actions.push(sai);
+    }
+    return actions;
+  };
+  var super_setEnabled = this.setEnabled;
+  this.setEnabled = function(bool) {
+    super_setEnabled(bool);
+    if (dnd) {
+      $(dnd).children().attr("draggable", bool);
+      if (this.getDisableOnCorrect()) {
+        $(dnd).find(".CTAT--correct").attr("draggable", false);
+      }
+    }
+  };
+  this.Add = function(aId) {
+    var target = $("#" + aId);
+    if (target.length > 0) {
+      target.appendTo(this.getDivWrap());
+    }
+    if (!$(target).hasClass("CTATDragSource--item")) {
+      $(target).addClass("CTATDragSource--item").attr({unselectable:"on", draggable:true});
+      target.addEventListener("dragstart", handle_drag_start, false);
+      target.addEventListener("dragend", handle_drag_end, false);
+    }
+  };
+  this.SetChildren = function(list_of_ids) {
+    list_of_ids.split(";").forEach(function(aId) {
+      this.Add(aId);
+    }, this);
+  };
+  this.updateSAI = function() {
+    var items = [];
+    $(this.component).children().each(function() {
+      items.push($(this).attr("id"));
+    });
+    this.setActionInput("SetChildren", items.sort().join(";"));
+  };
+  var super_showCorrect = this.showCorrect.bind(this);
+  this.showCorrect = function(aSAI) {
+    var action = aSAI.getAction();
+    switch(action) {
+      case "Add":
+        this.setEnabled(true);
+        var id = aSAI.getInput();
+        $("#" + id).addClass("CTAT--correct");
+        if (this.getDisableOnCorrect()) {
+          $("#" + id).attr("draggable", false);
+        }
+        break;
+      case "SetChildren":
+      ;
+      default:
+        super_showCorrect(aSAI);
+        break;
+    }
+  };
+  var super_showInCorrect = this.showInCorrect.bind(this);
+  this.showInCorrect = function(aSAI) {
+    var action = aSAI.getAction();
+    switch(action) {
+      case "Add":
+        var id = aSAI.getInput();
+        $("#" + id).addClass("CTAT--incorrect");
+        break;
+      case "SetChildren":
+      ;
+      default:
+        super_showInCorrect(aSAI);
+        break;
+    }
+  };
+};
+CTATDragSource.dragging = {};
+CTATDragSource.default_groupname = "DragNDropGroup";
+CTATDragSource.prototype = Object.create(CTAT.Component.Base.Tutorable.prototype);
+CTATDragSource.prototype.constructor = CTATDragSource;
+CTAT.ComponentRegistry.addComponentType("CTATDragSource", CTATDragSource);
 goog.provide("CTAT.Math");
 CTAT.Math = {LeastCommonMultiple:function(a, b) {
   return a * b / CTAT.Math.GreatestCommonDivisor(a, b);
@@ -12664,6 +12978,17 @@ CTATFractionBar = function(aDescription, aX, aY, aWidth, aHeight) {
 CTATFractionBar.prototype = Object.create(CTAT.Component.Base.UnitDisplay.prototype);
 CTATFractionBar.prototype.constructor = CTATFractionBar;
 CTAT.ComponentRegistry.addComponentType("CTATFractionBar", CTATFractionBar);
+goog.provide("CTATFS");
+CTATFS = {};
+CTATFS.writeFile = function(fn, txt) {
+  return new Promise(function(resolve, reject) {
+    return $.post(location.origin + "/writeFile?path=" + fn, txt).done(function(d) {
+      return resolve(d);
+    }).fail(function(e) {
+      return reject(e);
+    });
+  });
+};
 goog.provide("CTATGroupingComponent");
 goog.require("CTATGlobalFunctions");
 goog.require("CTAT.Component.Base.SAIHandler");
@@ -12692,8 +13017,10 @@ CTATGroupingComponent = function(aDescription, aX, aY, aWidth, aHeight) {
   };
   this.executeSAI = function(aSAI) {
     pointer.getComponentList().forEach(function(comp) {
-      if (comp != null) {
+      if (comp && typeof comp.executeSAI == "function") {
         comp.executeSAI(aSAI);
+      } else {
+        pointer.ctatdebug("CTATGroupingComponent " + pointer.getName() + ".executeSAI: comp doesn't implement executeSAI: " + comp);
       }
     });
     parentExecuteSAI.call(pointer, aSAI);
@@ -12910,18 +13237,27 @@ CTATHintWindow = function(aDescription, aX, aY, aWidth, aHeight) {
     hintIndex = 0;
     previous.setEnabled(false);
     next.setEnabled(false);
-    if (!hints) {
+    if (!hints || hints.length <= 0) {
       hints = [];
       hintContent.innerHTML = "";
       return;
     }
     this.setEnabled(true);
-    if (hints[hintIndex] === "") {
-      pointer.ctatdebug("Empty hint in list, bump");
+    while (hintIndex < hints.length && hints[hintIndex] === "") {
+      ++hintIndex;
+    }
+    if (hintIndex >= hints.length) {
+      pointer.ctatdebug("All hints in list empty, bump");
       return;
+    } else {
+      if (hintIndex > 0) {
+        pointer.ctatdebug("First " + hintIndex + " hints in list empty, excising");
+        hints.splice(0, hintIndex);
+        hintIndex = 0;
+      }
     }
     hintContent.innerHTML = CTATGlobals.languageManager.filterString(hints[hintIndex]);
-    if (hints.length > 1) {
+    if (hintIndex + 1 < hints.length) {
       pointer.ctatdebug("We have more than one hint, enabling next button");
       next.setEnabled(true);
     } else {
@@ -13218,6 +13554,189 @@ CTATJumble = function(aDescription, aX, aY, aWidth, aHeight) {
 CTATJumble.prototype = Object.create(CTAT.Component.Base.Tutorable.prototype);
 CTATJumble.prototype.constructor = CTATJumble;
 CTAT.ComponentRegistry.addComponentType("CTATJumble", CTATJumble);
+goog.provide("CTATMathInput");
+goog.require("CTATGlobalFunctions");
+goog.require("CTATGlobals");
+goog.require("CTATSAI");
+goog.require("CTAT.Component.Base.Tutorable");
+goog.require("CTAT.ComponentRegistry");
+var CTATMathInput = function() {
+  CTAT.Component.Base.Tutorable.call(this, "CTATMathInput", "myComponent");
+  if (!CTATMathInput.guppyInitialized) {
+    Guppy.init({"path":"https://cdn.ctat.cs.cmu.edu/releases/latest/guppy/", "symbols":"https://cdn.ctat.cs.cmu.edu/releases/latest/guppy/symbols.json"});
+    CTATMathInput.guppyInitialized = true;
+  }
+  var pointer = this;
+  var mathinput = null;
+  var previewMode = CTATConfiguration.get("previewMode");
+  var div;
+  var mathDiv;
+  var newDiv;
+  var correct = false;
+  var dirty = 0;
+  this.init = function() {
+    this.ctatdebug("init (" + pointer.getName() + ")");
+    if (!pointer.getInitialized()) {
+      div = pointer.getDivWrap();
+      mathDiv = document.createElement("div");
+      mathDiv.id = div.id + "_math";
+      div.appendChild(mathDiv);
+      mathinput = new Guppy(mathDiv.id);
+      newDiv = document.createElement("div");
+      newDiv.id = div.id + "_new";
+      div.appendChild(newDiv);
+      this.ctatdebug("Final location: " + pointer.getX() + "," + pointer.getY() + " with text: " + pointer.getValue());
+      div.addEventListener("keydown", function(event) {
+        var x = event.key;
+        ++dirty;
+        pointer.ctatdebug("dirty " + dirty);
+        if (x === "Enter" || x === "Tab") {
+          var val = pointer.getValue();
+          if (/^\s*$/.test(String(val))) {
+            return;
+          }
+          pointer.setActionInput("UpdateTextField", val);
+          pointer.processAction();
+          dirty = 0;
+        }
+      });
+      mathDiv.addEventListener("blur", function(event) {
+        if (!correct) {
+          var val = pointer.getValue();
+          if (/^\s*$/.test(String(val))) {
+            return;
+          }
+          if (dirty < 1) {
+            return;
+          }
+          pointer.setActionInput("UpdateTextField", val);
+          pointer.processAction();
+          dirty = 0;
+        }
+      });
+      pointer.setInitialized(true);
+      pointer.setComponent(div);
+      pointer.addComponentReference(pointer, div);
+      if (previewMode) {
+        this.addEventScreen(false);
+      }
+    }
+  };
+  this.GuppyStyleInput = function(x) {
+    var ret;
+    if (x.includes("/")) {
+      var n = x.indexOf("/");
+      for (var i = n;i > 0;i--) {
+        if (x[i] === "+" || x[i] === "-") {
+          ret = x.slice(0, i + 1) + "(" + x.slice(i + 1, n) + ")" + "/" + pointer.GuppyStyleInput(x.slice(n + 1, x.length));
+          break;
+        }
+      }
+      !ret && (ret = "(" + x.slice(0, n) + ")" + "/" + pointer.GuppyStyleInput(x.slice(n + 1, x.length)));
+    } else {
+      ret = x;
+    }
+    return ret;
+  };
+  this.getValue = function() {
+    console.log("mathinput.getValue()");
+    try {
+      var v = mathinput.asciimath();
+      return v;
+    } catch (err) {
+      return "";
+    }
+  };
+  this.updateSAI = function() {
+    this.setActionInput("UpdateTextField", pointer.getValue());
+  };
+  this.setMath = function(aMath) {
+    pointer.ctatdebug("setMath (" + aMath + ")");
+    mathinput.engine.sel_all();
+    mathinput.engine.sel_delete();
+    mathinput.engine.sel_clear();
+    mathinput.engine.insert_string(aMath);
+    if (!pointer.getEnabled()) {
+      Guppy.Doc.render(mathinput.xml(), newDiv.id);
+    }
+  };
+  this.getConfigurationActions = function() {
+    var actions = [];
+    var $div = $(this.getDivWrap());
+    if ($div.attr("value")) {
+      var sai = new CTATSAI;
+      sai.setSelection(this.getName());
+      sai.setAction("UpdateTextField");
+      sai.setInput($div.attr("value"));
+      actions.push(sai);
+    }
+    return actions;
+  };
+  this.UpdateTextField = function(aMath) {
+    this.setMath(aMath);
+  };
+  this.reset = function reset() {
+    pointer.configFromDescription();
+    pointer.processSerialization();
+    mathinput.import_text("");
+  };
+  var enable = function() {
+    if (mathDiv.parentNode !== div) {
+      div.appendChild(mathDiv);
+    }
+    if (newDiv.parentNode === div) {
+      div.removeChild(newDiv);
+    }
+  };
+  var disable = function() {
+    if (newDiv.parentNode !== div) {
+      div.appendChild(newDiv);
+    }
+    if (mathDiv.parentNode === div) {
+      div.removeChild(mathDiv);
+    }
+    Guppy.Doc.render(mathinput.xml(), newDiv.id);
+  };
+  var baseSetEnabled = this.setEnabled;
+  this.setEnabled = function(enabled) {
+    baseSetEnabled.call(this, enabled);
+    if (pointer.getInitialized()) {
+      if (enabled) {
+        enable();
+      } else {
+        disable();
+      }
+    }
+  };
+  var baseSetCorrect = this.setCorrect;
+  this.setCorrect = function() {
+    correct = true;
+    baseSetCorrect.apply(this, arguments);
+  };
+  var baseShowCorrect = this.showCorrect;
+  this.showCorrect = function() {
+    baseShowCorrect.apply(this, arguments);
+    newDiv.style.color = "limegreen";
+  };
+  var baseSetIncorrect = this.setIncorrect;
+  this.setIncorrect = function() {
+    correct = false;
+    baseSetIncorrect.apply(this, arguments);
+  };
+  var baseShowIncorrect = this.showIncorrect;
+  this.showIncorrect = function() {
+    baseShowIncorrect.apply(this, arguments);
+    mathDiv.style.color = "red";
+  };
+  var baseShowHintHighlight = this.showHintHighlight;
+  this.showHintHighlight = function() {
+    baseShowHintHighlight.apply(this, arguments);
+    mathDiv.style.color = "initial";
+  };
+};
+CTATMathInput.prototype = Object.create(CTAT.Component.Base.Tutorable.prototype);
+CTATMathInput.prototype.constructor = CTATMathInput;
+CTAT.ComponentRegistry.addComponentType("CTATMathInput", CTATMathInput);
 goog.provide("CTATMobileTutorHandler");
 goog.require("CTATBase");
 goog.require("CTATGlobals");
@@ -15201,7 +15720,7 @@ CTATRadioButton = function(aDescription, aX, aY, aWidth, aHeight) {
     pointer.ctatdebug("UpdateRadioButton ()");
   };
   this.updateSAI = function() {
-    var radios = $('div[data-ctat-component]:has(input[type="radio"][name="' + radiobutton.name + '"]:checked)');
+    var radios = $("." + this.getClassName() + '[data-ctat-component]:has(input[type="radio"][name="' + radiobutton.name + '"]:checked)');
     var input = "";
     if (radios.length === 1) {
       input = $(radios[0]).data("CTATComponent").getRadioInput();
@@ -16462,7 +16981,9 @@ goog.require("CTATConfig");
 goog.require("CTATConfiguration");
 goog.require("CTATDoneButton");
 goog.require("CTATDragNDrop");
+goog.require("CTATDragSource");
 goog.require("CTATFractionBar");
+goog.require("CTATFS");
 goog.require("CTATGlobalFunctions");
 goog.require("CTATGlobals");
 goog.require("CTATGroupingComponent");
@@ -16473,6 +16994,7 @@ goog.require("CTATIFrameManager");
 goog.require("CTATImageButton");
 goog.require("CTATJSON");
 goog.require("CTATJumble");
+goog.require("CTATMathInput");
 goog.require("CTATMobileTutorHandler");
 goog.require("CTATMovieClip");
 goog.require("CTATNumberLine");
@@ -16513,6 +17035,34 @@ Object.defineProperty(CTATTutor, "parser", {get:function() {
   }
   return this._parser;
 }});
+CTATTutor.removeComponent = function(aName) {
+  var result = [], cList = CTATShellTools.findComponent(aName);
+  console.log("CTATTutor.removeComponent(" + aName + ") cList", cList);
+  if (!aName || !cList) {
+    return result;
+  }
+  var c = null, cName = null, divWrap = null;
+  for (var i = 0;i < cList.length;++i) {
+    if (!(c = cList[i])) {
+      continue;
+    }
+    console.log("CTATTutor.removeComponent()[", i, "] ", c.getName && c.getName(), c);
+    (c.getComponentList ? c.getComponentList() : []).forEach(function(ch) {
+      CTATTutor.removeComponent(ch.getName ? ch.getName() : "");
+    });
+    if (cName = c.getName && c.getName()) {
+      delete CTATShellTools.component_descriptions[cName];
+      result.push(cName);
+    }
+    if (divWrap = c.getDivWrap && c.getDivWrap()) {
+      c.setDivWrapper(null);
+      $(divWrap).data("CTATComponent", null);
+      $(divWrap).remove();
+    }
+    console.log("CTATTutor.removeComponent()[", i, "] divWrap", divWrap);
+  }
+  return result;
+};
 CTATTutor.initializeHTMLComponent = function(divWrap, componentType) {
   var CTATComponentConstructor = CTAT.ComponentRegistry[componentType];
   var ctat_component;
@@ -16585,9 +17135,15 @@ var CTATComponentMutObserver = new MutationObserver(function(mutations, pointer)
     }
   });
 });
-document.addEventListener("DOMContentLoaded", function() {
+function addMutObserver() {
+  console.log("adding ctatcomponent mutation observer");
   CTATComponentMutObserver.observe(document.body, {childList:true, subtree:true});
-});
+}
+if (document.readyState !== "loading") {
+  addMutObserver();
+} else {
+  document.addEventListener("DOMContentLoaded", addMutObserver);
+}
 CTATTutor.callComponentFunction = function(componentDiv, func, arg) {
   var componentArr = CTATShellTools.findComponent(componentDiv.id);
   if (componentArr && componentArr.length > 0) {
@@ -16840,19 +17396,19 @@ CTATTutor.timerIncrement = function() {
   if (idleTime < 0) {
     return;
   }
-  var tutorTimeout = 19;
+  var tutorTimeout = 19 * 60;
   var session_timeout = CTATConfiguration.get("session_timeout");
-  if (session_timeout) {
-    if (isNaN(session_timeout)) {
-      tutorTimeout = parseInt(session_timeout);
-    } else {
-      tutorTimeout = session_timeout;
+  if (session_timeout && !isNaN(session_timeout)) {
+    tutorTimeout = parseInt(session_timeout) + 60;
+  } else {
+    if (!CTATLMS.identifier || parseInt(CTATLMS.identifier) < 0) {
+      tutorTimeout = 1E20;
     }
   }
-  idleTime = idleTime + 1;
+  idleTime = idleTime + 60;
   if (idleTime > tutorTimeout) {
     idleTime = -1;
-    CTATScrim.scrim.OKScrimUp("The tutor timed out due to inactivity, click 'Close' to reload the page.", function() {
+    CTATScrim.scrim.OKScrimUp("The tutor timed out due to inactivity, click 'Ok' to reload the page.", function() {
       window.location.reload();
     });
   }
@@ -16867,7 +17423,6 @@ CTATTutor.initTutor = function(aFlashVars, aDiv, aCanvas, usingFlash) {
     }
     return;
   }
-  CTATTutor.setIdleTimeout();
   CTATConfiguration.generateDefaultConfigurationObject(aFlashVars, typeof CTATTarget == "undefined" ? undefined : CTATTarget);
   switch(CTATConfiguration.get("show_debug_traces")) {
     case "true":
@@ -17337,6 +17892,12 @@ var CTATNoolsTracerUtil = function() {
         facts = session.getFacts(optType, true);
       }
     }
+    if (!optType) {
+      facts = facts.filter(function(fact) {
+        var type = session.getFactType(fact.object);
+        return !(type === "hint" || type === "tpa" || type === "customfield" || type === "skill");
+      });
+    }
     return facts.map(function(fact) {
       return fact.object;
     });
@@ -17369,6 +17930,12 @@ var CTATNoolsTracerUtil = function() {
       }
     }
     var facts = session.getFacts(optType, true);
+    if (!optType) {
+      facts = facts.filter(function(fact) {
+        var type = session.getFactType(fact.object);
+        return !(type === "hint" || type === "tpa" || type === "customfield" || type === "skill");
+      });
+    }
     factStr = "got " + facts.length + (optType ? " " + optType : "") + " fact(s):\n";
     facts.forEach(function(fact) {
       factStr += "id: " + fact.id + ", " + (optType ? "" : "type: " + session.getFactType(fact.object) + ", ");
@@ -17548,8 +18115,14 @@ CTATNoolsTracerWrapper = function(tracer) {
   this.printAgenda = function() {
     tracerRef.printAgenda("override");
   };
-  this.printConflictTree = function(firedOnly) {
-    tracerRef.printConflictTree("override", firedOnly);
+  this.printConflictTree = function(firedOnly, inclSAIs) {
+    tracerRef.printConflictTree("override", firedOnly, inclSAIs);
+  };
+  this.printPregenTrees = function(firedOnly, inclSAIs) {
+    tracerRef.printPregenTrees("override", firedOnly, inclSAIs);
+  };
+  this.printTutorSAIs = function() {
+    tracerRef.printTutorSAIs("override");
   };
   this.printFact = function(fId) {
     tracerRef.printFact(fId);
@@ -17587,1877 +18160,55 @@ CTATNoolsTracerWrapper = function(tracer) {
   this.resume = function() {
     tracerRef.resume();
   };
-};
-goog.provide("CTATNoolsTracer");
-goog.require("CTATNoolsTracerUtil");
-goog.require("CTATNoolsTracerWrapper");
-var CTATNoolsTracer = function(logFunc, tpaHandler) {
-  var DEFAULT_CHAIN = {sai:{selection:"", action:"", input:""}, rules:[], skills:[], hints:[], msg:"", customFields:{}};
-  var log = logFunc;
-  var _sendTPA = tpaHandler;
-  var pointer = this;
-  var initialized = false;
-  var flow = null;
-  var session = null;
-  var studentSAIs = {}, ruleChains = {selectionMap:{}, numChains:0}, lastStudentSAI = null;
-  var currChain = {links:[], lengthAtBranchStack:[], matchType:null};
-  var iAmMovingForward = false;
-  var noolsUtil = null;
-  var startStateMsgs = [], problemConfig = {use_backtracking:false, prune_old_activations:false, use_hint_fact:false, search_all_permutations:true, hint_out_of_order:false};
-  var lastFoundMatch = true;
-  var iAmHintMatching = false, lastMatchWasHint = false, isHintMatchFact = null;
-  var skillMap = {};
-  var customFields = null;
-  var tpasToSend = [];
-  var inStepMode = false;
-  var nextMatchIsFirst = true;
-  var nextCbk = function() {
-  };
-  var searchEnded = false;
-  this.getInitialized = function() {
-    return initialized;
-  };
-  this.getSkills = function() {
-    return skillMap;
-  };
-  this.getProblemAttribute = function(attrName) {
-    return problemConfig[attrName];
-  };
-  this.init = function(srcFile, cbk, errCbk) {
-    log("debug", "noolstracer init w/ source file: " + srcFile);
-    if (!nools) {
-      log("error", "Error: nools is not defined");
-      errCbk("nools is not defined");
-      return;
-    }
-    noolsUtil = new CTATNoolsTracerUtil;
-    var baseUrl = noolsUtil.relativeToAbsolute(srcFile);
-    $.ajax(srcFile, {dataType:"text", success:function(problemData) {
-      _handleImports(problemData, baseUrl, null, function(file) {
-        log("debug", "compiling model...");
-        var err;
-        if (!((err = _compile(file, srcFile)) === true)) {
-          log("error", "CTATNoolsTracer: Error compiling model");
-          errCbk(err);
-          return;
-        }
-        log("debug", "done compile");
-        if (!pointer.createSession()) {
-          errCbk("CTATNoolsTracer: Error creating session");
-        }
-        _firstMatch(function() {
-          registerTracerWrapper(new CTATNoolsTracerWrapper(pointer));
-          log("override", "tracer initialized, log flags: ");
-          getTracerLogFlags();
-          printBreakpoints();
-          cbk(startStateMsgs, problemConfig);
-        });
-      });
-    }, error:function(req, err, errThrown) {
-      ctatdebug("Error retrieving rule file: ");
-      ctatdebug(err);
-      errCbk(err);
-    }});
-  };
-  this.createSession = function() {
-    log("debug", "creating session...");
-    session = flow.getSession({iAmEventListeners:true, "assert":_onAssert, "retract":_onRetract, "modify":_onModify, "state_save":_onStateSave, "state_restore":_onStateRestore, "backtrack":_onBacktrack, "fire":_onFire, "agenda_insert":_onAgendaInsert, "agenda_retract":_onAgendaRetract, "agenda_empty":_onAgendaEmpty, "endOfChain":_onEndOfChain, "breakpoint":_onBreakpoint});
-    if (session) {
-      log("debug", "session created");
-    }
-    return !!session;
-  };
-  this.evaluate = function(sai, cbk, matchType) {
-    log("debug", "noolsTracer.evaluate, matchType = " + matchType + ", sai " + sai + ", " + lastFoundMatch);
-    var callback = _handleMatchResult.bind(pointer, cbk);
-    session.prepForMatch();
-    switch(matchType) {
-      case "hint":
-        if (!(lastFoundMatch || problemConfig["use_hint_fact"])) {
-          log("debug", "re-using hints from last match");
-          _handleHintMatchResult(cbk, false, sai.selection);
-          return true;
-        } else {
-          iAmHintMatching = true;
-          callback = _handleHintMatchResult.bind(pointer, cbk, true);
-          if (problemConfig["use_hint_fact"]) {
-            _assertHintFact();
-          }
-        }
-      ;
-      case "tutored_action":
-        _clearPerMatchVars();
-        _assertSAI(sai, true);
-        nextCbk = function() {
-          _cleanupBeforeCallback();
-          pointer.printAgenda("agenda_post");
-          callback();
-        };
-        if (!inStepMode) {
-          pointer.printAgenda("agenda_pre");
-          _match();
-        }
-        break;
-      case "untutored_action":
-        _assertSAI(sai, false);
-        return true;
-    }
-    return false;
-  };
-  this.setListener = function(e, f) {
-    session && session.on(e, f);
-  };
-  this.getStudentSAIs = function() {
-    return studentSAIs;
-  };
-  this.getLastStudentSAI = function() {
-    return lastStudentSAI;
-  };
-  this.getTutorSAIs = function() {
-    return ruleChains.selectionMap;
-  };
-  this.reset = function(cbk) {
-    pointer.createSession();
-    initialized = false;
-    studentSAIs = {};
-    ruleChains.selectionMap = {};
-    ruleChains.firstTutorSelection = null;
-    ruleChains.matchChain = null;
-    ruleChains.bugMatchChain = null;
-    ruleChains.numChains = 0;
-    lastStudentSAI = null, lastFoundMatch = true;
-    _firstMatch(cbk);
-  };
-  this.printAgenda = function(logFlag) {
-    log(logFlag, (logFlag !== "override" ? "[" + logFlag + "]: " : "") + noolsUtil.printAgenda(session));
-  };
-  this.printConflictTree = function(logFlag, firedOnly) {
-    log(logFlag, noolsUtil.printConflictTree(session, firedOnly));
-  };
-  this.printFact = function(id) {
-    log("override", noolsUtil.printFact(session, id));
-  };
-  this.printFacts = function(optType) {
-    log("override", noolsUtil.printFacts(session, optType));
-  };
-  this.printRules = function(optSubstr) {
-    log("override", noolsUtil.printRules(session, optSubstr));
-  };
-  this.getFact = function(id) {
-    var fact = noolsUtil.getFact(session, id);
-    return fact;
-  };
-  this.getFacts = function(optType) {
-    var facts = noolsUtil.getFacts(session, optType);
-    return facts;
-  };
-  this.printCtNodeMatch = function(nodeId) {
-    log("override", noolsUtil.printCtNodeMatch(session, nodeId));
-  };
-  this.printRuleNodes = function(ruleName) {
-    log("override", noolsUtil.printRuleNodes(session, ruleName));
-  };
-  this.printBreakpoints = function() {
-    log("override", noolsUtil.printBreakpoints(session));
-  };
-  this.setInStepMode = function(step) {
-    step = step && step !== "false";
-    log("override", "Stepper mode " + (step ? "on" : "off"));
-    if (inStepMode && !step && !searchEnded) {
-      _match();
-    }
-    inStepMode = step;
-  };
-  this.takeSteps = function(numSteps) {
-    if (inStepMode) {
-      if (lastStudentSAI) {
-        numSteps = numSteps || 1;
-        log("override", "taking " + numSteps + " steps");
-        _match(numSteps);
-      } else {
-        log("override", "no new student input, ignoring");
-      }
-    } else {
-      log("override", "not in step mode, ignoring");
-    }
-  };
-  this.setBreakpoint = function(ruleName, firstOrEvery) {
-    if (ruleName) {
-      firstOrEvery = firstOrEvery || "first";
-      if (session.setBreakpoint(ruleName, firstOrEvery)) {
-        log("override", "breakpoint " + (firstOrEvery === "none" ? "cleared" : "set") + " for rule " + ruleName);
-      } else {
-        log("override", "breakpoint not " + (firstOrEvery === "none" ? "cleared" : "set") + " -- rule " + ruleName + " doesn't exist");
-      }
-    } else {
-      log("override", "need a rule name to break on");
-    }
-  };
-  this.resume = function() {
-    if (!inStepMode) {
-      if (!searchEnded) {
-        _match();
-      } else {
-        log("override", "not at a breakpoint, ignoring");
-      }
-    } else {
-      log("override", "can't resume; engine is in stepper mode");
-    }
-  };
-  function _firstMatch(cbk) {
-    startStateMsgs = [];
-    session.setDoBacktracking(false);
-    log("debug", "starting initial match");
-    nextCbk = function() {
-      log("debug", "done initial match");
-      lastFoundMatch = true;
-      nextMatchIsFirst = true;
-      session.setPruneOldActivations(problemConfig["prune_old_activations"]);
-      session.setDoBacktracking(problemConfig["use_backtracking"]);
-      session.setSearchAllPermutations(problemConfig["search_all_permutations"]);
-      initialized = true;
-      typeof cbk === "function" && cbk();
-    };
-    _match();
-  }
-  function _setSuccessOrBugMsg(msg) {
-    if (typeof msg === "string") {
-      currChain.links[currChain.links.length - 1].successOrBugMsg = msg;
-    }
-  }
-  function _setTutorSAI(sai) {
-    var tsai = currChain.links[currChain.links.length - 1].sai;
-    sai.selection && (tsai.selection = sai.selection);
-    sai.action && (tsai.action = sai.action);
-    sai.input && (tsai.input = sai.input);
-  }
-  function _handleImports(fileData, baseURL, imported, cbk, cntr, depth, width) {
-    log("debug", "handleImports for " + baseURL);
-    imported = imported || {};
-    cntr = cntr || {count:0, chunks:[]};
-    depth = depth || 0;
-    width = width || 0;
-    var importRegex = /\bimport\s?\(('|")?([^()'"\s]*)\1?\);/g;
-    var match, matches = [];
-    while ((match = importRegex.exec(fileData)) != null) {
-      var url = noolsUtil.relativeToAbsolute(match[2], baseURL);
-      if (!imported[url]) {
-        matches.push(url);
-        imported[url] = true;
-      } else {
-        log("debug", "skipping duplicate import: " + url);
-      }
-      fileData = fileData.replace(match[0], "");
-      importRegex.lastIndex -= match[0].length;
-    }
-    if (!cntr.chunks[depth]) {
-      cntr.chunks[depth] = [];
-    }
-    cntr.chunks[depth][width] = fileData;
-    cntr.count += matches.length;
-    log("debug", baseURL + " is importing " + matches.length + " files");
-    if (matches.length > 0) {
-      var $jscomp$loop$27 = {};
-      $jscomp$loop$27.i = 0;
-      for (;$jscomp$loop$27.i < matches.length;$jscomp$loop$27 = {url$11:$jscomp$loop$27.url$11, i:$jscomp$loop$27.i}, $jscomp$loop$27.i++) {
-        $jscomp$loop$27.url$11 = matches[$jscomp$loop$27.i];
-        $.ajax($jscomp$loop$27.url$11, {dataType:"text", success:function($jscomp$loop$27) {
-          return function(data) {
-            _handleImports(data, $jscomp$loop$27.url$11, imported, cbk, cntr, depth + 1, $jscomp$loop$27.i);
-            cntr.count--;
-            if (cntr.count == 0) {
-              cbk(_assembleChunks(cntr.chunks));
-            }
-          };
-        }($jscomp$loop$27), error:function(req, err, errThrown) {
-          log("error", "Error in _handleImports() : ");
-          log("error", err);
-        }});
-      }
-    } else {
-      if (depth == 0) {
-        cbk(_assembleChunks(cntr.chunks));
-      }
-    }
-  }
-  function _assembleChunks(chunks) {
-    var ret = "", chunkLvl;
-    while (chunks.length > 0) {
-      chunkLvl = chunks.pop();
-      while (chunkLvl.length > 0) {
-        ret += chunkLvl.shift() + "\n";
-      }
-    }
-    return ret;
-  }
-  function _compile(model, flowName) {
-    var scope = {getStudentInput:function() {
-      return pointer.getLastStudentSAI();
-    }, getStudentSAIs:function() {
-      return pointer.getStudentSAIs();
-    }, checkSAI:_checkSAI, setTutorSAI:_setTutorSAI, setSuccessOrBugMsg:_setSuccessOrBugMsg, setProblemAttribute:_setProblemAttribute, getInitialized:function() {
-      return pointer.getInitialized();
-    }, backtrack:function() {
-      session.setAboutToBacktrack();
-    }, assert:_assertOverride, modify:_modifyOverride, retract:_retractOverride, halt:_haltOverride};
-    [CTATAlgebraParser, CTATLogicParser, CTATChemParser].forEach(function(constructor) {
-      var parser = new constructor;
-      var $jscomp$loop$28 = {};
-      for (var f in parser) {
-        $jscomp$loop$28.f = f;
-        if (typeof parser[$jscomp$loop$28.f] === "function") {
-          scope[$jscomp$loop$28.f] = function($jscomp$loop$28) {
-            return function() {
-              return parser[$jscomp$loop$28.f].apply(parser, arguments);
-            };
-          }($jscomp$loop$28);
-        }
-        $jscomp$loop$28 = {f:$jscomp$loop$28.f};
-      }
-    });
-    try {
-      flow = nools.compile(model, {"name":flowName || "CTATFlow", "scope":scope});
-    } catch (err) {
-      log("error", "Error compiling rule file");
-      initialized = false;
-      return err;
-    }
-    _processSkillDefinitions();
-    if (flow.__scope.custom_fields) {
-      customFields = flow.__scope.custom_fields;
-    }
-    return true;
-  }
-  function _processSkillDefinitions() {
-    var skills, rules, scope = flow.__scope, ruleMap = {};
-    flow.__rules.forEach(function(rule) {
-      ruleMap[rule.name] = true;
-    });
-    if (scope && scope.skill_definitions) {
-      skills = scope.skill_definitions;
-      if (skills instanceof Array) {
-        skills.forEach(function(skill) {
-          rules = skill.ruleName.split(",");
-          rules.forEach(function(rule) {
-            rule = rule.trim();
-            if (ruleMap[rule]) {
-              skillMap[rule] = {name:skill.skillName || skill.ruleName, category:skill.category, label:skill.label || skill.skillName, description:skill.description || "", mastery:skill.mastery || CTATExampleTracerSkill.DEFAULT_MASTERY_THRESHOLD, level:skill.pKnown || CTATExampleTracerSkill.DEFAULT_P_KNOWN, pGuess:skill.pGuess || CTATExampleTracerSkill.DEFAULT_P_GUESS, pLearn:skill.pLearn || CTATExampleTracerSkill.DEFAULT_P_LEARN, pSlip:skill.pSlip || CTATExampleTracerSkill.DEFAULT_P_SLIP};
-            } else {
-              throw new Error("Rule " + skill.ruleName + " named by skill " + skill.skillName + " does not exist in model");
-            }
-          });
-        });
-      } else {
-        throw new Error("Global variable 'skill_definitions' must be of type Array");
-      }
-    }
-  }
-  function _assert(fact) {
-    fact && session.assert(fact);
-  }
-  function _assertSAI(newSAI, isTutored) {
-    log("debug", "Assert sai (" + (!isTutored ? "un" : "") + "tutored) : " + JSON.stringify(newSAI));
-    var oldSAI = studentSAIs[newSAI.selection];
-    if (oldSAI && session.factExists(oldSAI)) {
-      oldSAI.input = newSAI.input;
-      oldSAI.tutored = isTutored;
-      session.modify(oldSAI);
-    } else {
-      var SAI = flow.getDefined("StudentValues");
-      if (!SAI) {
-        throw new Error("StudentValues type not defined");
-      }
-      oldSAI = new SAI(newSAI.selection, newSAI.action, newSAI.input);
-      oldSAI.tutored = isTutored;
-      session.assert(oldSAI, "_" + newSAI.selection + "_sai");
-      studentSAIs[newSAI.selection] = oldSAI;
-    }
-    lastStudentSAI = newSAI;
-  }
-  function _assertHintFact() {
-    log("debug", "Asserting hint fact...");
-    if (!isHintMatchFact) {
-      var IsHintMatch = flow.getDefined("IsHintMatch");
-      if (!IsHintMatch) {
-        throw new Error("IsHintMatch type not defined");
-      }
-      isHintMatchFact = new IsHintMatch;
-    }
-    session.assert(isHintMatchFact, "_isHintMatch");
-  }
-  function _cleanupBeforeCallback() {
-    session.prepForMatch();
-    session.restoreAgenda();
-  }
-  function _match(numSteps) {
-    searchEnded = false;
-    var callback = function(err) {
-      if (err) {
-        log("error", "nools encountered an error: " + err);
-        throw err;
-      }
-      _handleStepMatchResult();
-    };
-    session.match(callback, numSteps, false, nextMatchIsFirst);
-    nextMatchIsFirst = false;
-  }
-  function _handleMatchResult(cbk) {
-    lastMatchWasHint = false;
-    var result = "no_model", selectionMap = ruleChains.selectionMap, selectionList, chainToRtn, bugMsg;
-    if (ruleChains.matchChain) {
-      chainToRtn = ruleChains.matchChain;
-      result = "correct";
-    } else {
-      if (ruleChains.bugMatchChain) {
-        chainToRtn = ruleChains.bugMatchChain;
-        result = "bug";
-        bugMsg = chainToRtn.msg;
-      }
-      chainToRtn = _getBiasedPrediction(false);
-      bugMsg && (chainToRtn.msg = bugMsg);
-    }
-    lastFoundMatch = result === "correct";
-    chainToRtn.tpas = tpasToSend;
-    nextMatchIsFirst = true;
-    lastStudentSAI = null;
-    cbk(result, chainToRtn);
-  }
-  function _handleHintMatchResult(cbk, wasRealMatch, selectionBias) {
-    var chainToRtn = _getBiasedPrediction(true, selectionBias);
-    if (wasRealMatch) {
-      iAmHintMatching = false;
-      lastMatchWasHint = true;
-      lastFoundMatch = false;
-      nextMatchIsFirst = true;
-      lastStudentSAI = null;
-      if (problemConfig["use_hint_fact"]) {
-        session.retract(isHintMatchFact);
-      }
-    }
-    cbk(chainToRtn);
-  }
-  function _handleStepMatchResult() {
-    if (searchEnded) {
-      if (inStepMode) {
-        log("override", "search complete, returning result");
-      }
-      nextCbk();
-    }
-  }
-  function _getBiasedPrediction(includeHints, optSelection) {
-    var tSAI, selectionMap = ruleChains.selectionMap, studentSelection = optSelection || (lastStudentSAI ? lastStudentSAI.selection : ""), firstPredictedSelection = ruleChains.firstTutorSelection, checkSelection = function(selection) {
-      var entry = selectionMap[selection];
-      for (var i = 0;i < entry.length;i++) {
-        if (entry[i].sai.isCorrect && (!includeHints || entry[i].hints.length > 0)) {
-          return entry[i];
-        }
-      }
-      return null;
-    };
-    if (studentSelection !== "hint" && selectionMap[studentSelection]) {
-      tSAI = checkSelection(studentSelection);
-    }
-    if (!tSAI) {
-      if (firstPredictedSelection) {
-        tSAI = checkSelection(firstPredictedSelection);
-      }
-      for (s in selectionMap) {
-        if (tSAI) {
-          break;
-        }
-        tSAI = checkSelection(s);
-      }
-      if (!tSAI) {
-        var n = ruleChains.numChains;
-        for (var i = 0;i < n;i++) {
-          if (selectionMap["_default_key" + i]) {
-            tSAI = selectionMap["_default_key" + i][0];
-            break;
-          }
-        }
-      }
-      if (!tSAI) {
-        tSAI = DEFAULT_CHAIN;
-      }
-    }
-    return tSAI;
-  }
-  function _checkSAI(predictedSAI, optComparator, isBuggyStep) {
-    var res = false, tSelection = predictedSAI.selection, tAction = predictedSAI.action, tInput = predictedSAI.input, hasUnspecified = tSelection === "not_specified" || tAction === "not_specified" || tInput === "not_specified";
-    log("sai_check", "checking SAI");
-    if (!lastStudentSAI) {
-      log("sai_check", "no student input to check, returning false");
-      return false;
-    }
-    log("sai_check", "student: " + JSON.stringify(lastStudentSAI));
-    log("sai_check", "tutor  : " + JSON.stringify(predictedSAI));
-    currChain.links[currChain.links.length - 1].sai = {selection:tSelection && !(tSelection === "not_specified" || tSelection === "don't_care") ? tSelection : "", action:tAction && !(tAction === "not_specified" || tAction === "don't_care") ? tAction : "", input:tInput && !(tInput === "not_specified" || tInput === "don't_care") ? tInput : "", isCorrect:!isBuggyStep && !hasUnspecified};
-    if (!iAmHintMatching) {
-      res = _compareSAI(lastStudentSAI, predictedSAI, optComparator);
-      log("sai_check", (res.isMatch ? "Match" : "No match") + ", " + (isBuggyStep ? "was" : "was not") + " a buggy step");
-      if (res.isMatch) {
-        if (isBuggyStep) {
-          currChain.matchType = "buggy";
-        } else {
-          currChain.matchType = "match";
-        }
-      } else {
-        currChain.matchType = null;
-      }
-      session.setNodeMatcherResult(res);
-    } else {
-      log("sai_check", "Skipping check, we're hint matching");
-    }
-    return res.isMatch;
-  }
-  function _compareSAI(sai1, sai2, optComparator) {
-    var tSelection = sai2.selection, tAction = sai2.action, tInput = sai2.input, sSelection = sai1.selection, sAction = sai1.action, sInput = sai1.input, matches = ["-", "-", "-"], compResult = {student:sai1, tutor:sai2, isMatch:false, matchedFields:null}, i1 = !isNaN(sInput) ? parseInt(sInput, 10) : sInput, i2 = !isNaN(tInput) ? parseInt(tInput, 10) : tInput;
-    var checkField = function(f1, f2, matchChar) {
-      if (f1 === "don't_care") {
-        return "*";
-      }
-      if (f1 === "not_specified") {
-        return " ";
-      }
-      if (f1 === f2) {
-        return matchChar;
-      }
-      return "-";
-    };
-    matches[0] = checkField(tSelection.toLowerCase(), sSelection.toLowerCase(), "S");
-    matches[1] = checkField(tAction.toLowerCase(), sAction.toLowerCase(), "A");
-    matches[2] = checkField(i2, i1, "I");
-    compResult.matchedFields = matches;
-    if (optComparator && typeof optComparator === "function") {
-      compResult.isMatch = optComparator(sai1, sai2);
-    } else {
-      compResult.isMatch = true;
-      for (var i = 0;i < 3;i++) {
-        if (matches[i] === "-") {
-          compResult.isMatch = false;
-          break;
-        }
-      }
-    }
-    return compResult;
-  }
-  function _clearPerMatchVars() {
-    ruleChains.firstTutorSelection = null;
-    ruleChains.selectionMap = {};
-    ruleChains.matchChain = null;
-    ruleChains.bugMatchChain = null;
-    ruleChains.numChains = 0;
-    currChain.links = [];
-    currChain.lengthAtBranchStack = [];
-    currChain.matchType = null;
-    if (customFields) {
-      for (var p in customFields) {
-        if (customFields.hasOwnProperty(p)) {
-          customFields[p] = null;
-        }
-      }
-      session.modify(customFields);
-    }
-    searchEnded = false;
-  }
-  function _setProblemAttribute(attrName, value) {
-    log("debug", "setProblemAttribute (" + attrName + ", " + value + ")");
-    problemConfig[attrName] = value;
-  }
-  function _storeChain() {
-    var links = currChain.links, selectionMap = ruleChains.selectionMap, link, linkSAI, chainObj, msg, skill, ruleList = [], skillList = [], hintList = [], tpaList = [], selection, finalSAI = {selection:"", action:"", input:""};
-    for (var i = 0;i < links.length;i++) {
-      link = links[i];
-      linkSAI = link.sai;
-      ruleList.push(link.ruleName);
-      skill = skillMap[link.ruleName];
-      skill && skillList.push(skill.name + " " + skill.category);
-      hintList = hintList.concat(link.hints);
-      tpaList = tpaList.concat(link.tpas);
-      msg = link.successOrBugMsg;
-      if (linkSAI) {
-        linkSAI.selection && (selection = finalSAI.selection = linkSAI.selection);
-        linkSAI.action && (finalSAI.action = linkSAI.action);
-        linkSAI.input && (finalSAI.input = linkSAI.input);
-        finalSAI.isCorrect = linkSAI.isCorrect;
-      }
-    }
-    hintList.sort(function(a, b) {
-      var ret = b.precedence - a.precedence;
-      if (ret === 0) {
-        ret = a.pos - b.pos;
-      }
-      return ret;
-    });
-    if (!selection) {
-      selection = "_default_key" + ruleChains.numChains;
-    } else {
-      if (!ruleChains.firstTutorSelection) {
-        ruleChains.firstTutorSelection = selection;
-      }
-    }
-    if (!selectionMap[selection]) {
-      selectionMap[selection] = [];
-    }
-    chainObj = {sai:finalSAI, rules:ruleList, skills:skillList, hints:hintList, msg:msg || "", customFields:JSON.parse(JSON.stringify(customFields))};
-    selectionMap[selection].push(chainObj);
-    switch(currChain.matchType) {
-      case "buggy":
-        ruleChains.bugMatchChain = chainObj;
-        break;
-      case "match":
-        ruleChains.matchChain = chainObj;
-        break;
-    }
-    ruleChains.numChains++;
-    tpasToSend = tpaList;
-    log("debug", "stored last chain: " + "\n\trules: " + ruleList + "\n\tskills: " + skillList + "\n\tfinalSAI: " + JSON.stringify(finalSAI) + "\n\tmatchType: " + currChain.matchType);
-  }
-  function _assertOverride(fact) {
-    if (problemConfig["use_backtracking"]) {
-      session.pushUndo("assert", fact);
-    }
-    return session.assert(fact);
-  }
-  function _retractOverride(fact) {
-    if (problemConfig["use_backtracking"]) {
-      session.pushUndo("retract", fact);
-    }
-    return session.retract(fact);
-  }
-  function _modifyOverride(fact, property, value) {
-    if (problemConfig["use_backtracking"]) {
-      session.pushUndo("modify", fact, property);
-    } else {
-      if (arguments.length < 3) {
-        return session.modify.apply(session, arguments);
-      }
-    }
-    fact[property] = value;
-    return session.modify(fact);
-  }
-  function _haltOverride() {
-    session.halt(true);
-    searchEnded = true;
-  }
-  function _onEndOfChain() {
-    _storeChain();
-  }
-  function _onBacktrack(initiatedByModel) {
-    if (!iAmMovingForward) {
-      currChain.lengthAtBranchStack.pop();
-    }
-    iAmMovingForward = false;
-    tpasToSend = [];
-    log("backtrack", "backtracking, initiated by " + (initiatedByModel ? "model" : "engine"));
-  }
-  function _onAssert(fact, type, backtracking, id) {
-    var factVals;
-    try {
-      factVals = JSON.stringify(fact);
-    } catch (e$12) {
-      factVals = "< Error converting fact to JSON >";
-    }
-    log("assert", type + " fact asserted with ID " + id + ": " + factVals);
-    switch(type) {
-      case "tpa":
-        log("tpa", "TPA asserted: " + JSON.stringify(fact));
-        if (!initialized) {
-          startStateMsgs.push(noolsUtil.buildStartStateMsg(fact));
-        } else {
-          if (problemConfig["use_backtracking"]) {
-            var lastLink = currChain.links[currChain.links.length - 1];
-            lastLink.tpas.push(fact);
-          } else {
-            _sendTPA(fact);
-          }
-        }
-        break;
-      case "hint":
-        if (initialized) {
-          var lastLink$13 = currChain.links[currChain.links.length - 1];
-          fact.pos = currChain.links.length + lastLink$13.hints.length / (lastLink$13.hints.length + 1);
-          lastLink$13.hints.push(fact);
-        }
-        break;
-    }
-  }
-  function _onModify(fact, type, backtracking, id) {
-    log("modify", type + " fact modified with ID " + id);
-  }
-  function _onRetract(fact, type, backtracking, id) {
-    log("retract", type + " fact retracted with ID " + id);
-  }
-  function _onStateSave(state) {
-    log("state_save", "Hit branch point, agenda: " + JSON.stringify(state.agenda) + ", factIdCntr: " + state.state.factIdCounter);
-    var branchLenStack = currChain.lengthAtBranchStack, links = currChain.links, currentMatchType = currChain.matchType;
-    branchLenStack.push({numLinks:links.length, matchType:currentMatchType});
-  }
-  function _onStateRestore(state) {
-    log("state_restore", "State restored, agenda: " + JSON.stringify(state.agenda) + ", factIdCntr: " + state.state.factIdCounter);
-    var branchLenStack = currChain.lengthAtBranchStack, branchLenStackEntry = branchLenStack[branchLenStack.length - 1];
-    links = currChain.links, links.splice(branchLenStackEntry.numLinks);
-    currChain.matchType = branchLenStackEntry.matchType;
-  }
-  function _onFire(ruleName, factHash, activationId) {
-    log("fire", "Firing activation: " + activationId);
-    currChain.links.push({ruleName:ruleName, hints:[], tpas:[]});
-    iAmMovingForward = true;
-  }
-  function _onAgendaInsert(id, isNew, skipped) {
-    log("agenda_insert", id + " added to agenda, is " + (isNew ? " " : "not ") + "new, was " + (skipped ? " " : "not ") + "skipped");
-  }
-  function _onAgendaRetract(id) {
-    log("agenda_retract", id + " removed from agenda");
-  }
-  function _onAgendaEmpty() {
-    log("agenda_empty", "No more activations in agenda, all branches have been explored");
-    searchEnded = true;
-  }
-  function _onBreakpoint(ruleName) {
-    log("override", "hit breakpoint on rule " + ruleName + " (call resume() to resume matching)");
-  }
-};
-goog.provide("CTATLogger");
-CTATLogger = function(validFlags) {
-  var flags = {};
-  if (validFlags) {
-    validFlags.forEach(function(flag) {
-      flags[flag] = false;
-    });
-  }
-  this.isSet = function(flag) {
-    return !!flags[flag];
-  };
-  this.set = function(flag) {
-    if (validFlags && !(flag in flags)) {
-      return false;
-    }
-    return flags[flag] = true;
-  };
-  this.unset = function(flag) {
-    if (validFlags && !(flag in flags)) {
-      return false;
-    }
-    return !(flags[flag] = false);
-  };
-  this.getFlags = function() {
-    return flags;
-  };
-  this.log = function(flag, msg) {
-    if (flags[flag] || flag === "override") {
-      console.log((flag !== "override" ? "[" + flag + "]: " : "") + msg);
-    }
+  this.getProblemStateStatus = function() {
+    return tracerRef.getProblemStateStatus();
   };
 };
-goog.provide("CTATRuleTracerGlobals");
-goog.require("CTATLogger");
-var NOOLS_LOG_FLAGS = ["assert", "modify", "retract", "state_save", "state_restore", "backtrack", "agenda_insert", "agenda_retract", "fire", "error", "debug", "sai_check", "agenda_pre", "agenda_post", "tpa"];
-var CTATNoolsTracerLogger = new CTATLogger(NOOLS_LOG_FLAGS);
-var globalTracerRef = null;
-function registerTracerWrapper(tracerWrapper) {
-  globalTracerRef = tracerWrapper;
-}
-function setTracerLogFlag(flag) {
-  var msg = CTATNoolsTracerLogger.set(flag) ? "set flag " + flag : "Error - invalid flag: " + flag;
-  CTATNoolsTracerLogger.log("override", msg);
-}
-function setTracerLogFlags(flags) {
-  var toSet = flags instanceof Array ? flags : Array.prototype.slice.call(arguments), didSet = [], didntSet = [];
-  toSet.forEach(function(flag) {
-    if (CTATNoolsTracerLogger.set(flag)) {
-      didSet.push(flag);
-    } else {
-      didntSet.push(flag);
-    }
-  });
-  didSet.length && CTATNoolsTracerLogger.log("override", "set flags: " + didSet.join(","));
-  didntSet.length && CTATNoolsTracerLogger.log("override", "Error - invalid flag(s): " + didntSet.join(","));
-}
-function getTracerLogFlags() {
-  var flags = CTATNoolsTracerLogger.getFlags(), set = [], unset = [];
-  for (var flag in flags) {
-    if (flags[flag]) {
-      set.push(flag);
-    } else {
-      unset.push(flag);
-    }
-  }
-  CTATNoolsTracerLogger.log("override", "set: " + set.join(",") + "\nunset: " + unset.join(","));
-}
-function unsetTracerLogFlag(flag) {
-  CTATNoolsTracerLogger.unset(flag);
-}
-function unsetTracerLogFlags(flags) {
-  var toUnset = flags instanceof Array ? flags : Array.prototype.slice.call(arguments);
-  toUnset.forEach(function(flag) {
-    unsetTracerLogFlag(flag);
-  });
-}
-function printAgenda() {
-  globalTracerRef.printAgenda();
-}
-function printConflictTree(firedOnly) {
-  globalTracerRef.printConflictTree(firedOnly);
-}
-function printFact(fId) {
-  globalTracerRef.printFact(fId);
-}
-function getFact(fId) {
-  return globalTracerRef.getFact(fId);
-}
-function printFacts(optType) {
-  globalTracerRef.printFacts(optType);
-}
-function getFacts(optType) {
-  return globalTracerRef.getFacts(optType);
-}
-function printRules(optSubstr) {
-  globalTracerRef.printRules(optSubstr);
-}
-function printMatch(nodeId) {
-  globalTracerRef.printMatch(nodeId);
-}
-function whyNot(ruleName) {
-  globalTracerRef.printRuleNodes(ruleName);
-}
-function setStepperMode(mode) {
-  globalTracerRef.setStepperMode(mode);
-}
-function takeSteps(numSteps, stopOnBacktrack) {
-  globalTracerRef.takeSteps(numSteps, stopOnBacktrack);
-}
-function setBreakpoint(ruleName, everyOrFirst) {
-  globalTracerRef.setBreakpoint(ruleName, everyOrFirst);
-}
-function printBreakpoints() {
-  globalTracerRef.printBreakpoints();
-}
-function resume() {
-  globalTracerRef.resume();
-}
-;goog.provide("CTATRuleTracer");
-goog.require("CTATNoolsTracer");
-goog.require("CTATRuleTracerGlobals");
-var CTATRuleTracer = function(m, exTracerHandle) {
-  var exampleTracer = exTracerHandle;
-  var log = CTATNoolsTracerLogger.log;
-  var mode = m;
-  var engine = null;
-  var curResEvt = null;
-  var defaultBuggyMsg = null;
-  var pointer = this;
-  this.initEngine = function(srcFile, cbk, errCbk) {
-    switch(mode) {
-      case "nools":
-        engine = new CTATNoolsTracer(log, _handleTPA);
-        break;
-    }
-    var doneInit = function(startState, config) {
-      _initSkills(engine.getSkills());
-      cbk(startState, config);
-    };
-    engine && engine.init(srcFile, doneInit, errCbk);
-  };
-  this.getModelInitialized = function() {
-    return engine && engine.getInitialized();
-  };
-  this.setListener = function(e, cbk) {
-    engine.setListener(e, cbk);
-  };
-  this.evaluate = function(result, cbk) {
-    curResEvt = result;
-    engine.evaluate(_simplifySAI(result.getStudentSAI()), _handleResult.bind(pointer, result, cbk), "tutored_action");
-  };
-  this.doHint = function(resultObj, transactionID, cbk) {
-    resultObj.setTransactionID(transactionID);
-    return engine.evaluate(_simplifySAI(resultObj.getStudentSAI()), _handleHintResult.bind(this, resultObj, cbk), "hint");
-  };
-  this.handleUntutoredAction = function(sai) {
-    log("debug", "ruleTracer.handleUntutoredAction( " + JSON.stringify(sai) + " )");
-    engine.evaluate({selection:sai.selection[0], action:sai.action[0], input:sai.input[0]}, null, "untutored_action");
-  };
-  this.checkOutOfOrder = function(resultObj, cbk) {
-    var ret;
-    if (engine.getProblemAttribute("hint_out_of_order")) {
-      var studentInput = _simplifySAI(resultObj.getStudentSAI());
-      var lastMatchTutorSAIs = engine.getTutorSAIs();
-      ret = !lastMatchTutorSAIs[studentInput.selection];
-    } else {
-      ret = false;
-    }
-    cbk(ret);
-  };
-  this.setDefaultBuggyMsg = function(newMsg) {
-    newMsg && typeof newMsg === "string" && (defaultBuggyMsg = newMsg);
-  };
-  this.getDefaultBuggyMsg = function() {
-    return defaultBuggyMsg;
-  };
-  this.reset = function(cbk) {
-    engine.reset(cbk);
-  };
-  function _initSkills(skillObj) {
-    if (!CTATConfiguration.get("skills")) {
-      if (CTATSkillSet.skills) {
-        log("debug", "skills not defined in flashVars, using model definitions");
-        var skills = [];
-        for (skillName in skillObj) {
-          var skill = skillObj[skillName];
-          CTATSkillSet.skills.addSkillAsObject(skill);
-          skills.push(new CTATExampleTracerSkill(skill.category, skill.name, skill.pGuess, skill.level, skill.pSlip, skill.pLearn, null));
-        }
-        exampleTracer.getProblemSummary().setSkills(new CTATSkills(skills));
-        CTATCommShell.commShell.updateSkillWindow(null);
-      } else {
-        log("debug", "CTATSkillSet.skills not defined, skipping initSkills");
-      }
-    }
-  }
-  function _handleResult(resultEvent, cbk, result, chainData) {
-    var msg = chainData.msg, predictedSAI = chainData.sai, tSAI = new CTATSAI(predictedSAI.selection, predictedSAI.action, predictedSAI.input), sSAI = resultEvent.getStudentSAI(), customFields = chainData.customFields;
-    log("debug", "ruleTracer.handleResult, result = " + result + "\n\ttutorSAI = " + JSON.stringify(predictedSAI) + "\n\tmsg = " + msg + "\n\tassociated rules = " + chainData.rules + "\n\tassociated skills = " + chainData.skills + "\n\ttpas = " + chainData.tpas + "\n\tcustom fields = " + JSON.stringify(customFields));
-    resultEvent.setStepID("[" + predictedSAI.selection + "," + predictedSAI.action + "]");
-    resultEvent.setTutorSAI(tSAI);
-    resultEvent.setSuccessOrBuggyMsg(msg);
-    resultEvent.setAssociatedRules(chainData.rules);
-    resultEvent.setAssociatedSkills(chainData.skills);
-    resultEvent.setCustomFields(customFields);
-    switch(result) {
-      case "correct":
-        resultEvent.setResult(CTATExampleTracerLink.CORRECT_ACTION);
-        resultEvent.setTraceOutcome(CTATExampleTracerLink.CORRECT_ACTION);
-        break;
-      case "bug":
-        _handleIncorrect(resultEvent, sSAI, true);
-        break;
-      case "no_model":
-        _handleIncorrect(resultEvent, sSAI, false);
-        break;
-    }
-    chainData.tpas.forEach(function(tpa) {
-      _handleTPA(tpa);
-    });
-    cbk();
-  }
-  function _handleIncorrect(resultEvent, studentSAI, hasMatch) {
-    if (studentSAI.getSelection().includes("done") && studentSAI.getAction() === "ButtonPressed") {
-      resultEvent.setDoneStepFailed(true);
-    }
-    if (hasMatch) {
-      resultEvent.setResult(CTATExampleTracerLink.BUGGY_ACTION);
-      resultEvent.setTraceOutcome(CTATExampleTracerLink.BUGGY_ACTION);
-    } else {
-      resultEvent.setResult(CTATExampleTracerLink.NO_MODEL);
-      resultEvent.setTraceOutcome(CTATExampleTracerLink.NO_MODEL);
-    }
-  }
-  function _handleHintResult(resultObj, cbk, chainData) {
-    var hints = chainData.hints.map(function(hint) {
-      return hint.msg;
-    }), rules = chainData.rules, skills = chainData.skills, tutorSAI = chainData.sai, studentSAI = resultObj.getStudentSAI();
-    log("debug", "ruleTracer.handleHintResult," + "\n\ttutorSAI = " + JSON.stringify(tutorSAI) + "\n\tassociated rules = " + rules + "\n\tassociated skills = " + skills + "\n\thints = " + JSON.stringify(hints));
-    resultObj.setTutorSAI(new CTATSAI(tutorSAI.selection, tutorSAI.action, tutorSAI.input));
-    resultObj.setResult(CTATExampleTracerLink.HINT_ACTION);
-    resultObj.setTraceOutcome(hints.length ? CTATExampleTracerLink.HINT_ACTION : CTATExampleTracerLink.NO_MODEL);
-    resultObj.setReportableHints(hints);
-    resultObj.setActor(CTATMsgType.DEFAULT_STUDENT_ACTOR);
-    resultObj.setStepID("[" + tutorSAI.selection + "," + tutorSAI.action + "]");
-    resultObj.setAssociatedSkills(skills);
-    resultObj.setAssociatedRules(rules);
-    cbk(resultObj, resultObj.getTransactionID());
-  }
-  function _handleTPA(tpa) {
-    exampleTracer && exampleTracer.addTPAToMessageTank(tpa.selection, tpa.action, tpa.input, "tutor-performed");
-  }
-  function _simplifySAI(sai) {
-    var saiSimple = {selection:sai.getSelection() || "", action:sai.getAction() || "", input:sai.getInput() || ""};
-    return saiSimple;
-  }
-};
-goog.provide("CTATHintPolicyEnum");
-CTATHintPolicyEnum = function() {
-};
-Object.defineProperty(CTATHintPolicyEnum, "HINTS_UNBIASED", {enumerable:true, configurable:false, writable:false, value:"Always Follow Best Path"});
-Object.defineProperty(CTATHintPolicyEnum, "HINTS_BIASED_BY_CURRENT_SELECTION_ONLY", {enumerable:true, configurable:false, writable:false, value:"Bias Hints by Current Selection Only"});
-Object.defineProperty(CTATHintPolicyEnum, "HINTS_BIASED_BY_PRIOR_ERROR_ONLY", {enumerable:true, configurable:false, writable:false, value:"Bias Hints by Prior Error Only"});
-Object.defineProperty(CTATHintPolicyEnum, "HINTS_BIASED_BY_ALL", {enumerable:true, configurable:false, writable:false, value:"Use Both Kinds of Bias"});
-Object.defineProperty(CTATHintPolicyEnum, "DEFAULT", {enumerable:true, configurable:false, writable:false, value:CTATHintPolicyEnum.HINTS_BIASED_BY_ALL});
-CTATHintPolicyEnum.prototype = Object.create(Object.prototype);
-CTATHintPolicyEnum.prototype.constructor = CTATHintPolicyEnum;
-CTATHintPolicyEnum.lookup = function(brdAttr) {
-  for (policy in CTATHintPolicyEnum) {
-    if (CTATHintPolicyEnum[policy] == brdAttr) {
-      return CTATHintPolicyEnum[policy];
-    }
-  }
-  return CTATHintPolicyEnum.DEFAULT;
-};
-if (typeof module !== "undefined") {
-  module.exports = CTATHintPolicyEnum;
-}
-;goog.provide("CTATMsgType");
-goog.require("CTATBase");
-goog.require("CTATXML");
-goog.require("CTATLanguageManager");
-CTATMsgType = function() {
-  CTATBase.call(this, "CTATMsgType", "");
-};
-CTATMsgType.findProperty = function(aMessage, propertyName) {
-  var msgLC = aMessage.toLowerCase();
-  var tag = "<" + propertyName.toLowerCase() + ">";
-  var start = msgLC.indexOf(tag) + tag.length;
-  var end = msgLC.indexOf("</" + propertyName.toLowerCase() + ">");
-  if (start < tag.length || end < 0) {
-    return null;
-  }
-  var result = {};
-  result.start = start;
-  result.end = end;
-  return result;
-};
-CTATMsgType.makeValues = function(v) {
-  if (v == null) {
-    return "";
-  }
-  if (typeof v == "string") {
-    return v;
-  }
-  if (v.constructor && v.constructor.name == "Array") {
-    if (!v.length) {
-      return "";
-    }
-    var i = 0;
-    var vi;
-    var result = "<value>" + ((vi = v[i++]) == null ? "" : vi.toString());
-    while (i < v.length) {
-      result += "</value><value>" + ((vi = v[i++]) == null ? "" : vi.toString());
-    }
-    return result += "</value>";
-  }
-  if (v.outerHTML) {
-    return v.outerHTML;
-  }
-  return v.toString();
-};
-CTATMsgType.setProperty = function(aMessage, propertyName, propertyValue) {
-  var indices = CTATMsgType.findProperty(aMessage, propertyName);
-  var result = "";
-  if (indices) {
-    result = aMessage.slice(0, indices.start);
-    result += CTATMsgType.makeValues(propertyValue);
-    result += aMessage.slice(indices.end, aMessage.length);
-  } else {
-    var endProps = aMessage.indexOf("</properties>");
-    result = aMessage.slice(0, endProps);
-    result += "<" + propertyName + ">" + CTATMsgType.makeValues(propertyValue) + "</" + propertyName + ">";
-    result += aMessage.slice(endProps, aMessage.length);
-  }
-  return result;
-};
-CTATMsgType.getProperty = function(aMessage, propertyName) {
-  var indices = CTATMsgType.findProperty(aMessage, propertyName);
-  if (indices) {
-    return aMessage.slice(indices.start, indices.end);
-  }
-  return "";
-};
-CTATMsgType.valueToArray = function(str) {
-  if (!str.startsWith("<value>")) {
-    return null;
-  }
-  var s = str.substring("<value>".length);
-  if (!str.endsWith("</value>")) {
-    return null;
-  }
-  s = s.substring(0, s.length - "</value>".length);
-  var sA = s.split("</value><value>");
-  ctatdebug("valueToArray(" + str + ") returns " + sA);
-  return sA;
-};
-CTATMsgType.getValue = function(str, i) {
-  var sA = CTATMsgType.valueToArray(str);
-  if (!sA) {
-    return null;
-  }
-  if (sA.length <= i) {
-    return null;
-  }
-  return sA[i];
-};
-CTATMsgType.getMessageType = function(aMessage) {
-  return CTATMsgType.getProperty(aMessage, "MessageType");
-};
-CTATMsgType.getTransactionID = function(aMessage) {
-  return CTATMsgType.getProperty(aMessage, CTATMessage.TRANSACTION_ID_TAG);
-};
-CTATMsgType.setTransactionID = function(aMessage, transaction_id) {
-  return CTATMsgType.setProperty(aMessage, CTATMessage.TRANSACTION_ID_TAG, transaction_id);
-};
-CTATMsgType.isCorrectOrIncorrect = function(mt) {
-  return typeof mt == "string" ? CTATMsgType.CorrectTypes[mt.toLowerCase()] ? true : false : false;
-};
-CTATMsgType.hasTextFeedback = function(mt) {
-  return typeof mt == "string" ? CTATMsgType.TextFeedbackTypes[mt.toLowerCase()] ? true : false : false;
-};
-CTATMsgType.isHintResponse = function(mt) {
-  return typeof mt == "string" ? CTATMsgType.HintResponseTypes[mt.toLowerCase()] ? true : false : false;
-};
-CTATMsgType.isDoneMessage = function(msg) {
-  var s = CTATMsgType.getProperty(msg, "Selection");
-  var a = CTATMsgType.getProperty(msg, "Action");
-  if (!s || !a) {
-    return false;
-  }
-  s = s.toString().toLowerCase();
-  a = a.toString().toLowerCase();
-  var doneLC = CTATMsgType.DONE.toLowerCase();
-  if (doneLC != s && doneLC != CTATMsgType.getValue(s, 0)) {
-    return false;
-  }
-  var bpLC = CTATMsgType.BUTTON_PRESSED.toLowerCase();
-  if (bpLC != a && bpLC != CTATMsgType.getValue(a, 0)) {
-    return false;
-  }
-  return true;
-};
-CTATMsgType.getSAIArraysFromElement = function(propertiesElement, parser) {
-  var sai = {selection:[], action:[], input:[]};
-  var messageChildren = parser.getElementChildren(propertiesElement);
-  for (var k = 0;k < messageChildren.length;k++) {
-    var childElt = messageChildren[k];
-    var childEltName = parser.getElementName(childElt);
-    switch(childEltName) {
-      case "Selection":
-        var selections = parser.getElementChildren(childElt);
-        for (var j = 0;j < selections.length;j++) {
-          sai.selection.push(parser.getNodeTextValue(selections[j]));
-        }
-        break;
-      case "Action":
-        var actions = parser.getElementChildren(childElt);
-        for (var m = 0;m < actions.length;m++) {
-          sai.action.push(parser.getNodeTextValue(actions[m]));
-        }
-        break;
-      case "Input":
-        var inputs = parser.getElementChildren(childElt);
-        for (var n = 0;n < inputs.length;n++) {
-          sai.input.push(parser.getNodeTextValue(inputs[n]));
-        }
-        break;
-      case "properties":
-        return CTATMsgType.getSAIArraysFromElement(childElt, parser);
-      default:
-        break;
-    }
-  }
-  return sai;
-};
-Object.defineProperty(CTATMsgType, "CorrectTypes", {enumerable:false, configurable:false, writable:false, value:{correctaction:1, incorrectaction:1, lispcheckaction:1}});
-Object.defineProperty(CTATMsgType, "TextFeedbackTypes", {enumerable:false, configurable:false, writable:false, value:{showhintsmessage:1, successmessage:1, buggymessage:1, wrongusermessage:1, nohintmessage:1, highlightmsg:1, showhintsmessagefromlisp:1}});
-Object.defineProperty(CTATMsgType, "HintResponseTypes", {enumerable:false, configurable:false, writable:false, value:{showhintsmessage:1, nohintmessage:1, showhintsmessagefromlisp:1}});
-Object.defineProperty(CTATMsgType, "BUGGY_MSG", {enumerable:false, configurable:false, writable:false, value:"BuggyMsg"});
-Object.defineProperty(CTATMsgType, "DONE", {enumerable:false, configurable:false, writable:false, value:"Done"});
-Object.defineProperty(CTATMsgType, "BUTTON_PRESSED", {enumerable:false, configurable:false, writable:false, value:"ButtonPressed"});
-Object.defineProperty(CTATMsgType, "DEFAULT_STUDENT_ACTOR", {enumerable:false, configurable:false, writable:false, value:"Student"});
-Object.defineProperty(CTATMsgType, "DEFAULT_TOOL_ACTOR", {enumerable:false, configurable:false, writable:false, value:"Tutor"});
-Object.defineProperty(CTATMsgType, "UNGRADED_TOOL_ACTOR", {enumerable:false, configurable:false, writable:false, value:"Tutor (unevaluated)"});
-Object.defineProperty(CTATMsgType, "DEFAULT_ACTOR", {enumerable:false, configurable:false, writable:false, value:CTATMsgType.DEFAULT_STUDENT_ACTOR});
-Object.defineProperty(CTATMsgType, "ANY_ACTOR", {enumerable:false, configurable:false, writable:false, value:"Any"});
-Object.defineProperty(CTATMsgType, "SHOW_ALL_FEEDBACK", {enumerable:false, configurable:false, writable:false, value:"Show All Feedback"});
-Object.defineProperty(CTATMsgType, "DELAY_FEEDBACK", {enumerable:false, configurable:false, writable:false, value:"Delay Feedback"});
-Object.defineProperty(CTATMsgType, "HIDE_ALL_FEEDBACK", {enumerable:false, configurable:false, writable:false, value:"Hide All Feedback"});
-Object.defineProperty(CTATMsgType, "HIDE_BUT_COMPLETE", {enumerable:false, configurable:false, writable:false, value:"Hide feedback but require all steps"});
-Object.defineProperty(CTATMsgType, "HIDE_BUT_ENFORCE", {enumerable:false, configurable:false, writable:false, value:"Hide feedback but enforce constraints"});
-Object.defineProperty(CTATMsgType, "DEFAULT_OUT_OF_ORDER_MESSAGE", {enumerable:false, configurable:false, writable:false, value:CTATLanguageManager.theSingleton.filterString("HIGHLIGHTEDSTEP")});
-Object.defineProperty(CTATMsgType, "NOT_DONE_MSG", {enumerable:false, configurable:false, writable:false, value:CTATLanguageManager.theSingleton.filterString("NOTDONE")});
-Object.defineProperty(CTATMsgType, "TRACE_OUTCOME", {enumerable:false, configurable:false, writable:false, value:"TraceOutcome"});
-Object.defineProperty(CTATMsgType, "PREVIOUS_FOCUS", {enumerable:false, configurable:false, writable:false, value:"PreviousFocus"});
-Object.defineProperty(CTATMsgType, "ASSOCIATED_RULES", {enumerable:false, configurable:false, writable:false, value:"AssociatedRules"});
-Object.defineProperty(CTATMsgType, "BEGIN_RESTORE", {enumerable:false, configurable:false, writable:false, value:"BeginRestore"});
-Object.defineProperty(CTATMsgType, "BEGIN_GO_TO_STATE", {enumerable:false, configurable:false, writable:false, value:"BeginGoToState"});
-Object.defineProperty(CTATMsgType, "END_GO_TO_STATE", {enumerable:false, configurable:false, writable:false, value:"EndGoToState"});
-Object.defineProperty(CTATMsgType, "BUGGY_MESSAGE", {enumerable:false, configurable:false, writable:false, value:"BuggyMessage"});
-Object.defineProperty(CTATMsgType, "CORRECT_ACTION", {enumerable:false, configurable:false, writable:false, value:"CorrectAction"});
-Object.defineProperty(CTATMsgType, "HINT_REQUEST", {enumerable:false, configurable:false, writable:false, value:"HintRequest"});
-Object.defineProperty(CTATMsgType, "INCORRECT_ACTION", {enumerable:false, configurable:false, writable:false, value:"InCorrectAction"});
-Object.defineProperty(CTATMsgType, "INTERFACE_ACTION", {enumerable:false, configurable:false, writable:false, value:"InterfaceAction"});
-Object.defineProperty(CTATMsgType, "INTERFACE_IDENTIFICATION", {enumerable:false, configurable:false, writable:false, value:"InterfaceIdentification"});
-Object.defineProperty(CTATMsgType, "PROBLEM_RESTORE_END", {enumerable:false, configurable:false, writable:false, value:"ProblemRestoreEnd"});
-Object.defineProperty(CTATMsgType, "PROBLEM_SUMMARY_REQUEST", {enumerable:false, configurable:false, writable:false, value:"ProblemSummaryRequest"});
-Object.defineProperty(CTATMsgType, "PROBLEM_SUMMARY_RESPONSE", {enumerable:false, configurable:false, writable:false, value:"ProblemSummaryResponse"});
-Object.defineProperty(CTATMsgType, "SET_PREFERENCES", {enumerable:false, configurable:false, writable:false, value:"SetPreferences"});
-Object.defineProperty(CTATMsgType, "SHOW_HINTS_MESSAGE", {enumerable:false, configurable:false, writable:false, value:"ShowHintsMessage"});
-Object.defineProperty(CTATMsgType, "SUCCESS_MESSAGE", {enumerable:false, configurable:false, writable:false, value:"SuccessMessage"});
-Object.defineProperty(CTATMsgType, "START_STATE_END", {enumerable:false, configurable:false, writable:false, value:"StartStateEnd"});
-Object.defineProperty(CTATMsgType, "STATE_GRAPH", {enumerable:false, configurable:false, writable:false, value:"StateGraph"});
-Object.defineProperty(CTATMsgType, "UNTUTORED_ACTION", {enumerable:false, configurable:false, writable:false, value:"UntutoredAction"});
-Object.defineProperty(CTATMsgType, "GO_TO_STATE", {enumerable:false, configurable:false, writable:false, value:"GoToState"});
-Object.defineProperty(CTATMsgType, "INTERFACE_REBOOT", {enumerable:false, configurable:false, writable:false, value:"InterfaceReboot"});
-Object.defineProperty(CTATMsgType, "CompletionValue", {enumerable:false, configurable:false, writable:false, value:["incomplete", "complete"]});
-CTATMsgType.prototype = Object.create(CTATBase.prototype);
-CTATMsgType.prototype.constructor = CTATMsgType;
-if (typeof module !== "undefined") {
-  module.exports = CTATMsgType;
-}
-;goog.provide("CTATVersionComparator");
-goog.require("CTATBase");
-CTATVersionComparator = function() {
-  CTATBase.call(this, "CTATVersionComparator", "");
-  var that = this;
-  this.compare = function(o1, o2) {
-    if (o1 === null || typeof o1 === "undefined") {
-      return o2 === null || typeof o2 === "undefined" ? 0 : -1;
-    } else {
-      if (o2 === null || typeof o2 === "undefined") {
-        return 1;
-      }
-    }
-    var result = 0;
-    var a1 = o1.split(".");
-    var a2 = o2.split(".");
-    var i;
-    for (i = 0;i < Math.min(a1.length, a2.length);i++) {
-      try {
-        var i1 = parseInt(a1[i]);
-        var i2 = parseInt(a2[i]);
-        if (i1 < i2) {
-          result = -1;
-        } else {
-          if (i1 > i2) {
-            result = 1;
-          } else {
-            result = 0;
-          }
-        }
-        if (0 !== result) {
-          return result;
-        }
-      } catch (e$14) {
-        if (a1[i].toString() < a2[i].toString()) {
-          result = -1;
-        } else {
-          if (a1[i].toString() > a2[i].toString()) {
-            result = 1;
-          } else {
-            result = 0;
-          }
-        }
-        if (0 !== result) {
-          return result;
-        }
-      }
-    }
-    if (i < a1.length) {
-      return 1;
-    }
-    if (i < a2.length) {
-      return -1;
-    }
-    if (o1.toString() < o2.toString()) {
-      return -1;
-    } else {
-      if (o1.toString() > o2.toString()) {
-        return 1;
-      } else {
-        return 0;
-      }
-    }
-  };
-};
-CTATVersionComparator.prototype = Object.create(CTATBase.prototype);
-CTATVersionComparator.prototype.constructor = CTATVersionComparator;
-CTATVersionComparator.vc = new CTATVersionComparator;
-if (typeof module !== "undefined") {
-  module.exports = CTATVersionComparator;
-}
-;goog.provide("CTATExampleTracerSkill");
-goog.require("CTATBase");
-goog.require("CTATMsgType");
-goog.require("CTATVersionComparator");
-CTATExampleTracerSkill = function(givenCategory, givenSkillName, p_guess, p_known, p_slip, p_learn, _history) {
-  CTATBase.call(this, "CTATExampleTracerSkill", givenSkillName);
-  var skillName = givenCategory == null || givenCategory.trim() == "" ? givenSkillName : givenSkillName + " " + givenCategory;
-  var pGuess = Number(p_guess);
-  if (Number.isNaN(pGuess)) {
-    pGuess = CTATExampleTracerSkill.DEFAULT_P_GUESS;
-  }
-  var pKnown = Number(p_known);
-  if (Number.isNaN(pKnown)) {
-    pKnown = CTATExampleTracerSkill.DEFAULT_P_KNOWN;
-  }
-  var pLearn = Number(p_learn);
-  if (Number.isNaN(pLearn)) {
-    pLearn = CTATExampleTracerSkill.DEFAULT_P_LEARN;
-  }
-  var pSlip = Number(p_slip);
-  if (Number.isNaN(pSlip)) {
-    pSlip = CTATExampleTracerSkill.DEFAULT_P_SLIP;
-  }
-  var history = /^0*[xX]([0-9a-fA-F]+)$/.test(_history) ? parseInt(_history, 16) : /^(\-|\+)?[0-9]+$/.test(_history) ? parseInt(_history, 10) : CTATExampleTracerSkill.DEFAULT_HISTORY;
-  var transactionNumber = 0;
-  var opportunityCount = 0;
-  var skillBarDelimiter = CTATExampleTracerSkill.SKILL_BAR_DELIMITER_v2_11;
-  var masteryThreshold = CTATExampleTracerSkill.DEFAULT_MASTERY_THRESHOLD;
-  var label = null;
-  var description = null;
-  var that = this;
-  this.getSkillName = function() {
-    return skillName;
-  };
-  this.getCategory = function() {
-    var spPos = skillName.indexOf(" ");
-    return spPos < 0 ? "" : skillName.substring(spPos + 1);
-  };
-  this.setTransactionNumber = function(givenTransactionNumber) {
-    transactionNumber = givenTransactionNumber;
-  };
-  this.updatePKnown = function(status) {
-    pKnown = CTATExampleTracerSkill.updatePKnownStatic(status, pGuess, pKnown, pSlip, pLearn);
-    return pKnown;
-  };
-  this.updateHistory = function(status) {
-    history = CTATExampleTracerSkill.updateHistoryStatic(status, history);
-    return history;
-  };
-  this.changeOpportunityCount = function(delta) {
-    opportunityCount += delta;
-    return opportunityCount;
-  };
-  this.getTransactionNumber = function() {
-    return transactionNumber;
-  };
-  this.getSkillBarString = function(includeLabels) {
-    var sb = this.getSkillName();
-    sb = sb + this.getSkillBarDelimiter() + pKnown;
-    sb = sb + this.getSkillBarDelimiter() + (this.hasReachedMastery() ? "1" : "0");
-    if (includeLabels === true) {
-      sb = sb + this.getSkillBarDelimiter() + this.getLabel();
-    }
-    return sb.toString();
-  };
-  this.getSkillBarDelimiter = function() {
-    return skillBarDelimiter;
-  };
-  this.toXML = function(escape) {
-    var attrs = "";
-    attrs += ' name="' + CTATExampleTracerSkill.getName(skillName) + '"';
-    attrs += ' category="' + that.getCategory() + '"';
-    attrs += ' label="' + that.getLabel() + '"';
-    attrs += ' description="' + that.getDescription() + '"';
-    attrs += ' pKnown="' + Number(pKnown).toString() + '"';
-    attrs += ' pLearn="' + Number(pLearn).toString() + '"';
-    attrs += ' pGuess="' + Number(pGuess).toString() + '"';
-    attrs += ' pSlip="' + Number(pSlip).toString() + '"';
-    attrs += ' history="' + history + '"';
-    attrs += ' opportunityCount="' + opportunityCount + '"';
-    if (escape) {
-      return "&lt;Skill" + attrs + " /&gt;";
-    } else {
-      return "<Skill" + attrs + " />";
-    }
-  };
-  this.getPKnown = function() {
-    return pKnown;
-  };
-  this.getPLearn = function() {
-    return pLearn;
-  };
-  this.getPGuess = function() {
-    return pGuess;
-  };
-  this.getPSlip = function() {
-    return pSlip;
-  };
-  this.getHistory = function() {
-    return history;
-  };
-  this.getOpportunityCount = function() {
-    return opportunityCount;
-  };
-  this.hasReachedMastery = function() {
-    if (pKnown === null || typeof pKnown === "undefined") {
-      return false;
-    } else {
-      return pKnown >= masteryThreshold;
-    }
-  };
-  this.getLabel = function() {
-    return !label || label.length < 1 ? CTATExampleTracerSkill.getName(skillName) : label;
-  };
-  this.getDescription = function() {
-    return !description || description.length < 1 ? skillName : description;
-  };
-  this.setVersion = function(givenVersion) {
-    if (givenVersion !== null && typeof givenVersion !== "undefined" && givenVersion.length > 0) {
-      skillBarDelimiter = CTATExampleTracerSkill.versionToSkillBarDelimiter(givenVersion);
-    }
-  };
-  this.setLabel = function(givenLabel) {
-    label = givenLabel;
-  };
-  this.setDescription = function(givenDescription) {
-    description = givenDescription;
-  };
-  CTATExampleTracerSkill.makeStepID = function(selection, action) {
-    var sb = "";
-    var i = 0;
-    for (var v = selection;i++ < 2;v = action) {
-      if (v === null || typeof v === "undefined" || v.length < 1) {
-        continue;
-      }
-      var vStarted = false;
-      for (var j = 0;j < v.length;j++) {
-        if (v[j] === null || typeof v[j] === "undefined") {
-          continue;
-        }
-        var s = v[j].toString();
-        if (s.length < 1) {
-          continue;
-        }
-        if (v === selection && ("hint".toString().toUpperCase() === s.toString().toUpperCase() || "help".toString().toUpperCase() === s.toString().toUpperCase())) {
-          continue;
-        }
-        if (v === action && CTATMsgType.PREVIOUS_FOCUS.toString().toUpperCase() === s.toString().toUpperCase()) {
-          continue;
-        }
-        var res = vStarted ? "," : "[";
-        sb = sb + res + s;
-        vStarted = true;
-      }
-      if (vStarted === true) {
-        sb = sb + "]";
-      }
-    }
-    return sb.toString();
-  };
-  CTATExampleTracerSkill.updateHistoryStatic = function(givenStatus, givenHistory) {
-    var h = givenHistory << 1, msb = 1 << CTATExampleTracerSkill.MAX_INTEGER_SHIFT;
-    h |= givenStatus.toString().toUpperCase() === CTATExampleTracerSkill.CORRECT.toString().toUpperCase() ? 1 : 0;
-    return h & msb ? h ^ msb : h;
-  };
-  CTATExampleTracerSkill.updatePKnownStatic = function(givenStatus, givenP_guess, givenP_known, givenP_slip, givenP_learn) {
-    var knewIt = 0;
-    if (givenStatus.toString().toUpperCase() === CTATExampleTracerSkill.CORRECT.toString().toUpperCase()) {
-      var guessedIt = +(givenP_guess * (1 - givenP_known));
-      var knewAndPerformed = +(givenP_known * (1 - givenP_slip));
-      knewIt = +(knewAndPerformed / (knewAndPerformed + guessedIt));
-    } else {
-      if (givenStatus.toString().toUpperCase() === CTATExampleTracerSkill.INCORRECT.toString().toUpperCase() || givenStatus.toString().toUpperCase() === CTATExampleTracerSkill.HINT.toString().toUpperCase()) {
-        var choked = +(givenP_known * givenP_slip);
-        var dontKnowDontGuess = +((1 - givenP_known) * (1 - givenP_guess));
-        knewIt = +(choked / (choked + dontKnowDontGuess));
-      } else {
-      }
-    }
-    return +(knewIt + givenP_learn * (1 - knewIt));
-  };
-  CTATExampleTracerSkill.getName = function(givenSkillName) {
-    var spPos = givenSkillName.indexOf(" ");
-    if (spPos < 0) {
-      return givenSkillName;
-    } else {
-      return givenSkillName.substring(0, spPos);
-    }
-  };
-  CTATExampleTracerSkill.versionToSkillBarDelimiter = function(givenVersion) {
-    if (givenVersion === null || typeof givenVersion === "undefined") {
-      return CTATExampleTracerSkill.SKILL_BAR_DELIMITER_v2_10;
-    }
-    if (CTATVersionComparator.vc.compare(givenVersion, "2.11") >= 0) {
-      return CTATExampleTracerSkill.SKILL_BAR_DELIMITER_v2_11;
-    } else {
-      return CTATExampleTracerSkill.SKILL_BAR_DELIMITER_v2_10;
-    }
-  };
-};
-Object.defineProperty(CTATExampleTracerSkill, "MAX_INTEGER_SHIFT", {enumerable:false, configurable:false, writable:false, value:31});
-Object.defineProperty(CTATExampleTracerSkill, "HINT", {enumerable:false, configurable:false, writable:false, value:"hint"});
-Object.defineProperty(CTATExampleTracerSkill, "CORRECT", {enumerable:false, configurable:false, writable:false, value:"correct"});
-Object.defineProperty(CTATExampleTracerSkill, "INCORRECT", {enumerable:false, configurable:false, writable:false, value:"incorrect"});
-Object.defineProperty(CTATExampleTracerSkill, "SKILL_BAR_DELIMITER_v2_10", {enumerable:false, configurable:false, writable:false, value:"="});
-Object.defineProperty(CTATExampleTracerSkill, "SKILL_BAR_DELIMITER_v2_11", {enumerable:false, configurable:false, writable:false, value:"`"});
-Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_MASTERY_THRESHOLD", {enumerable:false, configurable:false, writable:false, value:.95});
-Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_P_GUESS", {enumerable:false, configurable:false, writable:false, value:.2});
-Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_P_KNOWN", {enumerable:false, configurable:false, writable:false, value:.3});
-Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_P_SLIP", {enumerable:false, configurable:false, writable:false, value:.3});
-Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_P_LEARN", {enumerable:false, configurable:false, writable:false, value:.15});
-Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_HISTORY", {enumerable:false, configurable:false, writable:false, value:0});
-CTATExampleTracerSkill.prototype = Object.create(CTATBase.prototype);
-CTATExampleTracerSkill.prototype.constructor = CTATExampleTracerSkill;
-if (typeof module !== "undefined") {
-  module.exports = CTATExampleTracerSkill;
-}
-;goog.provide("CTATVariableTable");
-goog.require("CTATBase");
-var CTATVariableTableCount = 0;
-CTATVariableTable = function() {
-  CTATBase.call(this, "CTATVariableTable", "");
-  var instance = CTATVariableTableCount++;
-  var vt = {};
-  var that = this;
-  function cloneObj(obj) {
-    var copy = {};
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key) === true) {
-        if (typeof obj[key] !== "object") {
-          copy[key] = obj[key];
-        } else {
-          copy[key] = cloneObj(obj[key]);
-        }
-      }
-    }
-    return copy;
-  }
-  this.toString = function() {
-    var result = "";
-    for (var v in vt) {
-      if (result.length > 0) {
-        result = result + ", ";
-      }
-      result = result + v + "=" + vt[v];
-    }
-    return "{ " + result + " }";
-  };
-  this.clone = function() {
-    ctatdebug("CTATVariableTable --\x3e in clone; this " + this + ", this.getTable() " + this.getTable);
-    var copy = new CTATVariableTable;
-    ctatdebug("CTATVariableTable --\x3e in clone; copy " + copy + ", copy.setTable() " + copy.setTable);
-    copy.setTable(cloneObj(vt));
-    ctatdebug("CTATVariableTable --\x3e out of clone");
-    return copy;
-  };
-  this.put = function(varName, value) {
-    that.ctatdebug("CTATVariableTable.put(" + varName + ", " + value + ") typeof value " + typeof value);
-    var currObject;
-    if (!varName) {
-      console.log("CTATVariableTable.put() warning: null or empty variable name '" + varName + "'");
-    } else {
-      if (varName.indexOf(".") < 0) {
-        vt[varName] = value;
-      } else {
-        var splitStr = varName.split(".");
-        if (typeof vt[splitStr[0]] !== "object" || vt[splitStr[0]] === null) {
-          vt[splitStr[0]] = {};
-        }
-        currObject = vt[splitStr[0]];
-        for (var i = 1;i < splitStr.length - 1;i++) {
-          if (typeof currObject[splitStr[i]] === "object" && currObject[splitStr[i]] !== null) {
-            continue;
-          } else {
-            currObject[splitStr[i]] = {};
-          }
-          currObject = currObject[splitStr[i]];
-        }
-        currObject[splitStr[i]] = value;
-      }
-    }
-    return that;
-  };
-  this.getTable = function() {
-    return vt;
-  };
-  this.setTable = function(newVt) {
-    vt = newVt;
-  };
-  this.get = function(varName) {
-    var currObject;
-    if (varName.indexOf(".") < 0) {
-      if (vt[varName] === null || typeof vt[varName] === "undefined") {
-        return null;
-      } else {
-        return vt[varName];
-      }
-    } else {
-      var splitStr = varName.split(".");
-      if (vt[splitStr[0]] === null || typeof vt[splitStr[0]] === "undefined") {
-        return null;
-      }
-      currObject = vt[splitStr[0]];
-      for (var i = 1;i < splitStr.length - 1;i++) {
-        if (currObject[splitStr[i]] === null || typeof currObject[splitStr[i]] === "undefined") {
-          return null;
-        }
-        currObject = currObject[splitStr[i]];
-      }
-      if (currObject[splitStr[i]] === null || typeof currObject[splitStr[i]] === "undefined") {
-        return null;
-      } else {
-        return currObject[splitStr[i]];
-      }
-    }
-  };
-};
-Object.defineProperty(CTATVariableTable, "serialVersionUID", {enumerable:false, configurable:false, writable:false, value:"201403071830L"});
-CTATVariableTable.standardizeType = function(input) {
-  if (typeof input != "string" || input.trim().length < 1) {
-    return input;
-  }
-  if (Boolean(true).toString() == input) {
-    return true;
-  }
-  if (Boolean(false).toString() == input) {
-    return false;
-  }
-  if ("null" == input) {
-    return null;
-  }
-  var toN = Number(input);
-  return isNaN(toN) ? input : toN;
-};
-CTATVariableTable.valueAsString = function(value) {
-  return typeof value == "string" ? value : String(value);
-};
-CTATVariableTable.nameAsString = function(name) {
-  return name ? name + "_String" : null;
-};
-CTATVariableTable.prototype = Object.create(CTATBase.prototype);
-CTATVariableTable.prototype.constructor = CTATVariableTable;
-if (typeof module !== "undefined") {
-  module.exports = CTATVariableTable;
-}
-;goog.provide("CTATMatcher");
-goog.require("CTATBase");
-goog.require("CTATMsgType");
-goog.require("CTATSAI");
-CTATMatcher = function(givenSingle, givenVector, givenCaseInsensitive) {
-  var matcher = null;
-  CTATBase.call(this, "CTATMatcher", "");
-  this.lastResult = null;
-  var defaultSAI = new CTATSAI("", "", "");
-  var single = givenSingle;
-  var vector = givenVector === null || typeof givenVector === "undefined" ? CTATMatcher.NON_SINGLE : givenVector;
-  var caseInsensitive = givenCaseInsensitive;
-  var actor = CTATMsgType.DEFAULT_ACTOR;
-  var singleValue = null;
-  var linkTriggered = false;
-  var that = this;
-  this.resetMatcher = function() {
-  };
-  this.MatcherSAItoXML = function(indent) {
-    var result = indent + "<matcher>\n";
-    result += indent + "    <matcherType>Matcher</matcherType>\n";
-    result += indent + '    <matcherParameter name="single">' + singleValue + "</matcherParameter>\n";
-    result += indent + "</matcher>\n";
-    return result;
-  };
-  this.getSelection = function() {
-    return that.getDefaultSelection();
-  };
-  this.getAction = function() {
-    return that.getDefaultAction();
-  };
-  this.getInput = function() {
-    return that.getDefaultInput();
-  };
-  this.getActor = function() {
-    return actor;
-  };
-  this.setCaseInsensitive = function(givenCaseInsensitive) {
-    caseInsensitive = givenCaseInsensitive;
-  };
-  this.getEvaluatedInput = function(givenSAI, vt) {
-    return that.getInput();
-  };
-  this.getTraversalIncrement = function() {
-    return 1;
-  };
-  this.getTutorSAI = function(studentSAI, vt, grade) {
-    var sai = String(grade).toLowerCase() == CTATExampleTracerLink.CORRECT_ACTION.toLowerCase() ? studentSAI : that.getDefaultSAI();
-    console.log("CTATMatcher.getTutorSAI() superclass method called, should be subclass;\n  returning: " + sai);
-    return sai;
-  };
-  this.getDefaultSelection = function() {
-    return that.getDefaultSAI().getSelection();
-  };
-  this.getDefaultAction = function() {
-    return that.getDefaultSAI().getAction();
-  };
-  this.getDefaultInput = function() {
-    return that.getDefaultSAI().getInput();
-  };
-  this.getDefaultSAI = function() {
-    return defaultSAI;
-  };
-  this.setDefaultSAI = function(newDefaultSAI) {
-    defaultSAI = newDefaultSAI;
-  };
-  this.getDefaultActor = function() {
-    var myActor = String(getActor()).toLowerCase();
-    switch(myActor) {
-      case CTATMsgType.DEFAULT_STUDENT_ACTOR.toLowerCase():
-        return CTATMsgType.DEFAULT_STUDENT_ACTOR;
-      case CTATMsgType.DEFAULT_TOOL_ACTOR.toLowerCase():
-        return CTATMsgType.DEFAULT_TOOL_ACTOR;
-      case CTATMsgType.UNGRADED_TOOL_ACTOR.toLowerCase():
-        return CTATMsgType.DEFAULT_TOOL_ACTOR;
-      case CTATMsgType.ANY_ACTOR.toLowerCase():
-        return CTATMsgType.DEFAULT_TOOL_ACTOR;
-      default:
-        console.log("CTATMatcher.getDefaultActor() unexpected value for actor: " + actor + "; returning " + CTATMsgType.DEFAULT_ACTOR);
-        return CTATMsgType.DEFAULT_ACTOR;
-    }
-  };
-  this.getInput = function() {
-    return that.getDefaultInput();
-  };
-  this.getCaseInsensitive = function() {
-    return caseInsensitive;
-  };
-  this.match = function(selection, action, input, actor, vt) {
-    console.log("CTATMatcher superclass method called: match(" + selection + ", " + action + ", " + input + ", " + actor + ")");
-    return false;
-  };
-  this.matchForHint = function(selection, action, actor, vt) {
-    console.log("CTATMatcher superclass method called: matchForHint(" + selection + ", " + action + ", " + actor + ", vt)");
-    return false;
-  };
-  this.matchActor = function(actor) {
-    actor = String(actor).toUpperCase();
-    var myActor = String(that.getActor()).toUpperCase();
-    ctatdebug("CTATMatcher.matchActor(" + actor + ") myActor is " + myActor);
-    if (CTATMsgType.ANY_ACTOR.toString().toUpperCase() == myActor) {
-      return true;
-    }
-    if (CTATMsgType.UNGRADED_TOOL_ACTOR.toString().toUpperCase() == myActor && CTATMsgType.DEFAULT_TOOL_ACTOR.toString().toUpperCase() == actor) {
-      return true;
-    }
-    if (CTATMsgType.UNGRADED_TOOL_ACTOR.toString().toUpperCase() == actor && CTATMsgType.DEFAULT_TOOL_ACTOR.toString().toUpperCase() == myActor) {
-      return true;
-    }
-    return myActor == actor;
-  };
-  this.getDefaultSelectionArray = function() {
-    return that.getDefaultSAI().getSelectionArray();
-  };
-  this.getDefaultActionArray = function() {
-    return that.getDefaultSAI().getActionArray();
-  };
-  this.getDefaultInputArray = function() {
-    return that.getDefaultSAI().getInputArray();
-  };
-  this.getLastResult = function() {
-    return that.lastResult === null || typeof that.lastResult === "undefined" ? "" : that.lastResult.toString();
-  };
-  this.setActor = function(givenActor) {
-    ctatdebug("CTATMatcher --\x3e in setActor(" + givenActor + ")");
-    if (givenActor === null || typeof givenActor === "undefined") {
-      givenActor = CTATMsgType.DEFAULT_ACTOR;
-    }
-    var ga = String(givenActor).toLowerCase().trim();
-    if (ga == "tool") {
-      actor = CTATMsgType.DEFAULT_TOOL_ACTOR;
-    } else {
-      if (ga == CTATMsgType.DEFAULT_STUDENT_ACTOR.toLowerCase()) {
-        actor = CTATMsgType.DEFAULT_STUDENT_ACTOR;
-      } else {
-        if (ga == CTATMsgType.DEFAULT_TOOL_ACTOR.toLowerCase()) {
-          actor = CTATMsgType.DEFAULT_TOOL_ACTOR;
-        } else {
-          if (ga == CTATMsgType.UNGRADED_TOOL_ACTOR.toLowerCase()) {
-            actor = CTATMsgType.UNGRADED_TOOL_ACTOR;
-          } else {
-            if (ga == CTATMsgType.ANY_ACTOR.toLowerCase()) {
-              actor = CTATMsgType.ANY_ACTOR;
-            } else {
-              actor = CTATMsgType.DEFAULT_ACTOR;
-            }
-          }
-        }
-      }
-    }
-  };
-  this.array2ConcatString = function(v) {
-    var concat = "";
-    if (v == null) {
-      return concat;
-    }
-    if (!Array.isArray(v)) {
-      return v.toString();
-    }
-    v.forEach(function(o) {
-      if (o != null) {
-        concat += o.toString() + "\n";
-      }
-    });
-    return concat.substring(0, concat.length > 0 ? concat.length - 1 : 0);
-  };
-  this.matchConcatenation = function(v) {
-    return that.matchSingle(that.array2ConcatString(v));
-  };
-  this.isLinkTriggered = function() {
-    return linkTriggered;
-  };
-  this.setLinkTriggered = function(givenLinkTriggered) {
-    linkTriggered = givenLinkTriggered;
-  };
-  this.evaluateReplacement = function(sai, vt, tracer) {
-    return "";
-  };
-  this.replaceInput = function() {
-    return Boolean(that.getReplacementFormula());
-  };
-  this.getReplacementFormula = function() {
-    return "";
-  };
-};
-CTATMatcher.prototype.toString = function() {
-  console.log("Error: CTATMatcher.toString() called; should be overridden in subclass");
-  return "This is CTATMatcher.";
-};
-CTATMatcher.prototype.setParameter = function(paramName, paramElement, parser) {
-};
-CTATMatcher.isTutorActor = function(actor, acceptAny) {
-  if (CTATMsgType.DEFAULT_TOOL_ACTOR.toUpperCase() === actor.toUpperCase()) {
-    return true;
-  }
-  if (CTATMsgType.UNGRADED_TOOL_ACTOR.toUpperCase() === actor.toUpperCase()) {
-    return true;
-  }
-  if (acceptAny && CTATMsgType.ANY_ACTOR.toUpperCase() === actor.toUpperCase()) {
-    return true;
-  }
-  return false;
-};
-Object.defineProperty(CTATMatcher, "NON_SINGLE", {enumerable:false, configurable:false, writable:false, value:-1});
-Object.defineProperty(CTATMatcher, "SELECTION", {enumerable:false, configurable:false, writable:false, value:0});
-Object.defineProperty(CTATMatcher, "ACTION", {enumerable:false, configurable:false, writable:false, value:1});
-Object.defineProperty(CTATMatcher, "INPUT", {enumerable:false, configurable:false, writable:false, value:2});
-Object.defineProperty(CTATMatcher, "VECTOR", {enumerable:false, configurable:false, writable:false, value:3});
-Object.defineProperty(CTATMatcher, "ACTOR", {enumerable:false, configurable:false, writable:false, value:"Actor"});
-CTATMatcher.prototype = Object.create(CTATBase.prototype);
-CTATMatcher.prototype.constructor = CTATMatcher;
-if (typeof module !== "undefined") {
-  module.exports = CTATMatcher;
-}
-;goog.provide("CTATTreeNode");
+goog.provide("CTATAlgebraTreeNode");
 (function() {
-  var CTATTreeNode;
-  CTATTreeNode = function() {
-    function CTATTreeNode() {
+  var CTATAlgebraTreeNode, slice = [].slice;
+  CTATAlgebraTreeNode = function() {
+    function CTATAlgebraTreeNode() {
     }
-    CTATTreeNode.operators = [["CONST"], ["VAR"], ["EXP", "ROOT"], ["UPLUS", "UMINUS"], ["ITIMES", "TIMES", "DIVIDE"], ["IDIVIDE", "REM"], ["PLUS", "MINUS"], ["LESS", "LESSEQUAL", "EQUAL", "NOTEQUAL", "GREATEREQUAL", "GREATER"]];
-    CTATTreeNode.relationalOperators = ["LESS", "LESSEQUAL", "EQUAL", "NOTEQUAL", "GREATEREQUAL", "GREATER"];
-    CTATTreeNode.operatorPrecedence = function(operator1, operator2) {
+    CTATAlgebraTreeNode.operators = [["UNKNOWN"], ["CONST"], ["VAR"], ["EXP", "ROOT"], ["UPLUS", "UMINUS"], ["ITIMES", "TIMES", "DIVIDE"], ["IDIVIDE", "REM"], ["PLUS", "MINUS"], ["LESS", "LESSEQUAL", "EQUAL", "NOTEQUAL", "GREATEREQUAL", "GREATER"]];
+    CTATAlgebraTreeNode.relationalOperators = ["LESS", "LESSEQUAL", "EQUAL", "NOTEQUAL", "GREATEREQUAL", "GREATER"];
+    CTATAlgebraTreeNode.operatorPrecedence = function(operator1, operator2) {
       return Math.sign(this.operators.findIndex(function(group) {
         return group.includes(operator1);
       }) - this.operators.findIndex(function(group) {
         return group.includes(operator2);
       }));
     };
-    CTATTreeNode.operatorStrings = {"EXP":"^", "ROOT":"|", "UPLUS":"+", "UMINUS":"-", "ITIMES":"", "TIMES":"*", "DIVIDE":"/", "IDIVIDE":"//", "REM":"%", "PLUS":"+", "MINUS":"-", "LESS":"<", "LESSEQUAL":"<=", "EQUAL":"=", "NOTEQUAL":"!=", "GREATEREQUAL":">=", "GREATER":">"};
-    CTATTreeNode.toOperatorString = function(operator) {
-      return this.operatorStrings[operator] || "";
+    CTATAlgebraTreeNode.operatorStrings = {"EXP":["^", "**"], "ROOT":["|", "\u221a"], "UPLUS":["+"], "UMINUS":["-"], "ITIMES":[""], "TIMES":["*", "\u00d7"], "DIVIDE":["/", "\u00f7"], "IDIVIDE":["//"], "REM":["%"], "PLUS":["+"], "MINUS":["-"], "LESS":["<"], "LESSEQUAL":["<=", "\u2264"], "EQUAL":["=", "=="], "NOTEQUAL":["!=", "/=", "<>", "\u2260"], "GREATEREQUAL":[">=", "\u2265"], "GREATER":[">"]};
+    CTATAlgebraTreeNode.toOperatorString = function(operator) {
+      var ref;
+      return ((ref = this.operatorStrings[operator]) != null ? ref[0] : void 0) || "";
     };
-    CTATTreeNode.diff = function(list1, list2) {
+    CTATAlgebraTreeNode.toOperator = function(string, count) {
+      var ref;
+      return (ref = Object.entries(this.operatorStrings).find(function(_this) {
+        return function(pair) {
+          return pair[1].includes(string) && (!["UPLUS", "UMINUS"].includes(pair[0]) || count === 1);
+        };
+      }(this))) != null ? ref[0] : void 0;
+    };
+    CTATAlgebraTreeNode.diff = function(list1, list2) {
       return list1.filter(function(item) {
         return !list2.includes(item);
       });
     };
-    CTATTreeNode.prototype.toString = function(string) {
+    CTATAlgebraTreeNode.prototype.toString = function(string, operator, other) {
       var i, j, ref;
-      if (this.checkParens()) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
+      for (i = j = 0, ref = this.parens;0 <= ref ? j < ref : j > ref;i = 0 <= ref ? ++j : --j) {
+        string = "(" + string + ")";
+      }
+      if (!this.parented() && this.addParens(null, true)) {
         string = "(" + string + ")";
       }
       if (this.inverted()) {
@@ -19466,24 +18217,22 @@ if (typeof module !== "undefined") {
       if (this.negated()) {
         string = "-" + string;
       }
-      for (i = j = 0, ref = this.parens;0 <= ref ? j < ref : j > ref;i = 0 <= ref ? ++j : --j) {
+      if (!this.parented() && this.addParens(operator, other)) {
         string = "(" + string + ")";
       }
       return string;
     };
-    CTATTreeNode.prototype.setParens = function(operator1, right) {
-      if (right == null) {
-        right = false;
-      }
-      if (this.checkParens(operator1, right)) {
-        this.parens = 1;
-      }
+    CTATAlgebraTreeNode.prototype.setParens = function() {
+      this.parens++;
       return this;
     };
-    CTATTreeNode.prototype.checkParens = function(operator1, right) {
+    CTATAlgebraTreeNode.prototype.addParens = function(operator1, other) {
       var operator2, precedence;
-      if (right == null) {
-        right = false;
+      if (operator1 == null) {
+        operator1 = null;
+      }
+      if (other == null) {
+        other = false;
       }
       if (operator1 != null) {
         operator2 = this.negated() ? "UMINUS" : this.inverted() ? "DIVIDE" : this.operator;
@@ -19491,13 +18240,16 @@ if (typeof module !== "undefined") {
         operator1 = this.negated() ? "MINUS" : this.inverted() ? "DIVIDE" : null;
         operator2 = this.operator;
       }
-      precedence = CTATTreeNode.operatorPrecedence(operator1, operator2);
-      return operator1 != null && (precedence < 0 || precedence === 0 && right);
+      precedence = CTATAlgebraTreeNode.operatorPrecedence(operator1, operator2);
+      return operator1 != null && (precedence < 0 || precedence === 0 && other);
     };
-    CTATTreeNode.prototype.evaluate = function(value) {
+    CTATAlgebraTreeNode.prototype.addPaths = function(path) {
+      return Object.assign(this, {path:path});
+    };
+    CTATAlgebraTreeNode.prototype.evaluate = function(value) {
       return this.sign * Math.pow(value, this.exp);
     };
-    CTATTreeNode.prototype.applyOperator = function(left, right) {
+    CTATAlgebraTreeNode.prototype.applyOperator = function(left, right) {
       switch(this.operator) {
         case "LESS":
           return left < right;
@@ -19535,153 +18287,355 @@ if (typeof module !== "undefined") {
           return -left;
       }
     };
-    CTATTreeNode.prototype.equals = function(node) {
+    CTATAlgebraTreeNode.prototype.equals = function(node) {
       return node && this.operator === node.operator && this.sign === node.sign && this.exp === node.exp && this.parens === node.parens;
     };
-    CTATTreeNode.prototype.simplify = function(methods) {
-      this.methods = methods;
-      return this.simplifyNode(this.methods);
+    CTATAlgebraTreeNode.prototype.subEquals = function(expression, index) {
+      return false;
     };
-    CTATTreeNode.prototype.simplifyNode = function(methods) {
-      var j, len, method, ref, result;
-      this.methods = methods;
-      result = this;
-      ref = this.methods;
-      for (j = 0, len = ref.length;j < len;j++) {
-        method = ref[j];
-        result = result[method].call(result);
-        result.methods = this.methods;
+    CTATAlgebraTreeNode.prototype.subNode = function(start, end) {
+      return this;
+    };
+    CTATAlgebraTreeNode.prototype.countOperands = function() {
+      return 0;
+    };
+    CTATAlgebraTreeNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
       }
-      delete result.methods;
+      if (index == null) {
+        index = null;
+      }
+      return top && this.inverted() && "DIVIDE" || top && this.negated() && "UMINUS" || void 0;
+    };
+    CTATAlgebraTreeNode.prototype.getOperators = function(top) {
+      var operator;
+      if (top == null) {
+        top = false;
+      }
+      return operator = this.getOperator(top) && [operator] || [];
+    };
+    CTATAlgebraTreeNode.prototype.getVariables = function() {
+      return [];
+    };
+    CTATAlgebraTreeNode.prototype.getOperands = function() {
+      return [];
+    };
+    CTATAlgebraTreeNode.prototype.getExpression = function(start, end) {
+      if (start == null) {
+        start = 0;
+      }
+      if (end == null) {
+        end = this.countOperands() - 1;
+      }
+      return end <= this.countOperands() - 1 && end - start >= 1 && this.subNode(start, end + 1) || null;
+    };
+    CTATAlgebraTreeNode.prototype.findExpression = function(expression, path, index) {
+      var end;
+      if (index == null) {
+        index = null;
+      }
+      if (!index && this.equals(expression)) {
+        return [Object.assign(this, {path:path})];
+      } else {
+        if (index != null && this.terms != null && this.subEquals(expression, index)) {
+          return [Object.assign(this.subNode(index, end = index + expression.terms.length), {path:path.concat([["terms", index, end]])})];
+        } else {
+          if (index != null && this.factors != null && this.subEquals(expression, index)) {
+            return [Object.assign(this.subNode(index, end = index + expression.factors.length), {path:path.concat([["factors", index, end]])})];
+          } else {
+            return [];
+          }
+        }
+      }
+    };
+    CTATAlgebraTreeNode.prototype.createExpression = function() {
+      var expressions, operator, ref;
+      operator = arguments[0], expressions = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+      return ((ref = function() {
+        switch(operator = CTATAlgebraTreeNode.toOperator(operator, expressions.length + 1) || operator) {
+          case "LESS":
+          ;
+          case "LESSEQUAL":
+          ;
+          case "EQUAL":
+          ;
+          case "NOTEQUAL":
+          ;
+          case "GREATEREQUAL":
+          ;
+          case "GREATER":
+            return expressions[0] && new CTATRelationNode(operator, this, expressions[0]) || null;
+          case "PLUS":
+          ;
+          case "MINUS":
+            return expressions.unshift(this) > 1 && new CTATAdditionNode(operator, expressions) || null;
+          case "UPLUS":
+          ;
+          case "UMINUS":
+            return new CTATUnaryNode(operator, this);
+          case "TIMES":
+          ;
+          case "DIVIDE":
+            return expressions.unshift(this) > 1 && new CTATMultiplicationNode(operator, expressions) || null;
+          case "IDIVIDE":
+          ;
+          case "REM":
+            return expressions[0] && new CTATIntDivisonNode(operator, this, expressions[0]) || null;
+          case "EXP":
+            return expressions[0] && new CTATPowerNode(operator, this, expressions[0]) || null;
+          case "ROOT":
+            return new CTATPowerNode(operator, this, new CTATConstantNode(2));
+        }
+      }.call(this)) != null ? ref.simpleFlatten() : void 0) || null;
+    };
+    CTATAlgebraTreeNode.prototype.replaceExpression = function(oldSubexpression, newSubexpression, locator) {
+      var expression, ref, ref1, ref2, selector;
+      if (typeof locator === "number" && (oldSubexpression = this.findExpression(oldSubexpression, [])[locator])) {
+        locator = oldSubexpression.path;
+        delete oldSubexpression.path;
+      }
+      if ((locator != null ? locator.length : void 0) === 0) {
+        return newSubexpression;
+      } else {
+        if ((selector = locator != null ? locator.shift() : void 0) != null) {
+          expression = this.clone(false);
+          if (typeof selector === "string") {
+            expression[selector] = (ref = this[selector]) != null ? ref.replaceExpression(oldSubexpression, newSubexpression, locator) : void 0;
+            return expression.simpleFlatten();
+          } else {
+            if (typeof selector === "object" && selector.length === 2) {
+              expression[selector[0]] = expression[selector[0]].slice(0);
+              expression[selector[0]][selector[1]] = (ref1 = this[selector[0]]) != null ? ref1[selector[1]].replaceExpression(oldSubexpression, newSubexpression, locator) : void 0;
+              return expression.simpleFlatten();
+            } else {
+              if (typeof selector === "object" && selector.length === 3) {
+                expression[selector[0]] = expression[selector[0]].slice(0);
+                [].splice.apply(expression[selector[0]], [ref2 = selector[1], selector[2] - ref2].concat(newSubexpression)), newSubexpression;
+                return expression.simpleFlatten();
+              } else {
+                return this;
+              }
+            }
+          }
+        }
+      }
+    };
+    CTATAlgebraTreeNode.prototype.deleteExpression = function(subexpression, locator) {
+      var expression, ref, ref1, ref2, selector;
+      if (typeof locator === "number" && (subexpression = this.findExpression(subexpression, [])[locator])) {
+        locator = subexpression.path;
+        delete subexpression.path;
+      }
+      if ((locator != null ? locator.length : void 0) === 0) {
+        return null;
+      } else {
+        if ((selector = locator != null ? locator.shift() : void 0) != null) {
+          expression = this.clone(false);
+          if (typeof selector === "string") {
+            expression[selector] = (ref = this[selector]) != null ? ref.deleteExpression(subexpression, locator) : void 0;
+            return expression.removeNull();
+          } else {
+            if (typeof selector === "object" && selector.length === 2) {
+              expression[selector[0]] = expression[selector[0]].slice(0);
+              expression[selector[0]][selector[1]] = (ref1 = this[selector[0]]) != null ? ref1[selector[1]].deleteExpression(subexpression, locator) : void 0;
+              return expression.removeNull();
+            } else {
+              if (typeof selector === "object" && selector.length === 3) {
+                expression[selector[0]] = expression[selector[0]].slice(0);
+                [].splice.apply(expression[selector[0]], [ref2 = selector[1], selector[2] - ref2].concat(null)), null;
+                return expression.removeNull();
+              } else {
+                return this;
+              }
+            }
+          }
+        }
+      }
+    };
+    CTATAlgebraTreeNode.prototype.applyRulesSelectively = function() {
+      var global, index, indices, result, rules, subnode;
+      rules = arguments[0], global = arguments[1], index = arguments[2], indices = 4 <= arguments.length ? slice.call(arguments, 3) : [];
+      this.rules = rules;
+      if (global == null) {
+        global = true;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return this.checkIndices(indices.concat(index)) && (!["PLUS", "TIMES"].includes(this.operator) || this.wholeNode(index, indices) ? this.applyRules(this.rules, global) : (subnode = this.selectOperands(indices.concat(index))) && subnode.equals(result = subnode.applyRules(this.rules, global)) ? this : this.replaceOperands(result, index, indices)) || null;
+    };
+    CTATAlgebraTreeNode.prototype.applyRules = function(rules, global) {
+      var j, len, ref, result, rule;
+      this.rules = rules;
+      if (global == null) {
+        global = true;
+      }
+      result = this;
+      ref = this.rules;
+      for (j = 0, len = ref.length;j < len;j++) {
+        rule = ref[j];
+        result = result[rule].call(result);
+        result.rules = this.rules;
+      }
+      delete result.rules;
       return result;
     };
-    CTATTreeNode.prototype.simpleFlatten = function() {
+    CTATAlgebraTreeNode.prototype.removeNull = function() {
       return this;
     };
-    CTATTreeNode.prototype.flatten = function() {
+    CTATAlgebraTreeNode.prototype.checkIndices = function(indices) {
+      return indices.every(function(index, position) {
+        return index == null || 0 <= index && index <= 1 && indices.indexOf(index) === position;
+      });
+    };
+    CTATAlgebraTreeNode.prototype.wholeNode = function(index, indices) {
+      return index == null || indices.length === 0 || indices.concat(index).length >= this.countOperands();
+    };
+    CTATAlgebraTreeNode.prototype.selectOperands = function(index, indices) {
       return this;
     };
-    CTATTreeNode.prototype.computeConstants = function() {
+    CTATAlgebraTreeNode.prototype.replaceOperands = function(expression, index, indices) {
+      return expression;
+    };
+    CTATAlgebraTreeNode.prototype.simpleFlatten = function() {
       return this;
     };
-    CTATTreeNode.prototype.combineSimilar = function() {
+    CTATAlgebraTreeNode.prototype.flatten = function() {
+      this.parens = 0;
+      this.simpleFlatten();
       return this;
     };
-    CTATTreeNode.prototype.expand = function() {
+    CTATAlgebraTreeNode.prototype.computeConstants = function() {
       return this;
     };
-    CTATTreeNode.prototype.distribute = function() {
+    CTATAlgebraTreeNode.prototype.combineSimilar = function() {
       return this;
     };
-    CTATTreeNode.prototype.removeIdentity = function() {
+    CTATAlgebraTreeNode.prototype.expand = function() {
       return this;
     };
-    CTATTreeNode.prototype.sort = function() {
+    CTATAlgebraTreeNode.prototype.distribute = function() {
       return this;
     };
-    CTATTreeNode.prototype.spreadIdentity = function() {
+    CTATAlgebraTreeNode.prototype.removeIdentity = function() {
       return this;
     };
-    CTATTreeNode.prototype.stripIdentity = function() {
+    CTATAlgebraTreeNode.prototype.sort = function() {
       return this;
     };
-    CTATTreeNode.prototype.multiplyOne = function(marked) {
+    CTATAlgebraTreeNode.prototype.spreadIdentity = function() {
+      return this;
+    };
+    CTATAlgebraTreeNode.prototype.stripIdentity = function() {
+      return this;
+    };
+    CTATAlgebraTreeNode.prototype.multiplyOne = function(marked) {
       if (marked == null) {
         marked = false;
       }
       return (new CTATMultiplicationNode("TIMES", [new CTATConstantNode(1, marked), this])).popNegation().pushNegation();
     };
-    CTATTreeNode.prototype.powerOne = function(marked) {
+    CTATAlgebraTreeNode.prototype.powerOne = function(marked) {
       if (marked == null) {
         marked = false;
       }
       return (new CTATPowerNode("EXP", this, new CTATConstantNode(1, marked))).popInversion().pushInversion().popNegation();
     };
-    CTATTreeNode.prototype.compare = function(node, reverse) {
-      return CTATTreeNode.operatorPrecedence(this.operator, node.operator);
+    CTATAlgebraTreeNode.prototype.findGroup = function(groups, pair) {
+      return groups.find(function(group) {
+        var ref, ref1;
+        return ((ref = group[0]) != null ? ref.equals(pair[0]) : void 0) || group[0] === (ref1 = pair[0]) && ref1 === null;
+      });
     };
-    CTATTreeNode.prototype.compareSigns = function(node, reverse) {
+    CTATAlgebraTreeNode.prototype.compare = function(node, reverse) {
+      return CTATAlgebraTreeNode.operatorPrecedence(this.operator, node.operator);
+    };
+    CTATAlgebraTreeNode.prototype.compareSigns = function(node, reverse) {
       return (Math.sign(this.sign - node.sign) || Math.sign(this.exp - node.exp)) * reverse;
     };
-    CTATTreeNode.prototype.countVariables = function() {
+    CTATAlgebraTreeNode.prototype.countVariables = function() {
       return 0;
     };
-    CTATTreeNode.prototype.pushNegation = function() {
+    CTATAlgebraTreeNode.prototype.pushNegation = function() {
       return this;
     };
-    CTATTreeNode.prototype.popNegation = function() {
+    CTATAlgebraTreeNode.prototype.popNegation = function() {
       return this;
     };
-    CTATTreeNode.prototype.pushInversion = function() {
+    CTATAlgebraTreeNode.prototype.pushInversion = function() {
       return this;
     };
-    CTATTreeNode.prototype.popInversion = function() {
+    CTATAlgebraTreeNode.prototype.popInversion = function() {
       return this;
     };
-    CTATTreeNode.prototype.negate = function() {
+    CTATAlgebraTreeNode.prototype.negate = function() {
       this.sign = -this.sign;
       return this;
     };
-    CTATTreeNode.prototype.invert = function() {
+    CTATAlgebraTreeNode.prototype.invert = function() {
       this.exp = -this.exp;
       return this;
     };
-    CTATTreeNode.prototype.addition = function() {
+    CTATAlgebraTreeNode.prototype.addition = function() {
       return this.operator === "PLUS";
     };
-    CTATTreeNode.prototype.subtraction = function() {
+    CTATAlgebraTreeNode.prototype.subtraction = function() {
       return this.operator === "MINUS";
     };
-    CTATTreeNode.prototype.multiplication = function() {
+    CTATAlgebraTreeNode.prototype.multiplication = function() {
       return this.operator === "TIMES";
     };
-    CTATTreeNode.prototype.division = function() {
+    CTATAlgebraTreeNode.prototype.division = function() {
       return this.operator === "DIVIDE";
     };
-    CTATTreeNode.prototype.intDivision = function() {
+    CTATAlgebraTreeNode.prototype.intDivision = function() {
       return this.operator === "IDIVIDE";
     };
-    CTATTreeNode.prototype.power = function() {
+    CTATAlgebraTreeNode.prototype.power = function() {
       return this.operator === "EXP";
     };
-    CTATTreeNode.prototype.root = function() {
+    CTATAlgebraTreeNode.prototype.root = function() {
       return this.operator === "ROOT";
     };
-    CTATTreeNode.prototype.negation = function() {
+    CTATAlgebraTreeNode.prototype.negation = function() {
       return this.operator === "UMINUS";
     };
-    CTATTreeNode.prototype.unary = function() {
+    CTATAlgebraTreeNode.prototype.unary = function() {
       var ref;
       return (ref = this.operator) === "UPLUS" || ref === "UMINUS";
     };
-    CTATTreeNode.prototype.constant = function(value) {
+    CTATAlgebraTreeNode.prototype.constant = function(value) {
       return false;
     };
-    CTATTreeNode.prototype.integer = function() {
+    CTATAlgebraTreeNode.prototype.unknown = function() {
       return false;
     };
-    CTATTreeNode.prototype.negated = function() {
+    CTATAlgebraTreeNode.prototype.integer = function() {
+      return false;
+    };
+    CTATAlgebraTreeNode.prototype.negated = function() {
       return this.sign < 0;
     };
-    CTATTreeNode.prototype.inverted = function() {
+    CTATAlgebraTreeNode.prototype.inverted = function() {
       return this.exp < 0;
     };
-    CTATTreeNode.prototype.parented = function() {
+    CTATAlgebraTreeNode.prototype.parented = function() {
       return this.parens > 0;
     };
-    CTATTreeNode.prototype.even = function() {
+    CTATAlgebraTreeNode.prototype.even = function() {
       return false;
     };
-    return CTATTreeNode;
+    return CTATAlgebraTreeNode;
   }();
   if (typeof module !== "undefined" && module !== null) {
-    module.exports = CTATTreeNode;
+    module.exports = CTATAlgebraTreeNode;
   } else {
-    this.CTATTreeNode = CTATTreeNode;
+    this.CTATAlgebraTreeNode = CTATAlgebraTreeNode;
   }
 }).call(this);
 goog.provide("CTATRelationNode");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
   var CTATRelationNode, extend = function(child, parent) {
     for (var key in parent) {
@@ -19699,34 +18653,90 @@ goog.require("CTATTreeNode");
   }, hasProp = {}.hasOwnProperty;
   CTATRelationNode = function(superClass) {
     extend(CTATRelationNode, superClass);
-    function CTATRelationNode(operator, left, right1, parens, sign, exp) {
-      this.operator = operator;
+    function CTATRelationNode(operator1, left, right, parens, sign, exp) {
+      this.operator = operator1;
       this.left = left;
-      this.right = right1;
+      this.right = right;
       this.parens = parens != null ? parens : 0;
       this.sign = sign != null ? sign : 1;
       this.exp = exp != null ? exp : 1;
     }
-    CTATRelationNode.prototype.clone = function() {
-      return new CTATRelationNode(this.operator, this.left.clone(), this.right.clone(), this.parens, this.sign, this.exp);
+    CTATRelationNode.prototype.clone = function(deep) {
+      if (deep == null) {
+        deep = true;
+      }
+      return new CTATRelationNode(this.operator, deep ? this.left.clone() : this.left, deep ? this.right.clone() : this.right, this.parens, this.sign, this.exp);
     };
-    CTATRelationNode.prototype.toString = function() {
-      this.left.setParens(this.operator);
-      this.right.setParens(this.operator);
-      return CTATRelationNode.__super__.toString.call(this, "" + this.left.toString() + CTATTreeNode.toOperatorString(this.operator) + this.right.toString());
+    CTATRelationNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
+      return CTATRelationNode.__super__.toString.call(this, "" + this.left.toString(this.operator) + CTATAlgebraTreeNode.toOperatorString(this.operator) + this.right.toString(this.operator), operator, other);
     };
-    CTATRelationNode.prototype.evaluate = function() {
-      var right;
-      return this.applyOperator(this.left.evaluate(), right = this.right.evaluate());
+    CTATRelationNode.prototype.addPaths = function(path) {
+      this.left.addPaths(path.concat(["left"]));
+      this.right.addPaths(path.concat(["right"]));
+      return CTATRelationNode.__super__.addPaths.apply(this, arguments);
+    };
+    CTATRelationNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      return this.applyOperator(this.left.evaluate(bindings), this.right.evaluate(bindings));
     };
     CTATRelationNode.prototype.equals = function(node) {
       return CTATRelationNode.__super__.equals.call(this, node) && this.left.equals(node.left) && this.right.equals(node.right);
     };
-    CTATRelationNode.prototype.simplify = function(methods) {
-      this.methods = methods;
-      this.left = this.left.simplify(this.methods);
-      this.right = this.right.simplify(this.methods);
-      return CTATRelationNode.__super__.simplify.apply(this, arguments);
+    CTATRelationNode.prototype.countOperands = function() {
+      return 2;
+    };
+    CTATRelationNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return this.operator;
+    };
+    CTATRelationNode.prototype.getOperators = function(top) {
+      if (top == null) {
+        top = false;
+      }
+      return this.left.getOperators().concat(this.getOperator(), this.right.getOperators());
+    };
+    CTATRelationNode.prototype.getVariables = function() {
+      return this.left.getVariables().concat(this.right.getVariables());
+    };
+    CTATRelationNode.prototype.getOperands = function() {
+      return [this.left, this.right];
+    };
+    CTATRelationNode.prototype.findExpression = function(expression, path) {
+      return this.left.findExpression(expression, path.concat(["left"])).concat(CTATRelationNode.__super__.findExpression.call(this, expression, path), this.right.findExpression(expression, path.concat(["right"])));
+    };
+    CTATRelationNode.prototype.applyRules = function(rules, global) {
+      this.rules = rules;
+      if (global == null) {
+        global = true;
+      }
+      if (global) {
+        this.left = this.left.applyRules(this.rules);
+        this.right = this.right.applyRules(this.rules);
+      }
+      return CTATRelationNode.__super__.applyRules.apply(this, arguments);
+    };
+    CTATRelationNode.prototype.removeNull = function() {
+      var ref, ref1;
+      this.left = (ref = this.left) != null ? ref.removeNull() : void 0;
+      this.right = (ref1 = this.right) != null ? ref1.removeNull() : void 0;
+      if (this.left != null && this.right != null) {
+        return this;
+      } else {
+        return this.left || this.right || null;
+      }
     };
     CTATRelationNode.prototype.computeConstants = function() {
       if (this.left.constant() && this.right.constant()) {
@@ -19760,7 +18770,7 @@ goog.require("CTATTreeNode");
       return this.left.countVariables() + this.right.countVariables();
     };
     return CTATRelationNode;
-  }(CTATTreeNode);
+  }(CTATAlgebraTreeNode);
   if (typeof module !== "undefined" && module !== null) {
     module.exports = CTATRelationNode;
   } else {
@@ -19768,7 +18778,7 @@ goog.require("CTATTreeNode");
   }
 }).call(this);
 goog.provide("CTATAdditionNode");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
   var CTATAdditionNode, extend = function(child, parent) {
     for (var key in parent) {
@@ -19786,30 +18796,49 @@ goog.require("CTATTreeNode");
   }, hasProp = {}.hasOwnProperty;
   CTATAdditionNode = function(superClass) {
     extend(CTATAdditionNode, superClass);
-    function CTATAdditionNode(operator, terms1, parens, sign, exp) {
-      this.operator = operator;
+    function CTATAdditionNode(operator1, terms1, parens, sign, exp) {
+      this.operator = operator1;
       this.terms = terms1;
       this.parens = parens != null ? parens : 0;
       this.sign = sign != null ? sign : 1;
       this.exp = exp != null ? exp : 1;
     }
-    CTATAdditionNode.prototype.clone = function() {
-      return new CTATAdditionNode(this.operator, this.terms.map(function(term) {
+    CTATAdditionNode.prototype.clone = function(deep) {
+      if (deep == null) {
+        deep = true;
+      }
+      return new CTATAdditionNode(this.operator, deep ? this.terms.map(function(term) {
         return term.clone();
-      }), this.parens, this.sign, this.exp);
+      }) : this.terms, this.parens, this.sign, this.exp);
     };
-    CTATAdditionNode.prototype.toString = function() {
+    CTATAdditionNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
       return CTATAdditionNode.__super__.toString.call(this, this.terms.reduce(function(_this) {
         return function(result, term) {
-          term.setParens(_this.operator);
-          return "" + result + (result && !term.negated() ? "+" : "") + term.toString();
+          var oper;
+          oper = result && !term.negated() ? _this.operator : "";
+          return "" + result + CTATAlgebraTreeNode.toOperatorString(oper) + term.toString(_this.operator);
         };
-      }(this)));
+      }(this), ""), operator, other);
     };
-    CTATAdditionNode.prototype.evaluate = function() {
+    CTATAdditionNode.prototype.addPaths = function(path) {
+      this.terms.forEach(function(term, index) {
+        return term.addPaths(path.concat([["terms", index]]));
+      });
+      return CTATAdditionNode.__super__.addPaths.apply(this, arguments);
+    };
+    CTATAdditionNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
       return CTATAdditionNode.__super__.evaluate.call(this, this.terms.reduce(function(_this) {
         return function(result, term) {
-          return _this.applyOperator(result, term.evaluate());
+          return _this.applyOperator(result, term.evaluate(bindings));
         };
       }(this), 0));
     };
@@ -19818,14 +18847,107 @@ goog.require("CTATTreeNode");
         return term.equals(node.terms[index]);
       });
     };
-    CTATAdditionNode.prototype.simplify = function(methods) {
-      this.methods = methods;
-      this.terms = this.terms.map(function(_this) {
-        return function(term) {
-          return term.simplify(_this.methods);
+    CTATAdditionNode.prototype.subEquals = function(node, start) {
+      return this.operator === node.operator && !node.negated() && this.terms.length >= node.terms.length && node.terms.every(function(_this) {
+        return function(term, index) {
+          return term.equals(_this.terms[start + index]);
         };
       }(this));
-      return CTATAdditionNode.__super__.simplify.apply(this, arguments);
+    };
+    CTATAdditionNode.prototype.subNode = function(start, end) {
+      console.log(start, end);
+      if (start != null) {
+        return Object.assign(this.clone(false), {terms:this.terms.slice(start, end)});
+      } else {
+        return this;
+      }
+    };
+    CTATAdditionNode.prototype.countOperands = function() {
+      return this.terms.length;
+    };
+    CTATAdditionNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return top && CTATAdditionNode.__super__.getOperator.apply(this, arguments) || index != null && this.terms[index].negated() && "MINUS" || this.operator;
+    };
+    CTATAdditionNode.prototype.getOperators = function(top) {
+      if (top == null) {
+        top = false;
+      }
+      return this.terms.slice(1).reduce(function(_this) {
+        return function(result, term, index) {
+          return result.concat(_this.getOperator(top, index + 1), term.getOperators());
+        };
+      }(this), this.terms[0].getOperators());
+    };
+    CTATAdditionNode.prototype.getVariables = function() {
+      return this.terms.slice(1).reduce(function(_this) {
+        return function(result, term) {
+          return result.concat(term.getVariables());
+        };
+      }(this), this.terms[0].getVariables());
+    };
+    CTATAdditionNode.prototype.getOperands = function() {
+      return this.terms.slice(0);
+    };
+    CTATAdditionNode.prototype.findExpression = function(expression, path) {
+      return this.terms.slice(1).reduce(function(_this) {
+        return function(result, term, index) {
+          return result.concat(CTATAdditionNode.__super__.findExpression.call(_this, expression, path, index), term.findExpression(expression, path.concat([["terms", index + 1]])));
+        };
+      }(this), this.terms[0].findExpression(expression, path.concat([["terms", 0]])));
+    };
+    CTATAdditionNode.prototype.applyRules = function(rules, global) {
+      this.rules = rules;
+      if (global == null) {
+        global = true;
+      }
+      if (global) {
+        this.terms = this.terms.map(function(_this) {
+          return function(term) {
+            return term.applyRules(_this.rules);
+          };
+        }(this));
+      }
+      return CTATAdditionNode.__super__.applyRules.apply(this, arguments);
+    };
+    CTATAdditionNode.prototype.removeNull = function() {
+      this.terms = this.terms.map(function(term) {
+        return term != null ? term.removeNull() : void 0;
+      }).filter(function(term) {
+        return term;
+      });
+      if (this.terms.length > 1) {
+        return this;
+      } else {
+        return this.terms[0] || null;
+      }
+    };
+    CTATAdditionNode.prototype.checkIndices = function(indices) {
+      var length;
+      length = this.terms.length;
+      return indices.every(function(index, position) {
+        return index == null || 0 <= index && index < length && indices.indexOf(index) === position;
+      });
+    };
+    CTATAdditionNode.prototype.selectOperands = function(indices) {
+      return Object.assign(this.clone(false), {terms:this.terms.filter(function(_, index) {
+        return indices.includes(index);
+      })});
+    };
+    CTATAdditionNode.prototype.replaceOperands = function(expression, index, indices) {
+      var ref, result;
+      (result = this.clone(false)).terms = this.terms.slice(0);
+      [].splice.apply(result.terms, [index, index - index + 1].concat(ref = expression.operator === "PLUS" ? expression.terms : expression)), ref;
+      indices.forEach(function(index) {
+        var ref1;
+        return [].splice.apply(result.terms, [index, index - index + 1].concat(ref1 = [])), ref1;
+      });
+      return result;
     };
     CTATAdditionNode.prototype.simpleFlatten = function() {
       if (this.terms[0].negation() && !this.terms[0].inverted()) {
@@ -19846,7 +18968,7 @@ goog.require("CTATTreeNode");
       return this;
     };
     CTATAdditionNode.prototype.flatten = function() {
-      this.simpleFlatten();
+      CTATAdditionNode.__super__.flatten.apply(this, arguments);
       return this.pushNegation();
     };
     CTATAdditionNode.prototype.computeConstants = function() {
@@ -19861,7 +18983,7 @@ goog.require("CTATTreeNode");
         if (constant === 0 && this.terms.length > 1) {
           this.terms.splice(constantIndex, 1);
         } else {
-          this.terms[constantIndex].set(constant);
+          this.terms[constantIndex] = new CTATConstantNode(constant);
         }
       }
       if (this.terms.length > 1) {
@@ -19873,18 +18995,17 @@ goog.require("CTATTreeNode");
     CTATAdditionNode.prototype.combineSimilar = function() {
       var groups;
       groups = [];
-      this.terms.forEach(function(term) {
-        var group, splitPair;
-        splitPair = term.constant() ? [null, term] : (term = term.multiplyOne(), [term, term.factors.shift()]);
-        if (group = groups.find(function(group) {
-          var ref;
-          return (ref = group[0]) != null ? ref.equals(splitPair[0]) : void 0;
-        })) {
-          return group[1] += splitPair[1].evaluate();
-        } else {
-          return groups.push([splitPair[0], splitPair[1].evaluate()]);
-        }
-      });
+      this.terms.forEach(function(_this) {
+        return function(term) {
+          var group, ref, splitPair;
+          splitPair = term.constant() ? [null, term] : (term = term.multiplyOne(), [term, term.factors.shift()]);
+          if (!((ref = splitPair[0]) != null ? ref.unknown() : void 0) && (group = _this.findGroup(groups, splitPair))) {
+            return group[1] += splitPair[1].evaluate();
+          } else {
+            return groups.push([splitPair[0], splitPair[1].evaluate()]);
+          }
+        };
+      }(this));
       this.terms = groups.reduce(function(result, group) {
         if (group[1] !== 0) {
           group[1] = (new CTATConstantNode(group[1])).popNegation();
@@ -19978,13 +19099,18 @@ goog.require("CTATTreeNode");
       }
       return this;
     };
+    CTATAdditionNode.prototype.unknown = function() {
+      return this.terms.some(function(term) {
+        return term.unknown();
+      });
+    };
     CTATAdditionNode.prototype.even = function() {
       return !this.inverted && this.terms.every(function(term) {
         return term.even();
       });
     };
     return CTATAdditionNode;
-  }(CTATTreeNode);
+  }(CTATAlgebraTreeNode);
   if (typeof module !== "undefined" && module !== null) {
     module.exports = CTATAdditionNode;
   } else {
@@ -19992,7 +19118,7 @@ goog.require("CTATTreeNode");
   }
 }).call(this);
 goog.provide("CTATMultiplicationNode");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
   var CTATMultiplicationNode, extend = function(child, parent) {
     for (var key in parent) {
@@ -20017,24 +19143,49 @@ goog.require("CTATTreeNode");
       this.sign = sign != null ? sign : 1;
       this.exp = exp != null ? exp : 1;
     }
-    CTATMultiplicationNode.prototype.clone = function() {
-      return new CTATMultiplicationNode(this.operator, this.factors.map(function(factor) {
+    CTATMultiplicationNode.prototype.clone = function(deep) {
+      if (deep == null) {
+        deep = true;
+      }
+      return new CTATMultiplicationNode(this.operator, deep ? this.factors.map(function(factor) {
         return factor.clone();
-      }), this.parens, this.sign, this.exp);
+      }) : this.factors, this.parens, this.sign, this.exp);
     };
-    CTATMultiplicationNode.prototype.toString = function() {
+    CTATMultiplicationNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
       return CTATMultiplicationNode.__super__.toString.call(this, this.factors.reduce(function(_this) {
         return function(result, factor) {
-          var factorString, operator;
-          operator = factor.inverted() ? (factor.invert(), factor.setParens("DIVIDE", !!result), factorString = factor.toString(), factor.invert(), "/") : (factor.setParens(_this.operator, !!result), /^[\d+-]/.test(factorString = factor.toString()) && /\d$/.test(result) ? "*" : "");
-          return "" + result + operator + factorString;
+          var factorString, oper;
+          if (factor.inverted()) {
+            factor.invert();
+            factorString = factor.toString("DIVIDE", result);
+            factor.invert();
+          } else {
+            factorString = factor.toString(_this.operator, result);
+          }
+          oper = !result ? "" : factor.inverted() ? "DIVIDE" : _this.operator === "DIVIDE" || /^[\d+-]/.test(factorString) && /\d$/.test(result) ? _this.operator : "";
+          return "" + result + CTATAlgebraTreeNode.toOperatorString(oper) + factorString;
         };
-      }(this), this.factors[0].inverted() ? "1" : ""));
+      }(this), this.operator === "TIMES" && this.factors[0].inverted() ? "1" : ""), operator, other);
     };
-    CTATMultiplicationNode.prototype.evaluate = function() {
+    CTATMultiplicationNode.prototype.addPaths = function(path) {
+      this.factors.forEach(function(factor, index) {
+        return factor.addPaths(path.concat([["factors", index]]));
+      });
+      return CTATMultiplicationNode.__super__.addPaths.apply(this, arguments);
+    };
+    CTATMultiplicationNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
       return CTATMultiplicationNode.__super__.evaluate.call(this, this.factors.reduce(function(_this) {
         return function(result, factor) {
-          return _this.applyOperator(result, factor.evaluate());
+          return _this.applyOperator(result, factor.evaluate(bindings));
         };
       }(this), 1));
     };
@@ -20043,14 +19194,107 @@ goog.require("CTATTreeNode");
         return factor.equals(node.factors[index]);
       });
     };
-    CTATMultiplicationNode.prototype.simplify = function(methods1) {
-      this.methods = methods1;
-      this.factors = this.factors.map(function(_this) {
-        return function(factor) {
-          return factor.simplify(_this.methods);
+    CTATMultiplicationNode.prototype.subEquals = function(node, start) {
+      return this.operator === node.operator && !node.inverted() && this.factors.length >= node.factors.length && node.factors.every(function(_this) {
+        return function(factor, index) {
+          return factor.equals(_this.factors[start + index]);
         };
       }(this));
-      return CTATMultiplicationNode.__super__.simplify.apply(this, arguments);
+    };
+    CTATMultiplicationNode.prototype.subNode = function(start, end) {
+      console.log(start, end);
+      if (start != null) {
+        return Object.assign(this.clone(false), {factors:this.factors.slice(start, end)});
+      } else {
+        return this;
+      }
+    };
+    CTATMultiplicationNode.prototype.countOperands = function() {
+      return this.factors.length;
+    };
+    CTATMultiplicationNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return top && CTATMultiplicationNode.__super__.getOperator.apply(this, arguments) || index != null && this.factors[index].inverted() && "DIVIDE" || this.operator;
+    };
+    CTATMultiplicationNode.prototype.getOperators = function(top) {
+      if (top == null) {
+        top = false;
+      }
+      return this.factors.slice(1).reduce(function(_this) {
+        return function(result, factor, index) {
+          return result.concat(_this.getOperator(top, index + 1), factor.getOperators());
+        };
+      }(this), this.factors[0].getOperators());
+    };
+    CTATMultiplicationNode.prototype.getVariables = function() {
+      return this.factors.slice(1).reduce(function(_this) {
+        return function(result, factor) {
+          return result.concat(factor.getVariables());
+        };
+      }(this), this.factors[0].getVariables());
+    };
+    CTATMultiplicationNode.prototype.getOperands = function() {
+      return this.factors.slice(0);
+    };
+    CTATMultiplicationNode.prototype.findExpression = function(expression, path) {
+      return this.factors.slice(1).reduce(function(_this) {
+        return function(result, factor, index) {
+          return result.concat(CTATMultiplicationNode.__super__.findExpression.call(_this, expression, path, index), factor.findExpression(expression, path.concat([["factors", index + 1]])));
+        };
+      }(this), this.factors[0].findExpression(expression, path.concat([["factors", 0]])));
+    };
+    CTATMultiplicationNode.prototype.applyRules = function(rules1, global) {
+      this.rules = rules1;
+      if (global == null) {
+        global = true;
+      }
+      if (global) {
+        this.factors = this.factors.map(function(_this) {
+          return function(factor) {
+            return factor.applyRules(_this.rules);
+          };
+        }(this));
+      }
+      return CTATMultiplicationNode.__super__.applyRules.apply(this, arguments);
+    };
+    CTATMultiplicationNode.prototype.removeNull = function() {
+      this.factors = this.factors.map(function(factor) {
+        return factor != null ? factor.removeNull() : void 0;
+      }).filter(function(factor) {
+        return factor;
+      });
+      if (this.factors.length > 1) {
+        return this;
+      } else {
+        return this.factors[0] || null;
+      }
+    };
+    CTATMultiplicationNode.prototype.checkIndices = function(indices) {
+      var length;
+      length = this.factors.length;
+      return indices.every(function(index, position) {
+        return index == null || 0 <= index && index < length && indices.indexOf(index) === position;
+      });
+    };
+    CTATMultiplicationNode.prototype.selectOperands = function(indices) {
+      return Object.assign(this.clone(false), {factors:this.factors.filter(function(_, index) {
+        return indices.includes(index);
+      })});
+    };
+    CTATMultiplicationNode.prototype.replaceOperands = function(expression, index, indices) {
+      var ref, result;
+      (result = this.clone(false)).terms = this.factors.slice(0);
+      [].splice.apply(result.factors, [index, index - index + 1].concat(ref = expression.operator === "TIMES" ? expression.factors : expression)), ref;
+      indices.forEach(function(index) {
+        var ref1;
+        return [].splice.apply(result.factors, [index, index - index + 1].concat(ref1 = [])), ref1;
+      });
+      return result;
     };
     CTATMultiplicationNode.prototype.simpleFlatten = function() {
       if (this.division()) {
@@ -20068,7 +19312,7 @@ goog.require("CTATTreeNode");
       return this;
     };
     CTATMultiplicationNode.prototype.flatten = function() {
-      this.simpleFlatten();
+      CTATMultiplicationNode.__super__.flatten.apply(this, arguments);
       return this.popNegation();
     };
     CTATMultiplicationNode.prototype.computeConstants = function() {
@@ -20083,7 +19327,7 @@ goog.require("CTATTreeNode");
         if (constant === 1 && this.factors.length > 1) {
           this.factors.splice(constantIndex, 1);
         } else {
-          this.factors[constantIndex].set(constant);
+          this.factors[constantIndex] = new CTATConstantNode(constant);
         }
       }
       if (this.factors.length > 1) {
@@ -20095,18 +19339,17 @@ goog.require("CTATTreeNode");
     CTATMultiplicationNode.prototype.combineSimilar = function() {
       var groups;
       groups = [];
-      this.factors.forEach(function(factor) {
-        var group, ref, ref1, splitPair;
-        splitPair = factor.constant() ? [null, factor] : !factor.power() ? (factor = factor.powerOne(), [factor.base, factor.exponent]) : factor.exponent.constant() ? (factor.pushInversion(), [factor.base, factor.exponent]) : (factor.exponent = factor.exponent.multiplyOne(), [factor, factor.exponent.factors.shift()]);
-        if (group = groups.find(function(group) {
-          var ref;
-          return (ref = group[0]) != null ? ref.equals(splitPair[0]) : void 0;
-        })) {
-          return group[1] += ((ref = splitPair[1]) != null ? ref.evaluate() : void 0) || 1;
-        } else {
-          return groups.push([splitPair[0], ((ref1 = splitPair[1]) != null ? ref1.evaluate() : void 0) || 1]);
-        }
-      });
+      this.factors.forEach(function(_this) {
+        return function(factor) {
+          var group, ref, ref1, ref2, splitPair;
+          splitPair = factor.constant() ? [null, factor] : !factor.power() ? (factor = factor.powerOne(), [factor.base, factor.exponent]) : factor.exponent.constant() ? (factor.pushInversion(), [factor.base, factor.exponent]) : (factor.exponent = factor.exponent.multiplyOne(), [factor, factor.exponent.factors.shift()]);
+          if (!((ref = splitPair[0]) != null ? ref.unknown() : void 0) && (group = _this.findGroup(groups, splitPair))) {
+            return group[1] *= ((ref1 = splitPair[1]) != null ? ref1.evaluate() : void 0) || 1;
+          } else {
+            return groups.push([splitPair[0], ((ref2 = splitPair[1]) != null ? ref2.evaluate() : void 0) || 1]);
+          }
+        };
+      }(this));
       this.factors = groups.reduce(function(result, group) {
         if (group[1] !== 0) {
           group[1] = (new CTATConstantNode(group[1])).popNegation();
@@ -20260,11 +19503,11 @@ goog.require("CTATTreeNode");
       return terms;
     };
     CTATMultiplicationNode.prototype.packTerms = function(terms) {
-      var methods;
-      methods = CTATTreeNode.diff(this.methods, ["flatten", "distribute"]);
+      var rules;
+      rules = CTATAlgebraTreeNode.diff(this.rules, ["flatten", "distribute"]);
       return (new CTATAdditionNode("PLUS", terms.map(function(term) {
-        return (new CTATMultiplicationNode("TIMES", term)).popNegation().simplifyNode(methods);
-      }))).simplifyNode(methods);
+        return (new CTATMultiplicationNode("TIMES", term)).popNegation().applyRules(rules, false);
+      }))).applyRules(rules, false);
     };
     CTATMultiplicationNode.prototype.removeIdentity = function(marked) {
       var factors, zero;
@@ -20355,6 +19598,11 @@ goog.require("CTATTreeNode");
       }
       return this;
     };
+    CTATMultiplicationNode.prototype.unknown = function() {
+      return this.factors.some(function(factor) {
+        return factor.unknown();
+      });
+    };
     CTATMultiplicationNode.prototype.even = function() {
       return !this.inverted() && this.factors.every(function(factor) {
         return factor.integer();
@@ -20363,7 +19611,7 @@ goog.require("CTATTreeNode");
       });
     };
     return CTATMultiplicationNode;
-  }(CTATTreeNode);
+  }(CTATAlgebraTreeNode);
   if (typeof module !== "undefined" && module !== null) {
     module.exports = CTATMultiplicationNode;
   } else {
@@ -20371,7 +19619,7 @@ goog.require("CTATTreeNode");
   }
 }).call(this);
 goog.provide("CTATIntDivisionNode");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
   var CTATIntDivisionNode, extend = function(child, parent) {
     for (var key in parent) {
@@ -20389,33 +19637,90 @@ goog.require("CTATTreeNode");
   }, hasProp = {}.hasOwnProperty;
   CTATIntDivisionNode = function(superClass) {
     extend(CTATIntDivisionNode, superClass);
-    function CTATIntDivisionNode(operator, dividend, divisor1, parens, sign, exp) {
-      this.operator = operator;
+    function CTATIntDivisionNode(operator1, dividend, divisor1, parens, sign, exp) {
+      this.operator = operator1;
       this.dividend = dividend;
       this.divisor = divisor1;
       this.parens = parens != null ? parens : 0;
       this.sign = sign != null ? sign : 1;
       this.exp = exp != null ? exp : 1;
     }
-    CTATIntDivisionNode.prototype.clone = function() {
-      return new CTATIntDivisionNode(this.operator, this.dividend.clone(), this.divisor.clone(), this.parens, this.sign, this.exp);
+    CTATIntDivisionNode.prototype.clone = function(deep) {
+      if (deep == null) {
+        deep = true;
+      }
+      return new CTATIntDivisionNode(this.operator, deep ? this.dividend.clone() : this.dividend, deep ? this.divisor.clone() : this.divisor, this.parens, this.sign, this.exp);
     };
-    CTATIntDivisionNode.prototype.toString = function() {
-      this.dividend.setParens(this.operator);
-      this.divisor.setParens(this.operator, true);
-      return CTATIntDivisionNode.__super__.toString.call(this, "" + this.dividend.toString() + CTATTreeNode.toOperatorString(this.operator) + this.divisor.toString());
+    CTATIntDivisionNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
+      return CTATIntDivisionNode.__super__.toString.call(this, "" + this.dividend.toString(this.operator) + CTATAlgebraTreeNode.toOperatorString(this.operator) + this.divisor.toString(this.operator), operator, other);
     };
-    CTATIntDivisionNode.prototype.evaluate = function() {
-      return CTATIntDivisionNode.__super__.evaluate.call(this, this.applyOperator(this.dividend.evaluate(), this.divisor.evaluate()));
+    CTATIntDivisionNode.prototype.addPaths = function(path) {
+      this.dividend.addPaths(path.concat(["dividend"]));
+      this.divisor.addPaths(path.concat(["divisor"]));
+      return CTATIntDivisionNode.__super__.addPaths.apply(this, arguments);
+    };
+    CTATIntDivisionNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      return CTATIntDivisionNode.__super__.evaluate.call(this, this.applyOperator(this.dividend.evaluate(bindings), this.divisor.evaluate(bindings)));
     };
     CTATIntDivisionNode.prototype.equals = function(node) {
       return CTATIntDivisionNode.__super__.equals.call(this, node) && this.dividend.equals(node.dividend) && this.divisor.equals(node.divisor);
     };
-    CTATIntDivisionNode.prototype.simplify = function(methods) {
-      this.methods = methods;
-      this.dividend = this.dividend.simplify(this.methods);
-      this.divisor = this.divisor.simplify(this.methods);
-      return CTATIntDivisionNode.__super__.simplify.apply(this, arguments);
+    CTATIntDivisionNode.prototype.countOperands = function() {
+      return 2;
+    };
+    CTATIntDivisionNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return top && CTATIntDivisionNode.__super__.getOperator.apply(this, arguments) || this.operator;
+    };
+    CTATIntDivisionNode.prototype.getOperators = function(top) {
+      if (top == null) {
+        top = false;
+      }
+      return this.dividend.getOperators().concat(this.getOperator(top), this.divisor.getOperators());
+    };
+    CTATIntDivisionNode.prototype.getVariables = function() {
+      return this.dividend.getVariables().concat(this.divisor.getVariables());
+    };
+    CTATIntDivisionNode.prototype.getOperands = function() {
+      return [this.dividend, this.divisor];
+    };
+    CTATIntDivisionNode.prototype.findExpression = function(expression, path) {
+      return this.dividend.findExpression(expression, path.concat(["dividend"])).concat(CTATIntDivisionNode.__super__.findExpression.call(this, expression, path), this.divisor.findExpression(expression, path.concat(["divisor"])));
+    };
+    CTATIntDivisionNode.prototype.applyRules = function(rules, global) {
+      this.rules = rules;
+      if (global == null) {
+        global = true;
+      }
+      if (global) {
+        this.dividend = this.dividend.applyRules(this.rules);
+        this.divisor = this.divisor.applyRules(this.rules);
+      }
+      return CTATIntDivisionNode.__super__.applyRules.apply(this, arguments);
+    };
+    CTATIntDivisionNode.prototype.removeNull = function() {
+      var ref, ref1;
+      this.dividend = (ref = this.dividend) != null ? ref.removeNull() : void 0;
+      this.divisor = (ref1 = this.divisor) != null ? ref1.removeNull() : void 0;
+      if (this.dividend != null && this.divisor != null) {
+        return this;
+      } else {
+        return this.dividend || this.divisor || null;
+      }
     };
     CTATIntDivisionNode.prototype.computeConstants = function() {
       if (this.dividend.constant() && this.divisor.constant()) {
@@ -20466,11 +19771,14 @@ goog.require("CTATTreeNode");
       }
       return this;
     };
+    CTATIntDivisionNode.prototype.unknown = function() {
+      return this.dividend.unknown() || this.divisor.unknown();
+    };
     CTATIntDivisionNode.prototype.even = function() {
       return !this.inverted && this.operator === "REM" && this.dividend.even() && this.divisor.even();
     };
     return CTATIntDivisionNode;
-  }(CTATTreeNode);
+  }(CTATAlgebraTreeNode);
   if (typeof module !== "undefined" && module !== null) {
     module.exports = CTATIntDivisionNode;
   } else {
@@ -20478,7 +19786,7 @@ goog.require("CTATTreeNode");
   }
 }).call(this);
 goog.provide("CTATUnaryNode");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
   var CTATUnaryNode, extend = function(child, parent) {
     for (var key in parent) {
@@ -20496,32 +19804,89 @@ goog.require("CTATTreeNode");
   }, hasProp = {}.hasOwnProperty;
   CTATUnaryNode = function(superClass) {
     extend(CTATUnaryNode, superClass);
-    function CTATUnaryNode(operator, base, parens, sign, exp) {
-      this.operator = operator;
+    function CTATUnaryNode(operator1, base, parens, sign, exp) {
+      this.operator = operator1;
       this.base = base;
       this.parens = parens != null ? parens : 0;
       this.sign = sign != null ? sign : 1;
       this.exp = exp != null ? exp : 1;
     }
-    CTATUnaryNode.prototype.clone = function() {
-      return new CTATUnaryNode(this.operator, this.base, this.parens, this.sign, this.exp);
+    CTATUnaryNode.prototype.clone = function(deep) {
+      if (deep == null) {
+        deep = true;
+      }
+      return new CTATUnaryNode(this.operator, deep ? this.base.clone() : this.base, this.parens, this.sign, this.exp);
     };
-    CTATUnaryNode.prototype.toString = function() {
-      this.base.setParens(this.operator);
-      return CTATUnaryNode.__super__.toString.call(this, "" + CTATTreeNode.toOperatorString(this.operator) + this.base.toString());
+    CTATUnaryNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
+      return CTATUnaryNode.__super__.toString.call(this, "" + CTATAlgebraTreeNode.toOperatorString(this.operator) + this.base.toString(this.operator), operator, other);
     };
-    CTATUnaryNode.prototype.evaluate = function() {
-      return CTATUnaryNode.__super__.evaluate.call(this, this.applyOperator(this.base.evaluate()));
+    CTATUnaryNode.prototype.addPaths = function(path) {
+      this.base.addPaths(path.concat(["base"]));
+      return CTATUnaryNode.__super__.addPaths.apply(this, arguments);
+    };
+    CTATUnaryNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      return CTATUnaryNode.__super__.evaluate.call(this, this.applyOperator(this.base.evaluate(bindings)));
     };
     CTATUnaryNode.prototype.equals = function(node) {
       return CTATUnaryNode.__super__.equals.call(this, node) && this.base.equals(node.base);
     };
-    CTATUnaryNode.prototype.simplify = function(methods) {
-      this.methods = methods;
-      this.base = this.base.simplify(this.methods);
-      return CTATUnaryNode.__super__.simplify.apply(this, arguments);
+    CTATUnaryNode.prototype.countOperands = function() {
+      return 1;
+    };
+    CTATUnaryNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return top && CTATUnaryNode.__super__.getOperator.apply(this, arguments) || this.operator;
+    };
+    CTATUnaryNode.prototype.getOperators = function(top) {
+      if (top == null) {
+        top = false;
+      }
+      return [this.getOperator(top)].concat(this.base.getOperators());
+    };
+    CTATUnaryNode.prototype.getVariables = function() {
+      return this.base.getVariables();
+    };
+    CTATUnaryNode.prototype.getOperands = function() {
+      return [this.base];
+    };
+    CTATUnaryNode.prototype.findExpression = function(expression, path) {
+      return this.base.findExpression(expression, path.concat(["base"])).concat(CTATUnaryNode.__super__.findExpression.call(this, expression, path));
+    };
+    CTATUnaryNode.prototype.applyRules = function(rules, global) {
+      this.rules = rules;
+      if (global == null) {
+        global = true;
+      }
+      if (global) {
+        this.base = this.base.applyRules(this.rules);
+      }
+      return CTATUnaryNode.__super__.applyRules.apply(this, arguments);
+    };
+    CTATUnaryNode.prototype.removeNull = function() {
+      var ref;
+      this.base = (ref = this.base) != null ? ref.removeNull() : void 0;
+      if (this.base != null) {
+        return this;
+      } else {
+        return null;
+      }
     };
     CTATUnaryNode.prototype.flatten = function() {
+      CTATUnaryNode.__super__.flatten.apply(this, arguments);
       if (this.negation()) {
         this.negate();
         this.operator = "UPLUS";
@@ -20554,8 +19919,11 @@ goog.require("CTATTreeNode");
       }
       return this.base.constant(value, marked);
     };
+    CTATUnaryNode.prototype.unknown = function() {
+      return this.base.unknown();
+    };
     return CTATUnaryNode;
-  }(CTATTreeNode);
+  }(CTATAlgebraTreeNode);
   if (typeof module !== "undefined" && module !== null) {
     module.exports = CTATUnaryNode;
   } else {
@@ -20563,7 +19931,7 @@ goog.require("CTATTreeNode");
   }
 }).call(this);
 goog.provide("CTATPowerNode");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
   var CTATPowerNode, extend = function(child, parent) {
     for (var key in parent) {
@@ -20581,50 +19949,108 @@ goog.require("CTATTreeNode");
   }, hasProp = {}.hasOwnProperty;
   CTATPowerNode = function(superClass) {
     extend(CTATPowerNode, superClass);
-    function CTATPowerNode(operator, base1, exponent1, parens, sign, exp) {
-      this.operator = operator;
+    function CTATPowerNode(operator1, base1, exponent1, parens, sign, exp) {
+      this.operator = operator1;
       this.base = base1;
       this.exponent = exponent1;
       this.parens = parens != null ? parens : 0;
       this.sign = sign != null ? sign : 1;
       this.exp = exp != null ? exp : 1;
     }
-    CTATPowerNode.prototype.clone = function() {
-      return new CTATPowerNode(this.operator, this.base.clone(), this.exponent.clone(), this.parens, this.sign, this.exp);
+    CTATPowerNode.prototype.clone = function(deep) {
+      if (deep == null) {
+        deep = true;
+      }
+      return new CTATPowerNode(this.operator, deep ? this.base.clone() : this.base, deep ? this.exponent.clone() : this.exponent, this.parens, this.sign, this.exp);
     };
-    CTATPowerNode.prototype.toString = function() {
-      this.base.setParens(this.operator);
-      this.exponent.setParens(this.operator);
-      return CTATPowerNode.__super__.toString.call(this, "" + this.base.toString() + CTATTreeNode.toOperatorString(this.operator) + this.exponent.toString());
+    CTATPowerNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
+      return CTATPowerNode.__super__.toString.call(this, "" + this.base.toString(this.operator) + CTATAlgebraTreeNode.toOperatorString(this.operator) + this.exponent.toString(this.operator), operator, other);
     };
-    CTATPowerNode.prototype.evaluate = function() {
-      return CTATPowerNode.__super__.evaluate.call(this, this.applyOperator(this.base.evaluate(), this.exponent.evaluate()));
+    CTATPowerNode.prototype.addPaths = function(path) {
+      this.base.addPaths(path.concat(["base"]));
+      this.exponent.addPaths(path.concat(["exponent"]));
+      return CTATPowerNode.__super__.addPaths.apply(this, arguments);
+    };
+    CTATPowerNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      return CTATPowerNode.__super__.evaluate.call(this, this.applyOperator(this.base.evaluate(bindings), this.exponent.evaluate(bindings)));
     };
     CTATPowerNode.prototype.equals = function(node) {
       return CTATPowerNode.__super__.equals.call(this, node) && this.base.equals(node.base) && this.exponent.equals(node.exponent);
     };
-    CTATPowerNode.prototype.simplify = function(methods1) {
-      this.methods = methods1;
-      this.base = this.base.simplify(this.methods);
-      this.exponent = this.exponent.simplify(this.methods);
-      return CTATPowerNode.__super__.simplify.apply(this, arguments);
+    CTATPowerNode.prototype.countOperands = function() {
+      return 2;
+    };
+    CTATPowerNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return top && CTATPowerNode.__super__.getOperator.apply(this, arguments) || this.operator;
+    };
+    CTATPowerNode.prototype.getOperators = function(top) {
+      if (top == null) {
+        top = false;
+      }
+      return this.base.getOperators().concat(this.getOperator(top), this.exponent.getOperators());
+    };
+    CTATPowerNode.prototype.getVariables = function() {
+      return this.base.getVariables().concat(this.exponent.getVariables());
+    };
+    CTATPowerNode.prototype.getOperands = function() {
+      return [this.base, this.exponent];
+    };
+    CTATPowerNode.prototype.findExpression = function(expression, path) {
+      return this.base.findExpression(expression, path.concat(["base"])).concat(CTATPowerNode.__super__.findExpression.call(this, expression, path), this.exponent.findExpression(expression, path.concat(["exponent"])));
+    };
+    CTATPowerNode.prototype.applyRules = function(rules1, global) {
+      this.rules = rules1;
+      if (global == null) {
+        global = true;
+      }
+      if (global) {
+        this.base = this.base.applyRules(this.rules);
+        this.exponent = this.exponent.applyRules(this.rules);
+      }
+      return CTATPowerNode.__super__.applyRules.apply(this, arguments);
+    };
+    CTATPowerNode.prototype.removeNull = function() {
+      var ref, ref1;
+      this.base = (ref = this.base) != null ? ref.removeNull() : void 0;
+      this.exponent = (ref1 = this.exponent) != null ? ref1.removeNull() : void 0;
+      if (this.base != null && this.exponent != null) {
+        return this;
+      } else {
+        return this.base || this.exponent || null;
+      }
     };
     CTATPowerNode.prototype.flatten = function() {
-      var factors, methods;
+      var factors, rules;
+      CTATPowerNode.__super__.flatten.apply(this, arguments);
       if (this.root()) {
         this.exponent.invert();
         this.operator = "EXP";
       }
       this.popNegation().popInversion();
       if (this.base.power()) {
-        methods = CTATTreeNode.diff(this.methods, ["flatten"]);
+        rules = CTATAlgebraTreeNode.diff(this.rules, ["flatten"]);
         factors = !this.base.exponent.multiplication() ? [this.base.exponent] : this.base.exponent.pushNegation().pushInversion().factors;
         if (!this.exponent.multiplication()) {
           factors.push(this.exponent);
         } else {
           factors.push.apply(factors, this.exponent.pushNegation().pushInversion().factors);
         }
-        this.base.exponent = (new CTATMultiplicationNode("TIMES", factors)).simplifyNode(methods);
+        this.base.exponent = (new CTATMultiplicationNode("TIMES", factors)).applyRules(rules, false);
         return this.pushBaseNegation().pushBaseInversion().base;
       } else {
         return this;
@@ -20673,7 +20099,7 @@ goog.require("CTATTreeNode");
         for (i = j = 1, ref = exponent.evaluate();1 <= ref ? j < ref : j > ref;i = 1 <= ref ? ++j : --j) {
           factors.push(this.base.clone());
         }
-        this.base = (new CTATMultiplicationNode("TIMES", factors)).simplifyNode(["distribute"]);
+        this.base = (new CTATMultiplicationNode("TIMES", factors)).applyRules(["distribute"], false);
         if (this.exponent) {
           return this;
         } else {
@@ -20706,12 +20132,12 @@ goog.require("CTATTreeNode");
       }
     };
     CTATPowerNode.prototype.packFactors = function(pairs) {
-      var methods;
-      methods = CTATTreeNode.diff(this.methods, ["flatten"]);
+      var rules;
+      rules = CTATAlgebraTreeNode.diff(this.rules, ["flatten"]);
       return new CTATMultiplicationNode("TIMES", pairs.map(function(arg) {
         var base, exponent;
         base = arg[0], exponent = arg[1];
-        return (new CTATPowerNode("EXP", base, exponent)).simplifyNode(methods);
+        return (new CTATPowerNode("EXP", base, exponent)).applyRules(rules, false);
       }));
     };
     CTATPowerNode.prototype.removeIdentity = function(marked) {
@@ -20782,11 +20208,14 @@ goog.require("CTATTreeNode");
       }
       return this;
     };
+    CTATPowerNode.prototype.unknown = function() {
+      return this.base.unknown() || this.exponent.unknown();
+    };
     CTATPowerNode.prototype.even = function() {
       return !this.inverted() && this.base.even() && this.exponent.integer();
     };
     return CTATPowerNode;
-  }(CTATTreeNode);
+  }(CTATAlgebraTreeNode);
   if (typeof module !== "undefined" && module !== null) {
     module.exports = CTATPowerNode;
   } else {
@@ -20794,7 +20223,7 @@ goog.require("CTATTreeNode");
   }
 }).call(this);
 goog.provide("CTATVariableNode");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
   var CTATVariableNode, extend = function(child, parent) {
     for (var key in parent) {
@@ -20823,21 +20252,41 @@ goog.require("CTATTreeNode");
     CTATVariableNode.prototype.clone = function() {
       return new CTATVariableNode(this.variableTable, this.variable, this.parens, this.sign, this.exp);
     };
-    CTATVariableNode.prototype.toString = function() {
-      return CTATVariableNode.__super__.toString.call(this, this.variable);
+    CTATVariableNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
+      return CTATVariableNode.__super__.toString.call(this, this.variable, operator, other);
     };
-    CTATVariableNode.prototype.evaluate = function() {
-      var ref;
-      return CTATVariableNode.__super__.evaluate.call(this, ((ref = this.variableTable) != null ? ref.get(this.variable) : void 0) || function() {
+    CTATVariableNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      return CTATVariableNode.__super__.evaluate.call(this, bindings != null ? (typeof bindings.get === "function" ? bindings.get(this.variable) : void 0) || bindings[this.variable] : this.variableTable != null ? this.variableTable.get(this.variable) : function() {
         try {
           return eval(this.variable);
         } catch (_error) {
-          return NaN;
+          return void 0;
         }
       }.call(this));
     };
     CTATVariableNode.prototype.equals = function(node) {
       return CTATVariableNode.__super__.equals.call(this, node) && this.variable === node.variable;
+    };
+    CTATVariableNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return top && CTATVariableNode.__super__.getOperator.apply(this, arguments);
+    };
+    CTATVariableNode.prototype.getVariables = function() {
+      return [this.variable];
     };
     CTATVariableNode.prototype.compare = function(node, reverse) {
       reverse = reverse != null ? -1 : 1;
@@ -20847,7 +20296,7 @@ goog.require("CTATTreeNode");
       return 1;
     };
     return CTATVariableNode;
-  }(CTATTreeNode);
+  }(CTATAlgebraTreeNode);
   if (typeof module !== "undefined" && module !== null) {
     module.exports = CTATVariableNode;
   } else {
@@ -20855,7 +20304,7 @@ goog.require("CTATTreeNode");
   }
 }).call(this);
 goog.provide("CTATConstantNode");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
   var CTATConstantNode, extend = function(child, parent) {
     for (var key in parent) {
@@ -20884,14 +20333,32 @@ goog.require("CTATTreeNode");
     CTATConstantNode.prototype.clone = function() {
       return new CTATConstantNode(this.value, this.marked, this.parens, this.sign, this.exp);
     };
-    CTATConstantNode.prototype.toString = function() {
-      return CTATConstantNode.__super__.toString.call(this, this.value.toString());
+    CTATConstantNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
+      return CTATConstantNode.__super__.toString.call(this, this.value.toString(), operator, other);
     };
-    CTATConstantNode.prototype.evaluate = function() {
+    CTATConstantNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
       return CTATConstantNode.__super__.evaluate.call(this, this.value);
     };
     CTATConstantNode.prototype.equals = function(node) {
       return CTATConstantNode.__super__.equals.call(this, node) && this.value === node.value;
+    };
+    CTATConstantNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return top && CTATConstantNode.__super__.getOperator.apply(this, arguments);
     };
     CTATConstantNode.prototype.multiplyOne = function() {
       return this;
@@ -20928,15 +20395,82 @@ goog.require("CTATTreeNode");
       return this.sign = Math.sign(value);
     };
     return CTATConstantNode;
-  }(CTATTreeNode);
+  }(CTATAlgebraTreeNode);
   if (typeof module !== "undefined" && module !== null) {
     module.exports = CTATConstantNode;
   } else {
     this.CTATConstantNode = CTATConstantNode;
   }
 }).call(this);
+goog.provide("CTATUnknownNode");
+goog.require("CTATAlgebraTreeNode");
+(function() {
+  var CTATUnknownNode, extend = function(child, parent) {
+    for (var key in parent) {
+      if (hasProp.call(parent, key)) {
+        child[key] = parent[key];
+      }
+    }
+    function ctor() {
+      this.constructor = child;
+    }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  }, hasProp = {}.hasOwnProperty;
+  CTATUnknownNode = function(superClass) {
+    extend(CTATUnknownNode, superClass);
+    function CTATUnknownNode(parens, sign, exp) {
+      this.parens = parens != null ? parens : 0;
+      this.sign = sign != null ? sign : 1;
+      this.exp = exp != null ? exp : 1;
+      this.operator = "UNKNOWN";
+    }
+    CTATUnknownNode.prototype.clone = function() {
+      return new CTATUnknownNode(this.parens, this.sign, this.exp);
+    };
+    CTATUnknownNode.prototype.toString = function(operator, other) {
+      if (operator == null) {
+        operator = "EQUAL";
+      }
+      if (other == null) {
+        other = false;
+      }
+      return CTATUnknownNode.__super__.toString.call(this, "?", operator, other);
+    };
+    CTATUnknownNode.prototype.evaluate = function(bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      return NaN;
+    };
+    CTATUnknownNode.prototype.getOperator = function(top, index) {
+      if (top == null) {
+        top = false;
+      }
+      if (index == null) {
+        index = null;
+      }
+      return top && CTATUnknownNode.__super__.getOperator.apply(this, arguments);
+    };
+    CTATUnknownNode.prototype.compare = function(node, reverse) {
+      reverse = reverse != null ? 1 : -1;
+      return CTATUnknownNode.__super__.compare.apply(this, arguments) || this.compareSigns(node, reverse);
+    };
+    CTATUnknownNode.prototype.unknown = function() {
+      return true;
+    };
+    return CTATUnknownNode;
+  }(CTATAlgebraTreeNode);
+  if (typeof module !== "undefined" && module !== null) {
+    module.exports = CTATUnknownNode;
+  } else {
+    this.CTATUnknownNode = CTATUnknownNode;
+  }
+}).call(this);
 goog.provide("CTATAlgebraGrammar");
-goog.require("CTATTreeNode");
+goog.require("CTATAlgebraTreeNode");
 goog.require("CTATRelationNode");
 goog.require("CTATAdditionNode");
 goog.require("CTATMultiplicationNode");
@@ -20945,15 +20479,17 @@ goog.require("CTATUnaryNode");
 goog.require("CTATPowerNode");
 goog.require("CTATVariableNode");
 goog.require("CTATConstantNode");
+goog.require("CTATUnknownNode");
 var CTATAlgebraGrammar = function() {
   var o = function(k, v, o, l) {
     for (o = o || {}, l = k.length;l--;o[k[l]] = v) {
     }
     return o;
-  }, $V0 = [1, 6], $V1 = [1, 7], $V2 = [1, 10], $V3 = [1, 11], $V4 = [1, 12], $V5 = [1, 13], $V6 = [1, 21], $V7 = [1, 22], $V8 = [5, 7, 8, 9, 10, 11, 12, 13, 15, 26], $V9 = [1, 23], $Va = [1, 24], $Vb = [1, 26], $Vc = [1, 27], $Vd = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 20, 21, 24, 25, 26, 27, 28], $Ve = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 20, 21, 23, 24, 25, 26, 27, 28];
+  }, $V0 = [1, 6], $V1 = [1, 7], $V2 = [1, 10], $V3 = [1, 11], $V4 = [1, 12], $V5 = [1, 13], $V6 = [1, 14], $V7 = [1, 22], $V8 = [1, 23], $V9 = [5, 7, 8, 9, 10, 11, 12, 13, 15, 26], $Va = [1, 24], $Vb = [1, 25], $Vc = [1, 27], $Vd = [1, 28], $Ve = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 20, 21, 24, 25, 26, 27, 28, 29], $Vf = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 20, 21, 23, 24, 25, 26, 27, 28, 29];
   var parser = {trace:function trace() {
-  }, yy:{}, symbols_:{"error":2, "expression":3, "relational":4, "EOF":5, "arithmetic":6, "LESS":7, "GREATER":8, "LESSEQUAL":9, "GREATEREQUAL":10, "EQUAL":11, "NOTEQUAL":12, "PLUS":13, "term":14, "MINUS":15, "TIMES":16, "signedfactor":17, "DIVIDE":18, "factor":19, "IDIVIDE":20, "REM":21, "atom":22, "EXP":23, "SQRT":24, "LPAREN":25, "RPAREN":26, "VARIABLE":27, "NUMBER":28, "$accept":0, "$end":1}, terminals_:{2:"error", 5:"EOF", 7:"LESS", 8:"GREATER", 9:"LESSEQUAL", 10:"GREATEREQUAL", 11:"EQUAL", 12:"NOTEQUAL",
-  13:"PLUS", 15:"MINUS", 16:"TIMES", 18:"DIVIDE", 20:"IDIVIDE", 21:"REM", 23:"EXP", 24:"SQRT", 25:"LPAREN", 26:"RPAREN", 27:"VARIABLE", 28:"NUMBER"}, productions_:[0, [3, 2], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 1], [6, 3], [6, 3], [6, 1], [14, 3], [14, 3], [14, 2], [14, 3], [14, 3], [14, 1], [17, 2], [17, 2], [17, 1], [19, 3], [19, 2], [19, 1], [22, 3], [22, 1], [22, 1]], performAction:function anonymous(yytext, yyleng, yylineno, yy, yystate, $$, _$) {
+  }, yy:{}, symbols_:{"error":2, "expression":3, "relational":4, "EOF":5, "arithmetic":6, "LESS":7, "GREATER":8, "LESSEQUAL":9, "GREATEREQUAL":10, "EQUAL":11, "NOTEQUAL":12, "PLUS":13, "term":14, "MINUS":15, "TIMES":16, "signedfactor":17, "DIVIDE":18, "factor":19, "IDIVIDE":20, "REM":21, "atom":22, "EXP":23, "SQRT":24, "LPAREN":25, "RPAREN":26, "VARIABLE":27, "NUMBER":28, "UNKNOWN":29, "$accept":0, "$end":1}, terminals_:{2:"error", 5:"EOF", 7:"LESS", 8:"GREATER", 9:"LESSEQUAL", 10:"GREATEREQUAL", 
+  11:"EQUAL", 12:"NOTEQUAL", 13:"PLUS", 15:"MINUS", 16:"TIMES", 18:"DIVIDE", 20:"IDIVIDE", 21:"REM", 23:"EXP", 24:"SQRT", 25:"LPAREN", 26:"RPAREN", 27:"VARIABLE", 28:"NUMBER", 29:"UNKNOWN"}, productions_:[0, [3, 2], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 1], [6, 3], [6, 3], [6, 1], [14, 3], [14, 3], [14, 2], [14, 3], [14, 3], [14, 1], [17, 2], [17, 2], [17, 1], [19, 3], [19, 2], [19, 1], [22, 3], [22, 1], [22, 1], [22, 1]], performAction:function anonymous(yytext, yyleng, yylineno, yy, 
+  yystate, $$, _$) {
     var $0 = $$.length - 1;
     switch(yystate) {
       case 1:
@@ -21019,10 +20555,10 @@ var CTATAlgebraGrammar = function() {
         this.$ = new yy.CTATPowerNode("EXP", $$[$0 - 2], $$[$0]);
         break;
       case 22:
-        this.$ = new yy.CTATPowerNode("ROOT", $$[$0], 2);
+        this.$ = new yy.CTATPowerNode("ROOT", $$[$0], new yy.CTATConstantNode(2));
         break;
       case 24:
-        this.$ = $$[$0 - 1];
+        this.$ = $$[$0 - 1].setParens();
         break;
       case 25:
         this.$ = new yy.CTATVariableNode(yy.variableTable, $$[$0]);
@@ -21030,12 +20566,15 @@ var CTATAlgebraGrammar = function() {
       case 26:
         this.$ = new yy.CTATConstantNode(Number($$[$0]));
         break;
+      case 27:
+        this.$ = new yy.CTATUnknownNode;
+        break;
     }
-  }, table:[{3:1, 4:2, 6:3, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {1:[3]}, {5:[1, 14]}, {5:[2, 8], 7:[1, 15], 8:[1, 16], 9:[1, 17], 10:[1, 18], 11:[1, 19], 12:[1, 20], 13:$V6, 15:$V7}, o($V8, [2, 11], {22:9, 19:25, 16:$V9, 18:$Va, 20:$Vb, 21:$Vc, 24:$V2, 25:$V3, 27:$V4, 28:$V5}), o($Vd, [2, 17]), {13:$V0, 15:$V1, 17:28, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {13:$V0, 15:$V1, 17:29, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, o($Vd, [2, 20]), o($Vd, [2, 23],
-  {23:[1, 30]}), {13:$V0, 15:$V1, 17:31, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {6:32, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, o($Ve, [2, 25]), o($Ve, [2, 26]), {1:[2, 1]}, {6:33, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {6:34, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {6:35, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {6:36, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2,
-  25:$V3, 27:$V4, 28:$V5}, {6:37, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {6:38, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {13:$V0, 14:39, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {13:$V0, 14:40, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {13:$V0, 15:$V1, 17:41, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {13:$V0, 15:$V1, 17:42, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, o($Vd, [2, 14]), {13:$V0,
-  15:$V1, 17:43, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, {13:$V0, 15:$V1, 17:44, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, o($Vd, [2, 18]), o($Vd, [2, 19]), {13:$V0, 15:$V1, 17:45, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5}, o($Vd, [2, 22]), {13:$V6, 15:$V7, 26:[1, 46]}, {5:[2, 2], 13:$V6, 15:$V7}, {5:[2, 3], 13:$V6, 15:$V7}, {5:[2, 4], 13:$V6, 15:$V7}, {5:[2, 5], 13:$V6, 15:$V7}, {5:[2, 6], 13:$V6, 15:$V7}, {5:[2, 7], 13:$V6, 15:$V7}, o($V8, [2, 9], {22:9, 19:25, 16:$V9, 18:$Va, 20:$Vb,
-  21:$Vc, 24:$V2, 25:$V3, 27:$V4, 28:$V5}), o($V8, [2, 10], {22:9, 19:25, 16:$V9, 18:$Va, 20:$Vb, 21:$Vc, 24:$V2, 25:$V3, 27:$V4, 28:$V5}), o($Vd, [2, 12]), o($Vd, [2, 13]), o($Vd, [2, 15]), o($Vd, [2, 16]), o($Vd, [2, 21]), o($Ve, [2, 24])], defaultActions:{14:[2, 1]}, parseError:function parseError(str, hash) {
+  }, table:[{3:1, 4:2, 6:3, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {1:[3]}, {5:[1, 15]}, {5:[2, 8], 7:[1, 16], 8:[1, 17], 9:[1, 18], 10:[1, 19], 11:[1, 20], 12:[1, 21], 13:$V7, 15:$V8}, o($V9, [2, 11], {22:9, 19:26, 16:$Va, 18:$Vb, 20:$Vc, 21:$Vd, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}), o($Ve, [2, 17]), {13:$V0, 15:$V1, 17:29, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {13:$V0, 15:$V1, 17:30, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, 
+  o($Ve, [2, 20]), o($Ve, [2, 23], {23:[1, 31]}), {13:$V0, 15:$V1, 17:32, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {6:33, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, o($Vf, [2, 25]), o($Vf, [2, 26]), o($Vf, [2, 27]), {1:[2, 1]}, {6:34, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {6:35, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {6:36, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 
+  24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {6:37, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {6:38, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {6:39, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {13:$V0, 14:40, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {13:$V0, 14:41, 15:$V1, 17:5, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {13:$V0, 15:$V1, 17:42, 19:8, 
+  22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {13:$V0, 15:$V1, 17:43, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, o($Ve, [2, 14]), {13:$V0, 15:$V1, 17:44, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, {13:$V0, 15:$V1, 17:45, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, o($Ve, [2, 18]), o($Ve, [2, 19]), {13:$V0, 15:$V1, 17:46, 19:8, 22:9, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}, o($Ve, [2, 22]), {13:$V7, 15:$V8, 26:[1, 47]}, {5:[2, 2], 13:$V7, 15:$V8}, {5:[2, 3], 13:$V7, 
+  15:$V8}, {5:[2, 4], 13:$V7, 15:$V8}, {5:[2, 5], 13:$V7, 15:$V8}, {5:[2, 6], 13:$V7, 15:$V8}, {5:[2, 7], 13:$V7, 15:$V8}, o($V9, [2, 9], {22:9, 19:26, 16:$Va, 18:$Vb, 20:$Vc, 21:$Vd, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}), o($V9, [2, 10], {22:9, 19:26, 16:$Va, 18:$Vb, 20:$Vc, 21:$Vd, 24:$V2, 25:$V3, 27:$V4, 28:$V5, 29:$V6}), o($Ve, [2, 12]), o($Ve, [2, 13]), o($Ve, [2, 15]), o($Ve, [2, 16]), o($Ve, [2, 21]), o($Vf, [2, 24])], defaultActions:{15:[2, 1]}, parseError:function parseError(str, hash) {
     if (hash.recoverable) {
       this.trace(str);
     } else {
@@ -21391,43 +20930,43 @@ var CTATAlgebraGrammar = function() {
           return 16;
           break;
         case 9:
-          return 20;
+          return 16;
           break;
         case 10:
-          return 18;
+          return 20;
           break;
         case 11:
           return 18;
           break;
         case 12:
-          return 21;
+          return 18;
           break;
         case 13:
-          return 15;
+          return 21;
           break;
         case 14:
-          return 13;
+          return 15;
           break;
         case 15:
-          return 9;
+          return 13;
           break;
         case 16:
           return 9;
           break;
         case 17:
-          return 10;
+          return 9;
           break;
         case 18:
           return 10;
           break;
         case 19:
-          return 7;
+          return 10;
           break;
         case 20:
-          return 8;
+          return 7;
           break;
         case 21:
-          return 12;
+          return 8;
           break;
         case 22:
           return 12;
@@ -21439,26 +20978,32 @@ var CTATAlgebraGrammar = function() {
           return 12;
           break;
         case 25:
-          return 11;
+          return 12;
           break;
         case 26:
           return 11;
           break;
         case 27:
-          return 28;
+          return 11;
           break;
         case 28:
           return 28;
           break;
         case 29:
-          return 27;
+          return 28;
           break;
         case 30:
+          return 27;
+          break;
+        case 31:
+          return 29;
+          break;
+        case 32:
           return 5;
           break;
       }
-    }, rules:[/^(?:\s+)/, /^(?:\()/, /^(?:\))/, /^(?:\*\*)/, /^(?:\^)/, /^(?:\|)/, /^(?:\u221a)/, /^(?:\*)/, /^(?:\u00d7)/, /^(?:\/\/)/, /^(?:\/)/, /^(?:\u00f7)/, /^(?:%)/, /^(?:-)/, /^(?:\+)/, /^(?:<=)/, /^(?:\u2264)/, /^(?:>=)/, /^(?:\u2265)/, /^(?:<)/, /^(?:>)/, /^(?:!=)/, /^(?:\/=)/, /^(?:<>)/, /^(?:\u2260)/, /^(?:==)/, /^(?:=)/, /^(?:(([0-9])+\.?([0-9])*|\.([0-9])+)([Ee][+-]?([0-9])+)?)/, /^(?:(0[Bb]([0-1])+|0[Oo]([0-7])+|0[Xx]([0-9A-Fa-f])+))/, /^(?:([A-Za-z]))/, /^(?:$)/], conditions:{"INITIAL":{"rules":[0,
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], "inclusive":true}}};
+    }, rules:[/^(?:\s+)/, /^(?:\()/, /^(?:\))/, /^(?:\*\*)/, /^(?:\^)/, /^(?:\|)/, /^(?:\u221a)/, /^(?:\*)/, /^(?:\u00d7)/, /^(?:\u22c5)/, /^(?:\/\/)/, /^(?:\/)/, /^(?:\u00f7)/, /^(?:%)/, /^(?:-)/, /^(?:\+)/, /^(?:<=)/, /^(?:\u2264)/, /^(?:>=)/, /^(?:\u2265)/, /^(?:<)/, /^(?:>)/, /^(?:!=)/, /^(?:\/=)/, /^(?:<>)/, /^(?:\u2260)/, /^(?:==)/, /^(?:=)/, /^(?:(([0-9])+\.?([0-9])*|\.([0-9])+)([Ee][+-]?([0-9])+)?)/, /^(?:(0[Bb]([0-1])+|0[Oo]([0-7])+|0[Xx]([0-9A-Fa-f])+))/, /^(?:([A-Za-z]))/, /^(?:\?)/, /^(?:$)/], 
+    conditions:{"INITIAL":{"rules":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32], "inclusive":true}}};
     return lexer;
   }();
   parser.lexer = lexer;
@@ -21479,140 +21024,312 @@ goog.require("CTATUnaryNode");
 goog.require("CTATPowerNode");
 goog.require("CTATVariableNode");
 goog.require("CTATConstantNode");
-goog.require("CTATTreeNode");
+goog.require("CTATUnknownNode");
+goog.require("CTATAlgebraTreeNode");
 (function() {
-  var CTATAlgebraParser;
+  var CTATAlgebraParser, slice = [].slice;
   CTATAlgebraParser = function() {
     function CTATAlgebraParser(variableTable) {
       this.parser = new CTATAlgebraGrammar.Parser;
-      this.parser.yy = {CTATRelationNode:CTATRelationNode, CTATAdditionNode:CTATAdditionNode, CTATMultiplicationNode:CTATMultiplicationNode, CTATIntDivisionNode:CTATIntDivisionNode, CTATUnaryNode:CTATUnaryNode, CTATPowerNode:CTATPowerNode, CTATVariableNode:CTATVariableNode, CTATConstantNode:CTATConstantNode, CTATTreeNode:CTATTreeNode};
+      this.parser.yy = {CTATRelationNode:CTATRelationNode, CTATAdditionNode:CTATAdditionNode, CTATMultiplicationNode:CTATMultiplicationNode, CTATIntDivisionNode:CTATIntDivisionNode, CTATUnaryNode:CTATUnaryNode, CTATPowerNode:CTATPowerNode, CTATVariableNode:CTATVariableNode, CTATConstantNode:CTATConstantNode, CTATUnknownNode:CTATUnknownNode, CTATAlgebraTreeNode:CTATAlgebraTreeNode};
       this.parser.yy.variableTable = variableTable;
     }
-    CTATAlgebraParser.none = ["simpleFlatten"];
     CTATAlgebraParser.partial = ["flatten", "removeIdentity"];
     CTATAlgebraParser.full = ["flatten", "computeConstants", "combineSimilar", "expand", "distribute", "removeIdentity"];
-    CTATAlgebraParser.prototype.algParse = function(expression, order) {
+    CTATAlgebraParser.prototype.toTree = function(expression, order, clone, removeParentheses) {
+      var result;
       if (order == null) {
         order = false;
       }
-      try {
-        return this.parser.parse(String(expression)).simplify(CTATAlgebraParser.none.concat(order ? "sort" : []));
-      } catch (_error) {
-        return null;
+      if (clone == null) {
+        clone = false;
       }
+      if (removeParentheses == null) {
+        removeParentheses = false;
+      }
+      result = expression instanceof CTATAlgebraTreeNode ? clone ? expression.clone() : expression : this.parser.parse(String(expression));
+      if (result != null) {
+        result.applyRules([removeParentheses ? "flatten" : "simpleFlatten"].concat(order ? "sort" : []));
+      }
+      return result;
     };
-    CTATAlgebraParser.prototype.algStringify = function(tree) {
-      if (tree != null) {
-        return tree.toString();
+    CTATAlgebraParser.prototype.toExpression = function(expression, tree, paths) {
+      if (paths == null) {
+        paths = true;
+      }
+      if (expression instanceof CTATAlgebraTreeNode) {
+        if (paths && tree instanceof CTATAlgebraTreeNode) {
+          return tree.addPaths(tree.path || []);
+        } else {
+          return tree;
+        }
       } else {
-        return tree;
+        if (tree != null) {
+          return tree.toString();
+        } else {
+          return tree;
+        }
       }
     };
-    CTATAlgebraParser.prototype.algEvaluate = function(expression) {
-      try {
-        return this.parser.parse(String(expression)).simplify(CTATAlgebraParser.none).evaluate();
-      } catch (_error) {
-        return null;
+    CTATAlgebraParser.prototype.equalExpressions = function(expression1, expression2) {
+      if (expression1 instanceof CTATAlgebraTreeNode || expression2 instanceof CTATAlgebraTreeNode) {
+        return expression1.toString() === expression2.toString();
+      } else {
+        return expression1 === expression2;
       }
     };
-    CTATAlgebraParser.prototype.algPartialSimplify = function(expression, order) {
+    CTATAlgebraParser.prototype.algParse = function(expression, order, removeParentheses) {
       if (order == null) {
         order = false;
       }
+      if (removeParentheses == null) {
+        removeParentheses = false;
+      }
       try {
-        return this.parser.parse(String(expression)).simplify(CTATAlgebraParser.partial.concat(order ? "sort" : [])).toString();
+        return this.toTree(expression, order, true, removeParentheses).addPaths([]);
       } catch (_error) {
         return null;
       }
+    };
+    CTATAlgebraParser.prototype.algGetError = function(expression) {
+      var error;
+      try {
+        expression instanceof CTATAlgebraTreeNode || this.parser.parse(String(expression));
+        return null;
+      } catch (_error) {
+        error = _error;
+        return error;
+      }
+    };
+    CTATAlgebraParser.prototype.algStringify = function(expression) {
+      return (expression != null ? expression.toString() : void 0) || null;
+    };
+    CTATAlgebraParser.prototype.algEvaluate = function(expression, bindings) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      try {
+        return this.toTree(expression).evaluate(bindings);
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algSort = function(expression) {
+      try {
+        return this.toExpression(expression, this.toTree(expression, true, true));
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algGetOperator = function(expression) {
+      try {
+        return this.toTree(expression).getOperator(true, 1);
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algGetOperators = function(expression) {
+      try {
+        return this.toTree(expression).getOperators(true);
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algGetVariables = function(expression) {
+      try {
+        return this.toTree(expression).getVariables();
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algGetOperands = function(expression) {
+      var ref;
+      try {
+        return (ref = this.toTree(expression)) != null ? ref.getOperands().map(function(_this) {
+          return function(subexpression) {
+            return _this.toExpression(expression, subexpression, false);
+          };
+        }(this)) : void 0;
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algGetExpression = function(expression, start, end) {
+      try {
+        return this.toExpression(expression, this.toTree(expression).getExpression(start, end), false);
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algFindExpression = function(expression, subexpression) {
+      try {
+        return this.toTree(expression).findExpression(this.toTree(subexpression), []).map(function(_this) {
+          return function(subexpression) {
+            return _this.toExpression(expression, subexpression, false);
+          };
+        }(this));
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algCreateExpression = function() {
+      var expression, expressions, operator, ref;
+      operator = arguments[0], expression = arguments[1], expressions = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+      try {
+        return this.toExpression(expression, (ref = this.toTree(expression, false, true)).createExpression.apply(ref, [operator].concat(slice.call(expressions.map(function(_this) {
+          return function(expression) {
+            return _this.toTree(expression, false, true);
+          };
+        }(this))))));
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algReplaceExpression = function(expression, oldSubexpression, newSubexpression, locator) {
+      var ref, ref1;
+      if (locator == null) {
+        locator = null;
+      }
+      locator = (locator != null ? locator : (ref = oldSubexpression.path) != null ? ref.slice(0) : void 0) || 0;
+      try {
+        return this.toExpression(expression, (ref1 = this.toTree(expression)) != null ? ref1.replaceExpression(this.toTree(oldSubexpression), this.toTree(newSubexpression), locator) : void 0);
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algDeleteExpression = function(expression, subexpression, locator) {
+      var ref, ref1;
+      if (locator == null) {
+        locator = null;
+      }
+      locator = (locator != null ? locator : (ref = subexpression.path) != null ? ref.slice(0) : void 0) || 0;
+      try {
+        return this.toExpression(expression, (ref1 = this.toTree(expression)) != null ? ref1.deleteExpression(this.toTree(subexpression), locator) : void 0);
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algApplyRulesSelectively = function() {
+      var expression, global, index, indices, ref, rules;
+      expression = arguments[0], rules = arguments[1], global = arguments[2], index = arguments[3], indices = 5 <= arguments.length ? slice.call(arguments, 4) : [];
+      if (global == null) {
+        global = true;
+      }
+      if (index == null) {
+        index = null;
+      }
+      try {
+        return this.toExpression(expression, (ref = this.toTree(expression, false, true)).applyRulesSelectively.apply(ref, [rules, global, index].concat(slice.call(indices))));
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algApplyRules = function(expression, rules, global) {
+      if (global == null) {
+        global = true;
+      }
+      try {
+        return this.toExpression(expression, this.toTree(expression, false, true).applyRules(rules, global));
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATAlgebraParser.prototype.algPartiallySimplify = function(expression, order) {
+      if (order == null) {
+        order = false;
+      }
+      return this.algApplyRules(expression, CTATAlgebraParser.partial.concat(order ? "sort" : []), order);
     };
     CTATAlgebraParser.prototype.algSimplify = function(expression, order) {
       if (order == null) {
         order = false;
       }
-      try {
-        return this.parser.parse(String(expression)).simplify(CTATAlgebraParser.full.concat(order ? "sort" : [])).toString();
-      } catch (_error) {
-        return null;
-      }
+      return this.algApplyRules(expression, CTATAlgebraParser.full.concat(order ? "sort" : []), order);
     };
     CTATAlgebraParser.prototype.algValid = function(expression, ordered) {
-      var tree1, tree2;
+      var expression1, expression2;
       if (ordered == null) {
         ordered = false;
       }
-      if ((tree1 = this.algParse(expression, true)) != null && (tree2 = this.algParse(expression, !ordered)) != null) {
-        return tree1.toString() === tree2.toString();
+      if ((expression1 = this.algParse(expression, true)) != null && (expression2 = this.algParse(expression, !ordered)) != null) {
+        return this.equalExpressions(expression1, expression2);
       } else {
         return null;
       }
     };
-    CTATAlgebraParser.prototype.algValued = function(expression) {
+    CTATAlgebraParser.prototype.algValued = function(expression, bindings) {
       var value;
-      if ((value = this.algEvaluate(expression)) != null) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      if ((value = this.algEvaluate(expression, bindings)) != null) {
         return !isNaN(value);
       } else {
         return null;
       }
     };
-    CTATAlgebraParser.prototype.algPartialSimplified = function(expression, ordered) {
-      var string1, tree2;
+    CTATAlgebraParser.prototype.algPartiallySimplified = function(expression, ordered) {
+      var expression1, expression2;
       if (ordered == null) {
         ordered = false;
       }
-      if ((string1 = this.algPartialSimplify(expression, true)) != null && (tree2 = this.algParse(expression, !ordered)) != null) {
-        return string1 === tree2.toString();
+      if ((expression1 = this.algPartiallySimplify(expression, true)) != null && (expression2 = this.algParse(expression, !ordered)) != null) {
+        return this.equalExpressions(expression1, expression2);
       } else {
         return null;
       }
     };
     CTATAlgebraParser.prototype.algSimplified = function(expression, ordered) {
-      var string1, tree2;
+      var expression1, expression2;
       if (ordered == null) {
         ordered = false;
       }
-      if ((string1 = this.algSimplify(expression, true)) != null && (tree2 = this.algParse(expression, !ordered)) != null) {
-        return string1 === tree2.toString();
+      if ((expression1 = this.algSimplify(expression, true)) != null && (expression2 = this.algParse(expression, !ordered)) != null) {
+        return this.equalExpressions(expression1, expression2);
       } else {
         return null;
       }
     };
-    CTATAlgebraParser.prototype.algIdentical = function(expression1, expression2, sameOrder) {
-      var tree1, tree2;
+    CTATAlgebraParser.prototype.algIdentical = function(expression1, expression2, sameOrder, ignoreParentheses) {
       if (sameOrder == null) {
         sameOrder = false;
       }
-      if ((tree1 = this.algParse(expression1, !sameOrder)) != null && (tree2 = this.algParse(expression2, !sameOrder)) != null) {
-        return tree1.toString() === tree2.toString();
+      if (ignoreParentheses == null) {
+        ignoreParentheses = false;
+      }
+      if ((expression1 = this.algParse(expression1, !sameOrder, ignoreParentheses)) != null && (expression2 = this.algParse(expression2, !sameOrder, ignoreParentheses)) != null) {
+        return this.equalExpressions(expression1, expression2);
       } else {
         return null;
       }
     };
-    CTATAlgebraParser.prototype.algEqual = function(expression1, expression2) {
+    CTATAlgebraParser.prototype.algEqual = function(expression1, expression2, bindings) {
       var value1, value2;
-      if ((value1 = this.algEvaluate(expression1)) != null && (value2 = this.algEvaluate(expression2)) != null) {
+      if (bindings == null) {
+        bindings = null;
+      }
+      if ((value1 = this.algEvaluate(expression1, bindings)) != null && (value2 = this.algEvaluate(expression2, bindings)) != null) {
         return value1 === value2;
       } else {
         return null;
       }
     };
-    CTATAlgebraParser.prototype.algPartialEquivalent = function(expression1, expression2, sameOrder) {
-      var string1, string2;
+    CTATAlgebraParser.prototype.algPartiallyEquivalent = function(expression1, expression2, sameOrder) {
       if (sameOrder == null) {
         sameOrder = false;
       }
-      if ((string1 = this.algPartialSimplify(expression1, !sameOrder)) != null && (string2 = this.algPartialSimplify(expression2, !sameOrder)) != null) {
-        return string1 === string2;
+      if ((expression1 = this.algPartiallySimplify(expression1, !sameOrder)) != null && (expression2 = this.algPartiallySimplify(expression2, !sameOrder)) != null) {
+        return this.equalExpressions(expression1, expression2);
       } else {
         return null;
       }
     };
     CTATAlgebraParser.prototype.algEquivalent = function(expression1, expression2, sameOrder) {
-      var string1, string2;
       if (sameOrder == null) {
         sameOrder = false;
       }
-      if ((string1 = this.algSimplify(expression1, !sameOrder)) != null && (string2 = this.algSimplify(expression2, !sameOrder)) != null) {
-        return string1 === string2;
+      if ((expression1 = this.algSimplify(expression1, !sameOrder)) != null && (expression2 = this.algSimplify(expression2, !sameOrder)) != null) {
+        return this.equalExpressions(expression1, expression2);
       } else {
         return null;
       }
@@ -21620,10 +21337,10 @@ goog.require("CTATTreeNode");
     CTATAlgebraParser.prototype.isAlgValid = CTATAlgebraParser.prototype.algValid;
     CTATAlgebraParser.prototype.algEval = CTATAlgebraParser.prototype.algEvaluate;
     CTATAlgebraParser.prototype.algStrictEquivTermsSameOrder = function(expression1, expression2) {
-      return this.algPartialEquivalent(expression1, expression2, true);
+      return this.algPartiallyEquivalent(expression1, expression2, true);
     };
     CTATAlgebraParser.prototype.algEquivTermsSameOrder = CTATAlgebraParser.prototype.algStrictEquivTermsSameOrder;
-    CTATAlgebraParser.prototype.algStrictEquivTerms = CTATAlgebraParser.prototype.algPartialEquivalent;
+    CTATAlgebraParser.prototype.algStrictEquivTerms = CTATAlgebraParser.prototype.algPartiallyEquivalent;
     CTATAlgebraParser.prototype.algEquivTerms = CTATAlgebraParser.prototype.algStrictEquivTerms;
     CTATAlgebraParser.prototype.algEquiv = CTATAlgebraParser.prototype.algEquivalent;
     CTATAlgebraParser.prototype.isSimplified = function(expression) {
@@ -21641,7 +21358,11 @@ goog.require("CTATTreeNode");
       return this.algIdentical(expression1, expression2, true);
     };
     CTATAlgebraParser.prototype.polyTermsEqual = function(expression1, expression2) {
-      return this.parser.parse(expression1).simplify(CTATAlgebraParser.partial).equals(this.parser.parse(expression2).simplify(CTATAlgebraParser.partial));
+      try {
+        return this.parser.parse(expression1).applyRules(CTATAlgebraParser.partial).equals(this.parser.parse(expression2).applyRules(CTATAlgebraParser.partial));
+      } catch (_error) {
+        return null;
+      }
     };
     CTATAlgebraParser.prototype.algebraicMatches = function(expression1, expression2) {
       return this.algEquivalent(expression1, expression2, true);
@@ -21657,7 +21378,7 @@ goog.require("CTATTreeNode");
 }).call(this);
 goog.provide("CTATLogicTreeNode");
 (function() {
-  var CTATLogicTreeNode;
+  var CTATLogicTreeNode, slice = [].slice;
   CTATLogicTreeNode = function() {
     CTATLogicTreeNode.operators = [["CONST"], ["VAR"], ["NOT"], ["AND", "NAND"], ["OR", "NOR"], ["IF"], ["IFF", "XOR"]];
     CTATLogicTreeNode.operatorStrings = {"NOT":"\u00ac", "AND":"\u2227", "OR":"\u2228", "NAND":"\u22bc", "NOR":"\u22bd", "XOR":"\u2295", "IF":"\u2192", "IFF":"\u2194", "true":"\u22a4", "false":"\u22a5"};
@@ -21717,11 +21438,12 @@ goog.provide("CTATLogicTreeNode");
       }
       return results;
     };
-    function CTATLogicTreeNode(item) {
+    function CTATLogicTreeNode() {
+      var ref, ref1;
       if (this.string != null) {
-        CTATLogicTreeNode.operatorStrings[item] = this.string;
+        CTATLogicTreeNode.operatorStrings[(ref = this.value) != null ? ref : this.operator] = this.string;
       } else {
-        this.string = CTATLogicTreeNode.operatorStrings[item];
+        this.string = CTATLogicTreeNode.operatorStrings[(ref1 = this.value) != null ? ref1 : this.operator];
       }
     }
     CTATLogicTreeNode.prototype.addOperand = function(operator, operand, string) {
@@ -21808,8 +21530,14 @@ goog.provide("CTATLogicTreeNode");
         }
       }
     };
+    CTATLogicTreeNode.prototype.subEquals = function(expression, index) {
+      return false;
+    };
     CTATLogicTreeNode.prototype.subNode = function(start, end) {
       return this;
+    };
+    CTATLogicTreeNode.prototype.countOperands = function() {
+      return 0;
     };
     CTATLogicTreeNode.prototype.getOperator = function(string) {
       if (string == null) {
@@ -21829,15 +21557,29 @@ goog.provide("CTATLogicTreeNode");
     CTATLogicTreeNode.prototype.getOperands = function() {
       return [];
     };
-    CTATLogicTreeNode.prototype.findOperator = function(operator, path, index) {
+    CTATLogicTreeNode.prototype.getExpression = function(start, end) {
+      if (start == null) {
+        start = 0;
+      }
+      if (end == null) {
+        end = this.countOperands() - 1;
+      }
+      return end <= this.countOperands() - 1 && end - start >= 1 && this.subNode(start, end + 1) || null;
+    };
+    CTATLogicTreeNode.prototype.findOperator = function(operator, path, index, subexpressions) {
+      var end, ref, start;
       if (index == null) {
         index = null;
       }
-      if (!index && this.operator === operator && (this.terms == null || this.terms.length === 2)) {
+      if (subexpressions == null) {
+        subexpressions = "none";
+      }
+      if (!index && this.operator === operator && (this.terms == null || this.terms.length === 2 || subexpressions === "none")) {
         return [Object.assign(this, {path:path})];
       } else {
-        if (index != null && this.operator === operator) {
-          return [Object.assign(this.subNode(index, index + 2), {path:path.concat([[index, index + 2]])})];
+        if (index != null && this.operator === operator && subexpressions !== "none") {
+          ref = subexpressions === "left" ? [0, index + 2] : [index, this.terms.length], start = ref[0], end = ref[1];
+          return [Object.assign(this.subNode(start, end), {path:path.concat([[start, end]])})];
         } else {
           return [];
         }
@@ -21875,42 +21617,117 @@ goog.provide("CTATLogicTreeNode");
         }
       }
     };
-    CTATLogicTreeNode.prototype.replaceExpression = function(oldSubexpression, newSubexpression, locator) {
-      var expression, ref, selector;
-      if (typeof locator === "number") {
-        locator = (ref = this.findExpression(oldSubexpression, [])[locator]) != null ? ref.path : void 0;
+    CTATLogicTreeNode.prototype.createExpression = function() {
+      var expressions, operator;
+      operator = arguments[0], expressions = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+      switch(operator) {
+        case "NAND":
+        ;
+        case "NOR":
+        ;
+        case "XOR":
+        ;
+        case "IF":
+        ;
+        case "IFF":
+          return expressions[0] && new CTATLogicRelationNode(operator, this, expressions[0]) || null;
+        case "AND":
+        ;
+        case "OR":
+          return expressions.unshift(this) > 1 && new CTATLogicFlattenNode(operator, expressions) || null;
+        case "NOT":
+          return new CTATLogicRelationNode(operator, null, this);
       }
-      return (locator != null ? locator.length : void 0) === 0 && newSubexpression || (selector = locator != null ? locator.shift() : void 0) != null && (expression = this.clone(false)) && function() {
-        var ref1, ref2, ref3, ref4;
-        switch(false) {
-          case selector !== "left":
-            return expression.left = ((ref1 = this.left) != null ? ref1.replaceExpression(oldSubexpression, newSubexpression, locator) : void 0) || null;
-          case selector !== "right":
-            return expression.right = ((ref2 = this.right) != null ? ref2.replaceExpression(oldSubexpression, newSubexpression, locator) : void 0) || null;
-          case typeof selector !== "number":
-            return expression.terms[selector] = ((ref3 = this.terms[selector]) != null ? ref3.replaceExpression(oldSubexpression, newSubexpression, locator) : void 0) || null;
-          case typeof selector !== "object":
-            return [].splice.apply(expression.terms, [ref4 = selector[0], selector[1] - ref4].concat(newSubexpression)), newSubexpression;
-          default:
-            return null;
+    };
+    CTATLogicTreeNode.prototype.replaceExpression = function(oldSubexpression, newSubexpression, locator) {
+      var expression, ref, ref1, ref2, selector;
+      if (typeof locator === "number" && (oldSubexpression = this.findExpression(oldSubexpression, [])[locator])) {
+        locator = oldSubexpression.path;
+        delete oldSubexpression.path;
+      }
+      if ((locator != null ? locator.length : void 0) === 0) {
+        return newSubexpression;
+      } else {
+        if ((selector = locator != null ? locator.shift() : void 0) != null) {
+          expression = this.clone(false);
+          if (typeof selector === "string") {
+            expression[selector] = (ref = this[selector]) != null ? ref.replaceExpression(oldSubexpression, newSubexpression, locator) : void 0;
+            return expression;
+          } else {
+            if (typeof selector === "number") {
+              expression.terms = expression.terms.slice(0);
+              expression.terms[selector] = (ref1 = this.terms[selector]) != null ? ref1.replaceExpression(oldSubexpression, newSubexpression, locator) : void 0;
+              return expression;
+            } else {
+              if (typeof selector === "object") {
+                expression.terms = expression.terms.slice(0);
+                [].splice.apply(expression.terms, [ref2 = selector[0], selector[1] - ref2].concat(newSubexpression)), newSubexpression;
+                return expression;
+              } else {
+                return this;
+              }
+            }
+          }
         }
-      }.call(this) && expression || this;
+      }
+    };
+    CTATLogicTreeNode.prototype.deleteExpression = function(subexpression, locator) {
+      var expression, ref, ref1, ref2, selector;
+      if (typeof locator === "number" && (subexpression = this.findExpression(subexpression, [])[locator])) {
+        locator = subexpression.path;
+        delete subexpression.path;
+      }
+      if ((locator != null ? locator.length : void 0) === 0) {
+        return null;
+      } else {
+        if ((selector = locator != null ? locator.shift() : void 0) != null) {
+          expression = this.clone(false);
+          if (typeof selector === "string") {
+            expression[selector] = (ref = this[selector]) != null ? ref.deleteExpression(subexpression, locator) : void 0;
+            return expression.removeNull();
+          } else {
+            if (typeof selector === "number") {
+              expression.terms = expression.terms.slice(0);
+              expression.terms[selector] = (ref1 = this.terms[selector]) != null ? ref1.deleteExpression(subexpression, locator) : void 0;
+              return expression.removeNull();
+            } else {
+              if (typeof selector === "object") {
+                expression.terms = expression.terms.slice(0);
+                [].splice.apply(expression.terms, [ref2 = selector[0], selector[1] - ref2].concat(null)), null;
+                return expression.removeNull();
+              } else {
+                return this;
+              }
+            }
+          }
+        }
+      }
+    };
+    CTATLogicTreeNode.prototype.removeNull = function() {
+      return this;
+    };
+    CTATLogicTreeNode.prototype.applyTests = function(tests) {
+      return tests.every(function(_this) {
+        return function(test) {
+          var result;
+          result = _this[test]();
+          return result;
+        };
+      }(this));
     };
     CTATLogicTreeNode.prototype.applyRules = function(rules, reverse, global) {
-      var i, len, ref, result, rule;
+      var result;
       if (reverse == null) {
         reverse = false;
       }
       if (global == null) {
         global = false;
       }
-      result = this;
-      ref = typeof rules === "string" ? [rules] : rules;
-      for (i = 0, len = ref.length;i < len;i++) {
-        rule = ref[i];
-        result = result[rule](reverse);
+      result = (typeof rules === "string" ? [rules] : rules).reduce(function(result, rule) {
         result.rules = rules;
-      }
+        result = result[rule](reverse);
+        return result;
+      }, this);
       delete result.rules;
       return result;
     };
@@ -21924,7 +21741,7 @@ goog.provide("CTATLogicTreeNode");
       return this.subNode(index)[rule](reverse, true);
     };
     CTATLogicTreeNode.prototype.findCounterExample = function(expression) {
-      return this.checkExpressions(expression, this.getVariables().concat(expression.getVariables()).uniq(), {}) || null;
+      return this.checkExpressions(expression, this.getVariables().concat(expression.getVariables()).uniq(), {});
     };
     CTATLogicTreeNode.prototype.checkExpressions = function(expression, variables, bindings) {
       var obj, obj1;
@@ -22116,6 +21933,19 @@ goog.provide("CTATLogicTreeNode");
       }
       return results;
     };
+    CTATLogicTreeNode.prototype.normalFormOperators = function() {
+      var ref;
+      return (ref = this.operator) === "NOT" || ref === "AND" || ref === "OR" || ref === "VAR" || ref === "CONST";
+    };
+    CTATLogicTreeNode.prototype.atomicNegation = function() {
+      return true;
+    };
+    CTATLogicTreeNode.prototype.atomicConjunction = function() {
+      return true;
+    };
+    CTATLogicTreeNode.prototype.atomicDisjunction = function() {
+      return true;
+    };
     CTATLogicTreeNode.prototype.replaceNodes = function() {
       return this;
     };
@@ -22201,17 +22031,20 @@ goog.provide("CTATLogicTreeNode");
     };
     CTATLogicTreeNode.prototype.negate = function() {
       if (this.negated) {
-        this.setSteps(++this.steps);
+        this.setSteps(this.steps + 1);
       }
       this.negated = !this.negated;
       return this;
     };
     CTATLogicTreeNode.prototype.setSteps = function(count) {
-      if (count == null) {
-        count = 0;
+      if (!isNaN(count)) {
+        this.steps = count;
       }
-      this.steps = count;
       return this;
+    };
+    CTATLogicTreeNode.prototype.atomic = function() {
+      var ref, ref1;
+      return (ref = this.operator) === "VAR" || ref === "CONST" || this.operator === "NOT" && ((ref1 = this.right.operator) === "VAR" || ref1 === "CONST");
     };
     CTATLogicTreeNode.prototype.negationOp = function() {
       return this.operator === "NOT";
@@ -22288,7 +22121,7 @@ goog.require("CTATLogicTreeNode");
       this.right = right1;
       this.string = string1 != null ? string1 : null;
       this.negated = negated != null ? negated : false;
-      CTATLogicRelationNode.__super__.constructor.call(this, this.operator);
+      CTATLogicRelationNode.__super__.constructor.apply(this, arguments);
     }
     CTATLogicRelationNode.prototype.clone = function(deep) {
       var ref;
@@ -22337,6 +22170,9 @@ goog.require("CTATLogicTreeNode");
     CTATLogicRelationNode.prototype.equals = function(node, inverse) {
       return CTATLogicRelationNode.__super__.equals.call(this, node, inverse) && (this.left == null || this.left.equals(node.left, false)) && this.right.equals(node.right, false);
     };
+    CTATLogicRelationNode.prototype.countOperands = function() {
+      return 2;
+    };
     CTATLogicRelationNode.prototype.getOperators = function(string) {
       var ref, ref1;
       if (string == null) {
@@ -22355,9 +22191,12 @@ goog.require("CTATLogicTreeNode");
         return [this.right];
       }
     };
-    CTATLogicRelationNode.prototype.findOperator = function(operator, path) {
+    CTATLogicRelationNode.prototype.findOperator = function(operator, path, subexpressions) {
       var ref, ref1;
-      return ((ref = (ref1 = this.left) != null ? ref1.findOperator(operator, path.concat(["left"])) : void 0) != null ? ref : []).concat(CTATLogicRelationNode.__super__.findOperator.call(this, operator, path), this.right.findOperator(operator, path.concat(["right"])));
+      if (subexpressions == null) {
+        subexpressions = "none";
+      }
+      return ((ref = (ref1 = this.left) != null ? ref1.findOperator(operator, path.concat(["left"]), subexpressions) : void 0) != null ? ref : []).concat(CTATLogicRelationNode.__super__.findOperator.call(this, operator, path, null, subexpressions), this.right.findOperator(operator, path.concat(["right"]), subexpressions));
     };
     CTATLogicRelationNode.prototype.findExpression = function(expression, path) {
       var ref, ref1;
@@ -22369,6 +22208,16 @@ goog.require("CTATLogicTreeNode");
         reverse = false;
       }
       return ((ref = (ref1 = this.left) != null ? ref1.findRule(rule, path.concat(["left"]), reverse) : void 0) != null ? ref : []).concat(CTATLogicRelationNode.__super__.findRule.call(this, rule, path, reverse), this.right.findRule(rule, path.concat(["right"]), reverse));
+    };
+    CTATLogicRelationNode.prototype.removeNull = function() {
+      var ref, ref1;
+      this.left = (ref = this.left) != null ? ref.removeNull() : void 0;
+      this.right = (ref1 = this.right) != null ? ref1.removeNull() : void 0;
+      if (this.left != null && this.right != null) {
+        return this;
+      } else {
+        return this.left || this.right || null;
+      }
     };
     CTATLogicRelationNode.prototype.applyRules = function(rules1, reverse, global) {
       var ref, ref1, ref2;
@@ -22524,6 +22373,18 @@ goog.require("CTATLogicTreeNode");
         return !test && this;
       }
     };
+    CTATLogicRelationNode.prototype.normalFormOperators = function() {
+      return CTATLogicRelationNode.__super__.normalFormOperators.apply(this, arguments) && (this.left == null || this.left.normalFormOperators()) && this.right.normalFormOperators();
+    };
+    CTATLogicRelationNode.prototype.atomicNegation = function() {
+      return this.atomic() || !this.negationOp() && !this.negated && this.left.atomicNegation() && this.right.atomicNegation();
+    };
+    CTATLogicRelationNode.prototype.atomicConjunction = function() {
+      return this.atomic() || (this.left == null || this.left.atomicConjunction()) && this.right.atomicConjunction();
+    };
+    CTATLogicRelationNode.prototype.atomicDisjunction = function() {
+      return this.atomic() || (this.left == null || this.left.atomicDisjunction()) && this.right.atomicDisjunction();
+    };
     CTATLogicRelationNode.prototype.replaceNodes = function() {
       var left, node, right, rules;
       rules = CTATLogicTreeNode.diff(this.rules, ["replaceNodes"]);
@@ -22533,9 +22394,9 @@ goog.require("CTATLogicTreeNode");
         case "NAND":
         ;
         case "NOR":
-          return (new CTATLogicFlattenNode(this.unnegateOperator(), [this.left, this.right])).setSteps(++this.steps).negate().applyRules(rules);
+          return (new CTATLogicFlattenNode(this.unnegateOperator(), [this.left, this.right])).setSteps(this.steps + 1).negate().applyRules(rules);
         case "IF":
-          return (new CTATLogicFlattenNode("OR", [left = this.left.setSteps(this.steps).negate().applyRules(rules), this.right])).setSteps(++left.steps);
+          return (new CTATLogicFlattenNode("OR", [left = this.left.setSteps(this.steps).negate().applyRules(rules), this.right])).setSteps(left.steps + 1);
         case "IFF":
           node = new CTATLogicFlattenNode("OR", [new CTATLogicFlattenNode("AND", [this.left, this.right]), new CTATLogicFlattenNode("AND", [left = this.left.clone().setSteps(this.steps).negate().applyRules(rules), right = this.right.clone().setSteps(left.steps).negate().applyRules(rules)])]);
           node.setSteps(right.steps).terms = node.terms.map(function(_this) {
@@ -22545,7 +22406,7 @@ goog.require("CTATLogicTreeNode");
               return term;
             };
           }(this));
-          return node.setSteps(++node.steps);
+          return node.setSteps(node.steps + 1);
         case "XOR":
           node = new CTATLogicFlattenNode("OR", [new CTATLogicFlattenNode("AND", [this.left, right = this.right.clone().setSteps(this.steps).negate().applyRules(rules)]), new CTATLogicFlattenNode("AND", [left = this.left.clone().setSteps(right.steps).negate().applyRules(rules), this.right])]);
           node.setSteps(left.steps).terms = node.terms.map(function(_this) {
@@ -22555,7 +22416,7 @@ goog.require("CTATLogicTreeNode");
               return term;
             };
           }(this));
-          return node.setSteps(++node.steps);
+          return node.setSteps(node.steps + 1);
       }
     };
     CTATLogicRelationNode.prototype.sort = function() {
@@ -22566,7 +22427,7 @@ goog.require("CTATLogicTreeNode");
       return this;
     };
     CTATLogicRelationNode.prototype.compare = function(node) {
-      return CTATLogicRelationNode.__super__.compare.apply(this, arguments) || (this.operator === "NOT" ? this.right.compare(node) : node.operator === "NOT" ? this.compare(node.right) : this.left.compare(node.left) || this.right.compare(node.right)) || this.compareNegations(node);
+      return CTATLogicRelationNode.__super__.compare.apply(this, arguments) || (this.operator === "NOT" && node.operator === "NOT" ? this.right.compare(node.right) : this.operator === "NOT" ? this.right.compare(node) : node.operator === "NOT" ? this.compare(node.right) : this.left.compare(node.left) || this.right.compare(node.right)) || this.compareNegations(node);
     };
     CTATLogicRelationNode.prototype.precedence = function(sort) {
       if (sort == null) {
@@ -22580,14 +22441,14 @@ goog.require("CTATLogicTreeNode");
     };
     CTATLogicRelationNode.prototype.countVariables = function() {
       var ref;
-      return ((ref = this.left) != null ? ref.countVariables() : void 0) + this.right.countVariables();
+      return (((ref = this.left) != null ? ref.countVariables() : void 0) || 0) + this.right.countVariables();
     };
     CTATLogicRelationNode.prototype.countLevels = function() {
       var ref;
       if (this.operator === "NOT") {
         return this.right.countLevels();
       } else {
-        return 1 + Math.max((ref = this.left) != null ? ref.countLevels() : void 0, this.right.countLevels());
+        return 1 + Math.max(((ref = this.left) != null ? ref.countLevels() : void 0) || 0, this.right.countLevels());
       }
     };
     return CTATLogicRelationNode;
@@ -22700,8 +22561,7 @@ goog.require("CTATLogicTreeNode");
       this.value = value1;
       this.string = string != null ? string : null;
       this.negated = negated != null ? negated : false;
-      this.operator = "CONST";
-      CTATLogicConstantNode.__super__.constructor.call(this, this.value);
+      (this.operator = "CONST") && CTATLogicConstantNode.__super__.constructor.apply(this, arguments);
     }
     CTATLogicConstantNode.prototype.clone = function() {
       return new CTATLogicConstantNode(this.value, this.string, this.negated);
@@ -22744,6 +22604,7 @@ goog.require("CTATLogicTreeNode");
       return CTATLogicConstantNode.__super__.compare.apply(this, arguments) || this.value - node.value;
     };
     CTATLogicConstantNode.prototype.negate = function() {
+      this.setSteps(this.steps + 1);
       this.value = !this.value;
       this.string = CTATLogicTreeNode.toOperatorString(this.value);
       return this;
@@ -22774,7 +22635,7 @@ var CTATLogicGrammar = function() {
     return o;
   }, $V0 = [1, 3], $V1 = [1, 5], $V2 = [1, 6], $V3 = [1, 7], $V4 = [1, 8], $V5 = [1, 10], $V6 = [1, 11], $V7 = [1, 12], $V8 = [1, 13], $V9 = [1, 14], $Va = [1, 15], $Vb = [1, 16], $Vc = [5, 6, 7, 8, 9, 10, 11, 12, 16], $Vd = [5, 7, 9, 10, 11, 12, 16];
   var parser = {trace:function trace() {
-  }, yy:{}, symbols_:{"error":2, "expression":3, "logical":4, "EOF":5, "AND":6, "OR":7, "NAND":8, "NOR":9, "XOR":10, "IF":11, "IFF":12, "NOT":13, "atom":14, "LPAREN":15, "RPAREN":16, "VARIABLE":17, "TRUE":18, "FALSE":19, "$accept":0, "$end":1}, terminals_:{2:"error", 5:"EOF", 6:"AND", 7:"OR", 8:"NAND", 9:"NOR", 10:"XOR", 11:"IF", 12:"IFF", 13:"NOT", 15:"LPAREN", 16:"RPAREN", 17:"VARIABLE", 18:"TRUE", 19:"FALSE"}, productions_:[0, [3, 2], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4,
+  }, yy:{}, symbols_:{"error":2, "expression":3, "logical":4, "EOF":5, "AND":6, "OR":7, "NAND":8, "NOR":9, "XOR":10, "IF":11, "IFF":12, "NOT":13, "atom":14, "LPAREN":15, "RPAREN":16, "VARIABLE":17, "TRUE":18, "FALSE":19, "$accept":0, "$end":1}, terminals_:{2:"error", 5:"EOF", 6:"AND", 7:"OR", 8:"NAND", 9:"NOR", 10:"XOR", 11:"IF", 12:"IFF", 13:"NOT", 15:"LPAREN", 16:"RPAREN", 17:"VARIABLE", 18:"TRUE", 19:"FALSE"}, productions_:[0, [3, 2], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 
   2], [4, 1], [14, 3], [14, 1], [14, 1], [14, 1]], performAction:function anonymous(yytext, yyleng, yylineno, yy, yystate, $$, _$) {
     var $0 = $$.length - 1;
     switch(yystate) {
@@ -22836,8 +22697,8 @@ var CTATLogicGrammar = function() {
         this.$ = new yy.CTATLogicConstantNode(false, $$[$0]);
         break;
     }
-  }, table:[{3:1, 4:2, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {1:[3]}, {5:[1, 9], 6:$V5, 7:$V6, 8:$V7, 9:$V8, 10:$V9, 11:$Va, 12:$Vb}, {4:17, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, o($Vc, [2, 10]), {4:18, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, o($Vc, [2, 12]), o($Vc, [2, 13]), o($Vc, [2, 14]), {1:[2, 1]}, {4:19, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:20, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:21, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:22, 13:$V0,
-  14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:23, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:24, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:25, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, o($Vc, [2, 9]), {6:$V5, 7:$V6, 8:$V7, 9:$V8, 10:$V9, 11:$Va, 12:$Vb, 16:[1, 26]}, o($Vc, [2, 2]), o($Vd, [2, 3], {6:$V5, 8:$V7}), o($Vd, [2, 4], {6:$V5}), o([5, 10, 11, 12, 16], [2, 5], {6:$V5, 7:$V6, 8:$V7}), o([5, 11, 12, 16], [2, 6], {6:$V5, 7:$V6, 8:$V7, 9:$V8, 10:$V9}), o([5, 12, 16], [2, 7],
+  }, table:[{3:1, 4:2, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {1:[3]}, {5:[1, 9], 6:$V5, 7:$V6, 8:$V7, 9:$V8, 10:$V9, 11:$Va, 12:$Vb}, {4:17, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, o($Vc, [2, 10]), {4:18, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, o($Vc, [2, 12]), o($Vc, [2, 13]), o($Vc, [2, 14]), {1:[2, 1]}, {4:19, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:20, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:21, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:22, 13:$V0, 
+  14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:23, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:24, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, {4:25, 13:$V0, 14:4, 15:$V1, 17:$V2, 18:$V3, 19:$V4}, o($Vc, [2, 9]), {6:$V5, 7:$V6, 8:$V7, 9:$V8, 10:$V9, 11:$Va, 12:$Vb, 16:[1, 26]}, o($Vc, [2, 2]), o($Vd, [2, 3], {6:$V5, 8:$V7}), o($Vd, [2, 4], {6:$V5}), o([5, 10, 11, 12, 16], [2, 5], {6:$V5, 7:$V6, 8:$V7}), o([5, 11, 12, 16], [2, 6], {6:$V5, 7:$V6, 8:$V7, 9:$V8, 10:$V9}), o([5, 12, 16], [2, 7], 
   {6:$V5, 7:$V6, 8:$V7, 9:$V8, 10:$V9, 11:$Va}), o([5, 16], [2, 8], {6:$V5, 7:$V6, 8:$V7, 9:$V8, 10:$V9, 11:$Va, 12:$Vb}), o($Vc, [2, 11])], defaultActions:{9:[2, 1]}, parseError:function parseError(str, hash) {
     if (hash.recoverable) {
       this.trace(str);
@@ -23262,13 +23123,13 @@ var CTATLogicGrammar = function() {
           return 8;
           break;
         case 29:
-          return 6;
+          return 8;
           break;
         case 30:
-          return 6;
+          return 8;
           break;
         case 31:
-          return 6;
+          return 8;
           break;
         case 32:
           return 6;
@@ -23277,16 +23138,16 @@ var CTATLogicGrammar = function() {
           return 6;
           break;
         case 34:
-          return 9;
+          return 6;
           break;
         case 35:
-          return 9;
+          return 6;
           break;
         case 36:
-          return 9;
+          return 6;
           break;
         case 37:
-          return 9;
+          return 6;
           break;
         case 38:
           return 9;
@@ -23301,63 +23162,87 @@ var CTATLogicGrammar = function() {
           return 9;
           break;
         case 42:
-          return 7;
+          return 9;
           break;
         case 43:
-          return 7;
+          return 9;
           break;
         case 44:
-          return 7;
+          return 9;
           break;
         case 45:
-          return 7;
+          return 9;
           break;
         case 46:
-          return 13;
+          return 9;
           break;
         case 47:
-          return 13;
+          return 9;
           break;
         case 48:
-          return 13;
+          return 9;
           break;
         case 49:
-          return 13;
+          return 7;
           break;
         case 50:
-          return 18;
+          return 7;
           break;
         case 51:
-          return 18;
+          return 7;
           break;
         case 52:
-          return 18;
+          return 7;
           break;
         case 53:
-          return 18;
+          return 7;
           break;
         case 54:
-          return 19;
+          return 13;
           break;
         case 55:
-          return 19;
+          return 13;
           break;
         case 56:
-          return 19;
+          return 13;
           break;
         case 57:
-          return 19;
+          return 13;
           break;
         case 58:
-          return 17;
+          return 18;
           break;
         case 59:
+          return 18;
+          break;
+        case 60:
+          return 18;
+          break;
+        case 61:
+          return 18;
+          break;
+        case 62:
+          return 19;
+          break;
+        case 63:
+          return 19;
+          break;
+        case 64:
+          return 19;
+          break;
+        case 65:
+          return 19;
+          break;
+        case 66:
+          return 17;
+          break;
+        case 67:
           return 5;
           break;
       }
-    }, rules:[/^(?:\s+)/, /^(?:\()/, /^(?:\))/, /^(?:=)/, /^(?:<=>)/, /^(?:<->)/, /^(?:\u21d4)/, /^(?:\u2194)/, /^(?:\u2261)/, /^(?:\u2299)/, /^(?:\u2260)/, /^(?:\u2262)/, /^(?:\u22bb)/, /^(?:\u2295)/, /^(?:\^)/, /^(?:<~>)/, /^(?:=>)/, /^(?:->)/, /^(?:\u21d2)/, /^(?:\u2192)/, /^(?:\u2283)/, /^(?:\u2191)/, /^(?:\u22bc)/, /^(?:~&&)/, /^(?:~&)/, /^(?:!&&)/, /^(?:!&)/, /^(?:-&&)/, /^(?:-&)/, /^(?:&&)/, /^(?:&)/, /^(?:\u2227)/, /^(?:\*)/, /^(?:\.)/, /^(?:\u2193)/, /^(?:\u22bd)/, /^(?:~\|\|)/, /^(?:~\|)/,
-    /^(?:!\|\|)/, /^(?:!\|)/, /^(?:-\|\|)/, /^(?:-\|)/, /^(?:\|\|)/, /^(?:\|)/, /^(?:\u2228)/, /^(?:\+)/, /^(?:~)/, /^(?:\u00ac)/, /^(?:!)/, /^(?:-)/, /^(?:([Tt][Rr][Uu][Ee]))/, /^(?:T\b)/, /^(?:\u22a4)/, /^(?:1\b)/, /^(?:([Ff][Aa][Ll][Ss][Ee]))/, /^(?:F\b)/, /^(?:\u22a5)/, /^(?:0\b)/, /^(?:([A-Za-z]))/, /^(?:$)/], conditions:{"INITIAL":{"rules":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59], "inclusive":true}}};
+    }, rules:[/^(?:\s+)/, /^(?:\()/, /^(?:\))/, /^(?:=)/, /^(?:<=>)/, /^(?:<->)/, /^(?:\u21d4)/, /^(?:\u2194)/, /^(?:\u2261)/, /^(?:\u2299)/, /^(?:\u2260)/, /^(?:\u2262)/, /^(?:\u22bb)/, /^(?:\u2295)/, /^(?:\^)/, /^(?:<~>)/, /^(?:=>)/, /^(?:->)/, /^(?:\u21d2)/, /^(?:\u2192)/, /^(?:\u2283)/, /^(?:\u2191)/, /^(?:\u22bc)/, /^(?:~\/\\)/, /^(?:~&&)/, /^(?:~&)/, /^(?:!\/\\)/, /^(?:!&&)/, /^(?:!&)/, /^(?:-\/\\)/, /^(?:-&&)/, /^(?:-&)/, /^(?:&&)/, /^(?:&)/, /^(?:\u2227)/, /^(?:\/\\)/, /^(?:\*)/, /^(?:\.)/, 
+    /^(?:\u2193)/, /^(?:\u22bd)/, /^(?:~\\\/)/, /^(?:~\|\|)/, /^(?:~\|)/, /^(?:!\\\/)/, /^(?:!\|\|)/, /^(?:!\|)/, /^(?:-\\\/)/, /^(?:-\|\|)/, /^(?:-\|)/, /^(?:\|\|)/, /^(?:\|)/, /^(?:\u2228)/, /^(?:\\\/)/, /^(?:\+)/, /^(?:~)/, /^(?:\u00ac)/, /^(?:!)/, /^(?:-)/, /^(?:([Tt][Rr][Uu][Ee]))/, /^(?:T\b)/, /^(?:\u22a4)/, /^(?:1\b)/, /^(?:([Ff][Aa][Ll][Ss][Ee]))/, /^(?:F\b)/, /^(?:\u22a5)/, /^(?:0\b)/, /^(?:([A-Za-z][0-9]*))/, /^(?:$)/], conditions:{"INITIAL":{"rules":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 
+    12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67], "inclusive":true}}};
     return lexer;
   }();
   parser.lexer = lexer;
@@ -23392,7 +23277,7 @@ goog.require("CTATLogicTreeNode");
       this.terms = terms1;
       this.string = string1 != null ? string1 : null;
       this.negated = negated1 != null ? negated1 : false;
-      CTATLogicFlattenNode.__super__.constructor.call(this, this.operator);
+      CTATLogicFlattenNode.__super__.constructor.apply(this, arguments);
     }
     CTATLogicFlattenNode.prototype.addOperand = function(operator, operand, string) {
       if (string == null) {
@@ -23458,6 +23343,9 @@ goog.require("CTATLogicTreeNode");
         return this;
       }
     };
+    CTATLogicFlattenNode.prototype.countOperands = function() {
+      return this.terms.length;
+    };
     CTATLogicFlattenNode.prototype.getOperators = function(string) {
       if (string == null) {
         string = false;
@@ -23478,12 +23366,15 @@ goog.require("CTATLogicTreeNode");
     CTATLogicFlattenNode.prototype.getOperands = function() {
       return this.terms.slice(0);
     };
-    CTATLogicFlattenNode.prototype.findOperator = function(operator, path) {
+    CTATLogicFlattenNode.prototype.findOperator = function(operator, path, subexpressions) {
+      if (subexpressions == null) {
+        subexpressions = "none";
+      }
       return this.terms.slice(1).reduce(function(_this) {
         return function(result, term, index) {
-          return result.concat(CTATLogicFlattenNode.__super__.findOperator.call(_this, operator, path, index), term.findOperator(operator, path.concat([index + 1])));
+          return result.concat(CTATLogicFlattenNode.__super__.findOperator.call(_this, operator, path, index, subexpressions), term.findOperator(operator, path.concat([index + 1]), subexpressions));
         };
-      }(this), this.terms[0].findOperator(operator, path.concat([0])));
+      }(this), this.terms[0].findOperator(operator, path.concat([0]), subexpressions));
     };
     CTATLogicFlattenNode.prototype.findExpression = function(expression, path) {
       return this.terms.slice(1).reduce(function(_this) {
@@ -23501,6 +23392,18 @@ goog.require("CTATLogicTreeNode");
           return result.concat(CTATLogicFlattenNode.__super__.findRule.call(_this, rule, path, reverse, index), term.findRule(rule, path.concat([index + 1]), reverse));
         };
       }(this), this.terms[0].findRule(rule, path.concat([0]), reverse));
+    };
+    CTATLogicFlattenNode.prototype.removeNull = function() {
+      this.terms = this.terms.map(function(term) {
+        return term != null ? term.removeNull() : void 0;
+      }).filter(function(term) {
+        return term;
+      });
+      if (this.terms.length > 1) {
+        return this;
+      } else {
+        return this.terms[0] || null;
+      }
     };
     CTATLogicFlattenNode.prototype.applyRules = function(rules1, reverse, global) {
       this.rules = rules1;
@@ -23672,7 +23575,7 @@ goog.require("CTATLogicTreeNode");
           return term.operator === _this.operator;
         };
       }(this))) {
-        return test || this.clone(true).flatten();
+        return test || this.clone().flatten();
       } else {
         return !test && this;
       }
@@ -23838,6 +23741,30 @@ goog.require("CTATLogicTreeNode");
         return !test && this;
       }
     };
+    CTATLogicFlattenNode.prototype.normalFormOperators = function() {
+      return CTATLogicFlattenNode.__super__.normalFormOperators.apply(this, arguments) && this.terms.every(function(term) {
+        return term.normalFormOperators();
+      });
+    };
+    CTATLogicFlattenNode.prototype.atomicNegation = function() {
+      return !this.negated && this.terms.every(function(term) {
+        return term.atomicNegation();
+      });
+    };
+    CTATLogicFlattenNode.prototype.atomicConjunction = function() {
+      return this.conjunctionOp() && this.terms.every(function(term) {
+        return term.atomic();
+      }) || !this.conjunctionOp() && this.terms.every(function(term) {
+        return term.atomicConjunction();
+      });
+    };
+    CTATLogicFlattenNode.prototype.atomicDisjunction = function() {
+      return this.disjunctionOp() && this.terms.every(function(term) {
+        return term.atomic();
+      }) || !this.disjunctionOp() && this.terms.every(function(term) {
+        return term.atomicDisjunction();
+      });
+    };
     CTATLogicFlattenNode.prototype.pushNegation = function() {
       if (this.negated) {
         this.negate();
@@ -23848,7 +23775,7 @@ goog.require("CTATLogicTreeNode");
             return _this.setSteps(term.steps);
           };
         }(this));
-        this.setSteps(++this.steps);
+        this.setSteps(this.steps + 1);
       }
       return this;
     };
@@ -23879,7 +23806,7 @@ goog.require("CTATLogicTreeNode");
             return item;
           };
         }(this));
-        return term.setSteps(++term.steps).applyRules(["flatten", "sort", "distributeDisjunction"]);
+        return term.setSteps(term.steps + 1).applyRules(["flatten", "sort", "distributeDisjunction"]);
       } else {
         return this;
       }
@@ -23903,7 +23830,7 @@ goog.require("CTATLogicTreeNode");
             return item;
           };
         }(this));
-        return term.setSteps(++term.steps).applyRules(["flatten", "sort", "distributeConjunction"]);
+        return term.setSteps(term.steps + 1).applyRules(["flatten", "sort", "distributeConjunction"]);
       } else {
         return this;
       }
@@ -23920,31 +23847,31 @@ goog.require("CTATLogicTreeNode");
           if (!(result instanceof Array)) {
           } else {
             if (_this.disjunctionOp() && term.constant(true) || _this.conjunctionOp() && term.constant(false)) {
-              result = term.setSteps(++_this.steps);
+              result = term.setSteps(_this.steps + 1);
             } else {
               if (term.constant() && result.length === 0) {
                 result.push(term);
               } else {
                 if ((ref = result[result.length - 1]) != null ? ref.equals(term, false) : void 0) {
-                  _this.setSteps(++_this.steps);
+                  _this.setSteps(_this.steps + 1);
                 } else {
                   if ((ref1 = result[result.length - 1]) != null ? ref1.equals(term, true) : void 0) {
-                    result = (new CTATLogicConstantNode(_this.disjunctionOp(), CTATLogicTreeNode.operatorStrings[_this.disjunctionOp()])).setSteps(++_this.steps);
+                    result = (new CTATLogicConstantNode(_this.disjunctionOp(), CTATLogicTreeNode.operatorStrings[_this.disjunctionOp()])).setSteps(_this.steps + 1);
                   } else {
                     if (term.junctionOp() && result.find(function(item) {
                       return term.subterm(item, false);
                     })) {
-                      _this.setSteps(++_this.steps);
+                      _this.setSteps(_this.steps + 1);
                     } else {
                       if (term.junctionOp() && (inverse = result.find(function(item) {
                         return term.subterm(item, true);
                       }))) {
-                        _this.setSteps(++_this.steps);
+                        _this.setSteps(_this.steps + 1);
                         result.push(term.removeInverse(inverse));
                       } else {
                         if ((ref2 = result[0]) != null ? ref2.constant() : void 0) {
                           result.pop();
-                          _this.setSteps(++_this.steps);
+                          _this.setSteps(_this.steps + 1);
                         }
                         result.push(term);
                       }
@@ -24019,17 +23946,20 @@ goog.require("CTATLogicVariableNode");
 goog.require("CTATLogicConstantNode");
 goog.require("CTATLogicTreeNode");
 (function() {
-  var CTATLogicParser;
+  var CTATLogicParser, slice = [].slice;
   CTATLogicParser = function() {
     function CTATLogicParser(variableTable) {
       this.parser = new CTATLogicGrammar.Parser;
       this.parser.yy = {CTATLogicRelationNode:CTATLogicRelationNode, CTATLogicFlattenNode:CTATLogicFlattenNode, CTATLogicVariableNode:CTATLogicVariableNode, CTATLogicConstantNode:CTATLogicConstantNode, CTATLogicTreeNode:CTATLogicTreeNode};
       this.parser.yy.variableTable = variableTable;
     }
-    CTATLogicParser.SORT = ["sort"];
-    CTATLogicParser.NNF = ["replaceNodes", "pushNegation", "flatten", "sort", "absorb", "sort"];
-    CTATLogicParser.CNF = ["replaceNodes", "pushNegation", "flatten", "sort", "distributeDisjunction", "absorb", "sort"];
-    CTATLogicParser.DNF = ["replaceNodes", "pushNegation", "flatten", "sort", "distributeConjunction", "absorb", "sort"];
+    CTATLogicParser.SORTRule = ["sort"];
+    CTATLogicParser.NNFRules = ["replaceNodes", "pushNegation", "flatten", "sort", "absorb", "sort"];
+    CTATLogicParser.CNFRules = ["replaceNodes", "pushNegation", "flatten", "sort", "distributeDisjunction", "absorb", "sort"];
+    CTATLogicParser.DNFRules = ["replaceNodes", "pushNegation", "flatten", "sort", "distributeConjunction", "absorb", "sort"];
+    CTATLogicParser.NNFTests = ["normalFormOperators", "atomicNegation"];
+    CTATLogicParser.CNFTests = ["normalFormOperators", "atomicNegation", "atomicDisjunction"];
+    CTATLogicParser.DNFTests = ["normalFormOperators", "atomicNegation", "atomicConjunction"];
     CTATLogicParser.prototype.getTree = function(expression, clone, steps) {
       var result;
       if (clone == null) {
@@ -24038,19 +23968,7 @@ goog.require("CTATLogicTreeNode");
       if (steps == null) {
         steps = false;
       }
-      result = expression instanceof CTATLogicTreeNode ? clone ? expression.clone() : expression : expression instanceof String ? function() {
-        try {
-          return Object.assign(this.parser.parse(expression), {path:expression.path});
-        } catch (_error) {
-          return null;
-        }
-      }.call(this) : function() {
-        try {
-          return this.parser.parse(String(expression));
-        } catch (_error) {
-          return null;
-        }
-      }.call(this);
+      result = expression instanceof CTATLogicTreeNode ? clone ? expression.clone() : expression : this.parser.parse(expression);
       if (steps) {
         if (result != null) {
           result.setSteps(0);
@@ -24068,24 +23986,16 @@ goog.require("CTATLogicTreeNode");
         if (typeof tree === "string") {
           return tree;
         } else {
-          if (tree != null ? tree.path : void 0) {
-            return Object.assign(new String(tree.toString(parenthesized)), {path:tree.path});
+          if (tree != null) {
+            return tree.toString(parenthesized);
           } else {
-            if (tree != null ? tree.steps : void 0) {
-              return Object.assign(new String(tree.toString(parenthesized)), {steps:tree.steps});
-            } else {
-              if (tree != null) {
-                return tree.toString(parenthesized);
-              } else {
-                return tree;
-              }
-            }
+            return tree;
           }
         }
       }
     };
     CTATLogicParser.prototype.equalExpressions = function(expression1, expression2) {
-      if (expression1 instanceof CTATLogicTreeNode) {
+      if (expression1 instanceof CTATLogicTreeNode && expression2 instanceof CTATLogicTreeNode) {
         return expression1.toString() === expression2.toString();
       } else {
         return expression1 === expression2;
@@ -24096,7 +24006,11 @@ goog.require("CTATLogicTreeNode");
       return object;
     };
     CTATLogicParser.prototype.logicParse = function(expression) {
-      return this.getTree(expression);
+      try {
+        return this.getTree(expression);
+      } catch (_error) {
+        return null;
+      }
     };
     CTATLogicParser.prototype.logicGetError = function(expression) {
       var error;
@@ -24122,63 +24036,101 @@ goog.require("CTATLogicTreeNode");
       }
     };
     CTATLogicParser.prototype.logicSort = function(expression) {
-      return this.getExpression(expression, this.getTree(expression, true).applyRules(CTATLogicParser.SORT, false, true));
+      return this.getExpression(expression, function() {
+        try {
+          return this.getTree(expression, true).applyRules(CTATLogicParser.SORTRule, false, true);
+        } catch (_error) {
+          return null;
+        }
+      }.call(this));
     };
     CTATLogicParser.prototype.logicGetOperator = function(expression, string) {
-      var ref;
       if (string == null) {
         string = false;
       }
-      return (ref = this.getTree(expression)) != null ? ref.getOperator(string) : void 0;
+      try {
+        return this.getTree(expression).getOperator(string);
+      } catch (_error) {
+        return null;
+      }
     };
     CTATLogicParser.prototype.logicGetOperators = function(expression, string) {
-      var ref;
       if (string == null) {
         string = false;
       }
-      return (ref = this.getTree(expression)) != null ? ref.getOperators(string) : void 0;
+      try {
+        return this.getTree(expression).getOperators(string);
+      } catch (_error) {
+        return null;
+      }
     };
     CTATLogicParser.prototype.logicGetVariables = function(expression) {
-      var ref;
-      return (ref = this.getTree(expression)) != null ? ref.getVariables() : void 0;
+      try {
+        return this.getTree(expression).getVariables();
+      } catch (_error) {
+        return null;
+      }
     };
     CTATLogicParser.prototype.logicGetOperands = function(expression) {
-      var ref;
-      return (ref = this.getTree(expression)) != null ? ref.getOperands().map(function(_this) {
-        return function(subexpression) {
-          return _this.getExpression(expression, subexpression);
-        };
-      }(this)) : void 0;
+      try {
+        return this.getTree(expression).getOperands().map(function(_this) {
+          return function(subexpression) {
+            return _this.getExpression(expression, subexpression);
+          };
+        }(this));
+      } catch (_error) {
+        return null;
+      }
     };
-    CTATLogicParser.prototype.logicFindOperator = function(expression, operator) {
-      var ref, ref1;
-      return (ref = this.getTree(expression)) != null ? (ref1 = ref.findOperator(operator, [])) != null ? ref1.map(function(_this) {
-        return function(subexpression) {
-          return _this.getExpression(expression, subexpression);
-        };
-      }(this)) : void 0 : void 0;
+    CTATLogicParser.prototype.logicGetExpression = function(expression, start, end) {
+      return this.getExpression(expression, function() {
+        try {
+          return this.getTree(expression).getExpression(start, end);
+        } catch (_error) {
+          return null;
+        }
+      }.call(this));
+    };
+    CTATLogicParser.prototype.logicFindOperator = function(expression, operator, subexpressions) {
+      if (subexpressions == null) {
+        subexpressions = "none";
+      }
+      try {
+        return this.getTree(expression).findOperator(operator, [], subexpressions).map(function(_this) {
+          return function(subexpression) {
+            return _this.getExpression(expression, subexpression);
+          };
+        }(this));
+      } catch (_error) {
+        return null;
+      }
     };
     CTATLogicParser.prototype.logicFindExpression = function(expression, subexpression) {
-      var ref, ref1;
-      return (ref = this.getTree(expression)) != null ? (ref1 = ref.findExpression(this.getTree(subexpression), [])) != null ? ref1.map(function(_this) {
-        return function(subexpression) {
-          return _this.getExpression(expression, subexpression);
-        };
-      }(this)) : void 0 : void 0;
+      try {
+        return this.getTree(expression).findExpression(this.getTree(subexpression), []).map(function(_this) {
+          return function(subexpression) {
+            return _this.getExpression(expression, subexpression);
+          };
+        }(this));
+      } catch (_error) {
+        return null;
+      }
     };
     CTATLogicParser.prototype.logicFindRule = function(expression, rule, reverse) {
-      var ref, ref1;
       if (reverse == null) {
         reverse = false;
       }
-      return (ref = this.getTree(expression)) != null ? (ref1 = ref.findRule(rule, [], reverse)) != null ? ref1.map(function(_this) {
-        return function(subexpression) {
-          return _this.getExpression(expression, subexpression);
-        };
-      }(this)) : void 0 : void 0;
+      try {
+        return this.getTree(expression).findRule(rule, [], reverse).map(function(_this) {
+          return function(subexpression) {
+            return _this.getExpression(expression, subexpression);
+          };
+        }(this));
+      } catch (_error) {
+        return null;
+      }
     };
     CTATLogicParser.prototype.logicApplyRules = function(expression, rules, reverse, global) {
-      var tree;
       if (reverse == null) {
         reverse = false;
       }
@@ -24187,18 +24139,55 @@ goog.require("CTATLogicTreeNode");
       }
       return this.getExpression(expression, function() {
         try {
-          return (tree = this.getTree(expression, global)) && tree.applyRules(rules, reverse, global);
+          return this.getTree(expression, global).applyRules(rules, reverse, global);
         } catch (_error) {
+          return null;
+        }
+      }.call(this));
+    };
+    CTATLogicParser.prototype.logicCreateExpression = function() {
+      var expression, expressions, operator;
+      operator = arguments[0], expression = arguments[1], expressions = 3 <= arguments.length ? slice.call(arguments, 2) : [];
+      return this.getExpression(expression, function() {
+        var ref;
+        try {
+          return (ref = this.getTree(expression)).createExpression.apply(ref, [operator].concat(slice.call(expressions.map(function(_this) {
+            return function(expression) {
+              return _this.getTree(expression);
+            };
+          }(this)))));
+        } catch (_error) {
+          return null;
         }
       }.call(this));
     };
     CTATLogicParser.prototype.logicReplaceExpression = function(expression, oldSubexpression, newSubexpression, locator) {
-      var ref, ref1;
+      var ref;
       if (locator == null) {
         locator = null;
       }
       locator = (locator != null ? locator : (ref = oldSubexpression.path) != null ? ref.slice(0) : void 0) || 0;
-      return this.getExpression(expression, ((ref1 = this.getTree(expression)) != null ? ref1.replaceExpression(this.getTree(oldSubexpression), this.getTree(newSubexpression), locator) : void 0) || null);
+      return this.getExpression(expression, function() {
+        try {
+          return this.getTree(expression).replaceExpression(this.getTree(oldSubexpression), this.getTree(newSubexpression), locator);
+        } catch (_error) {
+          return null;
+        }
+      }.call(this));
+    };
+    CTATLogicParser.prototype.logicDeleteExpression = function(expression, subexpression, locator) {
+      var ref;
+      if (locator == null) {
+        locator = null;
+      }
+      locator = (locator != null ? locator : (ref = subexpression.path) != null ? ref.slice(0) : void 0) || 0;
+      return this.getExpression(expression, function() {
+        try {
+          return this.getTree(expression).deleteExpression(this.getTree(subexpression), locator);
+        } catch (_error) {
+          return null;
+        }
+      }.call(this));
     };
     CTATLogicParser.prototype.logicSimplifyNNF = function(expression, steps) {
       if (steps == null) {
@@ -24206,7 +24195,7 @@ goog.require("CTATLogicTreeNode");
       }
       return this.getExpression(expression, function() {
         try {
-          return this.getTree(expression, true, steps).applyRules(CTATLogicParser.NNF, false, true);
+          return this.getTree(expression, true, steps).applyRules(CTATLogicParser.NNFRules, false, true);
         } catch (_error) {
           return null;
         }
@@ -24218,7 +24207,7 @@ goog.require("CTATLogicTreeNode");
       }
       return this.getExpression(expression, function() {
         try {
-          return this.getTree(expression, true, steps).applyRules(CTATLogicParser.CNF, false, true);
+          return this.getTree(expression, true, steps).applyRules(CTATLogicParser.CNFRules, false, true);
         } catch (_error) {
           return null;
         }
@@ -24230,7 +24219,7 @@ goog.require("CTATLogicTreeNode");
       }
       return this.getExpression(expression, function() {
         try {
-          return this.getTree(expression, true, steps).applyRules(CTATLogicParser.DNF, false, true);
+          return this.getTree(expression, true, steps).applyRules(CTATLogicParser.DNFRules, false, true);
         } catch (_error) {
           return null;
         }
@@ -24240,17 +24229,37 @@ goog.require("CTATLogicTreeNode");
       return this.logicParse(expression) != null;
     };
     CTATLogicParser.prototype.logicValued = function(expression, bindings) {
-      var value;
       if (bindings == null) {
         bindings = null;
       }
-      return (value = this.logicEvaluate(expression, bindings)) != null || value;
+      return this.logicEvaluate(expression, bindings) != null;
     };
     CTATLogicParser.prototype.logicSorted = function(expression) {
       var expression1, expression2;
       if ((expression1 = this.logicSort(expression)) != null && (expression2 = this.getExpression(expression, this.getTree(expression))) != null) {
         return this.equalExpressions(expression1, expression2);
       } else {
+        return null;
+      }
+    };
+    CTATLogicParser.prototype.logicCheckNNF = function(expression) {
+      try {
+        return this.getTree(expression).applyTests(CTATLogicParser.NNFTests);
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATLogicParser.prototype.logicCheckCNF = function(expression) {
+      try {
+        return this.getTree(expression).applyTests(CTATLogicParser.CNFTests);
+      } catch (_error) {
+        return null;
+      }
+    };
+    CTATLogicParser.prototype.logicCheckDNF = function(expression) {
+      try {
+        return this.getTree(expression).applyTests(CTATLogicParser.DNFTests);
+      } catch (_error) {
         return null;
       }
     };
@@ -24291,7 +24300,7 @@ goog.require("CTATLogicTreeNode");
         bindings = null;
       }
       value1 = this.logicEvaluate(expression1, bindings);
-      value2 = this.logicEvaluate(expression2, bingings);
+      value2 = this.logicEvaluate(expression2, bindings);
       if (value1 != null && value2 != null) {
         return value1 === value2;
       } else {
@@ -24355,6 +24364,18 @@ goog.provide("CTATChemTreeNode");
         return !list2.includes(item);
       });
     };
+    CTATChemTreeNode.round = function(val, numPlaces) {
+      var scaleFactor;
+      if (typeof val !== "number") {
+        val = parseFloat(val);
+      }
+      numPlaces = typeof numPlaces === "number" && numPlaces % 1 === 0 ? numPlaces : CTATChemParser.CHEM_DECIMAL_PRECISION;
+      if (numPlaces > -1) {
+        scaleFactor = Math.pow(10, numPlaces);
+        val = Math.round(val * scaleFactor) / scaleFactor;
+      }
+      return val;
+    };
     CTATChemTreeNode.prototype.toString = function(string, symDelim, wrapSymbols) {
       var i, j, ref;
       if (symDelim == null) {
@@ -24410,42 +24431,65 @@ goog.provide("CTATChemTreeNode");
       return this.sign * Math.pow(value, this.exp);
     };
     CTATChemTreeNode.prototype.applyOperator = function(left, right) {
+      var res;
       switch(this.operator) {
         case "LESS":
-          return left < right;
+          res = left < right;
+          break;
         case "GREATER":
-          return left > right;
+          res = left > right;
+          break;
         case "LESSEQUAL":
-          return left <= right;
+          res = left <= right;
+          break;
         case "GREATEREQUAL":
-          return left >= right;
+          res = left >= right;
+          break;
         case "EQUAL":
-          return left === right;
+          res = left === right;
+          break;
         case "NOTEQUAL":
-          return left !== right;
+          res = left !== right;
+          break;
         case "PLUS":
-          return left + right;
+          res = CTATChemTreeNode.round(left + right);
+          break;
         case "MINUS":
-          return left - right;
+          res = CTATChemTreeNode.round(left - right);
+          break;
         case "TIMES":
         ;
         case "ITIMES":
-          return left * right;
+          res = CTATChemTreeNode.round(left * right);
+          break;
         case "DIVIDE":
-          return left / right;
+          res = CTATChemTreeNode.round(left / right);
+          break;
         case "EXP":
-          return Math.pow(left, right);
+          res = CTATChemTreeNode.round(Math.pow(left, right));
+          break;
         case "ROOT":
-          return Math.pow(left, 1) / right;
+          res = CTATChemTreeNode.round(Math.pow(left, 1) / right);
+          break;
         case "REM":
-          return left % right;
+          res = left % right;
+          break;
         case "IDIVIDE":
-          return Math.floor(left / right);
+          res = Math.floor(left / right);
+          break;
         case "UPLUS":
-          return left;
+          res = left;
+          break;
         case "UMINUS":
-          return -left;
+          res = -left;
+          break;
+        case "LOG":
+          res = Math.log10(left);
+          break;
+        case "LN":
+          res = Math.log(left);
       }
+      return res;
     };
     CTATChemTreeNode.prototype.equals = function(node) {
       return node && this.operator === node.operator && this.sign === node.sign && this.exp === node.exp && this.parens === node.parens;
@@ -24565,6 +24609,10 @@ goog.provide("CTATChemTreeNode");
     CTATChemTreeNode.prototype.unary = function() {
       var ref;
       return (ref = this.operator) === "UPLUS" || ref === "UMINUS";
+    };
+    CTATChemTreeNode.prototype.log = function() {
+      var ref;
+      return (ref = this.operator) === "LOG" || ref === "LN";
     };
     CTATChemTreeNode.prototype.constant = function(value) {
       return false;
@@ -24687,17 +24735,24 @@ goog.require("CTATChemTreeNode");
     CTATChemRelationNode.prototype.getVariables = function() {
       return this.left.getVariables().concat(this.right.getVariables());
     };
-    CTATChemRelationNode.prototype.setVariable = function(varName, parsedValue) {
-      if (this.left.operator === "VAR" && this.left.variable === varName) {
-        this.left = parsedValue;
-      } else {
-        this.left.setVariable(varName, parsedValue);
-      }
-      if (this.right.operator === "VAR" && this.right.variable === varName) {
-        return this.right = parsedValue;
-      } else {
-        return this.right.setVariable(varName, parsedValue);
-      }
+    CTATChemRelationNode.prototype.setVariable = function(varName, value, makeReplacement) {
+      return [this.left, this.right].forEach(function(_this) {
+        return function(term, idx) {
+          var replacement;
+          if (term.operator === "VAR" && term.variable === varName) {
+            replacement = makeReplacement();
+            replacement.sign = term.sign;
+            replacement.exp = term.exp;
+            if (idx === 0) {
+              return _this.left = replacement;
+            } else {
+              return _this.right = replacement;
+            }
+          } else {
+            return term.setVariable(varName, value, makeReplacement);
+          }
+        };
+      }(this));
     };
     return CTATChemRelationNode;
   }(CTATChemTreeNode);
@@ -24798,9 +24853,11 @@ goog.require("CTATChemTreeNode");
         return term.constant();
       })) >= 0) {
         constant = this.terms[constantIndex].evaluate();
-        this.terms = this.terms.filter(function(term, index) {
-          return index <= constantIndex || !term.constant() || (constant += term.evaluate()) && false;
-        });
+        this.terms = this.terms.filter(function(_this) {
+          return function(term, index) {
+            return index <= constantIndex || !term.constant() || (constant = _this.applyOperator(constant, term.evaluate())) && false;
+          };
+        }(this));
         if (constant === 0 && this.terms.length > 1) {
           this.terms.splice(constantIndex, 1);
         } else {
@@ -24817,20 +24874,28 @@ goog.require("CTATChemTreeNode");
       var groups;
       groups = [];
       this.terms.forEach(function(term) {
-        var group, splitPair;
-        splitPair = term.constant() ? [null, term] : (term = term.multiplyOne(), [term, term.factors.shift()]);
+        var group, splitPair, splitPair1;
+        splitPair = null;
+        if (term.constant()) {
+          splitPair = [null, term];
+        } else {
+          term = term.multiplyOne();
+          splitPair = [term, term.factors.shift()];
+        }
+        splitPair1 = splitPair[1].evaluate();
         if (group = groups.find(function(group) {
           var ref;
           return (ref = group[0]) != null ? ref.equals(splitPair[0]) : void 0;
         })) {
-          return group[1] += splitPair[1].evaluate();
+          return group[1] += splitPair1;
         } else {
-          return groups.push([splitPair[0], splitPair[1].evaluate()]);
+          group = [splitPair[0], splitPair1];
+          return groups.push(group);
         }
       });
       this.terms = groups.reduce(function(result, group) {
         if (group[1] !== 0) {
-          group[1] = (new CTATChemConstantNode(group[1])).popNegation();
+          group[1] = (new CTATChemConstantNode(group[1], false, 0, 1, 1, void 0)).popNegation();
           if (!group[0]) {
             result.push(group[1]);
           } else {
@@ -24936,15 +25001,18 @@ goog.require("CTATChemTreeNode");
       }(this));
       return vars;
     };
-    CTATChemAdditionNode.prototype.setVariable = function(varName, parsedValue) {
-      var i, results;
+    CTATChemAdditionNode.prototype.setVariable = function(varName, value, makeReplacement) {
+      var i, replacement, results;
       i = 0;
       results = [];
       while (i < this.terms.length) {
         if (this.terms[i].operator === "VAR" && this.terms[i].variable === varName) {
-          this.terms[i] = parsedValue;
+          replacement = makeReplacement();
+          replacement.sign = this.terms[i].sign;
+          replacement.exp = this.terms[i].exp;
+          this.terms[i] = replacement;
         } else {
-          this.terms[i].setVariable(varName, parsedValue);
+          this.terms[i].setVariable(varName, value, makeReplacement);
         }
         results.push(i++);
       }
@@ -25042,24 +25110,26 @@ goog.require("CTATChemTreeNode");
       return this.popNegation();
     };
     CTATChemMultiplicationNode.prototype.computeConstants = function() {
-      var constant, constantIndex;
+      var constNode, constant, constantIndex;
       if ((constantIndex = this.factors.findIndex(function(term) {
         return term.constant();
       })) >= 0) {
         constant = this.factors[constantIndex].evaluate();
-        this.factors = this.factors.filter(function(factor, index) {
-          return index <= constantIndex || !factor.constant() || (constant *= factor.evaluate()) && false;
-        });
-        if (constant === 1 && this.factors.length > 1) {
-          this.factors.splice(constantIndex, 1);
-        } else {
-          this.factors[constantIndex].set(constant);
+        this.factors = this.factors.filter(function(_this) {
+          return function(factor, index) {
+            return index <= constantIndex || !factor.constant() || (constant = _this.applyOperator(constant, factor.evaluate())) && false;
+          };
+        }(this));
+        constNode = this.factors.splice(constantIndex, 1)[0];
+        if (!(constant === 1 && this.factors.length > 1)) {
+          constNode.set(constant);
+          this.factors.unshift(constNode);
         }
       }
       if (this.factors.length > 1) {
         return this;
       } else {
-        return this.pushNegation().pushInversion().factors[0];
+        return this.pushNegation().pushInversion().factors[0].pushNegation();
       }
     };
     CTATChemMultiplicationNode.prototype.combineSimilar = function() {
@@ -25147,7 +25217,7 @@ goog.require("CTATChemTreeNode");
         if (this.factors.length > 1) {
           return this;
         } else {
-          return this.pushNegation().pushInversion().factors[0];
+          return this.pushNegation().pushInversion().factors[0].pushNegation();
         }
       }
     };
@@ -25342,15 +25412,18 @@ goog.require("CTATChemTreeNode");
       }(this));
       return vars;
     };
-    CTATChemMultiplicationNode.prototype.setVariable = function(varName, parsedValue) {
-      var i, results;
+    CTATChemMultiplicationNode.prototype.setVariable = function(varName, value, makeReplacement) {
+      var i, replacement, results;
       i = 0;
       results = [];
       while (i < this.factors.length) {
         if (this.factors[i].operator === "VAR" && this.factors[i].variable === varName) {
-          this.factors[i] = parsedValue;
+          replacement = makeReplacement();
+          replacement.sign = this.factors[i].sign;
+          replacement.exp = this.factors[i].exp;
+          this.factors[i] = replacement;
         } else {
-          this.factors[i].setVariable(varName, parsedValue);
+          this.factors[i].setVariable(varName, value, makeReplacement);
         }
         results.push(i++);
       }
@@ -25469,17 +25542,24 @@ goog.require("CTATChemTreeNode");
     CTATChemIntDivisionNode.prototype.getVariables = function() {
       return this.dividend.getVariables().concat(this.divisor.getVariables());
     };
-    CTATChemIntDivisionNode.prototype.setVariable = function(varName, parsedValue) {
-      if (this.dividend.operator === "VAR" && this.dividend.variable === varName) {
-        this.dividend = parsedValue;
-      } else {
-        this.dividend.setVariable(varName, parsedValue);
-      }
-      if (this.divisor.operator === "VAR" && this.divisor.variable === varName) {
-        return this.divisor = parsedValue;
-      } else {
-        return this.divisor.setVariable(varName, parsedValue);
-      }
+    CTATChemIntDivisionNode.prototype.setVariable = function(varName, value, makeReplacement) {
+      return [this.dividend, this.divisor].forEach(function(_this) {
+        return function(term, idx) {
+          var replacement;
+          if (term.operator === "VAR" && term.variable === varName) {
+            replacement = makeReplacement();
+            replacement.sign = term.sign;
+            replacement.exp = term.exp;
+            if (idx === 0) {
+              return _this.dividend = replacement;
+            } else {
+              return _this.divisor = replacement;
+            }
+          } else {
+            return term.setVariable(varName, value, makeReplacement);
+          }
+        };
+      }(this));
     };
     return CTATChemIntDivisionNode;
   }(CTATChemTreeNode);
@@ -25541,7 +25621,7 @@ goog.require("CTATChemTreeNode");
         this.negate();
         this.operator = "UPLUS";
       }
-      return this.pushNegation().pushInversion().base;
+      return this.pushNegation().pushInversion().base.pushNegation();
     };
     CTATChemUnaryNode.prototype.compare = function(node, reverse) {
       return node.unary() && this.base.compare(node.base, reverse) || CTATChemUnaryNode.__super__.compare.apply(this, arguments) || this.compareSigns(node, reverse);
@@ -25572,11 +25652,15 @@ goog.require("CTATChemTreeNode");
     CTATChemUnaryNode.prototype.getVariables = function() {
       return this.base.getVariables();
     };
-    CTATChemUnaryNode.prototype.setVariable = function(varName, parsedValue) {
+    CTATChemUnaryNode.prototype.setVariable = function(varName, value, makeReplacement) {
+      var replacement;
       if (this.base.operator === "VAR" && this.base.variable === varName) {
-        return this.base = parsedValue;
+        replacement = makeReplacement();
+        replacement.sign = this.base.sign;
+        replacement.exp = this.base.exp;
+        return this.base = replacement;
       } else {
-        return this.base.setVariable(varName, parsedValue);
+        return this.base.setVariable(varName, value, makeReplacement);
       }
     };
     return CTATChemUnaryNode;
@@ -25672,7 +25756,7 @@ goog.require("CTATChemTreeNode");
         if (this.exponent) {
           return this;
         } else {
-          return this.pushBaseNegation().pushBaseInversion().base;
+          return this.pushBaseNegation().base;
         }
       } else {
         return this;
@@ -25816,17 +25900,24 @@ goog.require("CTATChemTreeNode");
     CTATChemPowerNode.prototype.getVariables = function() {
       return this.base.getVariables().concat(this.exponent.getVariables());
     };
-    CTATChemPowerNode.prototype.setVariable = function(varName, parsedValue) {
-      if (this.base.operator === "VAR" && this.base.variable === varName) {
-        this.base = parsedValue;
-      } else {
-        this.base.setVariable(varName, parsedValue);
-      }
-      if (this.exponent.operator === "VAR" && this.exponent.variable === varName) {
-        return this.exponent = parsedValue;
-      } else {
-        return this.exponent.setVariable(varName, parsedValue);
-      }
+    CTATChemPowerNode.prototype.setVariable = function(varName, value, makeReplacement) {
+      return [this.base, this.exponent].forEach(function(_this) {
+        return function(term, idx) {
+          var replacement;
+          if (term.operator === "VAR" && term.variable === varName) {
+            replacement = makeReplacement();
+            replacement.sign = term.sign;
+            replacement.exp = term.exp;
+            if (idx === 0) {
+              return _this.base = replacement;
+            } else {
+              return _this.exponent = replacement;
+            }
+          } else {
+            return term.setVariable(varName, value, makeReplacement);
+          }
+        };
+      }(this));
     };
     return CTATChemPowerNode;
   }(CTATChemTreeNode);
@@ -25923,19 +26014,23 @@ goog.require("CTATChemTreeNode");
   }, hasProp = {}.hasOwnProperty;
   CTATChemConstantNode = function(superClass) {
     extend(CTATChemConstantNode, superClass);
-    function CTATChemConstantNode(value1, marked1, parens, sign, exp) {
-      this.value = value1;
+    function CTATChemConstantNode(val, marked1, parens, sign, exp, prec) {
       this.marked = marked1 != null ? marked1 : false;
       this.parens = parens != null ? parens : 0;
       this.sign = sign != null ? sign : 1;
       this.exp = exp != null ? exp : 1;
       this.operator = "CONST";
+      this.precision = prec || 0;
+      if (this.precision === 0) {
+        this.precision = void 0;
+      }
+      this.value = typeof val === "string" ? parseFloat(val) : val;
     }
     CTATChemConstantNode.prototype.clone = function() {
-      return new CTATChemConstantNode(this.value, this.marked, this.parens, this.sign, this.exp);
+      return new CTATChemConstantNode(this.value, this.marked, this.parens, this.sign, this.exp, this.precision);
     };
     CTATChemConstantNode.prototype.toString = function() {
-      return CTATChemConstantNode.__super__.toString.call(this, this.value.toString());
+      return CTATChemConstantNode.__super__.toString.call(this, this.value.toPrecision ? this.value.toPrecision(this.precision) : this.value);
     };
     CTATChemConstantNode.prototype.evaluate = function() {
       return CTATChemConstantNode.__super__.evaluate.call(this, this.value);
@@ -25972,10 +26067,11 @@ goog.require("CTATChemTreeNode");
     CTATChemConstantNode.prototype.even = function() {
       return this.evaluate() % 2 === 0;
     };
-    CTATChemConstantNode.prototype.set = function(value) {
+    CTATChemConstantNode.prototype.set = function(value, prec) {
       this.exp = 1;
       this.value = Math.abs(value);
-      return this.sign = Math.sign(value);
+      this.sign = Math.sign(value);
+      return this.precision = prec || void 0;
     };
     return CTATChemConstantNode;
   }(CTATChemTreeNode);
@@ -25983,6 +26079,123 @@ goog.require("CTATChemTreeNode");
     module.exports = CTATChemConstantNode;
   } else {
     this.CTATChemConstantNode = CTATChemConstantNode;
+  }
+}).call(this);
+goog.provide("CTATChemLogNode");
+goog.require("CTATChemTreeNode");
+(function() {
+  var CTATChemLogNode, extend = function(child, parent) {
+    for (var key in parent) {
+      if (hasProp.call(parent, key)) {
+        child[key] = parent[key];
+      }
+    }
+    function ctor() {
+      this.constructor = child;
+    }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  }, hasProp = {}.hasOwnProperty;
+  CTATChemLogNode = function(superClass) {
+    extend(CTATChemLogNode, superClass);
+    function CTATChemLogNode(val, operator, sign, exp) {
+      this.val = val;
+      this.operator = operator;
+      this.sign = sign != null ? sign : 1;
+      this.exp = exp != null ? exp : 1;
+    }
+    CTATChemLogNode.prototype.clone = function() {
+      return new CTATChemLogNode(this.base, this.val, this.sign, this.exp);
+    };
+    CTATChemLogNode.prototype.toString = function(wrapSymbols) {
+      var str;
+      if (wrapSymbols == null) {
+        wrapSymbols = false;
+      }
+      str = this.operator === "LOG" ? "log(" : "ln(";
+      str += this.val.toString(wrapSymbols);
+      str += ")";
+      return CTATChemLogNode.__super__.toString.call(this, str);
+    };
+    CTATChemLogNode.prototype.evaluate = function() {
+      return CTATChemLogNode.__super__.evaluate.call(this, this.applyOperator(this.val.evaluate()));
+    };
+    CTATChemLogNode.prototype.equals = function(node) {
+      return CTATChemLogNode.__super__.equals.call(this, node) && this.val.equals(node.val);
+    };
+    CTATChemLogNode.prototype.simplify = function(methods) {
+      this.methods = methods;
+      this.val = this.val.simplify(this.methods);
+      return CTATChemLogNode.__super__.simplify.apply(this, arguments);
+    };
+    CTATChemLogNode.prototype.flatten = function() {
+      return this;
+    };
+    CTATChemLogNode.prototype.computeConstants = function() {
+      var value;
+      console.log("logNode computeConstants");
+      if (this.val.constant()) {
+        value = this.evaluate();
+        console.log("value is " + value);
+        this.val = new CTATChemConstantNode(value);
+        console.log("const node before set: ");
+        console.log(this.val);
+        this.val.set(value);
+        console.log("const node after set: ");
+        console.log(this.val);
+        return this.val;
+      } else {
+        return this;
+      }
+    };
+    CTATChemLogNode.prototype.compare = function(node, reverse) {
+      return node.log() && this.base.compare(node.base, reverse) || CTATChemLogNode.__super__.compare.apply(this, arguments) || this.compareSigns(node, reverse);
+    };
+    CTATChemLogNode.prototype.countVariables = function() {
+      return this.base.countVariables();
+    };
+    CTATChemLogNode.prototype.pushNegation = function() {
+      if (this.negated()) {
+        this.negate();
+        this.base.negate();
+      }
+      return this;
+    };
+    CTATChemLogNode.prototype.pushInversion = function() {
+      if (this.inverted()) {
+        this.invert();
+        this.base.invert();
+      }
+      return this;
+    };
+    CTATChemLogNode.prototype.constant = function(value, marked) {
+      if (marked == null) {
+        marked = false;
+      }
+      return this.base.constant(value, marked);
+    };
+    CTATChemLogNode.prototype.getVariables = function() {
+      return this.val.getVariables();
+    };
+    CTATChemLogNode.prototype.setVariable = function(varName, value, makeReplacement) {
+      var replacement;
+      if (this.base.operator === "VAR" && this.base.variable === varName) {
+        replacement = makeReplacement();
+        replacement.sign = this.base.sign;
+        replacement.exp = this.base.exp;
+        return this.base = replacement;
+      } else {
+        return this.base.setVariable(varName, value, makeReplacement);
+      }
+    };
+    return CTATChemLogNode;
+  }(CTATChemTreeNode);
+  if (typeof module !== "undefined" && module !== null) {
+    module.exports = CTATChemLogNode;
+  } else {
+    this.CTATChemLogNode = CTATChemLogNode;
   }
 }).call(this);
 goog.provide("CTATChemGrammar");
@@ -25995,17 +26208,18 @@ goog.require("CTATChemUnaryNode");
 goog.require("CTATChemPowerNode");
 goog.require("CTATChemVariableNode");
 goog.require("CTATChemConstantNode");
+goog.require("CTATChemLogNode");
 var CTATChemGrammar = function() {
   var o = function(k, v, o, l) {
     for (o = o || {}, l = k.length;l--;o[k[l]] = v) {
     }
     return o;
-  }, $V0 = [1, 6], $V1 = [1, 7], $V2 = [1, 11], $V3 = [1, 12], $V4 = [1, 13], $V5 = [1, 14], $V6 = [1, 15], $V7 = [1, 23], $V8 = [1, 24], $V9 = [5, 7, 8, 9, 10, 11, 12, 13, 15, 30], $Va = [1, 25], $Vb = [1, 26], $Vc = [1, 29], $Vd = [1, 30], $Ve = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 21, 22, 28, 29, 30, 31, 32, 33], $Vf = [1, 34], $Vg = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 21, 22, 25, 28, 29, 30, 31, 32, 33], $Vh = [1, 37], $Vi = [1, 38], $Vj = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 21,
-  22, 25, 27, 28, 29, 30, 31, 32, 33];
+  }, $V0 = [1, 6], $V1 = [1, 7], $V2 = [1, 11], $V3 = [1, 12], $V4 = [1, 14], $V5 = [1, 13], $V6 = [1, 15], $V7 = [1, 16], $V8 = [1, 17], $V9 = [1, 25], $Va = [1, 26], $Vb = [5, 7, 8, 9, 10, 11, 12, 13, 15, 31], $Vc = [1, 27], $Vd = [1, 28], $Ve = [1, 31], $Vf = [1, 32], $Vg = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 21, 22, 28, 29, 30, 31, 32, 33, 34, 35], $Vh = [1, 36], $Vi = [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 21, 22, 25, 28, 29, 30, 31, 32, 33, 34, 35], $Vj = [1, 39], $Vk = [1, 40], $Vl = 
+  [5, 7, 8, 9, 10, 11, 12, 13, 15, 16, 18, 21, 22, 25, 27, 28, 29, 30, 31, 32, 33, 34, 35];
   var parser = {trace:function trace() {
-  }, yy:{}, symbols_:{"error":2, "expression":3, "relational":4, "EOF":5, "arithmetic":6, "LESS":7, "GREATER":8, "LESSEQUAL":9, "GREATEREQUAL":10, "EQUAL":11, "NOTEQUAL":12, "PLUS":13, "term":14, "MINUS":15, "TIMES":16, "signedunitfactor":17, "DIVIDE":18, "unitfactor":19, "factor":20, "IDIVIDE":21, "REM":22, "signedfactor":23, "unit":24, "UNIT":25, "atom":26, "EXP":27, "SQRT":28, "LPAREN":29, "RPAREN":30, "VARIABLE":31, "NUMBER":32, "SUBSTANCE":33, "$accept":0, "$end":1}, terminals_:{2:"error", 5:"EOF",
-  7:"LESS", 8:"GREATER", 9:"LESSEQUAL", 10:"GREATEREQUAL", 11:"EQUAL", 12:"NOTEQUAL", 13:"PLUS", 15:"MINUS", 16:"TIMES", 18:"DIVIDE", 21:"IDIVIDE", 22:"REM", 25:"UNIT", 27:"EXP", 28:"SQRT", 29:"LPAREN", 30:"RPAREN", 31:"VARIABLE", 32:"NUMBER", 33:"SUBSTANCE"}, productions_:[0, [3, 2], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 1], [6, 3], [6, 3], [6, 1], [14, 3], [14, 3], [14, 2], [14, 2], [14, 3], [14, 3], [14, 1], [17, 2], [17, 2], [17, 1], [17, 1], [23, 2], [23, 2], [23, 1], [19, 2],
-  [24, 1], [20, 3], [20, 2], [20, 1], [26, 3], [26, 1], [26, 1], [26, 1]], performAction:function anonymous(yytext, yyleng, yylineno, yy, yystate, $$, _$) {
+  }, yy:{}, symbols_:{"error":2, "expression":3, "relational":4, "EOF":5, "arithmetic":6, "LESS":7, "GREATER":8, "LESSEQUAL":9, "GREATEREQUAL":10, "EQUAL":11, "NOTEQUAL":12, "PLUS":13, "term":14, "MINUS":15, "TIMES":16, "signedunitfactor":17, "DIVIDE":18, "unitfactor":19, "factor":20, "IDIVIDE":21, "REM":22, "signedfactor":23, "unit":24, "UNIT":25, "atom":26, "EXP":27, "SQRT":28, "LOG":29, "LPAREN":30, "RPAREN":31, "LN":32, "VARIABLE":33, "NUMBER":34, "SUBSTANCE":35, "$accept":0, "$end":1}, terminals_:{2:"error", 
+  5:"EOF", 7:"LESS", 8:"GREATER", 9:"LESSEQUAL", 10:"GREATEREQUAL", 11:"EQUAL", 12:"NOTEQUAL", 13:"PLUS", 15:"MINUS", 16:"TIMES", 18:"DIVIDE", 21:"IDIVIDE", 22:"REM", 25:"UNIT", 27:"EXP", 28:"SQRT", 29:"LOG", 30:"LPAREN", 31:"RPAREN", 32:"LN", 33:"VARIABLE", 34:"NUMBER", 35:"SUBSTANCE"}, productions_:[0, [3, 2], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 3], [4, 1], [6, 3], [6, 3], [6, 1], [14, 3], [14, 3], [14, 2], [14, 2], [14, 3], [14, 3], [14, 1], [17, 2], [17, 2], [17, 1], [17, 1], [23, 2], 
+  [23, 2], [23, 1], [19, 2], [24, 1], [20, 3], [20, 2], [20, 1], [26, 4], [26, 4], [26, 3], [26, 1], [26, 1], [26, 1]], performAction:function anonymous(yytext, yyleng, yylineno, yy, yystate, $$, _$) {
     var $0 = $$.length - 1;
     switch(yystate) {
       case 1:
@@ -26087,27 +26301,35 @@ var CTATChemGrammar = function() {
         this.$ = new yy.CTATChemPowerNode("EXP", $$[$0 - 2], $$[$0]);
         break;
       case 29:
-        this.$ = new yy.CTATChemPowerNode("ROOT", $$[$0], 2);
+        this.$ = new yy.CTATChemPowerNode("ROOT", $$[$0], new yy.CTATChemConstantNode(2));
         break;
       case 31:
-        this.$ = $$[$0 - 1];
+        this.$ = new yy.CTATChemLogNode($$[$0 - 1], "LOG");
         break;
       case 32:
-        this.$ = new yy.CTATChemVariableNode(yy.variableTable, yytext);
+        this.$ = new yy.CTATChemLogNode($$[$0 - 1], "LN");
         break;
       case 33:
-        this.$ = new yy.CTATChemConstantNode(Number(yytext));
+        this.$ = $$[$0 - 1];
         break;
       case 34:
+        this.$ = new yy.CTATChemVariableNode(yy.variableTable, yytext.replace(/\&/g, ""), 0, 1, 1, "&");
+        break;
+      case 35:
+        this.$ = new yy.CTATChemConstantNode(yytext);
+        break;
+      case 36:
         this.$ = new yy.CTATChemVariableNode(yy.variableTable, yytext.replace(/\$/g, ""), 0, 1, 1, "$");
         break;
     }
-  }, table:[{3:1, 4:2, 6:3, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {1:[3]}, {5:[1, 16]}, {5:[2, 8], 7:[1, 17], 8:[1, 18], 9:[1, 19], 10:[1, 20], 11:[1, 21], 12:[1, 22], 13:$V7, 15:$V8}, o($V9, [2, 11], {26:10, 19:27, 20:28, 16:$Va, 18:$Vb, 21:$Vc, 22:$Vd, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}), o($Ve, [2, 18]), {13:$V0, 15:$V1, 17:31, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {13:$V0, 15:$V1, 17:32, 19:8, 20:9, 26:10, 28:$V2, 29:$V3,
-  31:$V4, 32:$V5, 33:$V6}, o($Ve, [2, 21]), o($Ve, [2, 22], {24:33, 25:$Vf}), o($Vg, [2, 30], {27:[1, 35]}), {13:$Vh, 15:$Vi, 20:39, 23:36, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {6:40, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, o($Vj, [2, 32]), o($Vj, [2, 33]), o($Vj, [2, 34]), {1:[2, 1]}, {6:41, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {6:42, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2,
-  29:$V3, 31:$V4, 32:$V5, 33:$V6}, {6:43, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {6:44, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {6:45, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {6:46, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {13:$V0, 14:47, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6},
-  {13:$V0, 14:48, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {13:$V0, 15:$V1, 17:49, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {13:$V0, 15:$V1, 17:50, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, o($Ve, [2, 14]), o($Ve, [2, 15], {24:33, 25:$Vf}), {13:$V0, 15:$V1, 17:51, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {13:$V0, 15:$V1, 17:52, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, o($Ve, [2, 19]), o($Ve,
-  [2, 20]), o($Ve, [2, 26]), o($Ve, [2, 27]), {13:$Vh, 15:$Vi, 20:39, 23:53, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, o($Vg, [2, 29]), {13:$Vh, 15:$Vi, 20:39, 23:54, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, {13:$Vh, 15:$Vi, 20:39, 23:55, 26:10, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}, o($Vg, [2, 25]), {13:$V7, 15:$V8, 30:[1, 56]}, {5:[2, 2], 13:$V7, 15:$V8}, {5:[2, 3], 13:$V7, 15:$V8}, {5:[2, 4], 13:$V7, 15:$V8}, {5:[2, 5], 13:$V7, 15:$V8}, {5:[2, 6], 13:$V7, 15:$V8}, {5:[2, 7], 13:$V7,
-  15:$V8}, o($V9, [2, 9], {26:10, 19:27, 20:28, 16:$Va, 18:$Vb, 21:$Vc, 22:$Vd, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}), o($V9, [2, 10], {26:10, 19:27, 20:28, 16:$Va, 18:$Vb, 21:$Vc, 22:$Vd, 28:$V2, 29:$V3, 31:$V4, 32:$V5, 33:$V6}), o($Ve, [2, 12]), o($Ve, [2, 13]), o($Ve, [2, 16]), o($Ve, [2, 17]), o($Vg, [2, 28]), o($Vg, [2, 23]), o($Vg, [2, 24]), o($Vj, [2, 31])], defaultActions:{16:[2, 1]}, parseError:function parseError(str, hash) {
+  }, table:[{3:1, 4:2, 6:3, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {1:[3]}, {5:[1, 18]}, {5:[2, 8], 7:[1, 19], 8:[1, 20], 9:[1, 21], 10:[1, 22], 11:[1, 23], 12:[1, 24], 13:$V9, 15:$Va}, o($Vb, [2, 11], {26:10, 19:29, 20:30, 16:$Vc, 18:$Vd, 21:$Ve, 22:$Vf, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}), o($Vg, [2, 18]), {13:$V0, 15:$V1, 17:33, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {13:$V0, 
+  15:$V1, 17:34, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, o($Vg, [2, 21]), o($Vg, [2, 22], {24:35, 25:$Vh}), o($Vi, [2, 30], {27:[1, 37]}), {13:$Vj, 15:$Vk, 20:41, 23:38, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {30:[1, 42]}, {30:[1, 43]}, {6:44, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, o($Vl, [2, 34]), o($Vl, [2, 35]), o($Vl, [2, 36]), {1:[2, 1]}, {6:45, 13:$V0, 14:4, 15:$V1, 
+  17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {6:46, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {6:47, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {6:48, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {6:49, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 
+  33:$V6, 34:$V7, 35:$V8}, {6:50, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {13:$V0, 14:51, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {13:$V0, 14:52, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {13:$V0, 15:$V1, 17:53, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {13:$V0, 15:$V1, 17:54, 19:8, 20:9, 26:10, 28:$V2, 
+  29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, o($Vg, [2, 14]), o($Vg, [2, 15], {24:35, 25:$Vh}), {13:$V0, 15:$V1, 17:55, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {13:$V0, 15:$V1, 17:56, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, o($Vg, [2, 19]), o($Vg, [2, 20]), o($Vg, [2, 26]), o($Vg, [2, 27]), {13:$Vj, 15:$Vk, 20:41, 23:57, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, o($Vi, [2, 29]), {13:$Vj, 15:$Vk, 20:41, 
+  23:58, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {13:$Vj, 15:$Vk, 20:41, 23:59, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, o($Vi, [2, 25]), {6:60, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {6:61, 13:$V0, 14:4, 15:$V1, 17:5, 19:8, 20:9, 26:10, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}, {13:$V9, 15:$Va, 31:[1, 62]}, {5:[2, 2], 13:$V9, 15:$Va}, {5:[2, 3], 13:$V9, 15:$Va}, {5:[2, 4], 
+  13:$V9, 15:$Va}, {5:[2, 5], 13:$V9, 15:$Va}, {5:[2, 6], 13:$V9, 15:$Va}, {5:[2, 7], 13:$V9, 15:$Va}, o($Vb, [2, 9], {26:10, 19:29, 20:30, 16:$Vc, 18:$Vd, 21:$Ve, 22:$Vf, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}), o($Vb, [2, 10], {26:10, 19:29, 20:30, 16:$Vc, 18:$Vd, 21:$Ve, 22:$Vf, 28:$V2, 29:$V3, 30:$V4, 32:$V5, 33:$V6, 34:$V7, 35:$V8}), o($Vg, [2, 12]), o($Vg, [2, 13]), o($Vg, [2, 16]), o($Vg, [2, 17]), o($Vi, [2, 28]), o($Vi, [2, 23]), o($Vi, [2, 24]), {13:$V9, 15:$Va, 31:[1, 
+  63]}, {13:$V9, 15:$Va, 31:[1, 64]}, o($Vl, [2, 33]), o($Vl, [2, 31]), o($Vl, [2, 32])], defaultActions:{18:[2, 1]}, parseError:function parseError(str, hash) {
     if (hash.recoverable) {
       this.trace(str);
     } else {
@@ -26439,10 +26661,10 @@ var CTATChemGrammar = function() {
         case 0:
           break;
         case 1:
-          return 29;
+          return 30;
           break;
         case 2:
-          return 30;
+          return 31;
           break;
         case 3:
           return 27;
@@ -26457,89 +26679,101 @@ var CTATChemGrammar = function() {
           return 28;
           break;
         case 7:
-          return 16;
+          return 28;
           break;
         case 8:
-          return 16;
+          return 29;
           break;
         case 9:
-          return 21;
+          return 32;
           break;
         case 10:
-          return 18;
+          return 16;
           break;
         case 11:
-          return 18;
+          return 16;
           break;
         case 12:
-          return 22;
+          return 21;
           break;
         case 13:
-          return 15;
+          return 18;
           break;
         case 14:
-          return 13;
+          return 18;
           break;
         case 15:
-          return 9;
+          return 22;
           break;
         case 16:
-          return 9;
+          return 15;
           break;
         case 17:
-          return 10;
+          return 13;
           break;
         case 18:
-          return 10;
+          return 9;
           break;
         case 19:
-          return 7;
+          return 9;
           break;
         case 20:
-          return 8;
+          return 10;
           break;
         case 21:
-          return 12;
+          return 10;
           break;
         case 22:
-          return 12;
+          return 7;
           break;
         case 23:
-          return 12;
+          return 8;
           break;
         case 24:
           return 12;
           break;
         case 25:
-          return 11;
+          return 12;
           break;
         case 26:
-          return 11;
+          return 12;
           break;
         case 27:
-          return 32;
+          return 12;
           break;
         case 28:
-          return 32;
+          return 11;
           break;
         case 29:
-          return 25;
+          return 11;
           break;
         case 30:
-          return 33;
+          return 34;
           break;
         case 31:
-          return 31;
+          return 34;
           break;
         case 32:
-          return 31;
+          return 25;
           break;
         case 33:
+          return 35;
+          break;
+        case 34:
+          return 33;
+          break;
+        case 35:
+          return 33;
+          break;
+        case 36:
+          return 33;
+          break;
+        case 37:
           return 5;
           break;
       }
-    }, rules:[/^(?:\s+)/, /^(?:\()/, /^(?:\))/, /^(?:\*\*)/, /^(?:\^)/, /^(?:\|)/, /^(?:\u221a)/, /^(?:\*)/, /^(?:\u00d7)/, /^(?:\/\/)/, /^(?:\/)/, /^(?:\u00f7)/, /^(?:%)/, /^(?:-)/, /^(?:\+)/, /^(?:<=)/, /^(?:\u2264)/, /^(?:>=)/, /^(?:\u2265)/, /^(?:<)/, /^(?:>)/, /^(?:!=)/, /^(?:\/=)/, /^(?:<>)/, /^(?:\u2260)/, /^(?:==)/, /^(?:=)/, /^(?:(([0-9])+\.?([0-9])*|\.([0-9])+)([Ee][+-]?([0-9])+)?)/, /^(?:(0[Bb]([0-1])+|0[Oo]([0-7])+|0[Xx]([0-9A-Fa-f])+))/, /^(?:#[^\#\s]+#)/, /^(?:\$[^\$\s]+\$)/, /^(?:deltaT\b)/,
-    /^(?:([A-Za-z]))/, /^(?:$)/], conditions:{"INITIAL":{"rules":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33], "inclusive":true}}};
+    }, rules:[/^(?:\s+)/, /^(?:\()/, /^(?:\))/, /^(?:\*\*)/, /^(?:\^)/, /^(?:\|)/, /^(?:\u221a)/, /^(?:sqrt\b)/, /^(?:log\b)/, /^(?:ln\b)/, /^(?:\*)/, /^(?:\u00d7)/, /^(?:\/\/)/, /^(?:\/)/, /^(?:\u00f7)/, /^(?:%)/, /^(?:-)/, /^(?:\+)/, /^(?:<=)/, /^(?:\u2264)/, /^(?:>=)/, /^(?:\u2265)/, /^(?:<)/, /^(?:>)/, /^(?:!=)/, /^(?:\/=)/, /^(?:<>)/, /^(?:\u2260)/, /^(?:==)/, /^(?:=)/, /^(?:(([0-9])+\.?([0-9])*|\.([0-9])+)([Ee][+-]?([0-9])+)?)/, /^(?:(0[Bb]([0-1])+|0[Oo]([0-7])+|0[Xx]([0-9A-Fa-f])+))/, /^(?:#[^\#\s]+#)/, 
+    /^(?:\$[^\$\s]+\$)/, /^(?:&[^\&\s]+&)/, /^(?:deltaT\b)/, /^(?:([A-Za-z]))/, /^(?:$)/], conditions:{"INITIAL":{"rules":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37], "inclusive":true}}};
     return lexer;
   }();
   parser.lexer = lexer;
@@ -26561,19 +26795,22 @@ goog.require("CTATChemPowerNode");
 goog.require("CTATChemVariableNode");
 goog.require("CTATChemConstantNode");
 goog.require("CTATChemTreeNode");
+goog.require("CTATChemLogNode");
 (function() {
   var CTATChemParser;
   CTATChemParser = function() {
     function CTATChemParser(variableTable) {
       this.parser = new CTATChemGrammar.Parser;
-      this.parser.yy = {CTATChemRelationNode:CTATChemRelationNode, CTATChemAdditionNode:CTATChemAdditionNode, CTATChemMultiplicationNode:CTATChemMultiplicationNode, CTATChemIntDivisionNode:CTATChemIntDivisionNode, CTATChemUnaryNode:CTATChemUnaryNode, CTATChemPowerNode:CTATChemPowerNode, CTATChemVariableNode:CTATChemVariableNode, CTATChemConstantNode:CTATChemConstantNode, CTATChemTreeNode:CTATChemTreeNode};
+      this.parser.yy = {CTATChemRelationNode:CTATChemRelationNode, CTATChemAdditionNode:CTATChemAdditionNode, CTATChemMultiplicationNode:CTATChemMultiplicationNode, CTATChemIntDivisionNode:CTATChemIntDivisionNode, CTATChemUnaryNode:CTATChemUnaryNode, CTATChemLogNode:CTATChemLogNode, CTATChemPowerNode:CTATChemPowerNode, CTATChemVariableNode:CTATChemVariableNode, CTATChemConstantNode:CTATChemConstantNode, CTATChemTreeNode:CTATChemTreeNode};
       this.parser.yy.variableTable = variableTable;
     }
     CTATChemParser.none = ["simpleFlatten"];
     CTATChemParser.partial = ["flatten", "removeIdentity"];
     CTATChemParser.full = ["flatten", "computeConstants", "combineSimilar", "expand", "distribute", "removeIdentity"];
+    CTATChemParser.compConstants = ["flatten", "computeConstants"];
+    CTATChemParser.CHEM_DECIMAL_PRECISION = -1;
     CTATChemParser.prototype.chemParse = function(expression, order) {
-      var toSimp;
+      var e, toSimp;
       if (order == null) {
         order = false;
       }
@@ -26581,6 +26818,9 @@ goog.require("CTATChemTreeNode");
         toSimp = typeof expression === "string" ? this.parser.parse(expression) : expression;
         return toSimp.simplify(CTATChemParser.none.concat(order ? "sort" : []));
       } catch (_error) {
+        e = _error;
+        console.log("error parsing " + expression + " : ");
+        console.log(e);
         return null;
       }
     };
@@ -26595,11 +26835,13 @@ goog.require("CTATChemTreeNode");
       }
     };
     CTATChemParser.prototype.chemEvaluate = function(expression) {
-      var toSimp;
+      var e, toSimp;
       try {
         toSimp = typeof expression === "string" ? this.parser.parse(expression) : expression;
         return toSimp.simplify(CTATChemParser.none).evaluate();
       } catch (_error) {
+        e = _error;
+        console.log(e);
         return null;
       }
     };
@@ -26619,7 +26861,7 @@ goog.require("CTATChemTreeNode");
       }
     };
     CTATChemParser.prototype.chemSimplify = function(expression, order, wrapSymbols) {
-      var toSimp;
+      var e, toSimp;
       if (order == null) {
         order = false;
       }
@@ -26627,13 +26869,25 @@ goog.require("CTATChemTreeNode");
         wrapSymbols = false;
       }
       try {
-        if (typeof expression === "string") {
-          toSimp = this.parser.parse(expression);
-          return toSimp.simplify(CTATChemParser.full.concat(order ? "sort" : [])).toString(wrapSymbols);
-        } else {
-          return expression.simplify(CTATChemParser.full.concat(order ? "sort" : [])).toString(wrapSymbols);
-        }
+        toSimp = typeof expression === "string" ? this.parser.parse(expression) : expression;
+        return toSimp.simplify(CTATChemParser.full.concat(order ? "sort" : [])).toString(wrapSymbols);
       } catch (_error) {
+        e = _error;
+        console.log(e);
+        return null;
+      }
+    };
+    CTATChemParser.prototype.chemComputeConstants = function(expression, wrapSymbols) {
+      var e, toSimp;
+      if (wrapSymbols == null) {
+        wrapSymbols = false;
+      }
+      try {
+        toSimp = typeof expression === "string" ? this.parser.parse(expression) : expression;
+        return toSimp.simplify(CTATChemParser.compConstants).toString(wrapSymbols);
+      } catch (_error) {
+        e = _error;
+        console.log(e);
         return null;
       }
     };
@@ -26673,6 +26927,14 @@ goog.require("CTATChemTreeNode");
         ordered = false;
       }
       if ((string1 = this.chemSimplify(expression, true)) != null && (tree2 = this.chemParse(expression, !ordered)) != null) {
+        return string1 === tree2.toString();
+      } else {
+        return null;
+      }
+    };
+    CTATChemParser.prototype.chemConstantsComputed = function(expression) {
+      var string1, tree2;
+      if ((string1 = this.chemComputeConstants(expression)) != null && (tree2 = this.chemParse(expression)) != null) {
         return string1 === tree2.toString();
       } else {
         return null;
@@ -26749,6 +27011,164 @@ goog.require("CTATChemTreeNode");
       return this.chemEquivalent(expression1, expression2, true);
     };
     CTATChemParser.prototype.expressionMatches = CTATChemParser.prototype.algebraicMatches;
+    CTATChemParser.prototype.chemGetQuadraticCoefficients = function(expression, forceSimplify) {
+      var addNode, checkATerm, checkBTerm, checkCTerm, exp, funcs, i, j, k, keys, l, ref, res, ret, successIdx, tree, variable;
+      exp = forceSimplify ? this.chemSimplify(expression, false, true) : expression;
+      tree = this.chemParse(exp);
+      addNode = null;
+      ret = [];
+      variable = null;
+      if (tree.operator === "EQUAL") {
+        if (tree.left.operator === "PLUS" && tree.right.operator === "CONST" && tree.right.value === 0) {
+          addNode = tree.left;
+        } else {
+          if (tree.right.operator === "PLUS" && tree.left.operator === "CONST" && tree.left.value === 0) {
+            addNode = tree.right;
+          }
+        }
+      }
+      if (addNode) {
+        if (addNode.terms.length > 1 && addNode.terms.length < 4) {
+          checkATerm = function(aTerm) {
+            var a, coeff, timesSign, xSqTerm;
+            a = null;
+            xSqTerm = null;
+            coeff = null;
+            timesSign = 1;
+            if (aTerm.operator === "TIMES" && aTerm.factors.length === 2) {
+              aTerm.factors.forEach(function(_this) {
+                return function(factor, idx) {
+                  var other;
+                  other = idx === 0 ? 1 : 0;
+                  if (factor.operator === "EXP") {
+                    xSqTerm = factor;
+                    return coeff = aTerm.factors[other];
+                  }
+                };
+              }(this));
+              timesSign = aTerm.sign;
+            } else {
+              if (aTerm.operator === "EXP") {
+                xSqTerm = aTerm;
+              }
+            }
+            if (xSqTerm && xSqTerm.base.operator === "VAR" && xSqTerm.exponent.value === 2 && (!variable || xSqTerm.base.variable === variable)) {
+              if (!variable) {
+                variable = xSqTerm.base.variable;
+              }
+              if (coeff && (coeff.operator === "CONST" || coeff.operator === "UMINUS")) {
+                a = coeff.evaluate() * timesSign;
+              } else {
+                if (!coeff) {
+                  a = aTerm.sign;
+                }
+              }
+            }
+            return a;
+          };
+          checkBTerm = function(bTerm) {
+            var b, bCoeff, xTerm;
+            b = null;
+            xTerm = null;
+            bCoeff = null;
+            if (bTerm.operator === "TIMES" && bTerm.factors.length === 2) {
+              bTerm.factors.forEach(function(_this) {
+                return function(factor, idx) {
+                  var other;
+                  other = idx === 0 ? 1 : 0;
+                  if (factor.operator === "VAR" && (!variable || factor.variable === variable)) {
+                    if (!variable) {
+                      variable = factor.variable;
+                    }
+                    xTerm = factor;
+                    return bCoeff = bTerm.factors[other];
+                  }
+                };
+              }(this));
+            } else {
+              if (bTerm.operator === "VAR" && (!variable || bTerm.variable === variable)) {
+                if (!variable) {
+                  variable = bTerm.variable;
+                }
+                xTerm = bTerm;
+              }
+            }
+            if (xTerm) {
+              if (bCoeff && bCoeff.operator === "CONST") {
+                b = bCoeff.evaluate() * bTerm.sign;
+              } else {
+                if (!bCoeff) {
+                  b = bTerm.sign;
+                }
+              }
+            }
+            return b;
+          };
+          checkCTerm = function(cTerm) {
+            var c;
+            c = null;
+            if (cTerm.operator === "CONST") {
+              c = cTerm.evaluate();
+            }
+            return c;
+          };
+          funcs = {a:checkATerm, b:checkBTerm, c:checkCTerm};
+          keys = ["a", "b", "c"];
+          for (j = k = 0;k < 3;j = ++k) {
+            if (addNode.terms[j]) {
+              res = null;
+              successIdx = null;
+              for (i = l = 0, ref = keys.length;0 <= ref ? l < ref : l > ref;i = 0 <= ref ? ++l : --l) {
+                if (funcs[keys[i]]) {
+                  res = funcs[keys[i]](addNode.terms[j]);
+                  if (res) {
+                    successIdx = i;
+                    break;
+                  }
+                }
+              }
+              if (res === null) {
+                return null;
+              }
+              ret[successIdx] = res;
+              delete funcs[keys[successIdx]];
+            }
+          }
+          if (!ret[0] || !ret[1]) {
+            return null;
+          }
+          if (!ret[2]) {
+            ret[2] = 0;
+          }
+          return ret;
+        }
+      }
+      return null;
+    };
+    CTATChemParser.prototype.chemSolveQuadratic = function(a, b, c) {
+      var denom, discriminant, iCoeff, left, numer, roots;
+      discriminant = Math.pow(b, 2) - 4 * a * c;
+      roots = [];
+      if (discriminant === 0) {
+        roots.push("" + -b / (2 * a));
+      } else {
+        if (discriminant > 0) {
+          discriminant = Math.sqrt(discriminant);
+          numer = -b + discriminant;
+          roots.push("" + numer / (2 * a));
+          numer = -b - discriminant;
+          roots.push("" + numer / (2 * a));
+        } else {
+          discriminant = Math.sqrt(Math.abs(discriminant));
+          denom = 2 * a;
+          iCoeff = discriminant / denom;
+          left = -b / denom;
+          roots.push(left + "+" + iCoeff + "i");
+          roots.push(left + "-" + iCoeff + "i");
+        }
+      }
+      return roots;
+    };
     CTATChemParser.prototype.chemGetVariables = function(expression) {
       var found, tree, vars, varsNoDups;
       tree = this.chemParse(expression);
@@ -26766,19 +27186,116 @@ goog.require("CTATChemTreeNode");
       return varsNoDups;
     };
     CTATChemParser.prototype.chemSetVariable = function(expression, varName, value) {
-      var parsedValue, tree;
+      var tree;
       tree = this.chemParse(expression);
-      parsedValue = this.chemParse(value);
       if (tree.operator === "VAR") {
         if (tree.variable === varName) {
-          return parsedValue;
+          return this.chemParse(value);
         } else {
           return tree;
         }
       } else {
-        tree.setVariable(varName, parsedValue);
+        tree.setVariable(varName, value, this.chemParse.bind(this, value));
         return tree;
       }
+    };
+    CTATChemParser.prototype.chemSetPrecision = function(exp, numSigFigs) {
+      exp = typeof exp === "string" ? this.chemParse(exp) : exp;
+      switch(exp.operator) {
+        case "TIMES":
+          exp.factors.forEach(function(_this) {
+            return function(factor) {
+              return _this.chemSetPrecision(factor, numSigFigs);
+            };
+          }(this));
+          break;
+        case "PLUS":
+          exp.terms.forEach(function(_this) {
+            return function(term) {
+              return _this.chemSetPrecision(term, numSigFigs);
+            };
+          }(this));
+          break;
+        case "EXP":
+          this.chemSetPrecision(exp.base, numSigFigs);
+          this.chemSetPrecision(exp.exponent, numSigFigs);
+          break;
+        case "EQUAL":
+          this.chemSetPrecision(exp.left, numSigFigs);
+          this.chemSetPrecision(exp.right, numSigFigs);
+          break;
+        case "UMINUS":
+          this.chemSetPrecision(exp.base, numSigFigs);
+          break;
+        case "CONST":
+          exp.precision = numSigFigs;
+      }
+      return exp;
+    };
+    CTATChemParser.prototype.chemGetPrecision = function(exp) {
+      var getLowest, getPrecisionN, prec;
+      getPrecisionN = function(n) {
+        var log10, match, numTrailingZeroes, sciNotRegex, str;
+        sciNotRegex = /^(\d(\.\d+)?)e(\+|-)\d/;
+        log10 = Math.log(10);
+        str = String(n);
+        match = sciNotRegex.exec(str);
+        if (match) {
+          str = match[1];
+        }
+        numTrailingZeroes = /\.[0-9]*?(0+)$/.exec(str);
+        numTrailingZeroes = numTrailingZeroes ? numTrailingZeroes[1].length : 0;
+        n = Math.abs(str.replace(".", ""));
+        if (n === 0) {
+          return 0;
+        }
+        while (n !== 0 && n % 10 === 0) {
+          n /= 10;
+        }
+        return numTrailingZeroes + Math.floor(Math.log(n) / log10) + 1;
+      };
+      if (!isNaN(exp)) {
+        return getPrecisionN(exp);
+      }
+      exp = typeof exp === "string" ? this.chemParse(exp) : exp;
+      prec = null;
+      getLowest = function(_this) {
+        return function(terms) {
+          var least;
+          least = Number.POSITIVE_INFINITY;
+          terms.forEach(function(term) {
+            var newPrec;
+            newPrec = _this.chemGetPrecision(term);
+            return least = newPrec < least ? newPrec : least;
+          });
+          return least;
+        };
+      }(this);
+      switch(exp.operator) {
+        case "TIMES":
+          prec = getLowest(exp.factors);
+          break;
+        case "PLUS":
+          prec = getLowest(exp.terms);
+          break;
+        case "EXP":
+          prec = getLowest([exp.base, exp.exponent]);
+          break;
+        case "EQUAL":
+          prec = getLowest([exp.left, exp.right]);
+          break;
+        case "UMINUS":
+          prec = this.chemGetPrecision(exp.base);
+          break;
+        case "CONST":
+          prec = exp.precision ? exp.precision : getPrecisionN(exp.value);
+      }
+      return prec;
+    };
+    CTATChemParser.prototype.chemToPrecision = function(val, numSigFigs) {
+      val = typeof val === "number" ? val : parseFloat(val);
+      val = val.toPrecision(numSigFigs);
+      return val;
     };
     return CTATChemParser;
   }();
@@ -26788,9 +27305,137 @@ goog.require("CTATChemTreeNode");
     this.CTATChemParser = CTATChemParser;
   }
 }).call(this);
-goog.provide("CTATFormulaFunctions");
+goog.provide("CTATVariableTable");
+goog.require("CTATBase");
+var CTATVariableTableCount = 0;
+CTATVariableTable = function() {
+  CTATBase.call(this, "CTATVariableTable", "");
+  var instance = CTATVariableTableCount++;
+  var vt = {};
+  var that = this;
+  function cloneObj(obj) {
+    var copy = {};
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key) === true) {
+        if (typeof obj[key] !== "object") {
+          copy[key] = obj[key];
+        } else {
+          copy[key] = cloneObj(obj[key]);
+        }
+      }
+    }
+    return copy;
+  }
+  this.toString = function() {
+    var result = "";
+    for (var v in vt) {
+      if (result.length > 0) {
+        result = result + ", ";
+      }
+      result = result + v + "=" + vt[v];
+    }
+    return "{ " + result + " }";
+  };
+  this.clone = function() {
+    ctatdebug("CTATVariableTable --\x3e in clone; this " + this + ", this.getTable() " + this.getTable);
+    var copy = new CTATVariableTable;
+    ctatdebug("CTATVariableTable --\x3e in clone; copy " + copy + ", copy.setTable() " + copy.setTable);
+    copy.setTable(cloneObj(vt));
+    ctatdebug("CTATVariableTable --\x3e out of clone");
+    return copy;
+  };
+  this.put = function(varName, value) {
+    that.ctatdebug("CTATVariableTable.put(" + varName + ", " + value + ") typeof value " + typeof value);
+    var currObject;
+    if (!varName) {
+      console.log("CTATVariableTable.put() warning: null or empty variable name '" + varName + "'");
+    } else {
+      if (varName.indexOf(".") < 0) {
+        vt[varName] = value;
+      } else {
+        var splitStr = varName.split(".");
+        if (typeof vt[splitStr[0]] !== "object" || vt[splitStr[0]] === null) {
+          vt[splitStr[0]] = {};
+        }
+        currObject = vt[splitStr[0]];
+        for (var i = 1;i < splitStr.length - 1;i++) {
+          if (typeof currObject[splitStr[i]] === "object" && currObject[splitStr[i]] !== null) {
+            continue;
+          } else {
+            currObject[splitStr[i]] = {};
+          }
+          currObject = currObject[splitStr[i]];
+        }
+        currObject[splitStr[i]] = value;
+      }
+    }
+    return that;
+  };
+  this.getTable = function() {
+    return vt;
+  };
+  this.setTable = function(newVt) {
+    vt = newVt;
+  };
+  this.get = function(varName) {
+    var currObject;
+    if (varName.indexOf(".") < 0) {
+      if (vt[varName] === null || typeof vt[varName] === "undefined") {
+        return null;
+      } else {
+        return vt[varName];
+      }
+    } else {
+      var splitStr = varName.split(".");
+      if (vt[splitStr[0]] === null || typeof vt[splitStr[0]] === "undefined") {
+        return null;
+      }
+      currObject = vt[splitStr[0]];
+      for (var i = 1;i < splitStr.length - 1;i++) {
+        if (currObject[splitStr[i]] === null || typeof currObject[splitStr[i]] === "undefined") {
+          return null;
+        }
+        currObject = currObject[splitStr[i]];
+      }
+      if (currObject[splitStr[i]] === null || typeof currObject[splitStr[i]] === "undefined") {
+        return null;
+      } else {
+        return currObject[splitStr[i]];
+      }
+    }
+  };
+};
+Object.defineProperty(CTATVariableTable, "serialVersionUID", {enumerable:false, configurable:false, writable:false, value:"201403071830L"});
+CTATVariableTable.standardizeType = function(input) {
+  if (typeof input != "string" || input.trim().length < 1) {
+    return input;
+  }
+  if (Boolean(true).toString() == input) {
+    return true;
+  }
+  if (Boolean(false).toString() == input) {
+    return false;
+  }
+  if ("null" == input) {
+    return null;
+  }
+  var toN = Number(input);
+  return isNaN(toN) ? input : toN;
+};
+CTATVariableTable.valueAsString = function(value) {
+  return typeof value == "string" ? value : String(value);
+};
+CTATVariableTable.nameAsString = function(name) {
+  return name ? name + "_String" : null;
+};
+CTATVariableTable.prototype = Object.create(CTATBase.prototype);
+CTATVariableTable.prototype.constructor = CTATVariableTable;
+if (typeof module !== "undefined") {
+  module.exports = CTATVariableTable;
+}
+;goog.provide("CTATFormulaFunctions");
 (function() {
-  var CTATFormulaFunctions, compare, decimalDigits, dollarPattern, fractionPattern, globalUnsignedPattern, pluralEsPattern, pluralIesPattern, pointPattern, signedPattern, significantDigits, unsignedString, slice = [].slice;
+  var CTATFormulaFunctions, compare, decimalDigits, dollarPattern, error, fractionPattern, globalUnsignedPattern, pluralEsPattern, pluralIesPattern, pointPattern, signedPattern, significantDigits, unsignedString, slice = [].slice;
   fractionPattern = /^(\d+)?(?:$|(?:\s|^)(\d+)\/(\d+)$)/;
   dollarPattern = /^\d+(\.\d\d)?$/;
   unsignedString = "((\\d+)\\.?(\\d+)?|\\.(\\d+))([Ee]([+-]?\\d+))?";
@@ -26828,11 +27473,17 @@ goog.provide("CTATFormulaFunctions");
       return predicate(number1, number2);
     }
   };
-  Object.defineProperty(Array.prototype, "uniq", {value:function() {
-    return this.filter(function(value, index, array) {
-      return array.indexOf(value) === index;
-    });
-  }});
+  try {
+    Object.defineProperty(Array.prototype, "uniq", {value:function() {
+      return this.filter(function(value, index, array) {
+        return array.indexOf(value) === index;
+      });
+    }});
+  } catch (_error) {
+    error = _error;
+    console.log(error);
+    [];
+  }
   CTATFormulaFunctions = function() {
     function CTATFormulaFunctions() {
     }
@@ -27376,7 +28027,7 @@ goog.require("CTATFormulaActions");
   };
   stringPattern = /"(?:[^\\"]|\\\")*"|'(?:[^\\'']|\\\')*'/;
   identifierPattern = /[A-Za-z_][\w._]*(?![\w(._])/g;
-  keywords = ["abstract", "await", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "debugger", "default", "delete", "do", "double", "else", "enum", "export", "extends", "false", "final", "finally", "float", "for", "function", "goto", "if", "implements", "import", "in", "instanceof", "int", "interface", "let", "long", "native", "new", "null", "of", "package", "private", "protected", "public", "return", "short", "static", "super", "switch", "synchronized", "this",
+  keywords = ["abstract", "await", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "debugger", "default", "delete", "do", "double", "else", "enum", "export", "extends", "false", "final", "finally", "float", "for", "function", "goto", "if", "implements", "import", "in", "instanceof", "int", "interface", "let", "long", "native", "new", "null", "of", "package", "private", "protected", "public", "return", "short", "static", "super", "switch", "synchronized", "this", 
   "throw", "throws", "transient", "true", "try", "typeof", "var", "void", "volatile", "while", "with", "yield", "Array", "Date", "eval", "function", "global", "hasOwnProperty", "Infinity", "isFinite", "isNaN", "isPrototypeOf", "length", "Math", "NaN", "name", "Number", "Object", "prototype", "String", "toString", "undefined", "valueOf", "window"];
   CTATFormulaParser = function() {
     function CTATFormulaParser(variableTable) {
@@ -27429,7 +28080,8 @@ goog.require("CTATFormulaActions");
           };
         }(String.prototype[key]));
       }
-      ref5 = ["algParse", "algStringify", "algEvaluate", "algPartialSimplify", "algSimplify", "algValid", "algValued", "algPartialSimplified", "algSimplified", "algIdentical", "algEqual", "algPartialEquivalent", "algEquivalent", "isAlgValid", "algEval", "algStrictEquivTermsSameOrder", "algEquivTermsSameOrder", "algStrictEquivTerms", "algEquivTerms", "algEquiv", "isSimplified", "calc", "calca", "simplify", "algebraicEqual", "patternMatches", "polyTermsEqual", "algebraicMatches", "expressionMatches"];
+      ref5 = ["algParse", "algGetError", "algStringify", "algEvaluate", "algSort", "algGetOperator", "algGetVariables", "algGetOperands", "algGetExpression", "algFindExpression", "algCreateExpression", "algReplaceExpression", "algDeleteExpression", "algSimplifyRules", "algPartiallySimplify", "algSimplify", "algValid", "algValued", "algPartiallySimplified", "algSimplified", "algIdentical", "algEqual", "algPartiallyEquivalent", "algEquivalent", "isAlgValid", "algEval", "algStrictEquivTermsSameOrder", 
+      "algEquivTermsSameOrder", "algStrictEquivTerms", "algEquivTerms", "algEquiv", "isSimplified", "calc", "calca", "simplify", "algebraicEqual", "patternMatches", "polyTermsEqual", "algebraicMatches", "expressionMatches"];
       for (n = 0, len5 = ref5.length;n < len5;n++) {
         key = ref5[n];
         this.keys.push(key);
@@ -27441,8 +28093,8 @@ goog.require("CTATFormulaActions");
           };
         }(this.algebraParser[key], this.algebraParser));
       }
-      ref6 = ["logicSetMode", "logicParse", "logicGetError", "logicStringify", "logicEvaluate", "logicSort", "logicGetOperator", "logicGetOperators", "logicGetVariables", "logicGetOperands", "logicFindOperator", "logicFindExpression", "logicFindRule", "logicApplyRules", "logicReplaceExpression", "logicValid", "logicValued", "logicSorted", "logicIdentical", "logicEqual", "logicEquivalent", "logicSemanticEquivalent", "logicFindCounterExample", "logicSimplifyNNF", "logicSimplifyCNF", "logicSimplifyDNF",
-      "logicSimplifiedNNF", "logicSimplifiedCNF", "logicSimplifiedDNF"];
+      ref6 = ["logicSetMode", "logicParse", "logicGetError", "logicStringify", "logicEvaluate", "logicSort", "logicGetOperator", "logicGetOperators", "logicGetVariables", "logicGetOperands", "logGetExpression", "logicFindOperator", "logicFindExpression", "logicFindRule", "logicApplyRules", "logicCreateExpression", "logicReplaceExpression", "logicDeleteExpression", "logicValid", "logicValued", "logicSorted", "logicIdentical", "logicEqual", "logicEquivalent", "logicSemanticEquivalent", "logicFindCounterExample", 
+      "logicSimplifyNNF", "logicSimplifyCNF", "logicSimplifyDNF", "logicSimplifiedNNF", "logicSimplifiedCNF", "logicSimplifiedDNF"];
       for (o = 0, len6 = ref6.length;o < len6;o++) {
         key = ref6[o];
         this.keys.push(key);
@@ -27544,7 +28196,2045 @@ goog.require("CTATFormulaActions");
     this.CTATFormulaParser = CTATFormulaParser;
   }
 }).call(this);
-goog.provide("CTATSingleMatcher");
+goog.provide("CTATNoolsTracer");
+goog.require("CTATNoolsTracerUtil");
+goog.require("CTATNoolsTracerWrapper");
+goog.require("CTATAlgebraParser");
+goog.require("CTATLogicParser");
+goog.require("CTATChemParser");
+goog.require("CTATFormulaParser");
+var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
+  var RuleChains = function() {
+    this.firstTutorSelection = null;
+    this.selectionMap = {};
+    this.matchChain = null;
+    this.bugMatchChains = [];
+    this.numChains = 0;
+    this.firstPredictedSolution = null;
+  };
+  var RuleChain = function(s, r, sk, h, m, c, ids, compFunc, tpaList, halted, priority) {
+    this.sai = s || {selection:"", action:"", input:""};
+    this.rules = r || [];
+    this.skills = sk || [];
+    this.hints = h || [];
+    this.msg = m ? m.message : "";
+    this.customFields = c || {};
+    this.activationIds = ids || [];
+    this.saiComparator = compFunc || null;
+    this.tpas = tpaList || [];
+    this.halted = halted;
+    this.priority = priority || 0;
+  };
+  var RuleChainLink = function(ruleName, activationId) {
+    this.ruleName = ruleName;
+    this.activationId = activationId;
+    this.hints = [];
+    this.tpas = [];
+    this.skills = [];
+    this.customFields = [];
+  };
+  var ruleTracer = typeof ruleTracerHandle != "undefined" && ruleTracerHandle || null;
+  var log = logFunc;
+  var _sendTPA = tpaHandler;
+  var _runtime = runtime;
+  var pointer = this;
+  var initialized = false;
+  var flow = null;
+  var session = null;
+  var studentSAIs = {}, ruleChains = new RuleChains, lastStudentSAI = null, studentInputN = 0;
+  var currChain = {links:[], lengthAtBranchStack:[], matchType:null, haltCalled:false};
+  var iAmMovingForward = false;
+  var noolsUtil = null;
+  var startStateMsgs = [], problemConfig = {use_backtracking:true, prune_old_activations:false, use_hint_fact:false, search_all_permutations:true, hint_out_of_order:false, substitute_input:false};
+  var lastFoundMatch = true;
+  var iAmHintMatching = false, lastMatchWasHint = false, isHintMatchFact = null;
+  var skillMap = {};
+  var tpasToSend = [];
+  var inStepMode = false;
+  var nextMatchIsFirst = true;
+  var nextCbk = function() {
+  };
+  var searchEnded = false;
+  var pregenSAIs = [];
+  var iAmPregenerating = false;
+  var donePregenCallback = function() {
+  };
+  var pregenTrees = [];
+  var refiringChain = null;
+  var lastConflictTree = null;
+  this.getSession = function() {
+    return session;
+  };
+  this.getInitialized = function() {
+    return initialized;
+  };
+  this.getSkills = function() {
+    return skillMap;
+  };
+  this.getProblemAttribute = function(attrName) {
+    return problemConfig[attrName];
+  };
+  this.getProblemStateStatus = function() {
+    return _runtime.getOutputStatus();
+  };
+  this.init = function(srcFile, cbk, errCbk) {
+    log("debug", "noolstracer init w/ source file: " + srcFile);
+    if (!nools) {
+      log("error", "Error: nools is not defined");
+      errCbk("nools is not defined");
+      return;
+    }
+    noolsUtil = new CTATNoolsTracerUtil;
+    var baseUrl = noolsUtil.relativeToAbsolute(srcFile);
+    $.ajax(srcFile, {dataType:"text", success:function(problemData) {
+      _handleImports(problemData, baseUrl, null, function(file) {
+        log("debug", "compiling model...");
+        var err;
+        if (!((err = _compile(file, srcFile)) === true)) {
+          log("error", "CTATNoolsTracer: Error compiling model");
+          errCbk(err);
+          return;
+        }
+        log("debug", "done compile");
+        if (!pointer.createSession()) {
+          errCbk("CTATNoolsTracer: Error creating session");
+        }
+        registerTracerWrapper(new CTATNoolsTracerWrapper(pointer));
+        _firstMatch(function() {
+          log("override", "tracer initialized, log flags: ");
+          getTracerLogFlags();
+          printBreakpoints();
+          cbk(startStateMsgs, problemConfig);
+          var initEv = new Event("noolsModelLoaded");
+          window.dispatchEvent(initEv);
+          if (problemConfig["pregen_conflict_tree"]) {
+            _pregenAll();
+          }
+        });
+      });
+    }, error:function(req, err, errThrown) {
+      ctatdebug("Error retrieving rule file: ");
+      ctatdebug(err);
+      errCbk(err);
+    }});
+  };
+  this.createSession = function() {
+    log("debug", "creating session...");
+    session = flow.getSession({iAmEventListeners:true, "assert":_onAssert, "retract":_onRetract, "modify":_onModify, "state_save":_onStateSave, "state_restore":_onStateRestore, "backtrack":_onBacktrack, "fire":_onFire, "agenda_insert":_onAgendaInsert, "agenda_retract":_onAgendaRetract, "agenda_empty":_onAgendaEmpty, "endOfChain":_onEndOfChain, "breakpoint":_onBreakpoint});
+    if (session) {
+      log("debug", "session created");
+    }
+    return !!session;
+  };
+  this.evaluate = function(sai, cbk, matchType) {
+    log("debug", "noolsTracer.evaluate, matchType = " + matchType + ", sai " + JSON.stringify(sai) + ", " + lastFoundMatch);
+    if (problemConfig["pregen_conflict_tree"]) {
+      return _checkAgainstPregen(sai, cbk, matchType);
+    } else {
+      var callback = _handleMatchResult.bind(pointer, cbk);
+      session.prepForMatch();
+      switch(matchType) {
+        case "hint":
+          if (!(lastFoundMatch || problemConfig["use_hint_fact"])) {
+            log("debug", "re-using hints from last match");
+            _handleHintMatchResult(cbk, false, sai.selection);
+            return true;
+          } else {
+            iAmHintMatching = true;
+            callback = _handleHintMatchResult.bind(pointer, cbk, true);
+            if (problemConfig["use_hint_fact"]) {
+              _assertHintFact();
+            }
+          }
+        ;
+        case "tutored_action":
+          _clearPerMatchVars();
+          _assertSAI(sai, true);
+          nextCbk = function() {
+            _cleanupBeforeCallback();
+            pointer.printAgenda("agenda_post");
+            pointer.printConflictTree("conflict_tree");
+            callback();
+          };
+          if (!inStepMode) {
+            pointer.printAgenda("agenda_pre");
+            _match();
+          }
+          break;
+        case "untutored_action":
+          _assertSAI(sai, false);
+          return true;
+      }
+      return false;
+    }
+  };
+  this.setListener = function(e, f) {
+    session && session.on(e, f);
+  };
+  this.getStudentSAIs = function() {
+    return studentSAIs;
+  };
+  this.getLastStudentSAI = function() {
+    return lastStudentSAI;
+  };
+  this.getTutorSAIs = function() {
+    return ruleChains.selectionMap;
+  };
+  this.reset = function(cbk) {
+    pointer.createSession();
+    initialized = false;
+    studentSAIs = {};
+    ruleChains = new RuleChains;
+    lastStudentSAI = null, lastFoundMatch = true;
+    _firstMatch(cbk);
+  };
+  this.printAgenda = function(logFlag) {
+    log(logFlag, (logFlag !== "override" ? "[" + logFlag + "]: " : "") + noolsUtil.printAgenda(session));
+  };
+  this.printConflictTree = function(logFlag, firedOnly, inclSAIs) {
+    log(logFlag, "\n" + lastConflictTree.toString(firedOnly, inclSAIs));
+  };
+  this.printPregenTrees = function(logFlag, firedOnly, inclSAIs) {
+    if (pregenTrees["__hintTree"]) {
+      log(logFlag, " hint tree: \n" + pregenTrees["__hintTree"][1].toString(firedOnly, inclSAIs));
+    }
+    pregenTrees.forEach(function(pt) {
+      log(logFlag, " tree for sai: " + JSON.stringify(pt[0]) + "\n" + pt[2].toString(firedOnly, inclSAIs));
+    });
+  };
+  this.printTutorSAIs = function(logFlag) {
+    var chains = lastConflictTree.getMatchChains();
+    var str = "";
+    chains.forEach(function(chain) {
+      var sai = chain.match.tutor;
+      str += "\n" + sai.selection + " ; " + sai.action + " ; " + sai.input + " \n " + chain.rules.join(",") + "\n";
+    });
+    log(logFlag, str);
+  };
+  this.printFact = function(id) {
+    log("override", noolsUtil.printFact(session, id));
+  };
+  this.printFacts = function(optType) {
+    log("override", noolsUtil.printFacts(session, optType));
+  };
+  this.printRules = function(optSubstr) {
+    log("override", noolsUtil.printRules(session, optSubstr));
+  };
+  this.getFact = function(id) {
+    var fact = noolsUtil.getFact(session, id);
+    return fact;
+  };
+  this.getFacts = function(optType) {
+    var facts = noolsUtil.getFacts(session, optType);
+    return facts;
+  };
+  this.printCtNodeMatch = function(nodeId) {
+    log("override", noolsUtil.printCtNodeMatch(session, nodeId));
+  };
+  this.printRuleNodes = function(ruleName) {
+    log("override", noolsUtil.printRuleNodes(session, ruleName));
+  };
+  this.printBreakpoints = function() {
+    log("override", noolsUtil.printBreakpoints(session));
+  };
+  this.setInStepMode = function(step) {
+    step = step && step !== "false";
+    log("override", "Stepper mode " + (step ? "on" : "off"));
+    if (inStepMode && !step && !searchEnded) {
+      _match();
+    }
+    inStepMode = step;
+  };
+  this.takeSteps = function(numSteps) {
+    if (inStepMode) {
+      if (lastStudentSAI) {
+        numSteps = numSteps || 1;
+        log("override", "taking " + numSteps + " steps");
+        _match(numSteps);
+      } else {
+        log("override", "no new student input, ignoring");
+      }
+    } else {
+      log("override", "not in step mode, ignoring");
+    }
+  };
+  this.setBreakpoint = function(ruleName, firstOrEvery) {
+    if (ruleName) {
+      firstOrEvery = firstOrEvery || "first";
+      if (session.setBreakpoint(ruleName, firstOrEvery)) {
+        log("override", "breakpoint " + (firstOrEvery === "none" ? "cleared" : "set") + " for rule " + ruleName);
+      } else {
+        log("override", "breakpoint not " + (firstOrEvery === "none" ? "cleared" : "set") + " -- rule " + ruleName + " doesn't exist");
+      }
+    } else {
+      log("override", "need a rule name to break on");
+    }
+  };
+  this.resume = function() {
+    if (!inStepMode) {
+      if (!searchEnded) {
+        _match();
+      } else {
+        log("override", "not at a breakpoint, ignoring");
+      }
+    } else {
+      log("override", "can't resume; engine is in stepper mode");
+    }
+  };
+  this.getIAmPregenerating = function() {
+    return iAmPregenerating;
+  };
+  this.setDonePregenCallback = function(cbk) {
+    log("debug", "setDonePregenCallback()");
+    donePregenCallback = cbk;
+  };
+  function _firstMatch(cbk) {
+    startStateMsgs = [];
+    session.setDoBacktracking(false);
+    log("debug", "starting initial match");
+    nextCbk = function() {
+      log("debug", "done initial match");
+      lastFoundMatch = true;
+      nextMatchIsFirst = true;
+      session.setPruneOldActivations(problemConfig["prune_old_activations"]);
+      session.setDoBacktracking(problemConfig["use_backtracking"]);
+      session.setSearchAllPermutations(problemConfig["search_all_permutations"]);
+      initialized = true;
+      typeof cbk === "function" && cbk();
+    };
+    _match();
+  }
+  function _pregenAll() {
+    log("debug", "start conflict tree pregeneration...");
+    iAmPregenerating = true;
+    pregenTrees = [];
+    var pregenSAIIdx = 0;
+    if (pregenSAIs.length === 0) {
+      pregenSAIs.push({selection:"not_specified", action:"not_specified", input:"not_specified"});
+    }
+    var nextSAICbk = function() {
+      if (++pregenSAIIdx >= pregenSAIs.length) {
+        lastCbk();
+      } else {
+        _pregenTree(pregenSAIs[pregenSAIIdx], nextSAICbk);
+      }
+    };
+    var lastCbk = function() {
+      log("debug", "done conflict tree pregeneration");
+      iAmPregenerating = false;
+      donePregenCallback();
+      donePregenCallback = function() {
+      };
+    };
+    if (problemConfig["use_hint_fact"]) {
+      pregenSAIIdx--;
+      _pregenTree(null, nextSAICbk, true);
+    } else {
+      _pregenTree(pregenSAIs[pregenSAIIdx], nextSAICbk);
+    }
+  }
+  function _pregenTree(baseSAI, cbk, isHintTree) {
+    session.prepForMatch();
+    _clearPerMatchVars();
+    var toRetract;
+    if (isHintTree) {
+      toRetract = _assertHintFact();
+    } else {
+      toRetract = _assertSAI(baseSAI, true);
+    }
+    _match(null, function() {
+      session.retract(toRetract);
+      nextMatchIsFirst = true;
+      var ct = session.getConflictTree();
+      if (isHintTree) {
+        pregenTrees["__hintTree"] = [ruleChains, ct];
+      } else {
+        pregenTrees.push([baseSAI, ruleChains, ct]);
+      }
+      cbk();
+    });
+  }
+  function _checkAgainstPregen(studentSAI, cbk, matchType) {
+    var matchFound = null, biasedPrediction = null, defaultPrediction = null;
+    if (matchType === "untutored_action") {
+      _assertSAI(studentSAI, false);
+      _pregenAll();
+      return true;
+    }
+    if (matchType === "hint" && pregenTrees["__hintTree"]) {
+      biasedPrediction = _getBiasedPrediction(true, studentSAI.selection, pregenTrees["__hintTree"][0]);
+    }
+    if (!biasedPrediction) {
+      for (var i = 0;i < pregenTrees.length;i++) {
+        var baseSAI = pregenTrees[i][0], ruleChainsObj = pregenTrees[i][1], firstPrediction = ruleChainsObj.firstPredictedSolution, tree = ruleChainsObj.selectionMap;
+        if (!defaultPrediction) {
+          if (matchType !== "hint" || firstPrediction.hints.length > 0) {
+            defaultPrediction = firstPrediction;
+          }
+        }
+        if (_compareSAI(studentSAI, baseSAI).isMatch) {
+          if (!biasedPrediction) {
+            if (matchType !== "hint" || firstPrediction.hints.length > 0) {
+              biasedPrediction = firstPrediction;
+            }
+          }
+          for (var sel in tree) {
+            if (tree.hasOwnProperty(sel)) {
+              var selTree = tree[sel];
+              for (var j = 0;j < selTree.length;j++) {
+                var chainData = selTree[j];
+                if (matchType === "tutored_action") {
+                  if (_compareSAI(studentSAI, chainData.sai, chainData.saiComparator).isMatch) {
+                    matchFound = chainData;
+                    break;
+                  }
+                } else {
+                  if (!biasedPrediction && chainData.hints.length > 0) {
+                    biasedPrediction = chainData;
+                  }
+                }
+              }
+            }
+            if (matchFound || matchType === "hint" && biasedPrediction) {
+              break;
+            }
+          }
+        }
+      }
+    }
+    if (matchFound) {
+      log("debug", "Matched w/ pregen tree, refiring chain: " + matchFound.activationIds.join(" , "));
+      refiringChain = matchFound;
+      var doneReFire = function() {
+        log("debug", "done refiring activations, returning result");
+        var result = refiringChain.sai.isCorrect ? "correct" : "bug";
+        if (matchFound.halted === 1) {
+          matchFound.halted = 2;
+        }
+        lastFoundMatch = result === "correct";
+        nextMatchIsFirst = true;
+        lastStudentSAI = null;
+        refiringChain = null;
+        cbk(result, matchFound);
+        _pregenAll();
+      };
+      pregenSAIs = [];
+      session.prepForMatch();
+      _clearPerMatchVars();
+      _assertSAI(studentSAI, true);
+      _match(null, doneReFire, matchFound.activationIds);
+    } else {
+      if (!biasedPrediction) {
+        if (!defaultPrediction) {
+          defaultPrediction = new RuleChain;
+        }
+        biasedPrediction = defaultPrediction;
+      }
+      if (matchType === "tutored_action") {
+        log("debug", "didn't get a match :( ");
+        cbk("no_model", biasedPrediction);
+      } else {
+        cbk(biasedPrediction);
+      }
+      return true;
+    }
+  }
+  function _setSuccessOrBugMsg(msg, optPriority) {
+    if (typeof msg === "string") {
+      currChain.links[currChain.links.length - 1].successOrBugMsg = {"message":msg, "priority":optPriority || 0};
+    }
+  }
+  function _setChainPriority(priority) {
+    currChain.links[currChain.links.length - 1].priority = priority;
+  }
+  function _setTutorSAI(sai) {
+    var tsai = currChain.links[currChain.links.length - 1].sai;
+    sai.selection && (tsai.selection = sai.selection);
+    sai.action && (tsai.action = sai.action);
+    sai.input && (tsai.input = sai.input);
+  }
+  function _handleImports(fileData, baseURL, imported, cbk, cntr, depth, width) {
+    log("debug", "handleImports for " + baseURL);
+    imported = imported || {};
+    cntr = cntr || {count:0, chunks:[]};
+    depth = depth || 0;
+    width = width || 0;
+    var importRegex = /\bimport\s?\(('|")?([^()'"\s]*)\1?\);/g;
+    var match, matches = [];
+    while ((match = importRegex.exec(fileData)) != null) {
+      var url = noolsUtil.relativeToAbsolute(match[2], baseURL);
+      if (!imported[url]) {
+        matches.push(url);
+        imported[url] = true;
+      } else {
+        log("debug", "skipping duplicate import: " + url);
+      }
+      fileData = fileData.replace(match[0], "");
+      importRegex.lastIndex -= match[0].length;
+    }
+    if (!cntr.chunks[depth]) {
+      cntr.chunks[depth] = [];
+    }
+    cntr.chunks[depth][width] = fileData;
+    cntr.count += matches.length;
+    log("debug", baseURL + " is importing " + matches.length + " files");
+    if (matches.length > 0) {
+      var $jscomp$loop$28 = {};
+      $jscomp$loop$28.i = 0;
+      for (;$jscomp$loop$28.i < matches.length;$jscomp$loop$28 = {url$11:$jscomp$loop$28.url$11, i:$jscomp$loop$28.i}, $jscomp$loop$28.i++) {
+        $jscomp$loop$28.url$11 = matches[$jscomp$loop$28.i];
+        $.ajax($jscomp$loop$28.url$11, {dataType:"text", success:function($jscomp$loop$28) {
+          return function(data) {
+            _handleImports(data, $jscomp$loop$28.url$11, imported, cbk, cntr, depth + 1, $jscomp$loop$28.i);
+            cntr.count--;
+            if (cntr.count == 0) {
+              cbk(_assembleChunks(cntr.chunks));
+            }
+          };
+        }($jscomp$loop$28), error:function(req, err, errThrown) {
+          log("error", "Error in _handleImports() : ");
+          log("error", err);
+        }});
+      }
+    } else {
+      if (depth == 0) {
+        cbk(_assembleChunks(cntr.chunks));
+      }
+    }
+  }
+  function _assembleChunks(chunks) {
+    var ret = "", chunkLvl;
+    while (chunks.length > 0) {
+      chunkLvl = chunks.pop();
+      while (chunkLvl.length > 0) {
+        ret += chunkLvl.shift() + "\n";
+      }
+    }
+    return ret;
+  }
+  function _compile(model, flowName) {
+    var scope = {getRuntime:function() {
+      return _runtime;
+    }, getStudentInput:function() {
+      return pointer.getLastStudentSAI();
+    }, getStudentSAIs:function() {
+      return pointer.getStudentSAIs();
+    }, checkSAI:_checkSAI, setTutorSAI:_setTutorSAI, setSuccessOrBugMsg:_setSuccessOrBugMsg, setChainPriority:_setChainPriority, setProblemAttribute:_setProblemAttribute, getInitialized:function() {
+      return pointer.getInitialized();
+    }, backtrack:function() {
+      session.setAboutToBacktrack();
+    }, assert:_assertOverride, modify:_modifyOverride, retract:_retractOverride, undoAll:_undoAllOverride, addPregenSAI:_addPregenSAI, halt:_haltOverride, pruneOldActivations:_pruneOldActivations};
+    [CTATAlgebraParser, CTATLogicParser, CTATChemParser, CTATFormulaParser].forEach(function(constructor) {
+      var parser = new constructor;
+      var $jscomp$loop$29 = {};
+      for (var f in parser) {
+        $jscomp$loop$29.f = f;
+        if (typeof parser[$jscomp$loop$29.f] === "function") {
+          scope[$jscomp$loop$29.f] = function($jscomp$loop$29) {
+            return function() {
+              return parser[$jscomp$loop$29.f].apply(parser, arguments);
+            };
+          }($jscomp$loop$29);
+        }
+        $jscomp$loop$29 = {f:$jscomp$loop$29.f};
+      }
+    });
+    try {
+      flow = nools.compile(model, {"name":flowName || "CTATFlow", "scope":scope});
+    } catch (err) {
+      log("error", "Error compiling rule file");
+      initialized = false;
+      return err;
+    }
+    _processSkillDefinitions();
+    return true;
+  }
+  function _processSkillDefinitions() {
+    var skills, rules, scope = flow.__scope, ruleMap = {};
+    flow.__rules.forEach(function(rule) {
+      ruleMap[rule.name] = true;
+    });
+    if (scope && scope.skill_definitions) {
+      skills = scope.skill_definitions;
+      if (skills instanceof Array) {
+        skills.forEach(function(skill) {
+          rules = skill.ruleName.split(",");
+          rules.forEach(function(rule) {
+            rule = rule.trim();
+            if (ruleMap[rule]) {
+              skillMap[rule] = {name:skill.skillName || skill.ruleName, category:skill.category, label:skill.label || skill.skillName, description:skill.description || "", mastery:skill.mastery || CTATExampleTracerSkill.DEFAULT_MASTERY_THRESHOLD, level:skill.pKnown || CTATExampleTracerSkill.DEFAULT_P_KNOWN, pGuess:skill.pGuess || CTATExampleTracerSkill.DEFAULT_P_GUESS, pLearn:skill.pLearn || CTATExampleTracerSkill.DEFAULT_P_LEARN, pSlip:skill.pSlip || CTATExampleTracerSkill.DEFAULT_P_SLIP};
+            } else {
+              throw new Error("Rule " + skill.ruleName + " named by skill " + skill.skillName + " does not exist in model");
+            }
+          });
+        });
+      } else {
+        throw new Error("Global variable 'skill_definitions' must be of type Array");
+      }
+    }
+  }
+  function _assertSAI(newSAI, isTutored) {
+    log("debug", "Assert sai (" + (!isTutored ? "un" : "") + "tutored) : " + JSON.stringify(newSAI));
+    var oldSAI = studentSAIs[newSAI.selection];
+    if (oldSAI && session.factExists(oldSAI)) {
+      oldSAI.action = newSAI.action;
+      oldSAI.input = newSAI.input;
+      oldSAI.tutored = isTutored;
+      session.modify(oldSAI);
+    } else {
+      var SAI = flow.getDefined("StudentValues");
+      if (!SAI) {
+        throw new Error("StudentValues type not defined");
+      }
+      oldSAI = new SAI(newSAI.selection, newSAI.action, newSAI.input);
+      oldSAI.tutored = isTutored;
+      session.assert(oldSAI, "_student_input_" + studentInputN);
+      studentSAIs[newSAI.selection] = oldSAI;
+      if (!iAmPregenerating) {
+        studentInputN++;
+      }
+    }
+    lastStudentSAI = oldSAI;
+    return oldSAI;
+  }
+  function _assertHintFact() {
+    log("debug", "Asserting hint fact...");
+    if (!isHintMatchFact) {
+      var IsHintMatch = flow.getDefined("IsHintMatch");
+      if (!IsHintMatch) {
+        throw new Error("IsHintMatch type not defined");
+      }
+      isHintMatchFact = new IsHintMatch;
+    }
+    return session.assert(isHintMatchFact, "_isHintMatch");
+  }
+  function _cleanupBeforeCallback() {
+    session.prepForMatch();
+    session.restoreAgenda();
+  }
+  function _match(numSteps, cbk, actIdList) {
+    searchEnded = false;
+    var callback = function(err) {
+      if (!iAmPregenerating) {
+        lastConflictTree = session.getConflictTree();
+      }
+      if (err) {
+        log("error", "nools encountered an error: " + err);
+        throw err;
+      } else {
+        if (cbk && typeof cbk === "function") {
+          cbk();
+        } else {
+          _handleStepMatchResult();
+        }
+      }
+    };
+    session.match(callback, numSteps, false, nextMatchIsFirst, actIdList);
+    nextMatchIsFirst = false;
+  }
+  function _handleMatchResult(cbk) {
+    lastMatchWasHint = false;
+    var result = "no_model", chainToRtn, bugMsg;
+    if (ruleChains.matchChain) {
+      chainToRtn = ruleChains.matchChain;
+      result = "correct";
+    } else {
+      if (ruleChains.bugMatchChains.length) {
+        chainToRtn = ruleChains.bugMatchChains.sort(function(chain1, chain2) {
+          return chain2.priority - chain1.priority;
+        })[0];
+        result = "bug";
+        bugMsg = chainToRtn.msg;
+      }
+      chainToRtn = _getBiasedPrediction(false);
+      bugMsg && (chainToRtn.msg = bugMsg);
+    }
+    lastFoundMatch = result === "correct";
+    chainToRtn.tpas = tpasToSend;
+    nextMatchIsFirst = true;
+    lastStudentSAI = null;
+    cbk(result, chainToRtn);
+  }
+  function _handleHintMatchResult(cbk, wasRealMatch, selectionBias) {
+    var chainToRtn = _getBiasedPrediction(true, selectionBias);
+    if (wasRealMatch) {
+      iAmHintMatching = false;
+      lastMatchWasHint = true;
+      lastFoundMatch = false;
+      nextMatchIsFirst = true;
+      lastStudentSAI = null;
+      if (problemConfig["use_hint_fact"]) {
+        session.retract(isHintMatchFact);
+      }
+    }
+    cbk(chainToRtn);
+  }
+  function _handleStepMatchResult() {
+    if (searchEnded) {
+      if (inStepMode) {
+        log("override", "search complete, returning result");
+      }
+      nextCbk();
+    }
+  }
+  function _getBiasedPrediction(includeHints, optSelection, optChainObj) {
+    var tSAI, chains = optChainObj || ruleChains, selectionMap = chains.selectionMap, studentSelection = optSelection || (lastStudentSAI ? lastStudentSAI.selection : ""), firstPredictedSolution = chains.firstPredictedSolution, firstPredictedSelection = chains.firstTutorSelection, checkSelection = function(selection) {
+      var entry = selectionMap[selection];
+      var highestPriority = -1;
+      var found = null;
+      for (var i = 0;i < entry.length;i++) {
+        if (entry[i].sai.isCorrect && (!includeHints || entry[i].hints.length > 0) && entry.priority > highestPriority) {
+          found = entry[i];
+          highestPriority = entry.priority;
+        }
+      }
+      return found;
+    };
+    if (studentSelection !== "hint" && selectionMap[studentSelection]) {
+      tSAI = checkSelection(studentSelection);
+    }
+    if (!tSAI) {
+      if (firstPredictedSolution) {
+        if (!includeHints) {
+          tSAI = firstPredictedSolution;
+        } else {
+          tSAI = checkSelection(firstPredictedSelection);
+        }
+      }
+      for (s in selectionMap) {
+        if (tSAI) {
+          break;
+        }
+        tSAI = checkSelection(s);
+      }
+      if (!tSAI) {
+        var n = chains.numChains;
+        for (var i = 0;i < n;i++) {
+          var defKey = "_default_key" + i, defKeyList = selectionMap[defKey];
+          if (defKeyList && (tSAI = defKeyList[0]) && (!includeHints || tSAI.hints.length > 0)) {
+            break;
+          }
+        }
+      }
+      if (!tSAI) {
+        tSAI = new RuleChain;
+      }
+    }
+    return tSAI;
+  }
+  function _checkSAI(predictedSAI, optComparator, isBuggyStep) {
+    var res = false, tSelection = predictedSAI.selection, tAction = predictedSAI.action, tInput = predictedSAI.input, currChainLinks = currChain.links, currLink = currChainLinks[currChainLinks.length - 1], hasUnspecified = tSelection === "not_specified" || tAction === "not_specified" || tInput === "not_specified";
+    log("sai_check", "check SAI against: " + JSON.stringify(predictedSAI));
+    if (problemConfig["pregen_conflict_tree"]) {
+      log("sai_check", "in pregen mode, skipping check " + " (was " + (isBuggyStep ? "" : "not") + " a buggy step)");
+      currLink.sai = {selection:tSelection, action:tAction, input:tInput, isCorrect:!isBuggyStep && !hasUnspecified};
+      currLink.comparator = optComparator;
+      if (refiringChain) {
+        log("sai_check", "currently re-firing; updating sai in matched chain...");
+        refiringChain.sai = currLink.sai;
+      }
+      return true;
+    } else {
+      if (!lastStudentSAI) {
+        log("sai_check", "no student input to check, returning false");
+        return false;
+      }
+      log("sai_check", "student input: " + JSON.stringify(lastStudentSAI));
+      currLink.sai = {selection:tSelection !== null && tSelection !== undefined && !(tSelection === "not_specified" || tSelection === "don't_care") ? tSelection : "", action:tAction !== null && tAction !== undefined && !(tAction === "not_specified" || tAction === "don't_care") ? tAction : "", input:tInput !== null && tInput !== undefined && !(tInput === "not_specified" || tInput === "don't_care") ? tInput : "", isCorrect:!isBuggyStep && !hasUnspecified};
+      if (!iAmHintMatching) {
+        res = _compareSAI(lastStudentSAI, predictedSAI, optComparator);
+        log("sai_check", (res.isMatch ? "Match" : "No match") + ", " + (isBuggyStep ? "was" : "was not") + " a buggy step");
+        if (res.isMatch) {
+          if (isBuggyStep) {
+            currChain.matchType = "buggy";
+          } else {
+            currChain.matchType = "match";
+          }
+        } else {
+          currChain.matchType = null;
+        }
+        session.setNodeMatcherResult(res);
+      } else {
+        log("sai_check", "Skipping check, we're hint matching");
+      }
+      return res.isMatch;
+    }
+  }
+  function _compareSAI(sai1, sai2, optComparator) {
+    var tSelection = sai2.selection, tAction = sai2.action, tInput = sai2.input, sSelection = sai1.selection, sAction = sai1.action, sInput = sai1.input, matches = ["-", "-", "-"], compResult = {student:sai1, tutor:sai2, isMatch:false, matchedFields:null}, i1 = !isNaN(sInput) ? parseInt(sInput, 10) : sInput, i2 = !isNaN(tInput) ? parseInt(tInput, 10) : tInput;
+    var checkField = function(f1, f2, matchChar) {
+      if (f1 === "don't_care") {
+        return "*";
+      }
+      if (f1 === "not_specified") {
+        return " ";
+      }
+      if (f1 === f2) {
+        return matchChar;
+      }
+      return "-";
+    };
+    matches[0] = checkField(tSelection.toLowerCase(), sSelection.toLowerCase(), "S");
+    matches[1] = checkField(tAction.toLowerCase(), sAction.toLowerCase(), "A");
+    matches[2] = checkField(i2, i1, "I");
+    compResult.matchedFields = matches;
+    if (optComparator && typeof optComparator === "function") {
+      compResult.isMatch = optComparator(sai1, sai2);
+    } else {
+      compResult.isMatch = true;
+      for (var i = 0;i < 3;i++) {
+        if (matches[i] === "-") {
+          compResult.isMatch = false;
+          break;
+        }
+      }
+    }
+    return compResult;
+  }
+  function _clearPerMatchVars() {
+    ruleChains = new RuleChains;
+    currChain.links = [];
+    currChain.lengthAtBranchStack = [];
+    currChain.matchType = null;
+    currChain.haltCalled = false;
+    searchEnded = false;
+  }
+  function _setProblemAttribute(attrName, value) {
+    log("debug", "setProblemAttribute (" + attrName + ", " + value + ")");
+    problemConfig[attrName] = value;
+  }
+  function _storeChain() {
+    var links = currChain.links, selectionMap = ruleChains.selectionMap, link, linkSAI, chainObj, msg = {"message":"", "priority":Number.NEGATIVE_INFINITY}, skill, activationIds = [], ruleList = [], skillList = [], hintList = [], tpaList = [], selection, finalSAI = {selection:"", action:"", input:""}, saiComparator = null, cf = {}, halted = currChain.haltCalled ? !iAmPregenerating ? 2 : 1 : 0, chainPriority = 0;
+    for (var i = 0;i < links.length;i++) {
+      link = links[i];
+      linkSAI = link.sai;
+      ruleList.push(link.ruleName);
+      skill = skillMap[link.ruleName];
+      skill && skillList.push(skill.name + " " + skill.category);
+      skillList = skillList.concat(link.skills);
+      hintList = hintList.concat(link.hints);
+      tpaList = tpaList.concat(link.tpas);
+      activationIds.push(link.activationId);
+      if (link.successOrBugMsg && link.successOrBugMsg.priority > msg.priority) {
+        msg = link.successOrBugMsg;
+      }
+      if (linkSAI) {
+        linkSAI.selection && (selection = finalSAI.selection = linkSAI.selection);
+        linkSAI.action && (finalSAI.action = linkSAI.action);
+        linkSAI.input && (finalSAI.input = linkSAI.input);
+        finalSAI.isCorrect = linkSAI.isCorrect;
+        if (link.comparator && typeof link.comparator === "function") {
+          saiComparator = link.comparator;
+        }
+      }
+      link.customFields.forEach(function(cfFact) {
+        return cf[cfFact.name] = cfFact.value;
+      });
+      chainPriority = link.priority > chainPriority ? link.priority : chainPriority;
+    }
+    hintList.sort(function(a, b) {
+      var ret = b.precedence - a.precedence;
+      if (ret === 0) {
+        ret = a.pos - b.pos;
+      }
+      return ret;
+    });
+    if (!selection) {
+      selection = "_default_key" + ruleChains.numChains;
+    } else {
+      if (!ruleChains.firstTutorSelection) {
+        ruleChains.firstTutorSelection = selection;
+      }
+    }
+    if (!selectionMap[selection]) {
+      selectionMap[selection] = [];
+    }
+    chainObj = new RuleChain(finalSAI, ruleList, skillList, hintList, msg, cf, activationIds, saiComparator, tpaList, halted, chainPriority);
+    if (finalSAI.isCorrect && !ruleChains.firstPredictedSolution) {
+      ruleChains.firstPredictedSolution = chainObj;
+    }
+    selectionMap[selection].push(chainObj);
+    switch(currChain.matchType) {
+      case "buggy":
+        ruleChains.bugMatchChains.push(chainObj);
+        break;
+      case "match":
+        ruleChains.matchChain = chainObj;
+        break;
+    }
+    ruleChains.numChains++;
+    tpasToSend = tpaList;
+    log("debug", "stored last chain: " + "\n\trules: " + ruleList + "\n\tskills: " + skillList + "\n\tfinalSAI: " + JSON.stringify(finalSAI) + "\n\tmatchType: " + currChain.matchType + "\n\tmsg: " + msg + "\n\tpriority: " + chainPriority);
+  }
+  function _assertOverride(fact) {
+    if (problemConfig["use_backtracking"]) {
+      session.pushUndo("assert", fact);
+    }
+    return session.assert(fact);
+  }
+  function _retractOverride(fact) {
+    if (problemConfig["use_backtracking"]) {
+      session.pushUndo("retract", fact);
+    }
+    return session.retract(fact);
+  }
+  function _modifyOverride(fact, property, value) {
+    if (problemConfig["use_backtracking"]) {
+      session.pushUndo("modify", fact, property);
+    } else {
+      if (arguments.length < 3) {
+        return session.modify.apply(session, arguments);
+      }
+    }
+    fact[property] = value;
+    return session.modify(fact);
+  }
+  function _haltOverride() {
+    currChain.haltCalled = true;
+    if (iAmPregenerating) {
+      session.setAboutToBacktrack();
+    } else {
+      session.halt(true);
+      searchEnded = true;
+    }
+  }
+  function _undoAllOverride() {
+    session.undoAll(true);
+  }
+  function _pruneOldActivations() {
+    var prunedIds = session.pruneOldActivations();
+    log("debug", "pruned old activations: " + prunedIds.join(","));
+  }
+  function _addPregenSAI() {
+    if (!iAmPregenerating) {
+      for (var i = 0;i < arguments.length;i++) {
+        var sai = arguments[i];
+        !sai["selection"] && (sai["selection"] = "not_specified");
+        !sai["action"] && (sai["action"] = "not_specified");
+        !sai["input"] && (sai["input"] = "not_specified");
+        pregenSAIs.push(sai);
+      }
+    }
+  }
+  function _onEndOfChain() {
+    _storeChain();
+  }
+  function _onBacktrack(initiatedByModel) {
+    if (!iAmMovingForward) {
+      currChain.lengthAtBranchStack.pop();
+    }
+    iAmMovingForward = false;
+    tpasToSend = [];
+    log("backtrack", "backtracking, initiated by " + (initiatedByModel ? "model" : "engine"));
+  }
+  function _onAssert(fact, type, backtracking, id) {
+    var factVals;
+    try {
+      factVals = JSON.stringify(fact);
+    } catch (e$12) {
+      factVals = "< Error converting fact to JSON >";
+    }
+    log("assert", type + " fact asserted with ID " + id + ": " + factVals);
+    var lastLink = currChain.links[currChain.links.length - 1];
+    switch(type) {
+      case "tpa":
+        log("tpa", "TPA asserted: " + JSON.stringify(fact));
+        if (!initialized) {
+          startStateMsgs.push(noolsUtil.buildStartStateMsg(fact));
+        } else {
+          if (problemConfig["use_backtracking"]) {
+            lastLink.tpas.push(fact);
+          } else {
+            _sendTPA(fact);
+          }
+        }
+        break;
+      case "hint":
+        if (initialized) {
+          fact.pos = +(currChain.links.length + "." + lastLink.hints.length);
+          lastLink.hints.push(fact);
+        }
+        break;
+      case "skill":
+        if (initialized) {
+          lastLink.skills.push(fact.name + " " + fact.category);
+        }
+        break;
+      case "customfield":
+        if (initialized) {
+          lastLink.customFields.push(fact);
+        }
+        break;
+    }
+  }
+  function _onModify(fact, type, backtracking, id) {
+    log("modify", type + " fact modified with ID " + id);
+  }
+  function _onRetract(fact, type, backtracking, id) {
+    log("retract", type + " fact retracted with ID " + id);
+  }
+  function _onStateSave(state) {
+    log("state_save", "Hit branch point, agenda: " + JSON.stringify(state.agenda) + ", factIdCntr: " + state.state.factIdCounter);
+    var branchLenStack = currChain.lengthAtBranchStack, links = currChain.links, currentMatchType = currChain.matchType;
+    branchLenStack.push({numLinks:links.length, matchType:currentMatchType});
+  }
+  function _onStateRestore(state) {
+    log("state_restore", "State restored, agenda: " + JSON.stringify(state.agenda) + ", factIdCntr: " + state.state.factIdCounter);
+    var branchLenStack = currChain.lengthAtBranchStack, branchLenStackEntry = branchLenStack[branchLenStack.length - 1];
+    links = currChain.links, links.splice(branchLenStackEntry.numLinks);
+    currChain.matchType = branchLenStackEntry.matchType;
+  }
+  function _onFire(ruleName, factHash, activationId) {
+    log("fire", "Firing activation: " + activationId);
+    currChain.links.push(new RuleChainLink(ruleName, activationId));
+    iAmMovingForward = true;
+  }
+  function _onAgendaInsert(id, isNew, skipped) {
+    log("agenda_insert", id + " added to agenda, is " + (isNew ? " " : "not ") + "new, was " + (skipped ? " " : "not ") + "skipped");
+  }
+  function _onAgendaRetract(id) {
+    log("agenda_retract", id + " removed from agenda");
+  }
+  function _onAgendaEmpty() {
+    log("agenda_empty", "No more activations in agenda, all branches have been explored");
+    searchEnded = true;
+  }
+  function _onBreakpoint(ruleName) {
+    log("override", "hit breakpoint on rule " + ruleName + " (call resume() to resume matching)");
+  }
+};
+goog.provide("CTATLogger");
+CTATLogger = function(validFlags) {
+  var flags = {}, nFlagsSet = 0;
+  if (validFlags) {
+    validFlags.forEach(function(flag) {
+      flags[flag] = false;
+    });
+  }
+  this.isSet = function(flag) {
+    return !!flags[flag];
+  };
+  this.set = function(flag) {
+    if (validFlags && !(flag in flags)) {
+      return false;
+    }
+    nFlagsSet++;
+    return flags[flag] = true;
+  };
+  this.unset = function(flag) {
+    if (validFlags && !(flag in flags)) {
+      return false;
+    }
+    nFlagsSet--;
+    return !(flags[flag] = false);
+  };
+  this.getFlags = function() {
+    return flags;
+  };
+  this.getNFlagsSet = function() {
+    return nFlagsSet;
+  };
+  this.log = function(flag, msg) {
+    if (flags[flag] || flag === "override") {
+      console.log((flag !== "override" ? "[" + flag + "]: " : "") + msg);
+    }
+  };
+};
+goog.provide("CTATRuleTracerGlobals");
+goog.require("CTATLogger");
+var NOOLS_LOG_FLAGS = ["conflict_tree", "assert", "modify", "retract", "state_save", "state_restore", "backtrack", "agenda_insert", "agenda_retract", "agenda_empty", "fire", "error", "debug", "sai_check", "agenda_pre", "agenda_post", "tpa"];
+var CTATNoolsTracerLogger = new CTATLogger(NOOLS_LOG_FLAGS);
+var globalTracerRef = null;
+function registerTracerWrapper(tracerWrapper) {
+  globalTracerRef = tracerWrapper;
+}
+function setTracerLogFlag(flag) {
+  var msg = CTATNoolsTracerLogger.set(flag) ? "set flag " + flag : "Error - invalid flag: " + flag;
+  CTATNoolsTracerLogger.log("override", msg);
+}
+function setTracerLogFlags(flags) {
+  var toSet = flags instanceof Array ? flags : Array.prototype.slice.call(arguments), didSet = [], didntSet = [];
+  toSet.forEach(function(flag) {
+    if (CTATNoolsTracerLogger.set(flag)) {
+      didSet.push(flag);
+    } else {
+      didntSet.push(flag);
+    }
+  });
+  didSet.length && CTATNoolsTracerLogger.log("override", "set flags: " + didSet.join(","));
+  didntSet.length && CTATNoolsTracerLogger.log("override", "Error - invalid flag(s): " + didntSet.join(","));
+}
+function getTracerLogFlags() {
+  var flags = CTATNoolsTracerLogger.getFlags(), set = [], unset = [];
+  for (var flag in flags) {
+    if (flags[flag]) {
+      set.push(flag);
+    } else {
+      unset.push(flag);
+    }
+  }
+  CTATNoolsTracerLogger.log("override", "set: " + set.join(",") + "\nunset: " + unset.join(","));
+}
+function unsetTracerLogFlag(flag) {
+  CTATNoolsTracerLogger.unset(flag);
+}
+function unsetTracerLogFlags(flags) {
+  var toUnset = flags instanceof Array ? flags : Array.prototype.slice.call(arguments);
+  toUnset.forEach(function(flag) {
+    unsetTracerLogFlag(flag);
+  });
+}
+function printAgenda() {
+  globalTracerRef.printAgenda();
+}
+function printConflictTree(firedOnly, inclSAIs) {
+  globalTracerRef.printConflictTree(firedOnly, inclSAIs);
+}
+function printPregenTrees(firedOnly, inclSAIs) {
+  globalTracerRef.printPregenTrees(firedOnly, inclSAIs);
+}
+function printTutorSAIs() {
+  globalTracerRef.printTutorSAIs();
+}
+function printFact(fId) {
+  globalTracerRef.printFact(fId);
+}
+function getFact(fId) {
+  return globalTracerRef.getFact(fId);
+}
+function printFacts(optType) {
+  globalTracerRef.printFacts(optType);
+}
+function getFacts(optType) {
+  return globalTracerRef.getFacts(optType);
+}
+function printRules(optSubstr) {
+  globalTracerRef.printRules(optSubstr);
+}
+function printMatch(nodeId) {
+  globalTracerRef.printMatch(nodeId);
+}
+function whyNot(ruleName) {
+  globalTracerRef.printRuleNodes(ruleName);
+}
+function setStepperMode(mode) {
+  globalTracerRef.setStepperMode(mode);
+}
+function takeSteps(numSteps, stopOnBacktrack) {
+  globalTracerRef.takeSteps(numSteps, stopOnBacktrack);
+}
+function setBreakpoint(ruleName, everyOrFirst) {
+  globalTracerRef.setBreakpoint(ruleName, everyOrFirst);
+}
+function printBreakpoints() {
+  globalTracerRef.printBreakpoints();
+}
+function resume() {
+  globalTracerRef.resume();
+}
+function getProblemStateStatus() {
+  return globalTracerRef.getProblemStateStatus();
+}
+;goog.provide("CTATRuleTracer");
+goog.require("CTATNoolsTracer");
+goog.require("CTATRuleTracerGlobals");
+var CTATRuleTracer = function(m, exTracerHandle) {
+  var exampleTracer = exTracerHandle;
+  var log = CTATNoolsTracerLogger.log;
+  var mode = m;
+  var engine = null;
+  var curResEvt = null;
+  var defaultBuggyMsg = null;
+  var pointer = this;
+  this.getEngine = function() {
+    return engine;
+  };
+  this.initEngine = function(srcFile, cbk, errCbk) {
+    switch(mode) {
+      case "nools":
+        engine = new CTATNoolsTracer(log, _handleTPA, exampleTracer);
+        break;
+    }
+    var doneInit = function(startState, config) {
+      console.log("CTATRuleTracer.doneInit");
+      _initSkills(engine.getSkills());
+      cbk(startState, config);
+    };
+    engine && engine.init(srcFile, doneInit, errCbk);
+  };
+  this.getModelInitialized = function() {
+    return engine && engine.getInitialized();
+  };
+  this.getProblemStateStatus = function() {
+    return exampleTracer.getOutputStatus();
+  };
+  this.setListener = function(e, cbk) {
+    engine.setListener(e, cbk);
+  };
+  this.evaluate = function(result, cbk) {
+    curResEvt = result;
+    var simpSAI = _simplifySAI(result.getStudentSAI());
+    var doneEvalCbk = _handleResult.bind(pointer, result, cbk);
+    var evalFunc = engine.evaluate.bind(engine, simpSAI, doneEvalCbk, "tutored_action");
+    if (engine.getIAmPregenerating()) {
+      engine.setDonePregenCallback(evalFunc);
+    } else {
+      return evalFunc();
+    }
+  };
+  this.doHint = function(resultObj, transactionID, cbk) {
+    resultObj.setTransactionID(transactionID);
+    return engine.evaluate(_simplifySAI(resultObj.getStudentSAI()), _handleHintResult.bind(this, resultObj, cbk), "hint");
+  };
+  this.handleUntutoredAction = function(sai) {
+    log("debug", "ruleTracer.handleUntutoredAction( " + JSON.stringify(sai) + " )");
+    engine.evaluate({selection:sai.selection[0], action:sai.action[0], input:sai.input[0]}, null, "untutored_action");
+  };
+  this.checkOutOfOrder = function(resultObj, cbk) {
+    var ret;
+    if (engine.getProblemAttribute("hint_out_of_order")) {
+      var studentInput = _simplifySAI(resultObj.getStudentSAI());
+      var lastMatchTutorSAIs = engine.getTutorSAIs();
+      ret = !lastMatchTutorSAIs[studentInput.selection];
+    } else {
+      ret = false;
+    }
+    cbk(ret);
+  };
+  this.setDefaultBuggyMsg = function(newMsg) {
+    newMsg && typeof newMsg === "string" && (defaultBuggyMsg = newMsg);
+  };
+  this.getDefaultBuggyMsg = function() {
+    return defaultBuggyMsg;
+  };
+  this.reset = function(cbk) {
+    engine.reset(cbk);
+  };
+  function _initSkills(skillObj) {
+    if (!CTATConfiguration.get("skills")) {
+      if (CTATSkillSet.skills) {
+        log("debug", "skills not defined in flashVars, using model definitions");
+        var skills = [];
+        for (skillName in skillObj) {
+          var skill = skillObj[skillName];
+          CTATSkillSet.skills.addSkillAsObject(skill);
+          skills.push(new CTATExampleTracerSkill(skill.category, skill.name, skill.pGuess, skill.level, skill.pSlip, skill.pLearn, null));
+        }
+        exampleTracer.getProblemSummary().setSkills(new CTATSkills(skills));
+        CTATCommShell.commShell.updateSkillWindow(null);
+      } else {
+        log("debug", "CTATSkillSet.skills not defined, skipping initSkills");
+      }
+    }
+  }
+  function _handleResult(resultEvent, cbk, result, chainData) {
+    var msg = chainData.msg, predictedSAI = chainData.sai, tSAI = new CTATSAI(predictedSAI.selection, predictedSAI.action, predictedSAI.input), sSAI = resultEvent.getStudentSAI(), customFields = chainData.customFields, stepId = "" + predictedSAI.selection + (predictedSAI.selection && predictedSAI.action ? " " : "") + predictedSAI.action + "";
+    log("debug", "ruleTracer.handleResult, result = " + result + "\n\ttutorSAI = " + JSON.stringify(predictedSAI) + "\n\tmsg = " + msg + "\n\tassociated rules = " + chainData.rules + "\n\tassociated skills = " + chainData.skills + "\n\tstep ID = " + stepId + "\n\ttpas = " + chainData.tpas + "\n\tcustom fields = " + JSON.stringify(customFields) + "\n\thalted = " + chainData.halted);
+    if (CTATNoolsTracerLogger.getNFlagsSet() > 0) {
+      log("override", "------ end of trace ------\n");
+    }
+    resultEvent.setStepID(stepId);
+    resultEvent.setTutorSAI(result === "correct" && !engine.getProblemAttribute("substitute_input") ? sSAI : tSAI);
+    resultEvent.setSuccessOrBuggyMsg(msg);
+    resultEvent.setAssociatedRules(chainData.rules);
+    resultEvent.setAssociatedSkills(chainData.skills);
+    resultEvent.setCustomFields(customFields);
+    switch(result) {
+      case "correct":
+        resultEvent.setResult(CTATExampleTracerLink.CORRECT_ACTION);
+        resultEvent.setTraceOutcome(CTATExampleTracerLink.CORRECT_ACTION);
+        break;
+      case "bug":
+        _handleIncorrect(resultEvent, sSAI, true);
+        break;
+      case "no_model":
+        _handleIncorrect(resultEvent, sSAI, false);
+        break;
+    }
+    if (chainData.halted === 2) {
+      chainData.tpas.forEach(function(tpa) {
+        _handleTPA(tpa);
+      });
+    }
+    cbk();
+  }
+  function _handleIncorrect(resultEvent, studentSAI, hasMatch) {
+    if (studentSAI.getSelection().includes("done") && studentSAI.getAction() === "ButtonPressed") {
+      resultEvent.setDoneStepFailed(true);
+    }
+    if (hasMatch) {
+      resultEvent.setResult(CTATExampleTracerLink.BUGGY_ACTION);
+      resultEvent.setTraceOutcome(CTATExampleTracerLink.BUGGY_ACTION);
+    } else {
+      resultEvent.setResult(CTATExampleTracerLink.NO_MODEL);
+      resultEvent.setTraceOutcome(CTATExampleTracerLink.NO_MODEL);
+    }
+  }
+  function _handleHintResult(resultObj, cbk, chainData) {
+    var hints = chainData.hints.map(function(hint) {
+      return hint.msg;
+    }), rules = chainData.rules, skills = chainData.skills, tutorSAI = chainData.sai, studentSAI = resultObj.getStudentSAI(), stepId = "" + tutorSAI.selection + (tutorSAI.selection && tutorSAI.action ? " " : "") + tutorSAI.action + "";
+    log("debug", "ruleTracer.handleHintResult," + "\n\ttutorSAI = " + JSON.stringify(tutorSAI) + "\n\tassociated rules = " + rules + "\n\tassociated skills = " + skills + "\n\tstep ID = " + stepId + "\n\thints = " + JSON.stringify(hints));
+    resultObj.setTutorSAI(new CTATSAI(tutorSAI.selection, tutorSAI.action, tutorSAI.input));
+    resultObj.setResult(CTATExampleTracerLink.HINT_ACTION);
+    resultObj.setTraceOutcome(hints.length ? CTATExampleTracerLink.HINT_ACTION : CTATExampleTracerLink.NO_MODEL);
+    resultObj.setReportableHints(hints);
+    resultObj.setActor(CTATMsgType.DEFAULT_STUDENT_ACTOR);
+    resultObj.setStepID(stepId);
+    resultObj.setAssociatedSkills(skills);
+    resultObj.setAssociatedRules(rules);
+    cbk(resultObj, resultObj.getTransactionID());
+  }
+  function _handleTPA(tpa) {
+    exampleTracer && exampleTracer.addTPAToMessageTank(tpa.selection, tpa.action, tpa.input, "tutor-performed");
+  }
+  function _simplifySAI(sai) {
+    var saiSimple = {selection:sai.getSelection() || "", action:sai.getAction() || "", input:sai.getInput() || ""};
+    return saiSimple;
+  }
+};
+goog.provide("CTATHintPolicyEnum");
+CTATHintPolicyEnum = function() {
+};
+Object.defineProperty(CTATHintPolicyEnum, "HINTS_UNBIASED", {enumerable:true, configurable:false, writable:false, value:"Always Follow Best Path"});
+Object.defineProperty(CTATHintPolicyEnum, "HINTS_BIASED_BY_CURRENT_SELECTION_ONLY", {enumerable:true, configurable:false, writable:false, value:"Bias Hints by Current Selection Only"});
+Object.defineProperty(CTATHintPolicyEnum, "HINTS_BIASED_BY_PRIOR_ERROR_ONLY", {enumerable:true, configurable:false, writable:false, value:"Bias Hints by Prior Error Only"});
+Object.defineProperty(CTATHintPolicyEnum, "HINTS_BIASED_BY_ALL", {enumerable:true, configurable:false, writable:false, value:"Use Both Kinds of Bias"});
+Object.defineProperty(CTATHintPolicyEnum, "DEFAULT", {enumerable:true, configurable:false, writable:false, value:CTATHintPolicyEnum.HINTS_BIASED_BY_ALL});
+CTATHintPolicyEnum.prototype = Object.create(Object.prototype);
+CTATHintPolicyEnum.prototype.constructor = CTATHintPolicyEnum;
+CTATHintPolicyEnum.lookup = function(brdAttr) {
+  for (policy in CTATHintPolicyEnum) {
+    if (CTATHintPolicyEnum[policy] == brdAttr) {
+      return CTATHintPolicyEnum[policy];
+    }
+  }
+  return CTATHintPolicyEnum.DEFAULT;
+};
+if (typeof module !== "undefined") {
+  module.exports = CTATHintPolicyEnum;
+}
+;goog.provide("CTATMsgType");
+goog.require("CTATBase");
+goog.require("CTATXML");
+goog.require("CTATLanguageManager");
+CTATMsgType = function() {
+  CTATBase.call(this, "CTATMsgType", "");
+};
+CTATMsgType.findProperty = function(aMessage, propertyName) {
+  var msgLC = aMessage.toLowerCase();
+  var tag = "<" + propertyName.toLowerCase() + ">";
+  var start = msgLC.indexOf(tag) + tag.length;
+  var end = msgLC.indexOf("</" + propertyName.toLowerCase() + ">");
+  if (start < tag.length || end < 0) {
+    return null;
+  }
+  var result = {};
+  result.start = start;
+  result.end = end;
+  return result;
+};
+CTATMsgType.makeValues = function(v) {
+  if (v == null) {
+    return "";
+  }
+  if (typeof v == "string") {
+    return v;
+  }
+  if (v.constructor && v.constructor.name == "Array") {
+    if (!v.length) {
+      return "";
+    }
+    var i = 0;
+    var vi;
+    var result = "<value>" + ((vi = v[i++]) == null ? "" : vi.toString());
+    while (i < v.length) {
+      result += "</value><value>" + ((vi = v[i++]) == null ? "" : vi.toString());
+    }
+    return result += "</value>";
+  }
+  if (v.outerHTML) {
+    return v.outerHTML;
+  }
+  return v.toString();
+};
+CTATMsgType.setProperty = function(aMessage, propertyName, propertyValue) {
+  var indices = CTATMsgType.findProperty(aMessage, propertyName);
+  var result = "";
+  if (indices) {
+    result = aMessage.slice(0, indices.start);
+    result += CTATMsgType.makeValues(propertyValue);
+    result += aMessage.slice(indices.end, aMessage.length);
+  } else {
+    var endProps = aMessage.indexOf("</properties>");
+    result = aMessage.slice(0, endProps);
+    result += "<" + propertyName + ">" + CTATMsgType.makeValues(propertyValue) + "</" + propertyName + ">";
+    result += aMessage.slice(endProps, aMessage.length);
+  }
+  return result;
+};
+CTATMsgType.getProperty = function(aMessage, propertyName) {
+  var indices = CTATMsgType.findProperty(aMessage, propertyName);
+  if (indices) {
+    return aMessage.slice(indices.start, indices.end);
+  }
+  return "";
+};
+CTATMsgType.valueToArray = function(str) {
+  if (!str.startsWith("<value>")) {
+    return null;
+  }
+  var s = str.substring("<value>".length);
+  if (!str.endsWith("</value>")) {
+    return null;
+  }
+  s = s.substring(0, s.length - "</value>".length);
+  var sA = s.split("</value><value>");
+  ctatdebug("valueToArray(" + str + ") returns " + sA);
+  return sA;
+};
+CTATMsgType.getValue = function(str, i) {
+  var sA = CTATMsgType.valueToArray(str);
+  if (!sA) {
+    return null;
+  }
+  if (sA.length <= i) {
+    return null;
+  }
+  return sA[i];
+};
+CTATMsgType.getMessageType = function(aMessage) {
+  return CTATMsgType.getProperty(aMessage, "MessageType");
+};
+CTATMsgType.getTransactionID = function(aMessage) {
+  return CTATMsgType.getProperty(aMessage, CTATMessage.TRANSACTION_ID_TAG);
+};
+CTATMsgType.setTransactionID = function(aMessage, transaction_id) {
+  return CTATMsgType.setProperty(aMessage, CTATMessage.TRANSACTION_ID_TAG, transaction_id);
+};
+CTATMsgType.isCorrectOrIncorrect = function(mt) {
+  return typeof mt == "string" ? CTATMsgType.CorrectTypes[mt.toLowerCase()] ? true : false : false;
+};
+CTATMsgType.hasTextFeedback = function(mt) {
+  return typeof mt == "string" ? CTATMsgType.TextFeedbackTypes[mt.toLowerCase()] ? true : false : false;
+};
+CTATMsgType.isHintResponse = function(mt) {
+  return typeof mt == "string" ? CTATMsgType.HintResponseTypes[mt.toLowerCase()] ? true : false : false;
+};
+CTATMsgType.isDoneMessage = function(msg) {
+  var s = CTATMsgType.getProperty(msg, "Selection");
+  var a = CTATMsgType.getProperty(msg, "Action");
+  if (!s || !a) {
+    return false;
+  }
+  s = s.toString().toLowerCase();
+  a = a.toString().toLowerCase();
+  var doneLC = CTATMsgType.DONE.toLowerCase();
+  if (doneLC != s && doneLC != CTATMsgType.getValue(s, 0)) {
+    return false;
+  }
+  var bpLC = CTATMsgType.BUTTON_PRESSED.toLowerCase();
+  if (bpLC != a && bpLC != CTATMsgType.getValue(a, 0)) {
+    return false;
+  }
+  return true;
+};
+CTATMsgType.getSAIArraysFromElement = function(propertiesElement, parser) {
+  var sai = {selection:[], action:[], input:[]};
+  var messageChildren = parser.getElementChildren(propertiesElement);
+  for (var k = 0;k < messageChildren.length;k++) {
+    var childElt = messageChildren[k];
+    var childEltName = parser.getElementName(childElt);
+    switch(childEltName) {
+      case "Selection":
+        var selections = parser.getElementChildren(childElt);
+        for (var j = 0;j < selections.length;j++) {
+          sai.selection.push(parser.getNodeTextValue(selections[j]));
+        }
+        break;
+      case "Action":
+        var actions = parser.getElementChildren(childElt);
+        for (var m = 0;m < actions.length;m++) {
+          sai.action.push(parser.getNodeTextValue(actions[m]));
+        }
+        break;
+      case "Input":
+        var inputs = parser.getElementChildren(childElt);
+        for (var n = 0;n < inputs.length;n++) {
+          sai.input.push(parser.getNodeTextValue(inputs[n]));
+        }
+        break;
+      case "properties":
+        return CTATMsgType.getSAIArraysFromElement(childElt, parser);
+      default:
+        break;
+    }
+  }
+  return sai;
+};
+Object.defineProperty(CTATMsgType, "CorrectTypes", {enumerable:false, configurable:false, writable:false, value:{correctaction:1, incorrectaction:1, lispcheckaction:1}});
+Object.defineProperty(CTATMsgType, "TextFeedbackTypes", {enumerable:false, configurable:false, writable:false, value:{showhintsmessage:1, successmessage:1, buggymessage:1, wrongusermessage:1, nohintmessage:1, highlightmsg:1, showhintsmessagefromlisp:1}});
+Object.defineProperty(CTATMsgType, "HintResponseTypes", {enumerable:false, configurable:false, writable:false, value:{showhintsmessage:1, nohintmessage:1, showhintsmessagefromlisp:1}});
+Object.defineProperty(CTATMsgType, "BUGGY_MSG", {enumerable:false, configurable:false, writable:false, value:"BuggyMsg"});
+Object.defineProperty(CTATMsgType, "DONE", {enumerable:false, configurable:false, writable:false, value:"Done"});
+Object.defineProperty(CTATMsgType, "BUTTON_PRESSED", {enumerable:false, configurable:false, writable:false, value:"ButtonPressed"});
+Object.defineProperty(CTATMsgType, "DEFAULT_STUDENT_ACTOR", {enumerable:false, configurable:false, writable:false, value:"Student"});
+Object.defineProperty(CTATMsgType, "DEFAULT_TOOL_ACTOR", {enumerable:false, configurable:false, writable:false, value:"Tutor"});
+Object.defineProperty(CTATMsgType, "UNGRADED_TOOL_ACTOR", {enumerable:false, configurable:false, writable:false, value:"Tutor (unevaluated)"});
+Object.defineProperty(CTATMsgType, "DEFAULT_ACTOR", {enumerable:false, configurable:false, writable:false, value:CTATMsgType.DEFAULT_STUDENT_ACTOR});
+Object.defineProperty(CTATMsgType, "ANY_ACTOR", {enumerable:false, configurable:false, writable:false, value:"Any"});
+Object.defineProperty(CTATMsgType, "SHOW_ALL_FEEDBACK", {enumerable:false, configurable:false, writable:false, value:"Show All Feedback"});
+Object.defineProperty(CTATMsgType, "DELAY_FEEDBACK", {enumerable:false, configurable:false, writable:false, value:"Delay Feedback"});
+Object.defineProperty(CTATMsgType, "HIDE_ALL_FEEDBACK", {enumerable:false, configurable:false, writable:false, value:"Hide All Feedback"});
+Object.defineProperty(CTATMsgType, "HIDE_BUT_COMPLETE", {enumerable:false, configurable:false, writable:false, value:"Hide feedback but require all steps"});
+Object.defineProperty(CTATMsgType, "HIDE_BUT_ENFORCE", {enumerable:false, configurable:false, writable:false, value:"Hide feedback but enforce constraints"});
+Object.defineProperty(CTATMsgType, "DEFAULT_OUT_OF_ORDER_MESSAGE", {enumerable:false, configurable:false, writable:false, value:CTATLanguageManager.theSingleton.filterString("HIGHLIGHTEDSTEP")});
+Object.defineProperty(CTATMsgType, "NOT_DONE_MSG", {enumerable:false, configurable:false, writable:false, value:CTATLanguageManager.theSingleton.filterString("NOTDONE")});
+Object.defineProperty(CTATMsgType, "TRACE_OUTCOME", {enumerable:false, configurable:false, writable:false, value:"TraceOutcome"});
+Object.defineProperty(CTATMsgType, "PREVIOUS_FOCUS", {enumerable:false, configurable:false, writable:false, value:"PreviousFocus"});
+Object.defineProperty(CTATMsgType, "ASSOCIATED_RULES", {enumerable:false, configurable:false, writable:false, value:"AssociatedRules"});
+Object.defineProperty(CTATMsgType, "BEGIN_RESTORE", {enumerable:false, configurable:false, writable:false, value:"BeginRestore"});
+Object.defineProperty(CTATMsgType, "BEGIN_GO_TO_STATE", {enumerable:false, configurable:false, writable:false, value:"BeginGoToState"});
+Object.defineProperty(CTATMsgType, "END_GO_TO_STATE", {enumerable:false, configurable:false, writable:false, value:"EndGoToState"});
+Object.defineProperty(CTATMsgType, "BUGGY_MESSAGE", {enumerable:false, configurable:false, writable:false, value:"BuggyMessage"});
+Object.defineProperty(CTATMsgType, "CORRECT_ACTION", {enumerable:false, configurable:false, writable:false, value:"CorrectAction"});
+Object.defineProperty(CTATMsgType, "HINT_REQUEST", {enumerable:false, configurable:false, writable:false, value:"HintRequest"});
+Object.defineProperty(CTATMsgType, "INCORRECT_ACTION", {enumerable:false, configurable:false, writable:false, value:"InCorrectAction"});
+Object.defineProperty(CTATMsgType, "INTERFACE_ACTION", {enumerable:false, configurable:false, writable:false, value:"InterfaceAction"});
+Object.defineProperty(CTATMsgType, "INTERFACE_IDENTIFICATION", {enumerable:false, configurable:false, writable:false, value:"InterfaceIdentification"});
+Object.defineProperty(CTATMsgType, "PROBLEM_RESTORE_END", {enumerable:false, configurable:false, writable:false, value:"ProblemRestoreEnd"});
+Object.defineProperty(CTATMsgType, "PROBLEM_SUMMARY_REQUEST", {enumerable:false, configurable:false, writable:false, value:"ProblemSummaryRequest"});
+Object.defineProperty(CTATMsgType, "PROBLEM_SUMMARY_RESPONSE", {enumerable:false, configurable:false, writable:false, value:"ProblemSummaryResponse"});
+Object.defineProperty(CTATMsgType, "SET_PREFERENCES", {enumerable:false, configurable:false, writable:false, value:"SetPreferences"});
+Object.defineProperty(CTATMsgType, "SHOW_HINTS_MESSAGE", {enumerable:false, configurable:false, writable:false, value:"ShowHintsMessage"});
+Object.defineProperty(CTATMsgType, "SUCCESS_MESSAGE", {enumerable:false, configurable:false, writable:false, value:"SuccessMessage"});
+Object.defineProperty(CTATMsgType, "START_STATE_END", {enumerable:false, configurable:false, writable:false, value:"StartStateEnd"});
+Object.defineProperty(CTATMsgType, "STATE_GRAPH", {enumerable:false, configurable:false, writable:false, value:"StateGraph"});
+Object.defineProperty(CTATMsgType, "UNTUTORED_ACTION", {enumerable:false, configurable:false, writable:false, value:"UntutoredAction"});
+Object.defineProperty(CTATMsgType, "GO_TO_STATE", {enumerable:false, configurable:false, writable:false, value:"GoToState"});
+Object.defineProperty(CTATMsgType, "INTERFACE_REBOOT", {enumerable:false, configurable:false, writable:false, value:"InterfaceReboot"});
+Object.defineProperty(CTATMsgType, "CompletionValue", {enumerable:false, configurable:false, writable:false, value:["incomplete", "complete"]});
+CTATMsgType.prototype = Object.create(CTATBase.prototype);
+CTATMsgType.prototype.constructor = CTATMsgType;
+if (typeof module !== "undefined") {
+  module.exports = CTATMsgType;
+}
+;goog.provide("CTATVersionComparator");
+goog.require("CTATBase");
+CTATVersionComparator = function() {
+  CTATBase.call(this, "CTATVersionComparator", "");
+  var that = this;
+  this.compare = function(o1, o2) {
+    if (o1 === null || typeof o1 === "undefined") {
+      return o2 === null || typeof o2 === "undefined" ? 0 : -1;
+    } else {
+      if (o2 === null || typeof o2 === "undefined") {
+        return 1;
+      }
+    }
+    var result = 0;
+    var a1 = o1.split(".");
+    var a2 = o2.split(".");
+    var i;
+    for (i = 0;i < Math.min(a1.length, a2.length);i++) {
+      try {
+        var i1 = parseInt(a1[i]);
+        var i2 = parseInt(a2[i]);
+        if (i1 < i2) {
+          result = -1;
+        } else {
+          if (i1 > i2) {
+            result = 1;
+          } else {
+            result = 0;
+          }
+        }
+        if (0 !== result) {
+          return result;
+        }
+      } catch (e$13) {
+        if (a1[i].toString() < a2[i].toString()) {
+          result = -1;
+        } else {
+          if (a1[i].toString() > a2[i].toString()) {
+            result = 1;
+          } else {
+            result = 0;
+          }
+        }
+        if (0 !== result) {
+          return result;
+        }
+      }
+    }
+    if (i < a1.length) {
+      return 1;
+    }
+    if (i < a2.length) {
+      return -1;
+    }
+    if (o1.toString() < o2.toString()) {
+      return -1;
+    } else {
+      if (o1.toString() > o2.toString()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  };
+};
+CTATVersionComparator.prototype = Object.create(CTATBase.prototype);
+CTATVersionComparator.prototype.constructor = CTATVersionComparator;
+CTATVersionComparator.vc = new CTATVersionComparator;
+if (typeof module !== "undefined") {
+  module.exports = CTATVersionComparator;
+}
+;goog.provide("CTATExampleTracerSkill");
+goog.require("CTATBase");
+goog.require("CTATMsgType");
+goog.require("CTATVersionComparator");
+CTATExampleTracerSkill = function(givenCategory, givenSkillName, p_guess, p_known, p_slip, p_learn, _history) {
+  CTATBase.call(this, "CTATExampleTracerSkill", givenSkillName);
+  var that = this;
+  var transactionNumber = 0;
+  var skillBarDelimiter = CTATExampleTracerSkill.SKILL_BAR_DELIMITER_v2_11;
+  this.skillName = givenCategory == null || givenCategory.trim() == "" ? givenSkillName : givenSkillName + " " + givenCategory;
+  this.pGuess = Number(p_guess);
+  if (Number.isNaN(that.pGuess)) {
+    that.pGuess = CTATExampleTracerSkill.DEFAULT_P_GUESS;
+  }
+  this.pKnown = Number(p_known);
+  if (Number.isNaN(that.pKnown)) {
+    that.pKnown = CTATExampleTracerSkill.DEFAULT_P_KNOWN;
+  }
+  this.pLearn = Number(p_learn);
+  if (Number.isNaN(that.pLearn)) {
+    that.pLearn = CTATExampleTracerSkill.DEFAULT_P_LEARN;
+  }
+  this.pSlip = Number(p_slip);
+  if (Number.isNaN(that.pSlip)) {
+    that.pSlip = CTATExampleTracerSkill.DEFAULT_P_SLIP;
+  }
+  this.history = /^0*[xX]([0-9a-fA-F]+)$/.test(_history) ? parseInt(_history, 16) : /^(\-|\+)?[0-9]+$/.test(_history) ? parseInt(_history, 10) : CTATExampleTracerSkill.DEFAULT_HISTORY;
+  this.opportunityCount = 0;
+  this.masteryThreshold = CTATExampleTracerSkill.DEFAULT_MASTERY_THRESHOLD;
+  this.label = null;
+  this.description = null;
+  this.getSkillName = function() {
+    return that.skillName;
+  };
+  this.getCategory = function() {
+    var spPos = that.skillName.indexOf(" ");
+    return spPos < 0 ? "" : that.skillName.substring(spPos + 1);
+  };
+  this.setTransactionNumber = function(givenTransactionNumber) {
+    transactionNumber = givenTransactionNumber;
+  };
+  this.updatePKnown = function(status) {
+    that.pKnown = CTATExampleTracerSkill.updatePKnownStatic(status, that.pGuess, that.pKnown, that.pSlip, that.pLearn);
+    return that.pKnown;
+  };
+  this.updateHistory = function(status) {
+    that.history = CTATExampleTracerSkill.updateHistoryStatic(status, that.history);
+    return that.history;
+  };
+  this.changeOpportunityCount = function(delta) {
+    that.opportunityCount += delta;
+    return that.opportunityCount;
+  };
+  this.getTransactionNumber = function() {
+    return transactionNumber;
+  };
+  this.getSkillBarString = function(includeLabels) {
+    var sb = this.getSkillName();
+    sb = sb + this.getSkillBarDelimiter() + that.pKnown;
+    sb = sb + this.getSkillBarDelimiter() + (this.hasReachedMastery() ? "1" : "0");
+    if (includeLabels === true) {
+      sb = sb + this.getSkillBarDelimiter() + this.getLabel();
+    }
+    return sb.toString();
+  };
+  this.getSkillBarDelimiter = function() {
+    return skillBarDelimiter;
+  };
+  this.toXML = function(escape) {
+    var attrs = "";
+    attrs += ' name="' + CTATExampleTracerSkill.getName(that.skillName) + '"';
+    attrs += ' category="' + that.getCategory() + '"';
+    attrs += ' label="' + that.getLabel() + '"';
+    attrs += ' description="' + that.getDescription() + '"';
+    attrs += ' pKnown="' + Number(that.pKnown).toString() + '"';
+    attrs += ' pLearn="' + Number(that.pLearn).toString() + '"';
+    attrs += ' pGuess="' + Number(that.pGuess).toString() + '"';
+    attrs += ' pSlip="' + Number(that.pSlip).toString() + '"';
+    attrs += ' history="' + that.history + '"';
+    attrs += ' opportunityCount="' + that.opportunityCount + '"';
+    if (escape) {
+      return "&lt;Skill" + attrs + " /&gt;";
+    } else {
+      return "<Skill" + attrs + " />";
+    }
+  };
+  this.getPKnown = function() {
+    return that.pKnown;
+  };
+  this.getPLearn = function() {
+    return that.pLearn;
+  };
+  this.getPGuess = function() {
+    return that.pGuess;
+  };
+  this.getPSlip = function() {
+    return that.pSlip;
+  };
+  this.getHistory = function() {
+    return that.history;
+  };
+  this.getOpportunityCount = function() {
+    return that.opportunityCount;
+  };
+  this.hasReachedMastery = function() {
+    if (that.pKnown === null || typeof that.pKnown === "undefined") {
+      return false;
+    } else {
+      return that.pKnown >= that.masteryThreshold;
+    }
+  };
+  this.getLabel = function() {
+    return !that.label || that.label.length < 1 ? CTATExampleTracerSkill.getName(that.skillName) : that.label;
+  };
+  this.getDescription = function() {
+    return !that.description || that.description.length < 1 ? that.skillName : that.description;
+  };
+  this.setVersion = function(givenVersion) {
+    if (givenVersion !== null && typeof givenVersion !== "undefined" && givenVersion.length > 0) {
+      skillBarDelimiter = CTATExampleTracerSkill.versionToSkillBarDelimiter(givenVersion);
+    }
+  };
+  this.setLabel = function(givenLabel) {
+    that.label = givenLabel;
+  };
+  this.setDescription = function(givenDescription) {
+    that.description = givenDescription;
+  };
+  CTATExampleTracerSkill.makeStepID = function(selection, action) {
+    var sb = "";
+    var i = 0;
+    for (var v = selection;i++ < 2;v = action) {
+      if (v === null || typeof v === "undefined" || v.length < 1) {
+        continue;
+      }
+      var vStarted = false;
+      for (var j = 0;j < v.length;j++) {
+        if (v[j] === null || typeof v[j] === "undefined") {
+          continue;
+        }
+        var s = v[j].toString();
+        if (s.length < 1) {
+          continue;
+        }
+        if (v === selection && ("hint".toString().toUpperCase() === s.toString().toUpperCase() || "help".toString().toUpperCase() === s.toString().toUpperCase())) {
+          continue;
+        }
+        if (v === action && CTATMsgType.PREVIOUS_FOCUS.toString().toUpperCase() === s.toString().toUpperCase()) {
+          continue;
+        }
+        var res = vStarted ? "," : "[";
+        sb = sb + res + s;
+        vStarted = true;
+      }
+      if (vStarted === true) {
+        sb = sb + "]";
+      }
+    }
+    return sb.toString();
+  };
+  CTATExampleTracerSkill.updateHistoryStatic = function(givenStatus, givenHistory) {
+    var h = givenHistory << 1, msb = 1 << CTATExampleTracerSkill.MAX_INTEGER_SHIFT;
+    h |= givenStatus.toString().toUpperCase() === CTATExampleTracerSkill.CORRECT.toString().toUpperCase() ? 1 : 0;
+    return h & msb ? h ^ msb : h;
+  };
+  CTATExampleTracerSkill.updatePKnownStatic = function(givenStatus, givenP_guess, givenP_known, givenP_slip, givenP_learn) {
+    var knewIt = 0;
+    if (givenStatus.toString().toUpperCase() === CTATExampleTracerSkill.CORRECT.toString().toUpperCase()) {
+      var guessedIt = +(givenP_guess * (1 - givenP_known));
+      var knewAndPerformed = +(givenP_known * (1 - givenP_slip));
+      knewIt = +(knewAndPerformed / (knewAndPerformed + guessedIt));
+    } else {
+      if (givenStatus.toString().toUpperCase() === CTATExampleTracerSkill.INCORRECT.toString().toUpperCase() || givenStatus.toString().toUpperCase() === CTATExampleTracerSkill.HINT.toString().toUpperCase()) {
+        var choked = +(givenP_known * givenP_slip);
+        var dontKnowDontGuess = +((1 - givenP_known) * (1 - givenP_guess));
+        knewIt = +(choked / (choked + dontKnowDontGuess));
+      } else {
+      }
+    }
+    return +(knewIt + givenP_learn * (1 - knewIt));
+  };
+  CTATExampleTracerSkill.getName = function(givenSkillName) {
+    var spPos = givenSkillName.indexOf(" ");
+    if (spPos < 0) {
+      return givenSkillName;
+    } else {
+      return givenSkillName.substring(0, spPos);
+    }
+  };
+  CTATExampleTracerSkill.versionToSkillBarDelimiter = function(givenVersion) {
+    if (givenVersion === null || typeof givenVersion === "undefined") {
+      return CTATExampleTracerSkill.SKILL_BAR_DELIMITER_v2_10;
+    }
+    if (CTATVersionComparator.vc.compare(givenVersion, "2.11") >= 0) {
+      return CTATExampleTracerSkill.SKILL_BAR_DELIMITER_v2_11;
+    } else {
+      return CTATExampleTracerSkill.SKILL_BAR_DELIMITER_v2_10;
+    }
+  };
+};
+CTATExampleTracerSkill.fromJSON = function(jsonObj) {
+  if (!jsonObj) {
+    return null;
+  }
+  var result = new CTATExampleTracerSkill("", "");
+  for (var p in jsonObj) {
+    if (!jsonObj.hasOwnProperty(p) || typeof jsonObj[p] == "function") {
+      continue;
+    }
+    result[p] = jsonObj[p];
+  }
+  return result;
+};
+Object.defineProperty(CTATExampleTracerSkill, "MAX_INTEGER_SHIFT", {enumerable:false, configurable:false, writable:false, value:31});
+Object.defineProperty(CTATExampleTracerSkill, "HINT", {enumerable:false, configurable:false, writable:false, value:"hint"});
+Object.defineProperty(CTATExampleTracerSkill, "CORRECT", {enumerable:false, configurable:false, writable:false, value:"correct"});
+Object.defineProperty(CTATExampleTracerSkill, "INCORRECT", {enumerable:false, configurable:false, writable:false, value:"incorrect"});
+Object.defineProperty(CTATExampleTracerSkill, "SKILL_BAR_DELIMITER_v2_10", {enumerable:false, configurable:false, writable:false, value:"="});
+Object.defineProperty(CTATExampleTracerSkill, "SKILL_BAR_DELIMITER_v2_11", {enumerable:false, configurable:false, writable:false, value:"`"});
+Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_MASTERY_THRESHOLD", {enumerable:false, configurable:false, writable:false, value:.95});
+Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_P_GUESS", {enumerable:false, configurable:false, writable:false, value:.2});
+Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_P_KNOWN", {enumerable:false, configurable:false, writable:false, value:.3});
+Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_P_SLIP", {enumerable:false, configurable:false, writable:false, value:.3});
+Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_P_LEARN", {enumerable:false, configurable:false, writable:false, value:.15});
+Object.defineProperty(CTATExampleTracerSkill, "DEFAULT_HISTORY", {enumerable:false, configurable:false, writable:false, value:0});
+CTATExampleTracerSkill.prototype = Object.create(CTATBase.prototype);
+CTATExampleTracerSkill.prototype.constructor = CTATExampleTracerSkill;
+if (typeof module !== "undefined") {
+  module.exports = CTATExampleTracerSkill;
+}
+;goog.provide("CTATMatcher");
+goog.require("CTATBase");
+goog.require("CTATMsgType");
+goog.require("CTATSAI");
+CTATMatcher = function(givenSingle, givenVector, givenCaseInsensitive) {
+  var matcher = null;
+  CTATBase.call(this, "CTATMatcher", "");
+  this.lastResult = null;
+  var defaultSAI = new CTATSAI("", "", "");
+  var single = givenSingle;
+  var vector = givenVector === null || typeof givenVector === "undefined" ? CTATMatcher.NON_SINGLE : givenVector;
+  var caseInsensitive = givenCaseInsensitive;
+  var actor = CTATMsgType.DEFAULT_ACTOR;
+  var singleValue = null;
+  var linkTriggered = false;
+  var that = this;
+  this.resetMatcher = function() {
+  };
+  this.MatcherSAItoXML = function(indent) {
+    var result = indent + "<matcher>\n";
+    result += indent + "    <matcherType>Matcher</matcherType>\n";
+    result += indent + '    <matcherParameter name="single">' + singleValue + "</matcherParameter>\n";
+    result += indent + "</matcher>\n";
+    return result;
+  };
+  this.getSelection = function() {
+    return that.getDefaultSelection();
+  };
+  this.getAction = function() {
+    return that.getDefaultAction();
+  };
+  this.getInput = function() {
+    return that.getDefaultInput();
+  };
+  this.getActor = function() {
+    return actor;
+  };
+  this.setCaseInsensitive = function(givenCaseInsensitive) {
+    caseInsensitive = givenCaseInsensitive;
+  };
+  this.getEvaluatedInput = function(givenSAI, vt) {
+    return that.getInput();
+  };
+  this.getTraversalIncrement = function() {
+    return 1;
+  };
+  this.getTutorSAI = function(studentSAI, vt, grade) {
+    var sai = String(grade).toLowerCase() == CTATExampleTracerLink.CORRECT_ACTION.toLowerCase() ? studentSAI : that.getDefaultSAI();
+    console.log("CTATMatcher.getTutorSAI() superclass method called, should be subclass;\n  returning: " + sai);
+    return sai;
+  };
+  this.getDefaultSelection = function() {
+    return that.getDefaultSAI().getSelection();
+  };
+  this.getDefaultAction = function() {
+    return that.getDefaultSAI().getAction();
+  };
+  this.getDefaultInput = function() {
+    return that.getDefaultSAI().getInput();
+  };
+  this.getDefaultSAI = function() {
+    return defaultSAI;
+  };
+  this.setDefaultSAI = function(newDefaultSAI) {
+    defaultSAI = newDefaultSAI;
+  };
+  this.getDefaultActor = function() {
+    var myActor = String(getActor()).toLowerCase();
+    switch(myActor) {
+      case CTATMsgType.DEFAULT_STUDENT_ACTOR.toLowerCase():
+        return CTATMsgType.DEFAULT_STUDENT_ACTOR;
+      case CTATMsgType.DEFAULT_TOOL_ACTOR.toLowerCase():
+        return CTATMsgType.DEFAULT_TOOL_ACTOR;
+      case CTATMsgType.UNGRADED_TOOL_ACTOR.toLowerCase():
+        return CTATMsgType.DEFAULT_TOOL_ACTOR;
+      case CTATMsgType.ANY_ACTOR.toLowerCase():
+        return CTATMsgType.DEFAULT_TOOL_ACTOR;
+      default:
+        console.log("CTATMatcher.getDefaultActor() unexpected value for actor: " + actor + "; returning " + CTATMsgType.DEFAULT_ACTOR);
+        return CTATMsgType.DEFAULT_ACTOR;
+    }
+  };
+  this.getInput = function() {
+    return that.getDefaultInput();
+  };
+  this.getCaseInsensitive = function() {
+    return caseInsensitive;
+  };
+  this.match = function(selection, action, input, actor, vt) {
+    console.log("CTATMatcher superclass method called: match(" + selection + ", " + action + ", " + input + ", " + actor + ")");
+    return false;
+  };
+  this.matchForHint = function(selection, action, actor, vt) {
+    console.log("CTATMatcher superclass method called: matchForHint(" + selection + ", " + action + ", " + actor + ", vt)");
+    return false;
+  };
+  this.matchActor = function(actor) {
+    actor = String(actor).toUpperCase();
+    var myActor = String(that.getActor()).toUpperCase();
+    ctatdebug("CTATMatcher.matchActor(" + actor + ") myActor is " + myActor);
+    if (CTATMsgType.ANY_ACTOR.toString().toUpperCase() == myActor) {
+      return true;
+    }
+    if (CTATMsgType.UNGRADED_TOOL_ACTOR.toString().toUpperCase() == myActor && CTATMsgType.DEFAULT_TOOL_ACTOR.toString().toUpperCase() == actor) {
+      return true;
+    }
+    if (CTATMsgType.UNGRADED_TOOL_ACTOR.toString().toUpperCase() == actor && CTATMsgType.DEFAULT_TOOL_ACTOR.toString().toUpperCase() == myActor) {
+      return true;
+    }
+    return myActor == actor;
+  };
+  this.getDefaultSelectionArray = function() {
+    return that.getDefaultSAI().getSelectionArray();
+  };
+  this.getDefaultActionArray = function() {
+    return that.getDefaultSAI().getActionArray();
+  };
+  this.getDefaultInputArray = function() {
+    return that.getDefaultSAI().getInputArray();
+  };
+  this.getLastResult = function() {
+    return that.lastResult === null || typeof that.lastResult === "undefined" ? "" : that.lastResult.toString();
+  };
+  this.setActor = function(givenActor) {
+    ctatdebug("CTATMatcher --\x3e in setActor(" + givenActor + ")");
+    if (givenActor === null || typeof givenActor === "undefined") {
+      givenActor = CTATMsgType.DEFAULT_ACTOR;
+    }
+    var ga = String(givenActor).toLowerCase().trim();
+    if (ga == "tool") {
+      actor = CTATMsgType.DEFAULT_TOOL_ACTOR;
+    } else {
+      if (ga == CTATMsgType.DEFAULT_STUDENT_ACTOR.toLowerCase()) {
+        actor = CTATMsgType.DEFAULT_STUDENT_ACTOR;
+      } else {
+        if (ga == CTATMsgType.DEFAULT_TOOL_ACTOR.toLowerCase()) {
+          actor = CTATMsgType.DEFAULT_TOOL_ACTOR;
+        } else {
+          if (ga == CTATMsgType.UNGRADED_TOOL_ACTOR.toLowerCase()) {
+            actor = CTATMsgType.UNGRADED_TOOL_ACTOR;
+          } else {
+            if (ga == CTATMsgType.ANY_ACTOR.toLowerCase()) {
+              actor = CTATMsgType.ANY_ACTOR;
+            } else {
+              actor = CTATMsgType.DEFAULT_ACTOR;
+            }
+          }
+        }
+      }
+    }
+  };
+  this.array2ConcatString = function(v) {
+    var concat = "";
+    if (v == null) {
+      return concat;
+    }
+    if (!Array.isArray(v)) {
+      return v.toString();
+    }
+    v.forEach(function(o) {
+      if (o != null) {
+        concat += o.toString() + "\n";
+      }
+    });
+    return concat.substring(0, concat.length > 0 ? concat.length - 1 : 0);
+  };
+  this.matchConcatenation = function(v) {
+    return that.matchSingle(that.array2ConcatString(v));
+  };
+  this.isLinkTriggered = function() {
+    return linkTriggered;
+  };
+  this.setLinkTriggered = function(givenLinkTriggered) {
+    linkTriggered = givenLinkTriggered;
+  };
+  this.evaluateReplacement = function(sai, vt, tracer) {
+    return "";
+  };
+  this.replaceInput = function() {
+    return Boolean(that.getReplacementFormula());
+  };
+  this.getReplacementFormula = function() {
+    return "";
+  };
+};
+CTATMatcher.prototype.toString = function() {
+  console.log("Error: CTATMatcher.toString() called; should be overridden in subclass");
+  return "This is CTATMatcher.";
+};
+CTATMatcher.prototype.setParameter = function(paramName, paramElement, parser) {
+};
+CTATMatcher.isTutorActor = function(actor, acceptAny) {
+  if (CTATMsgType.DEFAULT_TOOL_ACTOR.toUpperCase() === actor.toUpperCase()) {
+    return true;
+  }
+  if (CTATMsgType.UNGRADED_TOOL_ACTOR.toUpperCase() === actor.toUpperCase()) {
+    return true;
+  }
+  if (acceptAny && CTATMsgType.ANY_ACTOR.toUpperCase() === actor.toUpperCase()) {
+    return true;
+  }
+  return false;
+};
+Object.defineProperty(CTATMatcher, "NON_SINGLE", {enumerable:false, configurable:false, writable:false, value:-1});
+Object.defineProperty(CTATMatcher, "SELECTION", {enumerable:false, configurable:false, writable:false, value:0});
+Object.defineProperty(CTATMatcher, "ACTION", {enumerable:false, configurable:false, writable:false, value:1});
+Object.defineProperty(CTATMatcher, "INPUT", {enumerable:false, configurable:false, writable:false, value:2});
+Object.defineProperty(CTATMatcher, "VECTOR", {enumerable:false, configurable:false, writable:false, value:3});
+Object.defineProperty(CTATMatcher, "ACTOR", {enumerable:false, configurable:false, writable:false, value:"Actor"});
+CTATMatcher.prototype = Object.create(CTATBase.prototype);
+CTATMatcher.prototype.constructor = CTATMatcher;
+if (typeof module !== "undefined") {
+  module.exports = CTATMatcher;
+}
+;goog.provide("CTATSingleMatcher");
 goog.require("CTATBase");
 goog.require("CTATMsgType");
 goog.require("CTATMatcher");
@@ -27594,8 +30284,8 @@ CTATSingleMatcher = function(givenVector, givenCaseInsensitive) {
     that.ctatdebug("CTATSingleMatcher calling CTATFormulaParser.evaluate(" + replacementFormula + ", " + s + ", " + a + ", " + i + ")");
     try {
       result = tempfunc.evaluate(replacementFormula, s, a, i);
-    } catch (e$15) {
-      that.ctatdebug("CTATSingleMatcher error from CTATFormulaParser.evaluate(" + replacementFormula + ") " + e$15.name + ": " + e$15.message);
+    } catch (e$14) {
+      that.ctatdebug("CTATSingleMatcher error from CTATFormulaParser.evaluate(" + replacementFormula + ") " + e$14.name + ": " + e$14.message);
       result = null;
     }
     that.ctatdebug("CTATSingleMatcher.evaluateReplacement() returns " + result + ", type " + typeof result);
@@ -27784,8 +30474,8 @@ CTATExpressionMatcher = function(givenVector, givenText) {
         default:
           return false;
       }
-    } catch (e$16) {
-      lastError = e$16.message;
+    } catch (e$15) {
+      lastError = e$15.message;
     }
     return false;
   }
@@ -27829,8 +30519,8 @@ CTATExpressionMatcher = function(givenVector, givenText) {
       var vt = new CTATVariableTable;
       var tempfunc = new CTATFormulaParser(vt);
       return tempfunc.interpolate(expression, selection, action, input);
-    } catch (e$17) {
-      lastError = e$17.message;
+    } catch (e$16) {
+      lastError = e$16.message;
       return null;
     }
   };
@@ -27844,9 +30534,9 @@ CTATExpressionMatcher = function(givenVector, givenText) {
     try {
       var funcRtn = tempfunc.evaluate(that.getInputExpression(), selection, action, input);
       return funcRtn;
-    } catch (e$18) {
-      that.ctatdebug("CTATExpressionMatcher --\x3e " + e$18.name + ": " + e$18.message);
-      lastError = e$18.message;
+    } catch (e$17) {
+      that.ctatdebug("CTATExpressionMatcher --\x3e " + e$17.name + ": " + e$17.message);
+      lastError = e$17.message;
       return null;
     }
   };
@@ -27969,8 +30659,8 @@ CTATRangeMatcher = function(vector, value) {
   this.setMinimum = function(minVal) {
     try {
       minimum = parseFloat(minVal);
-    } catch (e$19) {
-      throw new CTATExampleTracerException('Number format exception while parsing minimum value "' + minVal + '": ' + e$19);
+    } catch (e$18) {
+      throw new CTATExampleTracerException('Number format exception while parsing minimum value "' + minVal + '": ' + e$18);
     }
   };
   this.getMinimum = function() {
@@ -27979,8 +30669,8 @@ CTATRangeMatcher = function(vector, value) {
   this.setMaximum = function(maxVal) {
     try {
       maximum = parseFloat(maxVal);
-    } catch (e$20) {
-      throw new CTATExampleTracerException('Number format exception while parsing maximum value "' + maxVal + '": ' + e$20);
+    } catch (e$19) {
+      throw new CTATExampleTracerException('Number format exception while parsing maximum value "' + maxVal + '": ' + e$19);
     }
   };
   this.getMaximum = function() {
@@ -27990,7 +30680,7 @@ CTATRangeMatcher = function(vector, value) {
     var answer;
     try {
       answer = parseFloat(s);
-    } catch (e$21) {
+    } catch (e$20) {
       throw new CTATExampleTracerException("Number format exception while parsing .");
     }
     if (minimum <= answer && answer <= maximum) {
@@ -28879,7 +31569,7 @@ CTATExampleTracerLink = function(givenUniqueID, givenPrevNode, givenNextNode) {
     that.getMatcher().setDefaultAction(action[0] === null || typeof action[0] === "undefined" ? "" : action[0].toString());
   };
   this.setActionType = function(givenActionType) {
-    if (givenActionType === null || typeof givenActionType === "undefined" || givenActionType.toString() !== CTATExampleTracerLink.CORRECT_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.FIREABLE_BUGGY_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.BUGGY_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.HINT_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.UNTRACEABLE_ERROR.toString() && givenActionType.toString() !==
+    if (givenActionType === null || typeof givenActionType === "undefined" || givenActionType.toString() !== CTATExampleTracerLink.CORRECT_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.FIREABLE_BUGGY_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.BUGGY_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.HINT_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.UNTRACEABLE_ERROR.toString() && givenActionType.toString() !== 
     CTATExampleTracerLink.CLT_ERROR_ACTION.toString() && givenActionType.toString() !== CTATExampleTracerLink.GIVEN_ACTION.toString()) {
       throw new CTATExampleTracerException("invalid action type " + actionType);
     }
@@ -28902,7 +31592,7 @@ CTATExampleTracerLink = function(givenUniqueID, givenPrevNode, givenNextNode) {
         if (isNaN(minTraversals)) {
           minTraversals = 1;
         }
-      } catch (e$22) {
+      } catch (e$21) {
         minTraversals = 1;
       }
     }
@@ -28918,7 +31608,7 @@ CTATExampleTracerLink = function(givenUniqueID, givenPrevNode, givenNextNode) {
         if (isNaN(maxTraversals)) {
           maxTraversals = 1;
         }
-      } catch (e$23) {
+      } catch (e$22) {
         maxTraversals = minTraversals;
       }
     }
@@ -29808,8 +32498,8 @@ CTATDefaultGroupModel = function() {
     var naturalContainingGroup = null;
     try {
       naturalContainingGroup = getNaturalContainingGroup(TopLevel, links);
-    } catch (e$24) {
-      return e$24.toString();
+    } catch (e$23) {
+      return e$23.toString();
     }
     var newGroup = new CTATDefaultLinkGroup(name, isOrdered, isDefaultReenterable, links);
     that.ctatdebug("CTATDefaultGroupModel --\x3e in addGroup after creating new group");
@@ -31681,6 +34371,13 @@ CTATExampleTracerGraph = function(isUnordered, youStartYouFinish, givenVT) {
     }
     return true;
   }
+  this.getAllNodes = function() {
+    var result = [];
+    for (var n in nodeMap) {
+      result.push(nodeMap[n]);
+    }
+    return result;
+  };
   function buildInLinks() {
     for (var i = 0;i < nodes.length;i++) {
       nodes[i].clearInLinks();
@@ -32721,14 +35418,14 @@ CTATProblemStateStatus.prototype.countForProblemSummary = function() {
   switch(this.getStatus()) {
     case CTATProblemStateStatus.incompleteStartState:
     ;
+    case CTATProblemStateStatus.incomplete:
+    ;
     case CTATProblemStateStatus.goingToState:
     ;
     case CTATProblemStateStatus.startState:
     ;
     case CTATProblemStateStatus.completedEarlier:
       return false;
-    case CTATProblemStateStatus.incomplete:
-    ;
     case CTATProblemStateStatus.normalFeedback:
     ;
     case CTATProblemStateStatus.complete:
@@ -32953,11 +35650,11 @@ CTATMessageTank = function(givenTutorObject) {
       ps.restartTimer();
     }
     var actor = evt.getActor();
-    that.ctatdebug("updateProblemSummmary() actor " + actor + ", indicatorObj " + indicatorObj);
+    var stepID = evt.getStepID();
+    that.ctatdebug("updateProblemSummmary() actor " + actor + ", indicatorObj " + indicatorObj + ", stepID " + stepID);
     if (CTATMatcher.isTutorActor(actor) || !et.getOutputStatus().countForProblemSummary()) {
       return;
     }
-    var stepID = evt.getStepID();
     if (CTATTutorMessageBuilder.isHint(indicatorObj)) {
       ps.addHint(stepID);
     } else {
@@ -33189,40 +35886,40 @@ if (typeof module !== "undefined") {
 goog.require("CTATBase");
 CTATStep = function(givenID, givenResult) {
   CTATBase.call(this, "CTATStep", givenID);
-  var id = givenID;
-  var result = givenResult;
-  var nFirstHints = 0;
-  var lastResult = null;
-  var nCorrect = 0;
-  var nErrors = 0;
+  this.id = givenID;
+  this.result = givenResult;
+  this.nFirstHints = 0;
+  this.lastResult = null;
+  this.nCorrect = 0;
+  this.nErrors = 0;
   var that = this;
   that.ctatdebug("entering CTATStep(" + givenID + ", " + givenResult + ") constructor");
   this.incrementFirstHints = function() {
-    nFirstHints++;
+    that.nFirstHints++;
   };
   this.incrementNCorrect = function() {
-    nCorrect++;
+    that.nCorrect++;
   };
   this.incrementErrors = function() {
-    nErrors++;
+    that.nErrors++;
   };
   this.setLastResult = function(givenResult) {
-    lastResult = givenResult;
+    that.lastResult = givenResult;
   };
   this.getLastResult = function() {
-    return lastResult;
+    return that.lastResult;
   };
   this.getResult = function() {
-    return result;
+    return that.result;
   };
   this.getNCorrect = function() {
-    return nCorrect;
+    return that.nCorrect;
   };
   this.getNErrors = function() {
-    return nErrors;
+    return that.nErrors;
   };
   this.getNFirstHints = function() {
-    return nFirstHints;
+    return that.nFirstHints;
   };
   that.ctatdebug("in CTATStep(" + givenID + ", " + givenResult + ") constructor");
   switch(givenResult) {
@@ -33238,6 +35935,19 @@ CTATStep = function(givenID, givenResult) {
   }
   that.ctatdebug("exiting CTATStep constructor");
 };
+CTATStep.fromJSON = function(jsonObj) {
+  if (!jsonObj) {
+    return null;
+  }
+  var result = new CTATStep("", "");
+  for (var p in jsonObj) {
+    if (!jsonObj.hasOwnProperty(p) || typeof jsonObj[p] == "function") {
+      continue;
+    }
+    result[p] = jsonObj[p];
+  }
+  return result;
+};
 Object.defineProperty(CTATStep, "StepResult", {enumerable:false, configurable:false, writable:false, value:["UNTRIED", "INCORRECT", "HINT", "CORRECT"]});
 CTATStep.prototype = Object.create(CTATBase.prototype);
 CTATStep.prototype.constructor = CTATStep;
@@ -33251,43 +35961,43 @@ goog.require("CTATStep");
 CTATProblemSummary = function(givenProblemName, givenSkills, givenCountOnlyLastResults) {
   CTATBase.call(this, "CTATProblemSummary", "");
   if (givenProblemName === null || typeof givenProblemName === "undefined" || givenProblemName.length < 1) {
-    throw new CTATExampleTracerException("problemName null or empty");
+    throw new CTATExampleTracerException("givenProblemName null or empty");
   }
-  var showCounts = true;
-  var requiredSteps = Number.MAX_VALUE;
-  var problemName = givenProblemName;
-  var pSummarySkills = givenSkills;
-  var countOnlyLastResults = givenCountOnlyLastResults;
-  var initialHintsOnly = 0;
-  var initialErrorsOnly = 0;
-  var timeElapsed = 0;
+  this.showCounts = true;
+  this.requiredSteps = Number.MAX_VALUE;
+  this.problemName = givenProblemName;
+  this.pSummarySkills = typeof givenSkills == "undefined" ? null : givenSkills;
+  this.countOnlyLastResults = typeof givenCountOnlyLastResults == "undefined" ? null : givenCountOnlyLastResults;
+  this.initialHintsOnly = 0;
+  this.initialErrorsOnly = 0;
+  this.timeElapsed = 0;
   var startTime = new Date;
-  var stepMap = {};
-  var correct = 0;
-  var hints = 0;
-  var errors = 0;
-  var uniqueHints = 0;
-  var uniqueCorrect = 0;
-  var uniqueCorrectUnassisted = 0;
-  var uniqueErrors = 0;
-  var completionStatus = CTATMsgType.CompletionValue[0];
+  this.stepMap = {};
+  this.correct = 0;
+  this.hints = 0;
+  this.errors = 0;
+  this.uniqueHints = 0;
+  this.uniqueCorrect = 0;
+  this.uniqueCorrectUnassisted = 0;
+  this.uniqueErrors = 0;
+  this.completionStatus = CTATMsgType.CompletionValue[0];
   var that = this;
   this.getCountOnlyLastResults = function() {
-    return countOnlyLastResults;
+    return that.countOnlyLastResults;
   };
   this.setCountOnlyLastResults = function(b) {
-    countOnlyLastResults = b;
+    that.countOnlyLastResults = b;
   };
   this.getTimeElapsed = function() {
-    return timeElapsed;
+    return that.timeElapsed;
   };
   this.getUniqueErrors = function() {
     if (!that.getCountOnlyLastResults()) {
-      return uniqueErrors;
+      return that.uniqueErrors;
     }
     var n = 0;
-    for (var s in stepMap) {
-      if (stepMap[s].getLastResult() == CTATStep.StepResult[1]) {
+    for (var s in that.stepMap) {
+      if (that.stepMap[s].getLastResult() == CTATStep.StepResult[1]) {
         n++;
       }
     }
@@ -33295,24 +36005,24 @@ CTATProblemSummary = function(givenProblemName, givenSkills, givenCountOnlyLastR
   };
   this.getUniqueCorrect = function() {
     if (!that.getCountOnlyLastResults()) {
-      return uniqueCorrect;
+      return that.uniqueCorrect;
     }
     var n = 0;
-    for (var s in stepMap) {
-      if (stepMap[s].getLastResult() == CTATStep.StepResult[3]) {
+    for (var s in that.stepMap) {
+      if (that.stepMap[s].getLastResult() == CTATStep.StepResult[3]) {
         n++;
       }
     }
     return n;
   };
   this.getUniqueCorrectUnassisted = function() {
-    return uniqueCorrectUnassisted;
+    return that.uniqueCorrectUnassisted;
   };
   this.getHintsOnly = function() {
-    var s = initialHintsOnly;
-    for (var stepID in stepMap) {
-      if (CTATStep.StepResult[2] == stepMap[stepID].getResult()) {
-        if (stepMap[stepID].getNErrors() < 1) {
+    var s = that.initialHintsOnly;
+    for (var stepID in that.stepMap) {
+      if (CTATStep.StepResult[2] == that.stepMap[stepID].getResult()) {
+        if (that.stepMap[stepID].getNErrors() < 1) {
           ++s;
         }
       }
@@ -33320,10 +36030,10 @@ CTATProblemSummary = function(givenProblemName, givenSkills, givenCountOnlyLastR
     return s;
   };
   this.getErrorsOnly = function() {
-    var s = initialErrorsOnly;
-    for (var stepID in stepMap) {
-      if (CTATStep.StepResult[1] == stepMap[stepID].getResult()) {
-        if (stepMap[stepID].getNFirstHints() < 1) {
+    var s = that.initialErrorsOnly;
+    for (var stepID in that.stepMap) {
+      if (CTATStep.StepResult[1] == that.stepMap[stepID].getResult()) {
+        if (that.stepMap[stepID].getNFirstHints() < 1) {
           ++s;
         }
       }
@@ -33332,40 +36042,62 @@ CTATProblemSummary = function(givenProblemName, givenSkills, givenCountOnlyLastR
   };
   this.getUniqueSteps = function() {
     var result = 0;
-    for (var stepID in stepMap) {
+    for (var stepID in that.stepMap) {
       result++;
     }
     return result;
   };
   this.getRequiredSteps = function() {
-    return requiredSteps == Number.MAX_VALUE ? 0 : requiredSteps;
+    return that.requiredSteps == Number.MAX_VALUE ? 0 : that.requiredSteps;
   };
   this.setRequiredSteps = function(nSteps) {
-    requiredSteps = nSteps;
+    that.requiredSteps = nSteps;
   };
   this.getCorrect = function() {
-    return correct;
+    return that.correct;
+  };
+  this.fromJSON = function(jsonObj) {
+    if (!jsonObj) {
+      return that;
+    }
+    for (var p in jsonObj) {
+      if (!jsonObj.hasOwnProperty(p) || typeof jsonObj[p] == "function") {
+        continue;
+      }
+      switch(p) {
+        case "stepMap":
+          that[p] = {};
+          break;
+        case "pSummarySkills":
+          that[p] = CTATSkills.fromJSON(jsonObj[p]);
+          break;
+        default:
+          that[p] = jsonObj[p];
+          break;
+      }
+    }
+    return that;
   };
   this.toXML = function(escape) {
     var attrs = "";
     var children = "";
-    attrs += ' ProblemName="' + problemName + '"';
-    attrs += ' CompletionStatus="' + completionStatus + '"';
-    if (showCounts) {
-      attrs += ' Correct="' + correct + '"';
+    attrs += ' ProblemName="' + that.problemName + '"';
+    attrs += ' CompletionStatus="' + that.completionStatus + '"';
+    if (that.showCounts) {
+      attrs += ' Correct="' + that.correct + '"';
       attrs += ' UniqueCorrect="' + that.getUniqueCorrect() + '"';
-      attrs += ' UniqueCorrectUnassisted="' + uniqueCorrectUnassisted + '"';
-      attrs += ' Hints="' + hints + '"';
-      attrs += ' UniqueHints="' + uniqueHints + '"';
+      attrs += ' UniqueCorrectUnassisted="' + that.uniqueCorrectUnassisted + '"';
+      attrs += ' Hints="' + that.hints + '"';
+      attrs += ' UniqueHints="' + that.uniqueHints + '"';
       attrs += ' HintsOnly="' + that.getHintsOnly() + '"';
-      attrs += ' Errors="' + errors + '"';
+      attrs += ' Errors="' + that.errors + '"';
       attrs += ' UniqueErrors="' + that.getUniqueErrors() + '"';
       attrs += ' ErrorsOnly="' + that.getErrorsOnly() + '"';
       attrs += ' UniqueSteps="' + that.getUniqueSteps() + '"';
       attrs += ' RequiredSteps="' + that.getRequiredSteps() + '"';
     }
-    attrs += ' TimeElapsed="' + timeElapsed + '"';
-    if (showCounts) {
+    attrs += ' TimeElapsed="' + that.timeElapsed + '"';
+    if (that.showCounts) {
       children = that.getSkills() ? that.getSkills().toXML(escape) : "";
     }
     if (escape) {
@@ -33375,90 +36107,90 @@ CTATProblemSummary = function(givenProblemName, givenSkills, givenCountOnlyLastR
     }
   };
   this.getSkills = function() {
-    return pSummarySkills;
+    return that.pSummarySkills;
   };
   this.setSkills = function(givenSkills) {
-    pSummarySkills = givenSkills;
+    that.pSummarySkills = givenSkills;
   };
   this.stopTimer = function() {
     var stopTime = new Date;
-    timeElapsed += stopTime.getTime() - startTime.getTime();
+    that.timeElapsed += stopTime.getTime() - startTime.getTime();
     return stopTime;
   };
   this.restartTimer = function() {
     startTime = that.stopTimer();
-    return timeElapsed;
+    return that.timeElapsed;
   };
   this.addHint = function(stepID) {
     that.ctatdebug("addHint(" + stepID + ")");
-    var trial = stepMap[stepID];
+    var trial = that.stepMap[stepID];
     if (trial !== null && typeof trial !== "undefined") {
       if (trial.getNFirstHints() < 1) {
-        ++uniqueHints;
+        ++that.uniqueHints;
       }
       trial.incrementFirstHints();
     } else {
       trial = new CTATStep(stepID, CTATStep.StepResult[2]);
-      stepMap[stepID] = trial;
-      uniqueHints++;
+      that.stepMap[stepID] = trial;
+      that.uniqueHints++;
     }
-    hints++;
+    that.hints++;
     trial.setLastResult(CTATStep.StepResult[2]);
-    that.ctatdebug("exiting addHint() hint count " + hints + ", trial " + trial);
+    that.ctatdebug("exiting addHint() hint count " + that.hints + ", trial " + trial);
   };
   this.addError = function(stepID) {
     that.ctatdebug("addError(" + stepID + ")");
-    var trial = stepMap[stepID];
+    var trial = that.stepMap[stepID];
     if (trial !== null && typeof trial !== "undefined") {
       if (trial.getNCorrect() < 1 && trial.getNErrors() < 1) {
-        ++uniqueErrors;
+        ++that.uniqueErrors;
       }
       trial.incrementErrors();
     } else {
       trial = new CTATStep(stepID, CTATStep.StepResult[1]);
-      stepMap[stepID] = trial;
-      uniqueErrors++;
+      that.stepMap[stepID] = trial;
+      that.uniqueErrors++;
     }
-    errors++;
+    that.errors++;
     trial.setLastResult(CTATStep.StepResult[1]);
-    that.ctatdebug("exiting addError() error count " + errors + ", trial " + trial);
+    that.ctatdebug("exiting addError() error count " + that.errors + ", trial " + trial);
   };
   this.addCorrect = function(stepID) {
-    var trial = stepMap[stepID];
+    var trial = that.stepMap[stepID];
     that.ctatdebug("entering addCorrect(" + stepID + ") trial " + trial);
     if (trial) {
       if (trial.getNCorrect() < 1 && trial.getNErrors() < 1) {
-        ++uniqueCorrect;
+        ++that.uniqueCorrect;
         if (trial.getNFirstHints() < 1) {
-          uniqueCorrectUnassisted++;
+          that.uniqueCorrectUnassisted++;
         }
       }
       trial.incrementNCorrect();
     } else {
       that.ctatdebug("to call CTATStep(" + stepID + ", StepResult " + CTATStep.StepResult[3]);
       trial = new CTATStep(stepID, CTATStep.StepResult[3]);
-      stepMap[stepID] = trial;
-      uniqueCorrect++;
-      uniqueCorrectUnassisted++;
+      that.stepMap[stepID] = trial;
+      that.uniqueCorrect++;
+      that.uniqueCorrectUnassisted++;
     }
-    correct++;
+    that.correct++;
     trial.setLastResult(CTATStep.StepResult[3]);
-    that.ctatdebug("exiting addCorrect() correct count " + correct + ", trial " + trial);
+    that.ctatdebug("exiting addCorrect() correct count " + that.correct + ", trial " + trial);
   };
   this.setShowCounts = function(show) {
-    showCounts = show;
+    that.showCounts = show;
   };
   this.setCompletionStatus = function(givenCompletionStatus, canRevert) {
-    that.ctatdebug("setCompletionStatus(" + givenCompletionStatus + ", " + canRevert + ") old value " + completionStatus);
-    if (completionStatus.startsWith(CTATMsgType.CompletionValue[1])) {
+    that.ctatdebug("setCompletionStatus(" + givenCompletionStatus + ", " + canRevert + ") old value " + that.completionStatus);
+    if (that.completionStatus.startsWith(CTATMsgType.CompletionValue[1])) {
       if (!canRevert) {
         return;
       }
     }
-    completionStatus = givenCompletionStatus;
+    that.completionStatus = givenCompletionStatus;
   };
   this.getCompletionStatus = function() {
-    return completionStatus;
+    return that.completionStatus;
   };
 };
 CTATProblemSummary.prototype = Object.create(CTATBase.prototype);
@@ -33554,6 +36286,15 @@ CTATSkills = function(skillList) {
       }
     }
   };
+  this.toJSON = function(key) {
+    that.ctatdebug("CTATSkills.toJSON(" + key + ") to return " + (key == "pSummarySkills" ? that.getAllSkills() : that[key]));
+    return key ? key == "pSummarySkills" ? that.getAllSkills() : that[key] : that;
+  };
+};
+CTATSkills.fromJSON = function(jsonObj) {
+  return Array.isArray(jsonObj) ? new CTATSkills(jsonObj.map(function(s) {
+    return CTATExampleTracerSkill.fromJSON(s);
+  })) : null;
 };
 CTATSkills.prototype = Object.create(CTATBase.prototype);
 CTATSkills.prototype.constructor = CTATSkills;
@@ -33567,6 +36308,8 @@ goog.require("CTATMsgType");
 goog.require("CTAT.ToolTutor");
 goog.require("CTATMessage");
 goog.require("CTATLMS");
+goog.require("CTATTutorMessageBuilder");
+goog.require("CTATGuid");
 ProblemStateSaver = function(tracer) {
   CTATBase.call(this, "ProblemStateSaver", tracer);
   this.tracer = tracer;
@@ -33581,8 +36324,8 @@ ProblemStateSaver = function(tracer) {
     var result = {};
     result["session_id"] = tracer.getSessionID();
     result["authenticity_token"] = authenticity_token;
-    result["summary"] = ps.toXML(false);
-    result["problem_state"] = ProblemStateSaver.xmlToJSON(problemState);
+    result["summary"] = "";
+    result["problem_state"] = ps ? '{"summary":' + JSON.stringify(ps) + ',"state":' + ProblemStateSaver.xmlToJSON(problemState) + "}" : ProblemStateSaver.xmlToJSON(problemState);
     return result;
   }
   this.saveAsYouGo = function(ps) {
@@ -33729,7 +36472,37 @@ ProblemStateSaver.makeStepKey = function(sai) {
   action = typeof action != "string" || action.length < 1 ? " " : action;
   return selection + " " + action;
 };
-ProblemStateSaver.jsonToXML = function(problemState) {
+ProblemStateSaver.fromJSON = function(problemState) {
+  if (typeof problemState != "string") {
+    return ProblemStateSaver.jsonToState(problemState);
+  }
+  switch(problemState.charAt(0)) {
+    case "[":
+      return ProblemStateSaver.jsonToState(problemState);
+    case "{":
+      break;
+    default:
+      return ProblemStateSaver.jsonToState(problemState);
+  }
+  var parseResult = {};
+  try {
+    parseResult = JSON.parse(problemState);
+  } catch (e$24) {
+    console.log("ProblemStateSaver.fromJSON() error", e$24, "problemState", problemState);
+    return ProblemStateSaver.jsonToState(null);
+  }
+  if (parseResult.summary) {
+    var ps = CTAT.ToolTutor.tutor.getProblemSummary().fromJSON(parseResult.summary);
+    var mb = new CTATTutorMessageBuilder;
+    var arMsg = mb.createAssociatedRulesMessageForAction(CTATMsgType.CORRECT_ACTION, new CTATSAI("none", "none", "none"), CTATMsgType.DEFAULT_TOOL_ACTOR, new CTATSAI("none", "none", "none"), ps.getSkills().getSkillBarVector(false, true), "0", "T" + CTATGuid.guid(), "");
+    CTAT.ToolTutor.sendToInterface(arMsg);
+  }
+  if (parseResult.state) {
+    return ProblemStateSaver.jsonToXML(parseResult.state);
+  }
+  return ProblemStateSaver.jsonToState(null);
+};
+ProblemStateSaver.jsonToState = function(problemState) {
   if (typeof problemState != "string" || problemState.charAt(0) != "[") {
     return [];
   }
@@ -33737,19 +36510,23 @@ ProblemStateSaver.jsonToXML = function(problemState) {
   try {
     parseResult = JSON.parse(problemState);
   } catch (e$25) {
-    console.log("ProblemStateSaver.jsonToXML() error", e$25, "problemState", problemState);
+    console.log("ProblemStateSaver.jsonToState() error", e$25, "problemState", problemState);
     return [];
   }
+  return ProblemStateSaver.jsonToXML(parseResult);
+};
+ProblemStateSaver.jsonToXML = function(parseResult) {
   var result = [];
   parseResult.forEach(function(mo, i) {
     console.log("ProblemStateSaver.jsonToXML[" + i + "] mo", mo);
+    var mo_i = decodeURIComponent(mo.i);
+    mo_i = mo_i.indexOf("<![CDATA[") < 0 ? "<![CDATA[" + mo_i + "]]\x3e" : mo_i;
     var msg = "<message><verb>NotePropertySet</verb><properties><MessageType>";
     msg += mo.m == "U" ? CTATMsgType.UNTUTORED_ACTION : CTATMsgType.INTERFACE_ACTION;
     msg += "</MessageType><transaction_id>" + CTATMessage.makeTransactionId();
     msg += "</transaction_id><Selection><value>" + mo.s;
     msg += "</value></Selection><Action><value>" + mo.a;
-    msg += "</value></Action><Input><value><![CDATA[" + decodeURIComponent(mo.i);
-    msg += "]]\x3e</value></Input></properties></message>";
+    msg += "</value></Action><Input><value>" + mo_i + "</value></Input></properties></message>";
     result.push(msg);
   });
   return result;
@@ -33757,7 +36534,7 @@ ProblemStateSaver.jsonToXML = function(problemState) {
 ProblemStateSaver.xmlToJSON = function(problemState) {
   var toStringify = [];
   problemState.forEach(function(msg, i) {
-    console.log("ProblemStateSaver.xmlToJSON[" + i + "] msg", msg);
+    ctatdebug("ProblemStateSaver.xmlToJSON[" + i + "] msg\n  " + msg);
     if (msg) {
       var mo = {}, saiElt = null;
       mo.m = CTATMsgType.getMessageType(msg) == CTATMsgType.UNTUTORED_ACTION ? "U" : "I";
@@ -33766,7 +36543,7 @@ ProblemStateSaver.xmlToJSON = function(problemState) {
       saiElt = CTATMsgType.getValue(CTATMsgType.getProperty(msg, "Input"), 0);
       var inputVal = saiElt.replace(/^<!\[CDATA\[([^\]]*)\]\]>$/, "$1");
       mo.i = encodeURIComponent(inputVal);
-      console.log("ProblemStateSaver.xmlToJSON[" + i + "]  mo", mo);
+      ctatdebug("ProblemStateSaver.xmlToJSON[" + i + "]  mo " + JSON.stringify(mo));
       toStringify.push(mo);
     }
   });
@@ -33805,9 +36582,10 @@ ProblemStateRestorer = function(exTracer) {
     if (typeof problemState != "string") {
       return restoreMsgs;
     }
-    var problemStateArr = [], toRestore = "";
-    if (problemState.charAt(0) == "[") {
-      problemStateArr = ProblemStateSaver.jsonToXML(problemState);
+    var problemStateArr = [];
+    var toRestore = "";
+    if (/^[[{]/.test(problemState)) {
+      problemStateArr = ProblemStateSaver.fromJSON(problemState);
     } else {
       var msgsArr = problemState.split(/<\/?messages>/);
       that.ctatdebug("msgsArr.length " + msgsArr.length + ", msgsArr[1].length " + (msgsArr[1] ? msgsArr[1].length : -1));
@@ -33876,7 +36654,7 @@ ProblemStateRestorer = function(exTracer) {
       tracer.enqueueForRestore([]);
       return;
     }
-    if (problemState.charAt(0) != "[" && problemState.slice(0, ProblemStateSaver.MESSAGES_TAG.length) != ProblemStateSaver.MESSAGES_TAG) {
+    if (!/^[[{]/.test(problemState) && problemState.slice(0, ProblemStateSaver.MESSAGES_TAG.length) != ProblemStateSaver.MESSAGES_TAG) {
       console.log("ProblemStateRestorer.process() called with unrecognized string, to try htmlDecode(): ", problemState.slice(0, 20));
       problemState = htmlDecode(problemState);
       if (problemState.slice(0, ProblemStateSaver.MESSAGES_TAG.length) != ProblemStateSaver.MESSAGES_TAG) {
@@ -34809,6 +37587,19 @@ CTATExampleTracer = function() {
       return ruleTracer.doHint(result, transID, hintDone) ? result : null;
     }
   }
+  function makeCustomFields(objs) {
+    var $jscomp$restParams = [];
+    for (var $jscomp$restIndex = 0;$jscomp$restIndex < arguments.length;++$jscomp$restIndex) {
+      $jscomp$restParams[$jscomp$restIndex - 0] = arguments[$jscomp$restIndex];
+    }
+    var objs$27 = $jscomp$restParams;
+    var rtn = {};
+    for (var i = 0;i < arguments.length;++i) {
+      var obj = arguments[i];
+      typeof obj == "object" ? Object.assign(rtn, obj) : rtn["cf" + i] = obj;
+    }
+    return rtn;
+  }
   function hintDone(result, transactionID, optEdge) {
     var hints = result.getReportableHints();
     if (!hints || hints.length < 1) {
@@ -34821,7 +37612,7 @@ CTATExampleTracer = function() {
     that.ctatdebug("Before building hint message: tutorSAI " + result.getTutorSAI() + ", hints " + hints + ", edge # " + stepID);
     var hintMessage = (new CTATTutorMessageBuilder).createHintMessage(hints, result.getTutorSAI(), stepID, transactionID);
     that.messageTank.addToMessageTank(CTATMsgType.SHOW_HINTS_MESSAGE, hintMessage, result, null);
-    var assocMsg = (new CTATTutorMessageBuilder).createAssociatedRulesMessageForHint(hints, result.getTutorSAI(), actorForLog(CTATMsgType.DEFAULT_STUDENT_ACTOR), that.getSkillBarVector(true), stepID, transactionID, result.getCustomFields());
+    var assocMsg = (new CTATTutorMessageBuilder).createAssociatedRulesMessageForHint(hints, result.getTutorSAI(), actorForLog(CTATMsgType.DEFAULT_STUDENT_ACTOR), that.getSkillBarVector(true), stepID, transactionID, makeCustomFields(result.getCustomFields(), {rules:result.getAssociatedRules()}));
     that.messageTank.addToMessageTank(CTATMsgType.ASSOCIATED_RULES, assocMsg, result, null);
     var ps = that.getProblemSummary(result.getReportableInterpretation());
     that.messageTank.flushMessageTank(ps, true);
@@ -34869,8 +37660,7 @@ CTATExampleTracer = function() {
         break;
       case "rule":
         doTutorPerformedSteps = false;
-        doNewRuleTrace(result, origMsgTxt, finish);
-        return null;
+        return doNewRuleTrace(result, origMsgTxt, finish);
         break;
     }
     return null;
@@ -34897,7 +37687,7 @@ CTATExampleTracer = function() {
   function doNewRuleTrace(result, origMsgTxt, cbk) {
     that.ctatdebug("DoNewRuleTrace( " + result + ", " + origMsgTxt + " )");
     result.setMsgToRestore(origMsgTxt);
-    ruleTracer.evaluate(result, cbk);
+    return ruleTracer.evaluate(result, cbk);
   }
   function enqueueToolActionToStudent(selection, action, input) {
     return that.messageTank.enqueueToolActionToStudent(selection, action, input, CTATTutorMessageBuilder.TUTOR_PERFORMED);
@@ -34936,7 +37726,7 @@ CTATExampleTracer = function() {
         }
         that.updateSkills(CTATExampleTracerSkill.CORRECT, skillNames, result.getStepID(), actor);
         var successMsg = result.getSuccessOrBuggyMsg();
-        var assocRulesMsg = msgBuilder.createAssociatedRulesMessageForAction(result.getResult(), tutorSAI, actorForLog(actor), studentSAI, that.getSkillBarVector(true, actor), link ? link.getUniqueID() : -1, transactionID, successMsg, result.isOutOfOrder(), result.getCustomFields(), result.getTraceOutcome());
+        var assocRulesMsg = msgBuilder.createAssociatedRulesMessageForAction(result.getResult(), tutorSAI, actorForLog(actor), studentSAI, that.getSkillBarVector(true, actor), link ? link.getUniqueID() : result.getStepID(), transactionID, successMsg, result.isOutOfOrder(), makeCustomFields(result.getCustomFields(), {rules:result.getAssociatedRules()}), result.getTraceOutcome());
         that.messageTank.addToMessageTank(CTATMsgType.ASSOCIATED_RULES, assocRulesMsg, result, tutorSAI);
         that.ctatdebug("finishNewExampleTrace() successMsg " + successMsg);
         if (successMsg) {
@@ -34956,7 +37746,8 @@ CTATExampleTracer = function() {
         var hintResult = that.lastSilentHintResult = new CTATExampleTracerEvent(that, studentSAI, actor);
         hintResult.setHintRequest(true);
         var handleHintMsg = function() {
-          var skillNames = result.getAssociatedSkills() || [], stepID = result.getStepID() || "";
+          var skillNames = result.getAssociatedSkills() || [];
+          var stepID = result.getStepID() || "";
           that.updateSkills(CTATExampleTracerSkill.INCORRECT, skillNames, stepID, actor);
           tutorSAI = result.getTutorSAI();
           var textResp = createBuggyMessage(result, hintResult, msgBuilder);
@@ -34984,7 +37775,8 @@ CTATExampleTracer = function() {
           return handleHintMsg();
         } else {
           if (tutorType === "rule") {
-            handleRuleTraceForHint(result, hintResult, handleHintMsg);
+            result.setCustomFields(makeCustomFields(result.getCustomFields(), {rules:result.getAssociatedRules()}));
+            handleHintMsg();
           }
         }
       }
@@ -34992,7 +37784,6 @@ CTATExampleTracer = function() {
   }
   function handleExampleTraceForHint(result, hintResult) {
     var hintLink = exampleTracer.traceForHint(hintResult);
-    var stepID;
     that.ctatdebug("silent hint result: " + hintResult + "; hintLink " + hintLink);
     if (!hintLink) {
       hintLink = exampleTracer.getBestNextLink(false, hintResult);
@@ -35003,20 +37794,25 @@ CTATExampleTracer = function() {
       if (tutorSAI && tutorSAI.getSelection()) {
         result.setTutorSAI(tutorSAI);
       }
-      stepID = hintResult.getStepID();
       result.setStepID(hintResult.getStepID());
       result.setAssociatedSkills(hintResult.getAssociatedSkills());
+      result.setReportableInterpretation(hintResult.getReportableInterpretation());
     }
   }
   function handleRuleTraceForHint(result, hintResult, cbk) {
-    var tutorSAI;
-    ruleTracer.checkOutOfOrder(hintResult, function(isOutOfOrder) {
-      if (isOutOfOrder) {
-        hintResult.setTutorSAI(result.getTutorSAI());
-        result.setOutOfOrder(true);
+    that.ctatdebug("handleRuleTraceForHint result: " + result + ";\n  hintResult: " + hintResult);
+    var rtn = ruleTracer.doHint(hintResult, result.getTransactionID(), function(rtnResult, txid) {
+      that.ctatdebug("handleRuleTraceForHint cbk: " + rtnResult + ";\n  rtnResult===hintResult: " + rtnResult === hintResult + "; txid===result.getTransactionID() " + txid === result.getTransactionID());
+      var tutorSAI = rtnResult.getTutorSAI();
+      if (tutorSAI && tutorSAI.getSelection()) {
+        result.setTutorSAI(tutorSAI);
       }
+      result.setStepID(rtnResult.getStepID());
+      result.setAssociatedSkills(rtnResult.getAssociatedSkills());
+      result.setCustomFields(makeCustomFields(rtnResult.getCustomFields(), {rules:rtnResult.getAssociatedRules()}));
       cbk();
     });
+    return rtn;
   }
   function sendProblemRestoreEnd() {
     outputStatus.transition(CTATMsgType.PROBLEM_RESTORE_END);
@@ -35034,6 +37830,9 @@ CTATExampleTracer = function() {
   };
   this.getTracer = function() {
     return exampleTracer;
+  };
+  this.getRuleTracer = function() {
+    return ruleTracer;
   };
   this.getOutOfOrderMessage = function() {
     if (!outOfOrderMessage) {

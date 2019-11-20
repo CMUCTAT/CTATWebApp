@@ -1,0 +1,55 @@
+{
+  "name": "webcabin-docker",
+  "description": "Dynamic docking panels for your app.",
+  "version": "2.2.5",
+  "keywords": [
+    "css",
+    "js",
+    "front-end",
+    "framework",
+    "web",
+    "dynamic"
+  ],
+  "homepage": "http://docker.webcabin.org/",
+  "main": [
+    "Build",
+    "Build/Themes"
+  ],
+  "ignore": [
+    "/.*",
+    "favicon.ico",
+    "index_bower.html",
+    "indexDev_bower.html",
+    "index_node.html",
+    "indexDev_node.html",
+    "Code",
+    "Compiler",
+    "images",
+    "Themes",
+    "package.json"
+  ],
+  "dependencies": {
+    "jquery": "1.11.1",
+    "jQuery-contextMenu": "1.6.6",
+    "font-awesome": "4.6.0"
+  },
+  "devDependencies": {
+    "dcl": "1.1.2",
+    "requirejs": "2.1.x",
+    "requirejs-domready": "2.0.x",
+    "almond": "0.3.1",
+    "lodash-compat": "3.10.1-amd",
+    "dojo": "1.9.1"
+  },
+  "license": "MIT",
+  "_release": "2.2.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.2.5",
+    "commit": "4e5396da09bccb6e9ca52e7587534fbb83fcdc45"
+  },
+  "_source": "https://github.com/WebCabin/wcDocker.git",
+  "_target": "^2.2.5",
+  "_originalSource": "wcDocker",
+  "_direct": true
+}
