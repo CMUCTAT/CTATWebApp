@@ -1,3 +1,5 @@
+//JSON.stringify(myLayout.toConfig())
+//currentnode=cy.getElementById(ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState())
 var students = new Set();
 var pathflag;
 var problemsAndPaths = {};
@@ -10,6 +12,7 @@ var cy2;
 var ui;
 var currentnode;
 var layout;
+var modifiedmsg;
 
 var PT = null;
 var ChosenUI;
@@ -74,6 +77,10 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         {
             return;
         }
+        if("InCorrectAction" == evt || msg)
+        {
+          modifiedmsg=msg;
+        }
         var indicator = msg.getIndicator();
         var lin = msg.getProperty("StepID");
         var sai = "["+msg.getProperty("StudentSelection")+","+msg.getProperty("StudentAction")+","+msg.getProperty("StudentInput")+"]";//msg.getSAI();                               // selection-action-input from tutor engine
@@ -94,9 +101,10 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
               return ele.data('info') == sai.toString();
           })
           highlightedge.select();
-          var ret = highlightedge[0].id().replace("-",'');
-          currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
+          //var ret = highlightedge[0].id().replace("-",'');
+          //currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
         }
+        console.log("highlightedge",highlightedge,"jhnj",msg.getProperty("TraceOutcome"));
         var selectMode = document.getElementById("mySelect").value;
         //layout.run();
         console.log("currentnode",currentnode);
@@ -200,10 +208,10 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
 
 
       console.log("PA",PA);
-      // PA.forEach(function(link){
-      //     console.log('link', link);
-      //     ChosenUI.CTATCommShell.commShell.processComponentAction(link.getDefaultSAI());
-      // });
+      //   PA.forEach(function(link){
+      //         cy.getElementById(link.getNextNode()).unselect();
+      //         cy.getElementById("-"+link.getUniqueID()).select();
+      //   });
       window.onmessage(function(m){console.log("m",m);});
     });
                  //document.getElementById("cy").ondblclick = function(e) {cy.$(':selected').remove();};

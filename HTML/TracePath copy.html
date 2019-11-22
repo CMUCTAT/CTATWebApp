@@ -13,8 +13,6 @@
 <script src='Assets/cytoscape.js'></script>
 <script src="Assets/task1.js"></script>
 <script src="Assets/cytoscape.js-edge-editing-master/cytoscape-edge-editing.js"></script>
-<script src="https://cdn.rawgit.com/ivis-at-bilkent/cytoscape.js-context-menus/master/cytoscape-context-menus.js"></script>
-<script src="https://cdn.rawgit.com/ivis-at-bilkent/cytoscape.js-undo-redo/master/cytoscape-undo-redo.js"></script>
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="//golden-layout.com/files/latest/js/goldenlayout.min.js"></script>
@@ -259,33 +257,33 @@ var config = {
     content: [{
         type: 'row',
         content:[{
-            type:'component',
-            componentName: 'Behavior Graph',
-            componentState: { text: 'Component 1' }
-        },{
-            type: 'column',
-            content:[{
-                type:'component',
-                componentName: 'HTML Interface',
-                componentState: { text: 'Component 2' }
-            },{
-                type: 'stack', // Stack
-                content: [{
-                              type:'component',
-                              componentName: 'Hints',
-                              componentState: { text: 'Component 3' }
-                            },
-                            {
-                              type:'component',
-                              componentName: 'SAI Matcher',
-                              componentState: { text: 'Component 4' }
-                            }
-                          ]
-                        }
-                      ]
-              }
-        ]
-    }]
+                    type:'component',
+                    componentName: 'Behavior Graph',
+                    componentState: { text: 'Component 1' }
+                },{
+                    type: 'column',
+                    content:[{
+                                type:'component',
+                                componentName: 'HTML Interface',
+                                componentState: { text: 'Component 2' }
+                              },{
+                                  type: 'stack', // Stack
+                                  content: [{
+                                              type:'component',
+                                              componentName: 'Hints',
+                                              componentState: { text: 'Component 3' }
+                                            },
+                                            {
+                                              type:'component',
+                                              componentName: 'SAI Matcher',
+                                              componentState: { text: 'Component 4' }
+                                            }
+                                          ]
+                                }
+                              ]
+                      }
+                    ]
+                }]
 };
 
 var myLayout = new window.GoldenLayout( config, $('#layoutContainer') );
@@ -308,24 +306,15 @@ myLayout.init();
 
 onmessage=function(m) {
   console.log('m', m);
-  if(typeof cy !== 'undefined'){
-  document.getElementById("ctatinterface").contentWindow.CTATCommShell.commShell.addGlobalEventListener(assocRulesListener);
-  if(typeof PA !== 'undefined' && PA){
+  if(typeof cy !== 'undefined' && m.data && m.data.name=="tutorReady"){
+    document.getElementById("ctatinterface").contentWindow.CTATCommShell.commShell.addGlobalEventListener(assocRulesListener);
+  }
+  if(typeof cy !== 'undefined') {
+ if(typeof PA !== 'undefined' && PA){
 
   PA.forEach(function(link){
-    if (pathflag==1)
-    {
-    ChosenUI.CTATCommShell.commShell.processComponentAction(link.getDefaultSAI());
-      cy.getElementById(link.getNextNode()).unselect();
-      cy.getElementById("-"+link.getUniqueID()).select();
-      pathflag=0;
-    }
-    else {
-      {
         cy.getElementById(link.getNextNode()).unselect();
         cy.getElementById("-"+link.getUniqueID()).select();
-      }
-    }
   });
 }
 else {
@@ -334,17 +323,6 @@ else {
 }
 }
 }
-
-document.addEventListener('DOMContentLoaded', function(){
-  console.console.log("Xinying");
-  // demo your ext
-  cy.edgeEditing({
-            undoable: true,
-            bendRemovalSensitivity: 16
-  });
-
-  cy.style().update();
-});
 
 </script>
 </html>
