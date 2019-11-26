@@ -125,18 +125,6 @@ function saveBRD() {
     saveFile((CTATConfiguration.get("question_file") || 'DSExportToCTATScript.brd').replace(/.*\//,""),
             CTAT.ToolTutor.tutor.getGraph().toXML(CTAT.ToolTutor.tutor) || '<?xml version="1.0" encoding="UTF-8"?><stateGraph/>');
 }
-
-function changeMode() {
-var x = document.getElementById("mySelect").value;
-if (x=="Demonstrate")
-{
-  isDemonstrateMode=true;
-
-}
-else {
-  isDemonstrateMode=false;
-}
-}
 </script>
 
 <style>
@@ -236,7 +224,7 @@ html, body{
 
 <div id="wrapper">
   <ul id="menuContainer">
-    <label id="one" for="interfaceFilePath" class="myButton" onclick="changeColor('one')">Select interface</b> <input id="interfaceFilePath" type="file" style="display:none" /></label>
+    <label id="one" for="interfaceFilePath" class="myButton">Select interface</b> <input id="interfaceFilePath" type="file" style="display:none" /></label>
     <label id="two" class="myButton" onclick="(PT=(new CTATPathTracer())).OpenInterface()">Open Interface</b> </label>
     <label id="three" class="myButton" onclick="(PT=(new CTATPathTracer())).saveGraph()">Download</b> </label>
     <select id="mySelect"  class="myButton" onchange="changeMode()" style="float: right;">
@@ -248,11 +236,25 @@ html, body{
 </div>
 
 <script>
+//change from demonstrate to test mode and vice versa
+function changeMode() {
+var x = document.getElementById("mySelect").value;
+if (x=="Demonstrate")
+{
+  isDemonstrateMode=true;
+
+}
+else {
+  isDemonstrateMode=false;
+}
+}
+
+//responsive webpage
 $(window).resize(function () {
 myLayout.updateSize($(window).width(), $(window).height());
 });
 
-
+//golden layout for docker
 var config = {
     content: [{
         type: 'row',
@@ -303,26 +305,89 @@ myLayout.registerComponent( 'SAI Matcher', function( container, state ){
 
 myLayout.init();
 
-
-onmessage=function(m) {
+//message handler
+onmessage=function(m)
+{
   console.log('m', m);
-  if(typeof cy !== 'undefined' && m.data && m.data.name=="tutorReady"){
+  if(typeof cy !== 'undefined' && m.data && m.data.name=="tutorReady")
+  {
     document.getElementById("ctatinterface").contentWindow.CTATCommShell.commShell.addGlobalEventListener(assocRulesListener);
   }
-  if(typeof cy !== 'undefined') {
- if(typeof PA !== 'undefined' && PA){
+  if(typeof cy !== 'undefined')
+  {
+    if(typeof PA !== 'undefined' && PA)
+    {
+      PA.forEach(function(link)
+      {
+         if(pathflag==1)
+         {
+             ChosenUI.CTATCommShell.commShell.processComponentAction(PA[PA.length-1].getDefaultSAI());
+             cy.edges("[target='" + link.getNextNode() + "']").addClass('highlighted');
+         }
+         cy.getElementById(link.getNextNode()).unselect();
+         cy.getElementById("-"+link.getUniqueID()).select();
+       });
+     }
+     else
+     {
+       cy.$(':selected').unselect();
+       cy.getElementById(1).select();
+     }
+   }
+}
 
-  PA.forEach(function(link){
-        cy.getElementById(link.getNextNode()).unselect();
-        cy.getElementById("-"+link.getUniqueID()).select();
-  });
-}
-else {
-  cy.$(':selected').unselect();
-  cy.getElementById(1).select();
-}
-}
-}
+//cytoscape graph
+var addedNodes = [];
+var addedEdges = [];
+var jsonGraph = {
+    elements: [],
+
+    style: [
+        {
+            selector: 'node',
+            style: {
+                'label': 'data(id)',
+                "text-valign": "center",
+                "text-halign": "center"
+            }
+        },
+
+        {
+            selector: 'node[id="1"]',
+            style: {
+                'width': '50',
+                'height': '50',
+                'label': 'data(id)',
+                "text-valign": "center",
+                "text-halign": "center"
+            }
+        },
+
+        {
+            selector: 'edge',
+            style: {
+                'label': 'data(info2)',
+                'width': '8',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'min-zoomed-font-size': '10'
+            }
+        },
+
+        {
+            selector: 'edge.highlighted',
+            style: {
+                'line-color': 'red',
+                'target-arrow-color': 'red',
+                'label': 'data(info2)',
+                'width': '8',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'min-zoomed-font-size': '10'
+            }
+        },
+    ]
+};
 
 </script>
 </html>

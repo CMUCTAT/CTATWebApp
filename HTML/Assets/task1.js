@@ -1,52 +1,3 @@
-var addedNodes = [];
-var addedEdges = [];
-var jsonGraph = {
-    elements: [],
-
-    style: [
-        {
-            selector: 'node',
-            style: {
-                'label': 'data(id)',
-                "text-valign": "center",
-                "text-halign": "center"
-            }
-        },
-
-        {
-            selector: 'node[id="1"]',
-            style: {
-              'width': '50',
-              'height': '50',
-                    'label': 'data(id)',
-                    "text-valign": "center",
-                    "text-halign": "center"
-            }
-        },
-
-        {
-            selector: 'edge',
-            style: {
-                //'line-color': 'green',
-                'label': 'data(info2)',
-                'width': '8',
-                'target-arrow-shape': 'triangle',
-                'curve-style': 'bezier',
-                'min-zoomed-font-size': '10'
-            }
-        },
-    ]
-};
-// function runTask1() {
-//     //console.log("button pressed");
-//     var cy = cytoscape({
-//         container: document.getElementById('cy')
-//     });
-//     var g = CTAT.ToolTutor.tutor.getGraph();
-//     cy.json(JSON.parse(buildJSON(g)));
-//     var layout = cy.layout({name: 'cose'});
-//     layout.run();
-// }
 function buildJSON(graph) {
 
     //so graph has no way of getting the # of nodes... guess i have to start with edges
@@ -56,6 +7,7 @@ function buildJSON(graph) {
         var prevId = links[i].getPrevNode();
         var nextId = links[i].getNextNode();
         var defaultsai = links[i].getDefaultSAI();
+        var correctorincorrect = links[i].isCorrect()
 
         //add nodes if necessary
         if (!addedNodes.includes(prevId)) {
@@ -71,7 +23,7 @@ function buildJSON(graph) {
             addedNodes.push(nextId);
         }
         addEdge(jsonGraph, links[i].getUniqueID(), prevId, nextId,
-                defaultsai.getSelection(), defaultsai.getAction(), defaultsai.getInput());
+                defaultsai.getSelection(), defaultsai.getAction(), defaultsai.getInput(), correctorincorrect);
         addedEdges.push(links[i].getUniqueID());
     }
     BRDjson = jsonGraph;
@@ -92,11 +44,6 @@ function addNode(jsonGraph, id, x, y) {
             scratch: {
 
             },
-
-            /*position: {
-                x: 1,
-                y: 1
-            },*/
 
             selected: false,
 
@@ -137,7 +84,7 @@ function addNode(jsonGraph, id, x, y) {
     }
 }
 
-function addEdge(jsonGraph, id, source, target, selection, action, input) {
+function addEdge(jsonGraph, id, source, target, selection, action, input, correctorincorrect) {
     var edge = {
         group: 'edges',
 
@@ -150,7 +97,8 @@ function addEdge(jsonGraph, id, source, target, selection, action, input) {
             action: action,
             input: input,
             info: "["+selection+","+action+","+input+"]",
-            info2: "["+selection+","+input+"]"
+            info2: "["+selection+","+input+"]",
+            correctorincorrect: correctorincorrect
                   }
     };
     jsonGraph.elements.push(edge);

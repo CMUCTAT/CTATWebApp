@@ -1,5 +1,7 @@
+//This is for saving the layout configuration for an user so next time they open it remains the same.
 //JSON.stringify(myLayout.toConfig())
-//currentnode=cy.getElementById(ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState())
+//myLayout = new window.GoldenLayout(JSON.parse('{"settings":{"hasHeaders":true,"constrainDragToContainer":true,"reorderEnabled":true,"selectionEnabled":false,"popoutWholeStack":false,"blockedPopoutsThrowError":true,"closePopoutsOnUnload":true,"showPopoutIcon":true,"showMaximiseIcon":true,"showCloseIcon":true,"responsiveMode":"onload"},"dimensions":{"borderWidth":5,"minItemHeight":10,"minItemWidth":10,"headerHeight":20,"dragProxyWidth":300,"dragProxyHeight":200},"labels":{"close":"close","maximise":"maximise","minimise":"minimise","popout":"open in new window","popin":"pop in","tabDropdown":"additional tabs"},"content":[{"type":"row","isClosable":true,"reorderEnabled":true,"title":"","content":[{"type":"stack","width":50,"isClosable":true,"reorderEnabled":true,"title":"","activeItemIndex":0,"content":[{"type":"component","componentName":"Behavior Graph","componentState":{"text":"Component 1"},"isClosable":true,"reorderEnabled":true,"title":"Behavior Graph"}]},{"type":"column","isClosable":true,"reorderEnabled":true,"title":"","width":50,"content":[{"type":"stack","height":65.5048076923077,"isClosable":true,"reorderEnabled":true,"title":"","activeItemIndex":0,"content":[{"type":"component","componentName":"HTML Interface","componentState":{"text":"Component 2"},"isClosable":true,"reorderEnabled":true,"title":"HTML Interface"}]},{"type":"stack","isClosable":true,"reorderEnabled":true,"title":"","height":34.495192307692314,"activeItemIndex":0,"content":[{"type":"component","componentName":"Hints","componentState":{"text":"Component 3"},"isClosable":true,"reorderEnabled":true,"title":"Hints"},{"type":"component","componentName":"SAI Matcher","componentState":{"text":"Component 4"},"isClosable":true,"reorderEnabled":true,"title":"SAI Matcher"}]}]}]}],"isClosable":true,"reorderEnabled":true,"title":"","openPopouts":[],"maximisedItemId":null}'), $('#layoutContainer'))
+//myLayout.config=JSON.parse('{"settings":{"hasHeaders":true,"constrainDragToContainer":true,"reorderEnabled":true,"selectionEnabled":false,"popoutWholeStack":false,"blockedPopoutsThrowError":true,"closePopoutsOnUnload":true,"showPopoutIcon":true,"showMaximiseIcon":true,"showCloseIcon":true,"responsiveMode":"onload"},"dimensions":{"borderWidth":5,"minItemHeight":10,"minItemWidth":10,"headerHeight":20,"dragProxyWidth":300,"dragProxyHeight":200},"labels":{"close":"close","maximise":"maximise","minimise":"minimise","popout":"open in new window","popin":"pop in","tabDropdown":"additional tabs"},"content":[{"type":"row","isClosable":true,"reorderEnabled":true,"title":"","content":[{"type":"stack","width":50,"isClosable":true,"reorderEnabled":true,"title":"","activeItemIndex":0,"content":[{"type":"component","componentName":"Behavior Graph","componentState":{"text":"Component 1"},"isClosable":true,"reorderEnabled":true,"title":"Behavior Graph"}]},{"type":"column","isClosable":true,"reorderEnabled":true,"title":"","width":50,"content":[{"type":"stack","height":65.5048076923077,"isClosable":true,"reorderEnabled":true,"title":"","activeItemIndex":0,"content":[{"type":"component","componentName":"HTML Interface","componentState":{"text":"Component 2"},"isClosable":true,"reorderEnabled":true,"title":"HTML Interface"}]},{"type":"stack","isClosable":true,"reorderEnabled":true,"title":"","height":34.495192307692314,"activeItemIndex":0,"content":[{"type":"component","componentName":"Hints","componentState":{"text":"Component 3"},"isClosable":true,"reorderEnabled":true,"title":"Hints"},{"type":"component","componentName":"SAI Matcher","componentState":{"text":"Component 4"},"isClosable":true,"reorderEnabled":true,"title":"SAI Matcher"}]}]}]}],"isClosable":true,"reorderEnabled":true,"title":"","openPopouts":[],"maximisedItemId":null}')
 var students = new Set();
 var pathflag;
 var problemsAndPaths = {};
@@ -38,23 +40,6 @@ function OpenInterface() {
     ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
 }
 
-function addPathToBG(correct) {
-    console.log("addPathToBG called");
-    path = cy.$(":selected");
-
-    path.forEach(function(ele) {
-        if (!ele.isNode()) {
-            if (!("correct" in ele.data())) {
-                if (correct==1)
-                    ele.json({data : {correct: 1}})
-                else if (correct==0)
-                    ele.json({data : {correct: 0}})
-                else
-                    ele.json({data : {correct: -1}})
-            }
-        }
-    });
-}
 
 CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
     var interfaceFilePath = givenInterfaceFilePath||"interfaceFilePath";
@@ -64,7 +49,7 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
     var graphName = location.toString().substring(location.toString().lastIndexOf("/") + 1)
     ChosenUI = null;
     g = CTAT.ToolTutor.tutor.getGraph();
-    cy = cytoscape({                                   //runTask1GivenJSON(ggraph) {
+    cy = cytoscape({
         container: cyContainer,
         hideLabelsOnViewport: true
     });
@@ -81,6 +66,7 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         {
           modifiedmsg=msg;
         }
+        cy.edges().removeClass('highlighted');
         var indicator = msg.getIndicator();
         var lin = msg.getProperty("StepID");
         var sai = "["+msg.getProperty("StudentSelection")+","+msg.getProperty("StudentAction")+","+msg.getProperty("StudentInput")+"]";//msg.getSAI();                               // selection-action-input from tutor engine
@@ -92,26 +78,25 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
           highlightedge=cy.getElementById("-"+lin);
           highlightedge.select();
           console.log(cy);
-          var ret = highlightedge[0].id().replace("-",'');
-          currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
+          //var ret = highlightedge[0].id().replace("-",'');
+          //currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
         }
         else if (msg.getProperty("TraceOutcome")=="Buggy Action")
         {
           highlightedge=cy.edges().filter(function(ele) {
               return ele.data('info') == sai.toString();
           })
-          highlightedge.select();
+          highlightedge.addClass('highlighted');
           //var ret = highlightedge[0].id().replace("-",'');
           //currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
         }
         console.log("highlightedge",highlightedge,"jhnj",msg.getProperty("TraceOutcome"));
         var selectMode = document.getElementById("mySelect").value;
-        //layout.run();
+        currentnode = cy.getElementById(ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState())
         console.log("currentnode",currentnode);
         if(highlightedge==null && selectMode=="Demonstrate")
         {
           //add demonstrate mode here for cytoscape
-          //var pos = currentnode.getVisualData();
           var addNodeId =  addedNodes.reduce(function(a, b) {
                         return Math.max(a, b);
                       });
@@ -136,6 +121,7 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
           var vectorMatcher = new CTATVectorMatcher(SelectionMatchers, ActionMatchers, InputMatchers, actor);
           vectorMatcher.setDefaultSAI(new CTATSAI(msg.getProperty("StudentSelection"), msg.getProperty("StudentAction"), msg.getProperty("StudentInput"), "Student"));
           newLink.setMatcher(vectorMatcher);
+          newLink.setActionType("Correct Action");
           // OK so I need to make a new matcher and give it the selection, action, and input
           g.addLink(newLink, null); //don't worry about groups for now
           g.getNode(currentnode.id()).addOutLink(newLink);
@@ -160,7 +146,7 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
             layout.run();
             highlightedge=cy.getElementById("-"+addEdgeId);
             highlightedge.select();
-            currentnode=cy.getElementById(addNodeId);
+            //currentnode=cy.getElementById(addNodeId);
         }
       }
     };
@@ -181,41 +167,10 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
                     gravity: 0.1
                  });
     layout.run();
-    currentnode=cy.getElementById(1);
-    currentnode.select();
-    cy.bind('click', 'node', function(nodeselected) {
-      PA=null;
-      pathflag=1;
-      console.log('ChosenUI', ChosenUI);
-      var destNodeID = nodeselected.target.id();
-      currentnode=cy.getElementById(destNodeID);
-      if (destNodeID==1)
-      {
-        ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
-        window.onmessage(function(m){console.log("m",m);});
-        return;
-      }
-      var destNode = g.getNode(destNodeID);
-      console.log("ChosenUI.CTAT.ToolTutor.tutor", ChosenUI.CTAT.ToolTutor.tutor);
-      ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
-      let tp = g.getBestSubpath(g.getStartNode(), destNode);
-      if (tp == null)
-      {
-          //tp = findPathToNode(destNode, null); //cy.getElementById(1),
-          console.log("tp",tp);
-      }
-      PA =tp.getSortedLinks();
-
-
-      console.log("PA",PA);
-      //   PA.forEach(function(link){
-      //         cy.getElementById(link.getNextNode()).unselect();
-      //         cy.getElementById("-"+link.getUniqueID()).select();
-      //   });
-      window.onmessage(function(m){console.log("m",m);});
-    });
-                 //document.getElementById("cy").ondblclick = function(e) {cy.$(':selected').remove();};
-                 /*var nid = 23;
+    //currentnode=cy.getElementById(1);
+    //currentnode.select();
+                 /*document.getElementById("cy").ondblclick = function(e) {cy.$(':selected').remove();};
+                 var nid = 23;
 
                          ,{data: { id: nid+e.target.id(), source: nodeselected.target.id(), target: nid}}
                          layout.pon('layoutstop').then(function( event ){
@@ -223,18 +178,6 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
                                  return CTAT.ToolTutor.tutor.getGraph().getNode(node.data().id).getDimension();
                                  });
                              });*/
-    //console.log('instanceisactive', instance.isActive());
-
-
-    // function selectPath(PA) {
-    //   cy.getElementById(1).select();
-    //   cy.getElementById(PA[0].getPrevNode()).select();
-    //   cy.getElementById("-"+PA[0].getUniqueID()).select();
-    //   PA.forEach(function(link){
-    //       // cy.getElementById(link.getPrevNode()).select();
-    //       // cy.getElementById("-"+link.getUniqueID()).select();
-    //   });
-    // };
 
     function getInterface() {
         interfaceFilePath = null;
@@ -258,10 +201,8 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
       CTATFS.writeFile(graphName, g.toXML(CTAT.ToolTutor.tutor));
     }
 
-    this.findPathToNode = function(n, p) {
-        var destnode = g.getNode(4);
-        console.log(destnode);
-        var inLinks = destnode.getInLinks();
+    function findPathToNode(n, p) {
+        var inLinks = n.getInLinks();
         if(inLinks.size <= 0)
         {
             p = p||new CTATExampleTracerPath();
@@ -269,14 +210,43 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         else
         {
             var e = inLinks.keys().next().value;
-            p = this.findPathToNode(g.getNode(e.getPrevNode()), p);
+            p = findPathToNode(g.getNode(e.getPrevNode()), p);
             p.addLink(e);
         }
         return p;
     }
 
-
-    this.addListener = function(assocRulesListener) {
-        ChosenUI.CTATCommShell.commShell.addGlobalEventListener(assocRulesListener)
-    }
+    cy.bind('click', 'node', function(nodeselected) {
+      cy.edges().removeClass('highlighted');
+      PA=null;
+      pathflag=1;
+      var destNodeID = nodeselected.target.id();
+      //currentnode=cy.getElementById(destNodeID);
+      if (destNodeID==1)
+      {
+        ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
+        window.onmessage(function(m){console.log("m",m);});
+        return;
+      }
+      var destNode = g.getNode(destNodeID);
+      let tp = g.getBestSubpath(g.getStartNode(), destNode);
+      if (tp == null)     //for buggy edges now change later such that it will only be for nodes which cannot be reached
+      {
+          tp = findPathToNode(destNode);
+          PA =tp.getSortedLinks();
+          var newdest = g.getNode(PA[PA.length-1].getPrevNode());
+          ChosenUI.CTAT.ToolTutor.tutor.goToState(newdest.getNodeName());
+      }
+      else {
+        ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
+        PA =tp.getSortedLinks();
+        pathflag=0;
+      }
+      console.log("PA",PA);
+      //   PA.forEach(function(link){
+      //         cy.getElementById(link.getNextNode()).unselect();
+      //         cy.getElementById("-"+link.getUniqueID()).select();
+      //   });
+      window.onmessage(function(m){console.log("m",m);});
+    });
 }

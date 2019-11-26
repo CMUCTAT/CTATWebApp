@@ -6,15 +6,15 @@
 		<title>cytoscape-edge-editing.js demo</title>
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-
+                
                 <link href="https://cdn.rawgit.com/ivis-at-bilkent/cytoscape.js-context-menus/master/cytoscape-context-menus.css" rel="stylesheet" type="text/css" />
-
+                
                 <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 		<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 
 		<!-- for testing with local version of cytoscape.js -->
 		<!--<script src="../cytoscape.js/build/cytoscape.js"></script>-->
-
+                
                 <script src="https://cdn.rawgit.com/ivis-at-bilkent/cytoscape.js-context-menus/master/cytoscape-context-menus.js"></script>
 		<script src="https://cdn.rawgit.com/ivis-at-bilkent/cytoscape.js-undo-redo/master/cytoscape-undo-redo.js"></script>
                 <script src="cytoscape-edge-editing.js"></script>
@@ -69,9 +69,9 @@
 
 							}
 						},
-
+						
 					],
-
+					
 					layout: { name: 'grid', rows: 2, cols: 2},
 
 					wheelSensitivity: 0.1,
@@ -80,13 +80,15 @@
 						nodes: [
 							{ data: { id: 'j', name: 'Jerry' } },
 							{ data: { id: 'e', name: 'Elaine' } },
+							{ data: { id: 'k', name: 'Kramer' } },
+							{ data: { id: 'g', name: 'George' } }
 						],
 						edges: [
-							{ data: {
-								source: 'j',
+							{ data: { 
+								source: 'j', 
 								target: 'e',
 								cyedgebendeditingWeights: [1],
-								cyedgebendeditingDistances: [175]
+								cyedgebendeditingDistances: [175] 
 							  },
 							  classes: 'edgebendediting-hasbendpoints',
 						 	},
@@ -101,22 +103,22 @@
 						]
 					},
 				});
-
+				
 				// demo your ext
 				cy.edgeEditing({
 									undoable: true,
 									bendRemovalSensitivity: 16
 				});
-
+				
 				cy.style().update();
 			});
-
+                        
                         document.addEventListener('keydown', function (e){
                                 if (e.ctrlKey && e.which == '90') {
-                                        cy.undoRedo().undo();
+                                        cy.undoRedo().undo();	     
                                 }
                                 else if (e.ctrlKey && e.which == '89') {
-                                        cy.undoRedo().redo();
+                                        cy.undoRedo().redo();     
                                 }
                         }, true );
 		</script>

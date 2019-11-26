@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="Assets/jquery.min.js"></script>
+<script src="Assets/papaparse.min.js"></script>
+
+
+<script src="Assets/base.js"></script>
+
+<script src="Assets/ctat.full.js"></script>
+<script src="Assets/ctatloader.js"></script>
+<script src='Assets/cytoscape.js'></script>
+<script src="Assets/cytoscape.js-edge-editing-master/cytoscape-edge-editing.js"></script>
+<script src="https://cdn.rawgit.com/ivis-at-bilkent/cytoscape.js-context-menus/master/cytoscape-context-menus.js"></script>
+<script src="https://cdn.rawgit.com/ivis-at-bilkent/cytoscape.js-undo-redo/master/cytoscape-undo-redo.js"></script>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="//golden-layout.com/files/latest/js/goldenlayout.min.js"></script>
+<link type="text/css" rel="stylesheet" href="//golden-layout.com/files/latest/css/goldenlayout-base.css" />
+<link type="text/css" rel="stylesheet" href="//golden-layout.com/files/latest/css/goldenlayout-dark-theme.css" />
+
+<script>
+function buildJSON(graph) {
+
+    //so graph has no way of getting the # of nodes... guess i have to start with edges
+
+    var links = graph.getLinks();//edges
+    for (i = 0; i < links.length; i++) {
+        var prevId = links[i].getPrevNode();
+        var nextId = links[i].getNextNode();
+        var defaultsai = links[i].getDefaultSAI();
+        var correctorincorrect = links[i].isCorrect()
+
+        //add nodes if necessary
+        if (!addedNodes.includes(prevId)) {
+            var prevNode = graph.getNode(prevId);
+            var pos = prevNode.getVisualData();
+            addNode(jsonGraph, prevId, pos ? parseInt(pos.x) : null, pos ? parseInt(pos.y) : null);
+            addedNodes.push(prevId);
+        }
+        if (!addedNodes.includes(nextId)) {
+            var nextNode = graph.getNode(nextId);
+            var pos = nextNode.getVisualData();
+            addNode(jsonGraph, nextId, pos ? parseInt(pos.x) : null, pos ? parseInt(pos.y) : null);
+            addedNodes.push(nextId);
+        }
+        addEdge(jsonGraph, links[i].getUniqueID(), prevId, nextId,
+                defaultsai.getSelection(), defaultsai.getAction(), defaultsai.getInput(), correctorincorrect);
+        addedEdges.push(links[i].getUniqueID());
+    }
+    BRDjson = jsonGraph;
+
+    return JSON.stringify(jsonGraph);
+}
+
+function addNode(jsonGraph, id, x, y) {
+    if (x == null) {
+        var node = {
+            group: 'nodes',
+
+            data: {
+                id: id
+            },
+
+            scratch: {
+
+            },
+
+            selected: false,
+
+            selectable: true,
+
+            locked: false,
+
+            grabbable: true
+        };
+        jsonGraph.elements.push(node);
+    }
+    else {
+        var node = {
+            group: 'nodes',
+
+            data: {
+                id: id
+            },
+
+            scratch: {
+
+            },
+
+            position: {
+                x: x,
+                y: y
+            },
+
+            selected: false,
+
+            selectable: true,
+
+            locked: false,
+
+            grabbable: true
+        };
+        jsonGraph.elements.push(node);
+    }
+}
+
+function addEdge(jsonGraph, id, source, target, selection, action, input, correctorincorrect) {
+    var edge = {
+        group: 'edges',
+
+        data: {
+            id: "-"+id,
+            CTATid: id,
+            source: source,
+            target: target,
+            selection: selection,
+            action: action,
+            input: input,
+            info: "["+selection+","+action+","+input+"]",
+            info2: "["+selection+","+input+"]",
+            correctorincorrect: correctorincorrect
+                  }
+    };
+    jsonGraph.elements.push(edge);
+}
+</script>
+
+<style>
+h2{
+  font: 14px Arial, sans-serif;
+  color:#fff;
+  padding: 10px;
+  text-align: center;
+}
+
+html, body{
+  height: 100%;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style-type:none;
+}
+
+#wrapper{
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+}
+
+#menuContainer{
+  width: 100%;
+  height: 5%;
+  position:absolute;
+  top: 0;
+  left: 0;
+  background: #DCDCDC;
+  padding:5px 5px;
+}
+
+#menuContainer li{
+  cursor: move;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #333;
+  cursor: pointer;
+  padding: 10px 5px;
+  color: #BBB;
+  background: #1a1a1a;
+  font: 12px Arial, sans-serif;
+}
+
+#menuContainer li:hover{
+  background: #111;
+  color: #CCC;
+}
+
+#layoutContainer{
+  width: 100%;
+  height: 95%;
+  position:absolute;
+  top: 5%;
+  background: #DCDCDC;
+}
+
+#ctatinterface {
+  width: 100%;
+  height: 100%;
+  background: #DCDCDC;
+  position: absolute;
+}
+
+#cy {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #DCDCDC;
+}
+
+.myButton {
+    	background-color:#A9A9A9;
+    	border:1px solid #696969;
+    	display:inline-block;
+    	cursor:pointer;
+    	color:#ffffff;
+    	font-family:Arial;
+    	font-size:13px;
+    	font-weight: bold;
+    	padding:4px 15px;
+    	text-shadow:0px 1px 0px #2f6627;
+    }
+.myButton:hover {
+    	background-color:#C0C0C0;
+    }
+.myButton:active {
+    	position:relative;
+      background-color:#C0C0C0;
+    	top:1px;
+    }
+</style>
+
+<div id="wrapper">
+  <ul id="menuContainer">
+    <label id="one" for="interfaceFilePath" class="myButton">Select interface</b> <input id="interfaceFilePath" type="file" style="display:none" /></label>
+    <label id="two" class="myButton" onclick="(PT=(new CTATPathTracer())).OpenInterface()">Open Interface</b> </label>
+    <label id="three" class="myButton" onclick="(PT=(new CTATPathTracer())).saveGraph()">Download</b> </label>
+    <select id="mySelect"  class="myButton" onchange="changeMode()" style="float: right;">
+      <option value="Test" selected="selected">Test</option>
+      <option value="Demonstrate">Demonstrate</option>
+    </select>
+  </ul>
+  <div id="layoutContainer"></div>
+</div>
+
+<script>
+//change from demonstrate to test mode and vice versa
+function changeMode() {
+var x = document.getElementById("mySelect").value;
+if (x=="Demonstrate")
+{
+  isDemonstrateMode=true;
+
+}
+else {
+  isDemonstrateMode=false;
+}
+}
+
+//responsive webpage
+$(window).resize(function () {
+myLayout.updateSize($(window).width(), $(window).height());
+});
+
+//golden layout for docker
+var config = {
+    content: [{
+        type: 'row',
+        content:[{
+                    type:'component',
+                    componentName: 'Behavior Graph',
+                    componentState: { text: 'Component 1' }
+                },{
+                    type: 'column',
+                    content:[{
+                                type:'component',
+                                componentName: 'HTML Interface',
+                                componentState: { text: 'Component 2' }
+                              },{
+                                  type: 'stack', // Stack
+                                  content: [{
+                                              type:'component',
+                                              componentName: 'Hints',
+                                              componentState: { text: 'Component 3' }
+                                            },
+                                            {
+                                              type:'component',
+                                              componentName: 'SAI Matcher',
+                                              componentState: { text: 'Component 4' }
+                                            }
+                                          ]
+                                }
+                              ]
+                      }
+                    ]
+                }]
+};
+
+var myLayout = new window.GoldenLayout( config, $('#layoutContainer') );
+
+myLayout.registerComponent( 'Behavior Graph', function( container, state ){
+    container.getElement().html( '<div id="cy" class="graph1"></div>');
+});
+myLayout.registerComponent( 'HTML Interface', function( container, state ){
+    container.getElement().html( '<iframe id="ctatinterface" name="ctatinterface"></iframe>');
+});
+myLayout.registerComponent( 'Hints', function( container, state ){
+    container.getElement().html( '<div id="hints"></div>');
+});
+myLayout.registerComponent( 'SAI Matcher', function( container, state ){
+    container.getElement().html( '<div id="saiMatcher"></div>');
+});
+
+myLayout.init();
+
+//message handler
+onmessage=function(m)
+{
+  console.log('m', m);
+  if(typeof cy !== 'undefined' && m.data && m.data.name=="tutorReady")
+  {
+    document.getElementById("ctatinterface").contentWindow.CTATCommShell.commShell.addGlobalEventListener(assocRulesListener);
+  }
+  if(typeof cy !== 'undefined')
+  {
+    if(typeof PA !== 'undefined' && PA)
+    {
+      PA.forEach(function(link)
+      {
+          console.log("Path traversed");
+          if(pathflag==1)
+          {
+            ChosenUI.CTATCommShell.commShell.processComponentAction(PA[PA.length-1].getDefaultSAI());
+            cy.edges("[target='" + link.getNextNode() + "']").addClass('highlighted');
+          }
+          cy.getElementById(link.getNextNode()).unselect();
+          cy.getElementById("-"+link.getUniqueID()).select();
+       });
+     }
+     else
+     {
+       cy.$(':selected').unselect();
+       cy.getElementById(1).select();
+     }
+   }
+}
+
+var pathflag;
+var interfaceflag=0;
+var cy;
+var graph;
+var allPaths;
+var cy2;
+var ui;
+var currentnode;
+var layout;
+var modifiedmsg;
+var highlightedge1;
+
+var PT = null;
+var ChosenUI;
+var interfaceFilePath;
+var elts = [];
+var g = null;
+
+//cytoscape graph
+var BRDjson = null;
+var addedNodes = [];
+var addedEdges = [];
+var jsonGraph = {
+    elements: [],
+
+    style: [
+        {
+            selector: 'node',
+            style: {
+                'label': 'data(id)',
+                "text-valign": "center",
+                "text-halign": "center"
+            }
+        },
+
+        {
+            selector: 'node[id="1"]',
+            style: {
+                'width': '50',
+                'height': '50',
+                'label': 'data(id)',
+                "text-valign": "center",
+                "text-halign": "center"
+            }
+        },
+
+        {
+            selector: 'edge',
+            style: {
+                'label': 'data(info2)',
+                'width': '8',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'min-zoomed-font-size': '10'
+            }
+        },
+
+        {
+            selector: 'edge.highlighted',
+            style: {
+                'line-color': 'red',
+                'target-arrow-color': 'red',
+                'label': 'data(info2)',
+                'width': '8',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'min-zoomed-font-size': '10'
+            }
+        },
+    ]
+};
+
+document.addEventListener('keydown', function (e){
+        if (e.ctrlKey && e.which == '90') {
+                cy.undoRedo().undo();
+        }
+        else if (e.ctrlKey && e.which == '89') {
+                cy.undoRedo().redo();
+        }
+}, true );
+
+CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
+    var interfaceFilePath = givenInterfaceFilePath||"interfaceFilePath";
+    var cytoDivID = graphDivID||"cy";
+    var cyContainer= document.getElementById(cytoDivID);
+    var flagg = false;
+    var graphName = location.toString().substring(location.toString().lastIndexOf("/") + 1)
+    ChosenUI = null;
+    g = CTAT.ToolTutor.tutor.getGraph();
+    cy = cytoscape({
+        container: cyContainer,
+        hideLabelsOnViewport: true
+    });
+    assocRulesListener =
+    {
+      processCommShellEvent: function(evt, msg)
+      {
+        console.log('evt',evt, msg);
+        currentnode = cy.getElementById(ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState());
+        var selectMode = document.getElementById("mySelect").value;
+        if(evt && evt.toLowerCase && evt.toLowerCase() == "interfaceaction") {
+          interfaceflag=1;
+        }
+        if(evt && evt.toLowerCase && evt.toLowerCase() == "incorrectaction")
+        {
+          var sai = "["+msg.getProperty("Selection")+","+msg.getProperty("Action")+","+msg.getProperty("Input")+"]";
+          highlightedge1=cy.edges().filter(function(ele) {
+              return ele.data('info') == sai.toString();
+          })
+          console.log("MSG", msg.getXMLString(true), "SAI", sai, "highlight", highlightedge1);
+          if(highlightedge1.length==0 && selectMode=="Demonstrate" && interfaceflag==1) //highlightedge1.length==0 not a correct way to do it, will have to make such that it will allow to demonstarte edges that are defined as buggy but later defined as correct
+          {
+            interfaceflag=0;
+            evt="CorrectAction";
+            //msg.setMessageType("CorrectAction");
+            modifiedmsg=msg.getXMLString(true);
+            modifiedmsg=modifiedmsg.replace("InCorrectAction", "CorrectAction");
+            console.log("MSG",modifiedmsg);
+            ChosenUI.CTAT.ToolTutor.sendToInterface(modifiedmsg);
+          }
+        }
+        if("AssociatedRules" != evt || !msg)
+        {
+            return;
+        }
+        cy.edges().removeClass('highlighted');
+        var indicator = msg.getIndicator();
+        var lin = msg.getProperty("StepID");
+        var sai = "["+msg.getProperty("StudentSelection")+","+msg.getProperty("StudentAction")+","+msg.getProperty("StudentInput")+"]";//msg.getSAI();                               // selection-action-input from tutor engine
+        console.log("indicator",indicator,"indicator",sai.toString(),"getProperty",msg.getXMLString(true));
+        highlightedge=null;
+        if(msg.getProperty("TraceOutcome")=="Correct Action")
+        {
+          lind = parseInt(lin,10);
+          highlightedge=cy.getElementById("-"+lin);
+          highlightedge.select();
+          console.log(cy);
+          //var ret = highlightedge[0].id().replace("-",'');
+          //currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
+        }
+        else if (msg.getProperty("TraceOutcome")=="Buggy Action")
+        {
+          highlightedge=cy.edges().filter(function(ele) {
+              return ele.data('info') == sai.toString();
+          })
+          highlightedge.addClass('highlighted');
+          //var ret = highlightedge[0].id().replace("-",'');
+          //currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
+        }
+        console.log("highlightedge",highlightedge,"jhnj",msg.getProperty("TraceOutcome"));
+        if(highlightedge==null && selectMode=="Demonstrate")
+        {
+          //add demonstrate mode here for cytoscape
+          var addNodeId =  addedNodes.reduce(function(a, b) {
+                        return Math.max(a, b);
+                      });
+          addNodeId=addNodeId+1;
+          addNode(jsonGraph, addNodeId, null, null);
+          addedNodes.push(addNodeId);
+          var addEdgeId =  addedEdges.reduce(function(a, b) {
+                        return Math.max(a, b);
+                      });
+          addEdgeId=addEdgeId+1;
+          addEdge(jsonGraph, addEdgeId, parseInt(currentnode.id(),10), addNodeId, msg.getProperty("StudentSelection"), msg.getProperty("StudentAction"), msg.getProperty("StudentInput"));
+          addedEdges.push(addEdgeId);
+
+          //add demonstrate mode here for CTAT
+          var newNode = new CTATExampleTracerNode(addNodeId);
+          g.addNode(newNode);
+          var newLink = new CTATExampleTracerLink(addEdgeId, parseInt(currentnode.id(),10), addNodeId);
+          var SelectionMatchers = new CTATMatcher();
+          var ActionMatchers = new CTATMatcher();
+          var InputMatchers = new CTATMatcher();
+          var actor = "Student";
+          var vectorMatcher = new CTATVectorMatcher(SelectionMatchers, ActionMatchers, InputMatchers, actor);
+          vectorMatcher.setDefaultSAI(new CTATSAI(msg.getProperty("StudentSelection"), msg.getProperty("StudentAction"), msg.getProperty("StudentInput"), "Student"));
+          newLink.setMatcher(vectorMatcher);
+          newLink.setActionType("Correct Action");
+          // OK so I need to make a new matcher and give it the selection, action, and input
+          g.addLink(newLink, null); //don't worry about groups for now
+          g.getNode(parseInt(currentnode.id(),10)).addOutLink(newLink);
+          newNode.addInLink(newLink);
+          g.redoLinkDepths();
+
+          cy.json(JSON.parse(buildJSON(g)));
+          layout = cy.layout({
+                          name: 'cose',
+                          fit: true,
+                          padding: 30,
+                          boundingBox: undefined,
+                          nodeDimensionsIncludeLabels: false,
+                          randomize: true,
+                          componentSpacing: 40,
+                          nodeRepulsion: function( node ){ return 1020480; },
+                          nodeOverlap: 4,
+                          idealEdgeLength: function( edge ){ return 50; },
+                          edgeElasticity: function( edge ){ return 32; },
+                          nestingFactor: 1.2,
+                          gravity: 0.1
+                       });
+          layout.run();
+          highlightedge=cy.getElementById("-"+addEdgeId);
+          highlightedge.select();
+            //currentnode=cy.getElementById(addNodeId);
+        }
+      }
+    };
+    cy.json(JSON.parse(buildJSON(g)));
+    layout = cy.layout({
+                    name: 'cose',
+                    fit: true,
+                    padding: 30,
+                    boundingBox: undefined,
+                    nodeDimensionsIncludeLabels: false,
+                    randomize: true,
+                    componentSpacing: 40,
+                    nodeRepulsion: function( node ){ return 1020480; },
+                    nodeOverlap: 4,
+                    idealEdgeLength: function( edge ){ return 50; },
+                    edgeElasticity: function( edge ){ return 32; },
+                    nestingFactor: 1.2,
+                    gravity: 0.1
+                 });
+    layout.run();
+    // rewiring
+    cy.edgeEditing({
+        bendRemovalSensitivity : 20,
+        undoable: true,
+        // this function handles reconnection of the edge, if undefined simply connect edge to its new source/target
+        // handleReconnectEdge (newSource.id(), newTarget.id(), edge.data())
+        handleReconnectEdge: undefined,
+        // this function checks validation of the edge and its new source/target
+        validateEdge: function (edge, newSource, newTarget) {
+          return 'valid';
+        },
+        // this function is called if reconnected edge is not valid according to validateEdge function
+        actOnUnsuccessfulReconnection: undefined,
+      });
+    //currentnode=cy.getElementById(1);
+    //currentnode.select();
+                 /*document.getElementById("cy").ondblclick = function(e) {cy.$(':selected').remove();};
+                 var nid = 23;
+
+                         ,{data: { id: nid+e.target.id(), source: nodeselected.target.id(), target: nid}}
+                         layout.pon('layoutstop').then(function( event ){
+                             cy.nodes().positions(function(node, i){
+                                 return CTAT.ToolTutor.tutor.getGraph().getNode(node.data().id).getDimension();
+                                 });
+                             });*/
+
+    function getInterface() {
+        interfaceFilePath = null;
+        location.search.split(/[?&]/).forEach(function(q) {
+            let NV=q.split(/=/);
+            if(NV.length>1 && NV[0]=='interfaceFilePath')
+                interfaceFilePath=NV[1]
+        });
+        interfaceFilePath = (interfaceFilePath || document.getElementById('interfaceFilePath').files[0]);
+        console.log('getInterface', interfaceFilePath)
+    };
+
+    this.OpenInterface = function() {
+        getInterface();
+        ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
+        //ChosenUI= window.open("fractionAddition.html"+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
+        flagg=true;
+    }
+
+    this.saveGraph = function() {
+      CTATFS.writeFile(graphName, g.toXML(CTAT.ToolTutor.tutor));
+    }
+
+    function findPathToNode(n, p) {
+        var inLinks = n.getInLinks();
+        if(inLinks.size <= 0)
+        {
+            p = p||new CTATExampleTracerPath();
+        }
+        else
+        {
+            var e = inLinks.keys().next().value;
+            p = findPathToNode(g.getNode(e.getPrevNode()), p);
+            p.addLink(e);
+        }
+        return p;
+    }
+
+    cy.bind('click', 'node', function(nodeselected) {
+      cy.edges().removeClass('highlighted');
+      PA=null;
+      pathflag=1;
+      var destNodeID = nodeselected.target.id();
+      //currentnode=cy.getElementById(destNodeID);
+      if (destNodeID==1)
+      {
+        ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
+        window.onmessage(function(m){console.log("m",m);});
+        return;
+      }
+      var destNode = g.getNode(destNodeID);
+      let tp = g.getBestSubpath(g.getStartNode(), destNode);
+      if (tp == null)     //for buggy edges now change later such that it will only be for nodes which cannot be reached
+      {
+          tp = findPathToNode(destNode);
+          PA =tp.getSortedLinks();
+          var newdest = g.getNode(PA[PA.length-1].getPrevNode());
+          ChosenUI.CTAT.ToolTutor.tutor.goToState(newdest.getNodeName());
+      }
+      else {
+        ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
+        PA =tp.getSortedLinks();
+        pathflag=0;
+      }
+      console.log("PA",PA);
+      //   PA.forEach(function(link){
+      //         cy.getElementById(link.getNextNode()).unselect();
+      //         cy.getElementById("-"+link.getUniqueID()).select();
+      //   });
+      window.onmessage(function(m){console.log("m",m);});
+    });
+}
+
+// document.addEventListener('DOMContentLoaded', function(){
+//   console.log("USe it later");
+// });
+</script>
+</html>
