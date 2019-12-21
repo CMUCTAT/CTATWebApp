@@ -124,6 +124,10 @@ function addEdge(jsonGraph, id, source, target, selection, action, input, correc
     };
     jsonGraph.elements.push(edge);
 }
+
+function addhintlevel() {
+
+}
 </script>
 
 <style>
@@ -185,7 +189,7 @@ html, body{
   background: #DCDCDC;
 }
 
-#ctatinterface {
+#ctatinterface, #saiMatcher, #hints {
   width: 100%;
   height: 100%;
   background: #DCDCDC;
@@ -219,6 +223,121 @@ html, body{
       background-color:#C0C0C0;
     	top:1px;
     }
+
+    input[type=text]{
+      width: 100%;
+      padding: 12px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+
+    .match {
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+.select-mode {
+  float: right;
+  display:inline-block;
+  margin: 0px 20px;
+}
+    label {
+      padding: 6px 12px  0;
+      display: inline-block;
+    }
+
+    .col-25 {
+      float: left;
+      width: 25%;
+      margin-top: 6px;
+    }
+
+    .col-55 {
+      float: left;
+      width: 55%;
+      margin-top: 6px;
+    }
+
+    .col-20 {
+      float: left;
+      width: 20%;
+      margin-top: 6px;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 400px) {
+      .col-25, .col-55, .col-20, .col-75{
+        width: 100%;
+        margin-top: 0;
+      }
+    }
+
+.button4 {background-color: #F8F8F8;
+  border: none;
+  color: black;
+  padding: 6px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: right;
+  border-radius: 18px;}
+
+textarea{
+      width: 100%;
+      padding: 12px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+.col-75 {
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+    }
+
+
+    .selectlist {
+      border: none;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 10px;
+      border-radius: 18px;}
+    .col-30 {
+          float: left;
+          width: 30%;
+          margin-top: 6px;
+        }
+    .col-80 {
+          float: left;
+          width: 80%;
+          margin-top: 6px;
+        }
+        .col-10 {
+              float: left;
+              width: 10%;
+              margin-top: 6px;
+            }
+    .col-2-5 {
+          float: left;
+          width: 2.5%;
+          margin-top: 6px;
+        }
 </style>
 
 <div id="wrapper">
@@ -226,7 +345,7 @@ html, body{
     <label id="one" for="interfaceFilePath" class="myButton">Select interface</b> <input id="interfaceFilePath" type="file" style="display:none" /></label>
     <label id="two" class="myButton" onclick="(PT=(new CTATPathTracer())).OpenInterface()">Open Interface</b> </label>
     <label id="three" class="myButton" onclick="(PT=(new CTATPathTracer())).saveGraph()">Download</b> </label>
-    <select id="mySelect"  class="myButton" onchange="changeMode()" style="float: right;">
+    <select id="mySelect"  class="match myButton select-mode" onchange="changeMode()" style="float: right;">
       <option value="Test" selected="selected">Test</option>
       <option value="Demonstrate">Demonstrate</option>
     </select>
@@ -241,7 +360,6 @@ var x = document.getElementById("mySelect").value;
 if (x=="Demonstrate")
 {
   isDemonstrateMode=true;
-
 }
 else {
   isDemonstrateMode=false;
@@ -270,13 +388,12 @@ var config = {
                               },{
                                   type: 'stack', // Stack
                                   content: [{
+                                    type:'component',
+                                    componentName: 'SAI Matcher',
+                                    componentState: { text: 'Component 3' }
+                                  },{
                                               type:'component',
                                               componentName: 'Hints',
-                                              componentState: { text: 'Component 3' }
-                                            },
-                                            {
-                                              type:'component',
-                                              componentName: 'SAI Matcher',
                                               componentState: { text: 'Component 4' }
                                             }
                                           ]
@@ -296,10 +413,10 @@ myLayout.registerComponent( 'HTML Interface', function( container, state ){
     container.getElement().html( '<iframe id="ctatinterface" name="ctatinterface"></iframe>');
 });
 myLayout.registerComponent( 'Hints', function( container, state ){
-    container.getElement().html( '<div id="hints"></div>');
+    container.getElement().html( '<div id="hints"><div class="row"><div class="col-10"><label for="hint1input"><b>Hint 1</b></label></div><div class="col-80"><input type="text" id="hint1input" name="hint1input" placeholder="Hint 1"></div></div><div class="row"><div class="col-10"><label for="hint2input"><b>Hint 2</b></label></div><div class="col-80"><input type="text" id="hint2input" name="hint2input" placeholder="Hint 2"></div></div><div class="row"><div class="col-10"><label for="hint3input"><b>Hint 3</b></label></div><div class="col-80"><input type="text" id="hint3input" name="hint3input" placeholder="Hint 3"></div></div><div class="row"><div class="col-10"></div><div class="col-80"><label id="three" class="myButton" onclick="addhintlevel()">Add Hint Level</b> </label></div></div></div>');
 });
 myLayout.registerComponent( 'SAI Matcher', function( container, state ){
-    container.getElement().html( '<div id="saiMatcher"></div>');
+    container.getElement().html( '<div id="saiMatcher"><div class="row"><div class="col-20"><b><label id="linknumber">No link selected</label></b></div> <div id="fromto" style="padding: 10px 0px">From:  To:</div></div><div class="row"><div class="col-20"><label for="selectioninput"><b>Selection</b></label></div><div class="col-55"><input type="text" id="selectioninput" name="selectioninput" placeholder="Selection"></div><div class="col-25"><select id="selectionmatch" name="selectionmatch" class="match"><option value="exact" selected>Exact Match</option><option value="formula">Formula Match</option><option value="any">Any Match</option><option value="range">Range Match</option><option value="wildcard">Wildcard Match</option><option value="regularex">Regular Expression Match</option></select></div></div><div class="row"><div class="col-20"><label for="actioninput"><b>Action</b></label></div><div class="col-55"><input type="text" id="actioninput" name="actioninput" placeholder="Action"></div><div class="col-25"><select id="actionmatch" name="actionmatch" class="match"><option value="exact" selected>Exact Match</option><option value="formula">Formula Match</option><option value="any">Any Match</option><option value="range">Range Match</option><option value="wildcard">Wildcard Match</option><option value="regularex">Regular Expression Match</option></select></div></div><div class="row"><div class="col-20"><label for="inputinput"><b>Input</b></label></div><div class="col-55"><input type="text" id="inputinput" name="inputinput" placeholder="Input"></div><div class="col-25"><select id="inputmatch" name="inputmatch" class="match"><option value="exact" selected>Exact Match</option><option value="formula">Formula Match</option><option value="any">Any Match</option><option value="range">Range Match</option><option value="wildcard">Wildcard Match</option><option value="regularex">Regular Expression Match</option></select></div></div><br><div class="row"><div class="col-20 selectlist"><select name="sign" size="7" style="width: 70%;"><option value="=">=</option><option value="<"><</option><option value=">">></option><option value="!=">!=</option><option value=">=">>=</option><option value="<="><=</option><option value="boolean">boolean</option></select></div><div class="col-75"><textarea id="expression" name="expression" placeholder="Write something.." style="height:100px"></textarea></div></div><br><div class="row"><div class="col-2-5"></div><div class="col-30 selectlist"><label for="variableselect"><b>Variables</b></label><br><input type="text" id="variableselect" name="variableselect"><br><br><select name="variableselectlist" size="8" style="width: 100%;"><option value=""></option></select></div><div class="col-2-5"></div><div class="col-30 selectlist"><label for="functionselect"><b>Functions</b></label><br><input type="text" id="functionselect" name="functionselect"><br><br><select name="functionselectlist" size="8" style="width: 100%;"><option value=""></option></select></div><div class="col-2-5"></div><div class="col-30 selectlist"><label for="massprodvar"><b>Mass Prod. Variables</b></label><br><input type="text" id="massprodvar" name="massprodvar"><br><br><select name="massprodvarlist" size="8" style="width: 100%;"><option value=""></option></select></div><div class="col-2-5"></div></div><br><hr><div class="row"><div class="col-20"><button class="button button4">Check</button><br><br><button class="button button4">Last Evaluation</button></div><div class="col-75"><textarea id="subject" name="subject" placeholder="What is this??.." style="height:80px"></textarea></div></div>');
 });
 
 myLayout.init();
@@ -330,7 +447,6 @@ onmessage=function(m)
      }
      else
      {
-       cy.$(':selected').unselect();
        cy.getElementById(1).select();
      }
    }
@@ -352,7 +468,7 @@ var PT = null;
 var ChosenUI;
 var interfaceFilePath;
 var elts = [];
-var g = null;
+var g, cg = null;
 
 //cytoscape graph
 var BRDjson = null;
@@ -434,6 +550,7 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
       processCommShellEvent: function(evt, msg)
       {
         console.log('evt',evt, msg);
+        cg = ChosenUI.CTAT.ToolTutor.tutor.getGraph();
         currentnode = cy.getElementById(ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState());
         var selectMode = document.getElementById("mySelect").value;
         if(evt && evt.toLowerCase && evt.toLowerCase() == "interfaceaction") {
@@ -465,14 +582,13 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         var indicator = msg.getIndicator();
         var lin = msg.getProperty("StepID");
         var sai = "["+msg.getProperty("StudentSelection")+","+msg.getProperty("StudentAction")+","+msg.getProperty("StudentInput")+"]";//msg.getSAI();                               // selection-action-input from tutor engine
-        console.log("indicator",indicator,"indicator",sai.toString(),"getProperty",msg.getXMLString(true));
+        console.log("lin",lin,"indicator",indicator,"indicator",sai.toString(),"getProperty",msg.getXMLString(true));
         highlightedge=null;
         if(msg.getProperty("TraceOutcome")=="Correct Action")
         {
-          lind = parseInt(lin,10);
           highlightedge=cy.getElementById("-"+lin);
           highlightedge.select();
-          console.log(cy);
+          console.log(highlightedge.selected(),cy);
           //var ret = highlightedge[0].id().replace("-",'');
           //currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
         }
@@ -505,6 +621,7 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
           //add demonstrate mode here for CTAT
           var newNode = new CTATExampleTracerNode(addNodeId);
           g.addNode(newNode);
+          cg.addNode(newNode);
           var newLink = new CTATExampleTracerLink(addEdgeId, parseInt(currentnode.id(),10), addNodeId);
           var SelectionMatchers = new CTATMatcher();
           var ActionMatchers = new CTATMatcher();
@@ -517,8 +634,11 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
           // OK so I need to make a new matcher and give it the selection, action, and input
           g.addLink(newLink, null); //don't worry about groups for now
           g.getNode(parseInt(currentnode.id(),10)).addOutLink(newLink);
+          cg.addLink(newLink, null); //don't worry about groups for now
+          cg.getNode(parseInt(currentnode.id(),10)).addOutLink(newLink);
           newNode.addInLink(newLink);
           g.redoLinkDepths();
+          cg.redoLinkDepths();
 
           cy.json(JSON.parse(buildJSON(g)));
           layout = cy.layout({
@@ -628,11 +748,11 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
       PA=null;
       pathflag=1;
       var destNodeID = nodeselected.target.id();
+      //ChosenUI.CTAT.ToolTutor.tutor.goToState(g.getNode(1).getNodeName());
       //currentnode=cy.getElementById(destNodeID);
       if (destNodeID==1)
       {
         ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
-        window.onmessage(function(m){console.log("m",m);});
         return;
       }
       var destNode = g.getNode(destNodeID);
@@ -650,11 +770,26 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         pathflag=0;
       }
       console.log("PA",PA);
-      //   PA.forEach(function(link){
-      //         cy.getElementById(link.getNextNode()).unselect();
-      //         cy.getElementById("-"+link.getUniqueID()).select();
-      //   });
-      window.onmessage(function(m){console.log("m",m);});
+      // PA.forEach(function(link)
+      // {
+      //     ChosenUI.CTATCommShell.commShell.processComponentAction(link.getDefaultSAI());
+      // });
+      window.onmessage(function(m){console.log("m",m);});   //window.onmessage( new MessageEvent('PA', {data:PA}));
+    });
+
+    cy.bind('click', 'edge', function(edgeselected){
+      var destEdgeID = edgeselected.target.id();
+      destEdgeID=destEdgeID.replace('-', '');
+      destEdge = g.getLinkByID((parseInt(destEdgeID, 10)));
+      console.log("destEdge", destEdgeID, destEdge);
+      document.getElementById("linknumber").innerHTML = "Link #"+destEdgeID;
+      document.getElementById("selectioninput").value=destEdge.getDefaultSAI().getSelection();
+      document.getElementById("actioninput").value=destEdge.getDefaultSAI().getAction();
+      document.getElementById("inputinput").value=destEdge.getDefaultSAI().getInput();
+      document.getElementById("fromto").innerHTML ="From: state "+destEdge.getPrevNode().toString()+"       "+"To: state "+destEdge.getNextNode().toString();
+      for (i = 1; i <= destEdge.getHints().length; i++) {
+        document.getElementById("hint"+i+"input").value=destEdge.getAllHints()[i-1];
+      }
     });
 }
 
