@@ -140,56 +140,24 @@
         <text>state7</text>
         <uniqueID>8</uniqueID>
         <dimension>
-            <x>242</x>
-            <y>360</y>
+            <x>402</x>
+            <y>355</y>
         </dimension>
     </node>
     <node locked="false" doneState="false">
         <text>state8</text>
         <uniqueID>9</uniqueID>
         <dimension>
-            <x>242</x>
-            <y>470</y>
+            <x>402</x>
+            <y>465</y>
         </dimension>
     </node>
     <node locked="false" doneState="false">
         <text>state9</text>
         <uniqueID>10</uniqueID>
         <dimension>
-            <x>242</x>
-            <y>580</y>
-        </dimension>
-    </node>
-    <node locked="false" doneState="false">
-        <text>state10</text>
-        <uniqueID>11</uniqueID>
-        <dimension>
-            <x>238</x>
-            <y>690</y>
-        </dimension>
-    </node>
-    <node locked="false" doneState="false">
-        <text>state11</text>
-        <uniqueID>12</uniqueID>
-        <dimension>
-            <x>238</x>
-            <y>800</y>
-        </dimension>
-    </node>
-    <node locked="false" doneState="false">
-        <text>state12</text>
-        <uniqueID>13</uniqueID>
-        <dimension>
-            <x>238</x>
-            <y>910</y>
-        </dimension>
-    </node>
-    <node locked="false" doneState="true">
-        <text>Done</text>
-        <uniqueID>14</uniqueID>
-        <dimension>
-            <x>245</x>
-            <y>1020</y>
+            <x>402</x>
+            <y>575</y>
         </dimension>
     </node>
     <node locked="false" doneState="false">
@@ -804,245 +772,6 @@
             <studentHintRequest></studentHintRequest>
             <stepSuccessfulCompletion></stepSuccessfulCompletion>
             <stepStudentError></stepStudentError>
-            <uniqueID>10</uniqueID>
-            <message>
-                <verb>NotePropertySet</verb>
-                <properties>
-                    <MessageType>InterfaceAction</MessageType>
-                    <Selection>
-                        <value>ansNum1</value>
-                    </Selection>
-                    <Action>
-                        <value>UpdateTextArea</value>
-                    </Action>
-                    <Input>
-                        <value>5</value>
-                    </Input>
-                </properties>
-            </message>
-            <buggyMessage>No, this is not correct.</buggyMessage>
-            <successMessage></successMessage>
-            <hintMessage>When fractions have the same denominator they can be added.</hintMessage>
-            <hintMessage>Go ahead and add the numerator; the denominator stays the same.</hintMessage>
-            <hintMessage>Please enter '5' in the highlighted field.</hintMessage>
-            <callbackFn></callbackFn>
-            <actionType>Correct Action</actionType>
-            <oldActionType>Correct Action</oldActionType>
-            <checkedStatus>Never Checked</checkedStatus>
-            <matchers Concatenation="true">
-                <Selection>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">ansNum1</matcherParameter>
-                    </matcher>
-                </Selection>
-                <Action>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">UpdateTextArea</matcherParameter>
-                    </matcher>
-                </Action>
-                <Input>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">5</matcherParameter>
-                    </matcher>
-                </Input>
-                <Actor linkTriggered="false">Student</Actor>
-            </matchers>
-        </actionLabel>
-        <preCheckedStatus>No-Applicable</preCheckedStatus>
-        <rule>
-            <text>add-numerators fraction-addition</text>
-            <indicator>-1</indicator>
-        </rule>
-        <sourceID>10</sourceID>
-        <destID>11</destID>
-        <traversalCount>0</traversalCount>
-    </edge>
-    <edge>
-        <actionLabel preferPathMark="true" minTraversals="1" maxTraversals="1">
-            <studentHintRequest></studentHintRequest>
-            <stepSuccessfulCompletion></stepSuccessfulCompletion>
-            <stepStudentError></stepStudentError>
-            <uniqueID>11</uniqueID>
-            <message>
-                <verb>NotePropertySet</verb>
-                <properties>
-                    <MessageType>InterfaceAction</MessageType>
-                    <Selection>
-                        <value>ansNumFinal1</value>
-                    </Selection>
-                    <Action>
-                        <value>UpdateTextArea</value>
-                    </Action>
-                    <Input>
-                        <value>5</value>
-                    </Input>
-                </properties>
-            </message>
-            <buggyMessage>No, this is not correct.</buggyMessage>
-            <successMessage></successMessage>
-            <hintMessage>Please enter '5' in the highlighted field.</hintMessage>
-            <callbackFn></callbackFn>
-            <actionType>Correct Action</actionType>
-            <oldActionType>Correct Action</oldActionType>
-            <checkedStatus>Never Checked</checkedStatus>
-            <matchers Concatenation="true">
-                <Selection>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">ansNumFinal1</matcherParameter>
-                    </matcher>
-                </Selection>
-                <Action>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">UpdateTextArea</matcherParameter>
-                    </matcher>
-                </Action>
-                <Input>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">5</matcherParameter>
-                    </matcher>
-                </Input>
-                <Actor linkTriggered="false">Student</Actor>
-            </matchers>
-        </actionLabel>
-        <preCheckedStatus>No-Applicable</preCheckedStatus>
-        <rule>
-            <text>reduce-numerator fraction-addition</text>
-            <indicator>-1</indicator>
-        </rule>
-        <sourceID>11</sourceID>
-        <destID>12</destID>
-        <traversalCount>0</traversalCount>
-    </edge>
-    <edge>
-        <actionLabel preferPathMark="true" minTraversals="1" maxTraversals="1">
-            <studentHintRequest></studentHintRequest>
-            <stepSuccessfulCompletion></stepSuccessfulCompletion>
-            <stepStudentError></stepStudentError>
-            <uniqueID>12</uniqueID>
-            <message>
-                <verb>NotePropertySet</verb>
-                <properties>
-                    <MessageType>InterfaceAction</MessageType>
-                    <Selection>
-                        <value>ansDenFinal1</value>
-                    </Selection>
-                    <Action>
-                        <value>UpdateTextArea</value>
-                    </Action>
-                    <Input>
-                        <value>12</value>
-                    </Input>
-                </properties>
-            </message>
-            <buggyMessage>No, this is not correct.</buggyMessage>
-            <successMessage></successMessage>
-            <hintMessage>Please enter '12' in the highlighted field.</hintMessage>
-            <callbackFn></callbackFn>
-            <actionType>Correct Action</actionType>
-            <oldActionType>Correct Action</oldActionType>
-            <checkedStatus>Never Checked</checkedStatus>
-            <matchers Concatenation="true">
-                <Selection>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">ansDenFinal1</matcherParameter>
-                    </matcher>
-                </Selection>
-                <Action>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">UpdateTextArea</matcherParameter>
-                    </matcher>
-                </Action>
-                <Input>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">12</matcherParameter>
-                    </matcher>
-                </Input>
-                <Actor linkTriggered="false">Student</Actor>
-            </matchers>
-        </actionLabel>
-        <preCheckedStatus>No-Applicable</preCheckedStatus>
-        <rule>
-            <text>reduce-denominator fraction-addition</text>
-            <indicator>-1</indicator>
-        </rule>
-        <sourceID>12</sourceID>
-        <destID>13</destID>
-        <traversalCount>0</traversalCount>
-    </edge>
-    <edge>
-        <actionLabel preferPathMark="true" minTraversals="1" maxTraversals="1">
-            <studentHintRequest></studentHintRequest>
-            <stepSuccessfulCompletion></stepSuccessfulCompletion>
-            <stepStudentError></stepStudentError>
-            <uniqueID>13</uniqueID>
-            <message>
-                <verb>NotePropertySet</verb>
-                <properties>
-                    <MessageType>InterfaceAction</MessageType>
-                    <Selection>
-                        <value>done</value>
-                    </Selection>
-                    <Action>
-                        <value>ButtonPressed</value>
-                    </Action>
-                    <Input>
-                        <value>-1</value>
-                    </Input>
-                </properties>
-            </message>
-            <buggyMessage>No, this is not correct.</buggyMessage>
-            <successMessage></successMessage>
-            <hintMessage>You're done with the problem; your answer is in its simplest form.</hintMessage>
-            <hintMessage>Click the highlighted 'Done' button to finish.</hintMessage>
-            <callbackFn></callbackFn>
-            <actionType>Correct Action</actionType>
-            <oldActionType>Correct Action</oldActionType>
-            <checkedStatus>Never Checked</checkedStatus>
-            <matchers Concatenation="true">
-                <Selection>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">done</matcherParameter>
-                    </matcher>
-                </Selection>
-                <Action>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">ButtonPressed</matcherParameter>
-                    </matcher>
-                </Action>
-                <Input>
-                    <matcher>
-                        <matcherType>ExactMatcher</matcherType>
-                        <matcherParameter name="single">-1</matcherParameter>
-                    </matcher>
-                </Input>
-                <Actor linkTriggered="false">Student</Actor>
-            </matchers>
-        </actionLabel>
-        <preCheckedStatus>No-Applicable</preCheckedStatus>
-        <rule>
-            <text>unnamed</text>
-            <indicator>-1</indicator>
-        </rule>
-        <sourceID>13</sourceID>
-        <destID>14</destID>
-        <traversalCount>0</traversalCount>
-    </edge>
-    <edge>
-        <actionLabel preferPathMark="true" minTraversals="1" maxTraversals="1">
-            <studentHintRequest></studentHintRequest>
-            <stepSuccessfulCompletion></stepSuccessfulCompletion>
-            <stepStudentError></stepStudentError>
             <uniqueID>14</uniqueID>
             <message>
                 <verb>NotePropertySet</verb>
@@ -1523,6 +1252,67 @@
         </rule>
         <sourceID>21</sourceID>
         <destID>22</destID>
+        <traversalCount>0</traversalCount>
+    </edge>
+    <edge>
+        <actionLabel preferPathMark="true" minTraversals="1" maxTraversals="1">
+            <studentHintRequest></studentHintRequest>
+            <stepSuccessfulCompletion></stepSuccessfulCompletion>
+            <stepStudentError></stepStudentError>
+            <uniqueID>10</uniqueID>
+            <message>
+                <verb>NotePropertySet</verb>
+                <properties>
+                    <MessageType>InterfaceAction</MessageType>
+                    <Selection>
+                        <value>ansNum1</value>
+                    </Selection>
+                    <Action>
+                        <value>UpdateTextArea</value>
+                    </Action>
+                    <Input>
+                        <value>5</value>
+                    </Input>
+                </properties>
+            </message>
+            <buggyMessage>No, this is not correct.</buggyMessage>
+            <successMessage></successMessage>
+            <hintMessage>When fractions have the same denominator they can be added.</hintMessage>
+            <hintMessage>Go ahead and add the numerator; the denominator stays the same.</hintMessage>
+            <hintMessage>Please enter '5' in the highlighted field.</hintMessage>
+            <callbackFn></callbackFn>
+            <actionType>Correct Action</actionType>
+            <oldActionType>Correct Action</oldActionType>
+            <checkedStatus>Never Checked</checkedStatus>
+            <matchers Concatenation="true">
+                <Selection>
+                    <matcher>
+                        <matcherType>ExactMatcher</matcherType>
+                        <matcherParameter name="single">ansNum1</matcherParameter>
+                    </matcher>
+                </Selection>
+                <Action>
+                    <matcher>
+                        <matcherType>ExactMatcher</matcherType>
+                        <matcherParameter name="single">UpdateTextArea</matcherParameter>
+                    </matcher>
+                </Action>
+                <Input>
+                    <matcher>
+                        <matcherType>ExactMatcher</matcherType>
+                        <matcherParameter name="single">5</matcherParameter>
+                    </matcher>
+                </Input>
+                <Actor linkTriggered="false">Student</Actor>
+            </matchers>
+        </actionLabel>
+        <preCheckedStatus>No-Applicable</preCheckedStatus>
+        <rule>
+            <text>add-numerators fraction-addition</text>
+            <indicator>-1</indicator>
+        </rule>
+        <sourceID>10</sourceID>
+        <destID>19</destID>
         <traversalCount>0</traversalCount>
     </edge>
     <productionRule opportunities="1">

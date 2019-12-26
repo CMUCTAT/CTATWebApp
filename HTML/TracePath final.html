@@ -29,7 +29,13 @@ function buildJSON(graph) {
         var prevId = links[i].getPrevNode();
         var nextId = links[i].getNextNode();
         var defaultsai = links[i].getDefaultSAI();
-        var correctorincorrect = links[i].isCorrect()
+        if(links[i].isCorrect()==true)
+        {
+          var iscorrect=1;
+        }
+        else {
+          var iscorrect=2;
+        }
 
         //add nodes if necessary
         if (!addedNodes.includes(prevId)) {
@@ -44,8 +50,9 @@ function buildJSON(graph) {
             addNode(jsonGraph, nextId, pos ? parseInt(pos.x) : null, pos ? parseInt(pos.y) : null);
             addedNodes.push(nextId);
         }
+        console.log("iscorrect", typeof(iscorrect), iscorrect);
         addEdge(jsonGraph, links[i].getUniqueID(), prevId, nextId,
-                defaultsai.getSelection(), defaultsai.getAction(), defaultsai.getInput(), correctorincorrect);
+                defaultsai.getSelection(), defaultsai.getAction(), defaultsai.getInput(), iscorrect);
         addedEdges.push(links[i].getUniqueID());
     }
     BRDjson = jsonGraph;
@@ -105,7 +112,7 @@ function addNode(jsonGraph, id, x, y) {
     }
 }
 
-function addEdge(jsonGraph, id, source, target, selection, action, input, correctorincorrect) {
+function addEdge(jsonGraph, id, source, target, selection, action, input, iscorrect) {
     var edge = {
         group: 'edges',
 
@@ -117,9 +124,9 @@ function addEdge(jsonGraph, id, source, target, selection, action, input, correc
             selection: selection,
             action: action,
             input: input,
+            iscorrect: iscorrect,
             info: "["+selection+","+action+","+input+"]",
-            info2: "["+selection+","+input+"]",
-            correctorincorrect: correctorincorrect
+            info2: ""+selection+","+input+""
                   }
     };
     jsonGraph.elements.push(edge);
@@ -433,32 +440,46 @@ onmessage=function(m)
   {
     if(typeof PA !== 'undefined' && PA)
     {
+      var flagPA = 0;
       PA.forEach(function(link)
       {
           console.log("Path traversed");
-          if(pathflag==1)
+          if(flagPA==PA.length-1 && pathflag==1 && pathflag1==1)
           {
-            ChosenUI.CTATCommShell.commShell.processComponentAction(PA[PA.length-1].getDefaultSAI());
-            cy.edges("[target='" + link.getNextNode() + "']").addClass('highlighted');
+            ChosenUI.CTATCommShell.commShell.processComponentAction(PA[flagPA].getDefaultSAI());
+            cy.edges("[target='" + link.getNextNode() + "']").addClass('highlightincorrect');
+            cy.getElementById(link.getNextNode()).unselect();
+            cy.getElementById(link.getNextNode()).addClass('nodetraversed');
           }
-          cy.getElementById(link.getNextNode()).unselect();
-          cy.getElementById("-"+link.getUniqueID()).select();
+          else if(pathflag==1)
+          {
+            cy.getElementById(link.getNextNode()).unselect();
+            cy.getElementById(link.getNextNode()).addClass('nodetraversed');
+            cy.getElementById("-"+link.getUniqueID()).addClass('highlightcorrect');
+          }
+          else
+          {
+            ChosenUI.CTATCommShell.commShell.processComponentAction(link.getDefaultSAI());
+            cy.getElementById(link.getNextNode()).unselect();
+            cy.getElementById(link.getNextNode()).addClass('nodetraversed');
+            cy.getElementById("-"+link.getUniqueID()).addClass('highlightcorrect');
+          }
+          flagPA= flagPA+1;
        });
      }
      else
      {
-       cy.getElementById(1).select();
+       cy.getElementById(1).addClass('nodetraversed');
      }
    }
 }
 
-var pathflag;
+var pathflag, pathflag1;
 var interfaceflag=0;
 var cy;
 var graph;
 var allPaths;
 var cy2;
-var ui;
 var currentnode;
 var layout;
 var modifiedmsg;
@@ -488,11 +509,37 @@ var jsonGraph = {
         },
 
         {
+            selector: 'node.nodetraversed',
+            style: {
+              'width': '40',
+              'height': '40',
+                'label': 'data(id)',
+                'font-weight': 'bold',
+                "text-valign": "center",
+                "text-halign": "center"
+            }
+        },
+
+        {
+            selector: 'node.nodetraversed[id="1"]',
+            style: {
+              'width': '40',
+              'height': '40',
+                'label': 'data(id)',
+                'background-color': 'green',
+                'font-weight': 'bold',
+                "text-valign": "center",
+                "text-halign": "center"
+            }
+        },
+
+        {
             selector: 'node[id="1"]',
             style: {
-                'width': '50',
-                'height': '50',
+                'width': '70',
+                'height': '70',
                 'label': 'data(id)',
+                'font-weight': 'bold',
                 "text-valign": "center",
                 "text-halign": "center"
             }
@@ -503,6 +550,13 @@ var jsonGraph = {
             style: {
                 'label': 'data(info2)',
                 'width': '8',
+                'text-background-color': 'white',
+                'text-background-opacity':'1',
+                'text-background-padding': '1',
+                'text-border-color': 'green',
+                'text-border-width': '2',
+                'text-border-opacity':'1',
+                'text-border-style': 'solid',
                 'target-arrow-shape': 'triangle',
                 'curve-style': 'bezier',
                 'min-zoomed-font-size': '10'
@@ -510,12 +564,58 @@ var jsonGraph = {
         },
 
         {
-            selector: 'edge.highlighted',
+            selector: 'edge[iscorrect=2]',
+            style: {
+                'label': 'data(info2)',
+                'width': '8',
+                'text-background-color': 'white',
+                'text-background-opacity':'1',
+                'text-background-padding': '1',
+                'text-border-color': 'red',
+                'text-border-width': '2',
+                'text-border-opacity':'1',
+                'text-border-style': 'solid',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'min-zoomed-font-size': '10'
+            }
+        },
+
+        {
+            selector: 'edge.highlightincorrect',
             style: {
                 'line-color': 'red',
                 'target-arrow-color': 'red',
+                'text-border-color': 'red',
+                'font-weight': 'bold',
                 'label': 'data(info2)',
-                'width': '8',
+                'width': '12',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'min-zoomed-font-size': '10'
+            }
+        },
+
+        {
+            selector: 'edge.highlightcorrect',
+            style: {
+                'line-color': 'green',
+                'target-arrow-color': 'green',
+                'text-border-color': 'green',
+                'font-weight': 'bold',
+                'label': 'data(info2)',
+                'width': '12',
+                'target-arrow-shape': 'triangle',
+                'curve-style': 'bezier',
+                'min-zoomed-font-size': '10'
+            }
+        },
+        {
+            selector: 'edge.highlightselect',
+            style: {
+                'line-color': 'blue',
+                'target-arrow-color': 'blue',
+                'label': 'data(info2)',
                 'target-arrow-shape': 'triangle',
                 'curve-style': 'bezier',
                 'min-zoomed-font-size': '10'
@@ -578,7 +678,10 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         {
             return;
         }
-        cy.edges().removeClass('highlighted');
+        cy.edges().removeClass('highlightincorrect');
+        cy.edges().removeClass('highlightselect');
+        cy.getElementById(1).removeClass('nodetraversed');
+        cy.getElementById(1).unselect();
         var indicator = msg.getIndicator();
         var lin = msg.getProperty("StepID");
         var sai = "["+msg.getProperty("StudentSelection")+","+msg.getProperty("StudentAction")+","+msg.getProperty("StudentInput")+"]";//msg.getSAI();                               // selection-action-input from tutor engine
@@ -587,8 +690,11 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         if(msg.getProperty("TraceOutcome")=="Correct Action")
         {
           highlightedge=cy.getElementById("-"+lin);
-          highlightedge.select();
-          console.log(highlightedge.selected(),cy);
+          highlightedge.addClass('highlightcorrect');
+          console.log("lin", lin);
+          cy.getElementById(g.getLinkByID(parseInt(highlightedge.id().replace("-",''), 10)).getNextNode()).addClass('nodetraversed');
+          //highlightedge.select();
+          //console.log(highlightedge.selected(),cy);
           //var ret = highlightedge[0].id().replace("-",'');
           //currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
         }
@@ -597,7 +703,8 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
           highlightedge=cy.edges().filter(function(ele) {
               return ele.data('info') == sai.toString();
           })
-          highlightedge.addClass('highlighted');
+          highlightedge.addClass('highlightincorrect');
+          cy.getElementById(g.getLinkByID(parseInt(highlightedge[0].id().replace("-",''), 10)).getNextNode()).addClass('nodetraversed');
           //var ret = highlightedge[0].id().replace("-",'');
           //currentnode=cy.getElementById(g.getLinkByID(parseInt(ret, 10)).getNextNode());
         }
@@ -615,30 +722,47 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
                         return Math.max(a, b);
                       });
           addEdgeId=addEdgeId+1;
-          addEdge(jsonGraph, addEdgeId, parseInt(currentnode.id(),10), addNodeId, msg.getProperty("StudentSelection"), msg.getProperty("StudentAction"), msg.getProperty("StudentInput"));
+          addEdge(jsonGraph, addEdgeId, parseInt(currentnode.id(),10), addNodeId, msg.getProperty("StudentSelection"), msg.getProperty("StudentAction"), msg.getProperty("StudentInput"), "1");
           addedEdges.push(addEdgeId);
 
           //add demonstrate mode here for CTAT
+          var selec = msg.getProperty("StudentSelection");
+          var actio = msg.getProperty("StudentAction");
+          var stude = msg.getProperty("StudentInput");
+          var cselec = msg.getProperty("StudentSelection");
+          var cactio = msg.getProperty("StudentAction");
+          var cstude = msg.getProperty("StudentInput");
           var newNode = new CTATExampleTracerNode(addNodeId);
+          var cnewNode = new ChosenUI.CTATExampleTracerNode(addNodeId);
           g.addNode(newNode);
-          cg.addNode(newNode);
+          cg.addNode(cnewNode);
           var newLink = new CTATExampleTracerLink(addEdgeId, parseInt(currentnode.id(),10), addNodeId);
-          var SelectionMatchers = new CTATMatcher();
-          var ActionMatchers = new CTATMatcher();
-          var InputMatchers = new CTATMatcher();
+          var cnewLink = new ChosenUI.CTATExampleTracerLink(addEdgeId, parseInt(currentnode.id(),10), addNodeId);
+          var SelectionMatchers = [new CTATExactMatcher(0)];
+          var ActionMatchers = [new CTATExactMatcher(1)];
+          var InputMatchers = [new CTATExactMatcher(2)];
+          var cSelectionMatchers = [new ChosenUI.CTATExactMatcher(0)];
+          var cActionMatchers = [new ChosenUI.CTATExactMatcher(1)];
+          var cInputMatchers = [new ChosenUI.CTATExactMatcher(2)];
           var actor = "Student";
           var vectorMatcher = new CTATVectorMatcher(SelectionMatchers, ActionMatchers, InputMatchers, actor);
-          vectorMatcher.setDefaultSAI(new CTATSAI(msg.getProperty("StudentSelection"), msg.getProperty("StudentAction"), msg.getProperty("StudentInput"), "Student"));
+          var cvectorMatcher = new ChosenUI.CTATVectorMatcher(cSelectionMatchers, cActionMatchers, cInputMatchers, actor);
+          vectorMatcher.setDefaultSAI(new CTATSAI(selec, actio, stude, "Student"));
+          cvectorMatcher.setDefaultSAI(new ChosenUI.CTATSAI(cselec, cactio, cstude, "Student"));
           newLink.setMatcher(vectorMatcher);
           newLink.setActionType("Correct Action");
+          cnewLink.setMatcher(vectorMatcher);
+          cnewLink.setActionType("Correct Action");
           // OK so I need to make a new matcher and give it the selection, action, and input
           g.addLink(newLink, null); //don't worry about groups for now
           g.getNode(parseInt(currentnode.id(),10)).addOutLink(newLink);
-          cg.addLink(newLink, null); //don't worry about groups for now
-          cg.getNode(parseInt(currentnode.id(),10)).addOutLink(newLink);
+          cg.addLink(cnewLink, null); //don't worry about groups for now
+          cg.getNode(parseInt(currentnode.id(),10)).addOutLink(cnewLink);
           newNode.addInLink(newLink);
+          cnewNode.addInLink(cnewLink);
           g.redoLinkDepths();
           cg.redoLinkDepths();
+          //ChosenUI.CTAT.ToolTutor.tutor.traceLinks([cnewLink]);
 
           cy.json(JSON.parse(buildJSON(g)));
           layout = cy.layout({
@@ -658,7 +782,7 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
                        });
           layout.run();
           highlightedge=cy.getElementById("-"+addEdgeId);
-          highlightedge.select();
+          highlightedge.addClass('nodetraversed');
             //currentnode=cy.getElementById(addNodeId);
         }
       }
@@ -744,30 +868,48 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
     }
 
     cy.bind('click', 'node', function(nodeselected) {
-      cy.edges().removeClass('highlighted');
+      cy.edges().removeClass('highlightincorrect');
+      cy.edges().removeClass('highlightselect');
       PA=null;
       pathflag=1;
+      pathflag1=1;
       var destNodeID = nodeselected.target.id();
+      var currentstate = g.getNode(ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState());
       //ChosenUI.CTAT.ToolTutor.tutor.goToState(g.getNode(1).getNodeName());
       //currentnode=cy.getElementById(destNodeID);
       if (destNodeID==1)
       {
+        cy.nodes().removeClass('nodetraversed');
+        cy.edges().removeClass('highlightcorrect');
         ChosenUI= window.open(interfaceFilePath.name+"?question_file="+ CTATConfiguration.get('question_file'), "ctatinterface");
+        cy.getElementById(1).addClass('nodetraversed');
         return;
       }
       var destNode = g.getNode(destNodeID);
-      let tp = g.getBestSubpath(g.getStartNode(), destNode);
+      let tp = g.getBestSubpath(currentstate, destNode);  //let tp = g.getBestSubpath(g.getStartNode(), destNode);
       if (tp == null)     //for buggy edges now change later such that it will only be for nodes which cannot be reached
       {
-          tp = findPathToNode(destNode);
-          PA =tp.getSortedLinks();
-          var newdest = g.getNode(PA[PA.length-1].getPrevNode());
-          ChosenUI.CTAT.ToolTutor.tutor.goToState(newdest.getNodeName());
+          cy.nodes().removeClass('nodetraversed');
+          cy.edges().removeClass('highlightcorrect');
+          tp = g.getBestSubpath(g.getStartNode(), destNode);
+          if (tp == null)
+          {
+            tp = findPathToNode(destNode);
+            PA =tp.getSortedLinks();
+            var newdest = g.getNode(PA[PA.length-1].getPrevNode());
+            ChosenUI.CTAT.ToolTutor.tutor.goToState(newdest.getNodeName());
+          }
+          else {
+            PA =tp.getSortedLinks();
+            ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
+            pathflag1=0;
+          }
       }
       else {
-        ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
+        //ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
         PA =tp.getSortedLinks();
         pathflag=0;
+        pathflag1=0;
       }
       console.log("PA",PA);
       // PA.forEach(function(link)
@@ -778,8 +920,11 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
     });
 
     cy.bind('click', 'edge', function(edgeselected){
-      var destEdgeID = edgeselected.target.id();
+      cy.edges().removeClass('highlightselect');
+      cy.edges().unselect();
+      destEdgeID = edgeselected.target.id();
       destEdgeID=destEdgeID.replace('-', '');
+      cy.getElementById("-"+destEdgeID).addClass('highlightselect');
       destEdge = g.getLinkByID((parseInt(destEdgeID, 10)));
       console.log("destEdge", destEdgeID, destEdge);
       document.getElementById("linknumber").innerHTML = "Link #"+destEdgeID;
@@ -791,6 +936,15 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
         document.getElementById("hint"+i+"input").value=destEdge.getAllHints()[i-1];
       }
     });
+
+    cy.on('tap', function(event) {
+        evtTarget = event.target;
+        if (evtTarget === cy) {
+          cy.edges().removeClass('highlightselect');
+          cy.edges().unselect();
+          cy.nodes().unselect();
+        }
+      });
 }
 
 // document.addEventListener('DOMContentLoaded', function(){

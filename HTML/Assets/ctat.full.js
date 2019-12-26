@@ -9136,7 +9136,7 @@ CTATCommShell = function() {
     CTATScrim.scrim.scrimDown();
     var myId = window && window.frameElement && window.frameElement.getAttribute("id") || "tutorFrame";
     if (typeof CustomEvent == "function") {
-      var tutorReadyEvent = {name:"tutorReady", "detail":myId};
+      var tutorReadyEvent = {name:"tutorReady", command:"tutorready", username:CTATConfiguration.get("user_guid"), "detail":myId};
       if (window) {
         window.parent.postMessage(tutorReadyEvent, "*");
       }
@@ -10687,7 +10687,7 @@ CTAT.Component.Base.Tutorable = function(aClassName, aName, aDescription, aX, aY
     }
     this.ctatdebug("processAction() finished call to commShell.processComponentAction");
     if (this.component) {
-      var SAI_event = new CustomEvent(CTAT.Component.Base.Tutorable.EventType.action, {detail:{sai:this.getSAI(), component:this}, bubbles:true, cancelable:true});
+      var SAI_event = new CustomEvent(CTAT.Component.Base.Tutorable.EventType.action, {detail:{sai:this.getSAI(), component:this, graded:force_grade || defaultTutorMe}, bubbles:true, cancelable:true});
       this.component.dispatchEvent(SAI_event);
     }
   };
@@ -16019,6 +16019,13 @@ CTATSubmitButton = function(aDescription, aX, aY, aWidth, aHeight) {
       pointer.setNotGraded();
     }
   }, false);
+  document.addEventListener(event_type.action, function(e) {
+    var comp = e.detail.component;
+    if (comp && isTarget(comp) && !e.detail.graded) {
+      pointer.setNotGraded();
+      pointer.setEnabled(true);
+    }
+  }, false);
   document.addEventListener(event_type.highlight, function(e) {
     var comp = e.detail.component;
     if (comp && isTarget(comp)) {
@@ -16700,8 +16707,10 @@ CTATTextInput = function(aDescription, aX, aY, aWidth, aHeight) {
   var previewMode = CTATConfiguration.get("previewMode");
   this.init = function init() {
     this.ctatdebug("init (" + pointer.getName() + ")");
+    var $div = $(this.getDivWrap());
+    var typeAttr = $div.attr("data-ctat-type");
     textinput = document.createElement("input");
-    textinput.type = "text";
+    textinput.type = typeAttr == "number" ? "number" : "text";
     if (aDescription) {
       textinput.name = aDescription.name;
     }
@@ -16709,7 +16718,6 @@ CTATTextInput = function(aDescription, aX, aY, aWidth, aHeight) {
     textinput.setAttribute("id", CTATGlobalFunctions.gensym.div_id());
     pointer.setComponent(textinput);
     this.ctatdebug("Final location: " + pointer.getX() + "," + pointer.getY() + " with text: " + pointer.getText());
-    var $div = $(this.getDivWrap());
     if ($div.attr("value")) {
       this.setText($div.attr("value"));
     }
@@ -18121,8 +18129,8 @@ CTATNoolsTracerWrapper = function(tracer) {
   this.printPregenTrees = function(firedOnly, inclSAIs) {
     tracerRef.printPregenTrees("override", firedOnly, inclSAIs);
   };
-  this.printTutorSAIs = function() {
-    tracerRef.printTutorSAIs("override");
+  this.printTutorSAIs = function(inclRules) {
+    tracerRef.printTutorSAIs("override", inclRules);
   };
   this.printFact = function(fId) {
     tracerRef.printFact(fId);
@@ -28262,6 +28270,7 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
   var pregenTrees = [];
   var refiringChain = null;
   var lastConflictTree = null;
+  var traceStart;
   this.getSession = function() {
     return session;
   };
@@ -28328,6 +28337,7 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
   };
   this.evaluate = function(sai, cbk, matchType) {
     log("debug", "noolsTracer.evaluate, matchType = " + matchType + ", sai " + JSON.stringify(sai) + ", " + lastFoundMatch);
+    traceStart = Date.now();
     if (problemConfig["pregen_conflict_tree"]) {
       return _checkAgainstPregen(sai, cbk, matchType);
     } else {
@@ -28354,6 +28364,7 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
             _cleanupBeforeCallback();
             pointer.printAgenda("agenda_post");
             pointer.printConflictTree("conflict_tree");
+            pointer.printTraceTime();
             callback();
           };
           if (!inStepMode) {
@@ -28388,8 +28399,12 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
     lastStudentSAI = null, lastFoundMatch = true;
     _firstMatch(cbk);
   };
+  this.printTraceTime = function() {
+    var time = (Date.now() - traceStart) / 1E3;
+    log("time", "trace took " + time + " seconds.");
+  };
   this.printAgenda = function(logFlag) {
-    log(logFlag, (logFlag !== "override" ? "[" + logFlag + "]: " : "") + noolsUtil.printAgenda(session));
+    log(logFlag, noolsUtil.printAgenda(session));
   };
   this.printConflictTree = function(logFlag, firedOnly, inclSAIs) {
     log(logFlag, "\n" + lastConflictTree.toString(firedOnly, inclSAIs));
@@ -28402,12 +28417,13 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
       log(logFlag, " tree for sai: " + JSON.stringify(pt[0]) + "\n" + pt[2].toString(firedOnly, inclSAIs));
     });
   };
-  this.printTutorSAIs = function(logFlag) {
+  this.printTutorSAIs = function(logFlag, inclRules) {
     var chains = lastConflictTree.getMatchChains();
     var str = "";
     chains.forEach(function(chain) {
       var sai = chain.match.tutor;
-      str += "\n" + sai.selection + " ; " + sai.action + " ; " + sai.input + " \n " + chain.rules.join(",") + "\n";
+      str += "\n" + sai.selection + " ; " + sai.action + " ; " + sai.input;
+      inclRules && (str += " \n " + chain.rules.join(",") + "\n");
     });
     log(logFlag, str);
   };
@@ -28878,14 +28894,21 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
     }
   }
   function _getBiasedPrediction(includeHints, optSelection, optChainObj) {
+    log("debug", "getBiasedPrediction selecting chain to return.  includeHints is " + includeHints + ", optSelection is " + optSelection);
     var tSAI, chains = optChainObj || ruleChains, selectionMap = chains.selectionMap, studentSelection = optSelection || (lastStudentSAI ? lastStudentSAI.selection : ""), firstPredictedSolution = chains.firstPredictedSolution, firstPredictedSelection = chains.firstTutorSelection, checkSelection = function(selection) {
       var entry = selectionMap[selection];
       var highestPriority = -1;
       var found = null;
+      log("debug", "\tchecking selection: " + selection);
       for (var i = 0;i < entry.length;i++) {
-        if (entry[i].sai.isCorrect && (!includeHints || entry[i].hints.length > 0) && entry.priority > highestPriority) {
-          found = entry[i];
-          highestPriority = entry.priority;
+        var chain = entry[i];
+        log("debug", "\t\tchecking chain: " + JSON.stringify(chain));
+        if (chain.priority > highestPriority) {
+          if (includeHints && chain.hints.length > 0 || chain.sai.isCorrect) {
+            found = chain;
+            highestPriority = chain.priority;
+            log("debug", "\t\t^^^^^^^^valid chain found");
+          }
         }
       }
       return found;
@@ -28908,16 +28931,10 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
         tSAI = checkSelection(s);
       }
       if (!tSAI) {
-        var n = chains.numChains;
-        for (var i = 0;i < n;i++) {
-          var defKey = "_default_key" + i, defKeyList = selectionMap[defKey];
-          if (defKeyList && (tSAI = defKeyList[0]) && (!includeHints || tSAI.hints.length > 0)) {
-            break;
-          }
-        }
-      }
-      if (!tSAI) {
+        log("debug", "\tno chain found, returning blank chain");
         tSAI = new RuleChain;
+      } else {
+        log("debug", "returning chain: " + JSON.stringify(tSAI));
       }
     }
     return tSAI;
@@ -29040,7 +29057,7 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
       return ret;
     });
     if (!selection) {
-      selection = "_default_key" + ruleChains.numChains;
+      selection = "_default_key";
     } else {
       if (!ruleChains.firstTutorSelection) {
         ruleChains.firstTutorSelection = selection;
@@ -29064,7 +29081,9 @@ var CTATNoolsTracer = function(logFunc, tpaHandler, runtime) {
     }
     ruleChains.numChains++;
     tpasToSend = tpaList;
-    log("debug", "stored last chain: " + "\n\trules: " + ruleList + "\n\tskills: " + skillList + "\n\tfinalSAI: " + JSON.stringify(finalSAI) + "\n\tmatchType: " + currChain.matchType + "\n\tmsg: " + msg + "\n\tpriority: " + chainPriority);
+    log("debug", "stored last chain: " + "\n\trules: " + ruleList + "\n\tskills: " + skillList + "\n\thints: " + hintList.map(function(hint) {
+      return hint.msg;
+    }) + "\n\tfinalSAI: " + JSON.stringify(finalSAI) + "\n\tmatchType: " + currChain.matchType + "\n\tmsg: " + msg + "\n\tpriority: " + chainPriority);
   }
   function _assertOverride(fact) {
     if (problemConfig["use_backtracking"]) {
@@ -29242,7 +29261,7 @@ CTATLogger = function(validFlags) {
 };
 goog.provide("CTATRuleTracerGlobals");
 goog.require("CTATLogger");
-var NOOLS_LOG_FLAGS = ["conflict_tree", "assert", "modify", "retract", "state_save", "state_restore", "backtrack", "agenda_insert", "agenda_retract", "agenda_empty", "fire", "error", "debug", "sai_check", "agenda_pre", "agenda_post", "tpa"];
+var NOOLS_LOG_FLAGS = ["time", "conflict_tree", "assert", "modify", "retract", "state_save", "state_restore", "backtrack", "agenda_insert", "agenda_retract", "agenda_empty", "fire", "error", "debug", "sai_check", "agenda_pre", "agenda_post", "tpa"];
 var CTATNoolsTracerLogger = new CTATLogger(NOOLS_LOG_FLAGS);
 var globalTracerRef = null;
 function registerTracerWrapper(tracerWrapper) {
@@ -29293,7 +29312,7 @@ function printConflictTree(firedOnly, inclSAIs) {
 function printPregenTrees(firedOnly, inclSAIs) {
   globalTracerRef.printPregenTrees(firedOnly, inclSAIs);
 }
-function printTutorSAIs() {
+function printTutorSAIs(inclRules) {
   globalTracerRef.printTutorSAIs();
 }
 function printFact(fId) {
@@ -30357,6 +30376,9 @@ CTATExactMatcher = function(vector, value) {
     result += indent + "</matcher>\n";
     return result;
   };
+  if (value != null) {
+    this.setParameter(String(value));
+  }
 };
 CTATExactMatcher.prototype = Object.create(CTATSingleMatcher.prototype);
 CTATExactMatcher.prototype.constructor = CTATExactMatcher;
