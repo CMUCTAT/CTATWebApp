@@ -33815,6 +33815,12 @@ CTATExampleTracerTracer = function(givenGraph, givenVT) {
       return link.getMinTraversals() < 1 && link.getMaxTraversals() < 1;
     }
   }
+  this.setDemonstrateMode = function(b) {
+    isDemonstrateMode = b;
+  };
+  this.getDemonstrateMode = function() {
+    return isDemonstrateMode;
+  };
   this.getModelInitialized = function() {
     return modelInitialized;
   };

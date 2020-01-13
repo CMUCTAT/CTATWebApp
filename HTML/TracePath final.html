@@ -19,6 +19,10 @@
 <link type="text/css" rel="stylesheet" href="//golden-layout.com/files/latest/css/goldenlayout-base.css" />
 <link type="text/css" rel="stylesheet" href="//golden-layout.com/files/latest/css/goldenlayout-dark-theme.css" />
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
 <script>
 function buildJSON(graph) {
 
@@ -367,11 +371,31 @@ var x = document.getElementById("mySelect").value;
 if (x=="Demonstrate")
 {
   isDemonstrateMode=true;
+  ChosenUI.CTAT.ToolTutor.tutor.getTracer().setDemonstrateMode(true);
 }
 else {
   isDemonstrateMode=false;
+  ChosenUI.CTAT.ToolTutor.tutor.getTracer().setDemonstrateMode(false);
 }
 }
+
+$(document).ready(function(){
+  var list = $('#mySortable'),
+      updatePosition = function() {
+        /* list.children().each(function(i, e){
+          $(this).children('input').val(++i);
+        }); */
+        //this is not a good way to get the labels or the hints when editing is later implemented but for now just to show in the UI I will leave it here
+        document.getElementsByTagName("label")[10].innerHTML="<b>Hint 1</b>";
+        document.getElementsByTagName("label")[11].innerHTML="<b>Hint 2</b>";
+        document.getElementsByTagName("label")[12].innerHTML="<b>Hint 3</b>";
+      };
+
+  list.sortable({
+    placeholder: "ui-state-highlight",
+    update: updatePosition
+  });
+});
 
 //responsive webpage
 $(window).resize(function () {
@@ -420,7 +444,7 @@ myLayout.registerComponent( 'HTML Interface', function( container, state ){
     container.getElement().html( '<iframe id="ctatinterface" name="ctatinterface"></iframe>');
 });
 myLayout.registerComponent( 'Hints', function( container, state ){
-    container.getElement().html( '<div id="hints"><div class="row"><div class="col-10"><label for="hint1input"><b>Hint 1</b></label></div><div class="col-80"><input type="text" id="hint1input" name="hint1input" placeholder="Hint 1"></div></div><div class="row"><div class="col-10"><label for="hint2input"><b>Hint 2</b></label></div><div class="col-80"><input type="text" id="hint2input" name="hint2input" placeholder="Hint 2"></div></div><div class="row"><div class="col-10"><label for="hint3input"><b>Hint 3</b></label></div><div class="col-80"><input type="text" id="hint3input" name="hint3input" placeholder="Hint 3"></div></div><div class="row"><div class="col-10"></div><div class="col-80"><label id="three" class="myButton" onclick="addhintlevel()">Add Hint Level</b> </label></div></div></div>');
+    container.getElement().html( '<div id="hints"><ul id="mySortable"><li draggable="true"><div class="row"><div class="col-10"><label for="hint1input"><b>Hint 1</b></label></div><div class="col-80"><input type="text" id="hint1input" name="hint1input" placeholder="Hint 1"></div></div></li><li draggable="true"><div class="row"><div class="col-10"><label for="hint2input"><b>Hint 2</b></label></div><div class="col-80"><input type="text" id="hint2input" name="hint2input" placeholder="Hint 2"></div></div></li><li draggable="true"><div class="row"><div class="col-10"><label for="hint3input"><b>Hint 3</b></label></div><div class="col-80"><input type="text" id="hint3input" name="hint3input" placeholder="Hint 3"></div></div></li></ul><div class="row"><div class="col-10"></div><div class="col-80"><label id="three" class="myButton" onclick="addhintlevel()">Add Hint Level</b> </label></div></div></div>');
 });
 myLayout.registerComponent( 'SAI Matcher', function( container, state ){
     container.getElement().html( '<div id="saiMatcher"><div class="row"><div class="col-20"><b><label id="linknumber">No link selected</label></b></div> <div id="fromto" style="padding: 10px 0px">From:  To:</div></div><div class="row"><div class="col-20"><label for="selectioninput"><b>Selection</b></label></div><div class="col-55"><input type="text" id="selectioninput" name="selectioninput" placeholder="Selection"></div><div class="col-25"><select id="selectionmatch" name="selectionmatch" class="match"><option value="exact" selected>Exact Match</option><option value="formula">Formula Match</option><option value="any">Any Match</option><option value="range">Range Match</option><option value="wildcard">Wildcard Match</option><option value="regularex">Regular Expression Match</option></select></div></div><div class="row"><div class="col-20"><label for="actioninput"><b>Action</b></label></div><div class="col-55"><input type="text" id="actioninput" name="actioninput" placeholder="Action"></div><div class="col-25"><select id="actionmatch" name="actionmatch" class="match"><option value="exact" selected>Exact Match</option><option value="formula">Formula Match</option><option value="any">Any Match</option><option value="range">Range Match</option><option value="wildcard">Wildcard Match</option><option value="regularex">Regular Expression Match</option></select></div></div><div class="row"><div class="col-20"><label for="inputinput"><b>Input</b></label></div><div class="col-55"><input type="text" id="inputinput" name="inputinput" placeholder="Input"></div><div class="col-25"><select id="inputmatch" name="inputmatch" class="match"><option value="exact" selected>Exact Match</option><option value="formula">Formula Match</option><option value="any">Any Match</option><option value="range">Range Match</option><option value="wildcard">Wildcard Match</option><option value="regularex">Regular Expression Match</option></select></div></div><br><div class="row"><div class="col-20 selectlist"><select name="sign" size="7" style="width: 70%;"><option value="=">=</option><option value="<"><</option><option value=">">></option><option value="!=">!=</option><option value=">=">>=</option><option value="<="><=</option><option value="boolean">boolean</option></select></div><div class="col-75"><textarea id="expression" name="expression" placeholder="Write something.." style="height:100px"></textarea></div></div><br><div class="row"><div class="col-2-5"></div><div class="col-30 selectlist"><label for="variableselect"><b>Variables</b></label><br><input type="text" id="variableselect" name="variableselect"><br><br><select name="variableselectlist" size="8" style="width: 100%;"><option value=""></option></select></div><div class="col-2-5"></div><div class="col-30 selectlist"><label for="functionselect"><b>Functions</b></label><br><input type="text" id="functionselect" name="functionselect"><br><br><select name="functionselectlist" size="8" style="width: 100%;"><option value=""></option></select></div><div class="col-2-5"></div><div class="col-30 selectlist"><label for="massprodvar"><b>Mass Prod. Variables</b></label><br><input type="text" id="massprodvar" name="massprodvar"><br><br><select name="massprodvarlist" size="8" style="width: 100%;"><option value=""></option></select></div><div class="col-2-5"></div></div><br><hr><div class="row"><div class="col-20"><button class="button button4">Check</button><br><br><button class="button button4">Last Evaluation</button></div><div class="col-75"><textarea id="subject" name="subject" placeholder="What is this??.." style="height:80px"></textarea></div></div>');
@@ -438,6 +462,15 @@ onmessage=function(m)
   }
   if(typeof cy !== 'undefined')
   {
+    // if (ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState()!=)
+    // {
+    //   try {
+    //     console.log('Click on state: ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState()',ChosenUI.CTAT.ToolTutor.tutor.getTracer().findCurrentState());
+    //     throw new Error('Whoops!')
+    //   } catch (e) {
+    //     console.error(e.name + ': ' + e.message)
+    //   }
+    // }
     if(typeof PA !== 'undefined' && PA)
     {
       var flagPA = 0;
@@ -734,16 +767,20 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
           var cstude = msg.getProperty("StudentInput");
           var newNode = new CTATExampleTracerNode(addNodeId);
           var cnewNode = new ChosenUI.CTATExampleTracerNode(addNodeId);
-          g.addNode(newNode);
-          cg.addNode(cnewNode);
           var newLink = new CTATExampleTracerLink(addEdgeId, parseInt(currentnode.id(),10), addNodeId);
           var cnewLink = new ChosenUI.CTATExampleTracerLink(addEdgeId, parseInt(currentnode.id(),10), addNodeId);
           var SelectionMatchers = [new CTATExactMatcher(0)];
           var ActionMatchers = [new CTATExactMatcher(1)];
           var InputMatchers = [new CTATExactMatcher(2)];
+          SelectionMatchers[0].setParameter(selec);
+          ActionMatchers[0].setParameter(actio);
+          InputMatchers[0].setParameter(stude);
           var cSelectionMatchers = [new ChosenUI.CTATExactMatcher(0)];
           var cActionMatchers = [new ChosenUI.CTATExactMatcher(1)];
           var cInputMatchers = [new ChosenUI.CTATExactMatcher(2)];
+          cSelectionMatchers[0].setParameter(cselec);
+          cActionMatchers[0].setParameter(cactio);
+          cInputMatchers[0].setParameter(cstude);
           var actor = "Student";
           var vectorMatcher = new CTATVectorMatcher(SelectionMatchers, ActionMatchers, InputMatchers, actor);
           var cvectorMatcher = new ChosenUI.CTATVectorMatcher(cSelectionMatchers, cActionMatchers, cInputMatchers, actor);
@@ -753,16 +790,18 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
           newLink.setActionType("Correct Action");
           cnewLink.setMatcher(vectorMatcher);
           cnewLink.setActionType("Correct Action");
-          // OK so I need to make a new matcher and give it the selection, action, and input
-          g.addLink(newLink, null); //don't worry about groups for now
-          g.getNode(parseInt(currentnode.id(),10)).addOutLink(newLink);
-          cg.addLink(cnewLink, null); //don't worry about groups for now
-          cg.getNode(parseInt(currentnode.id(),10)).addOutLink(cnewLink);
           newNode.addInLink(newLink);
           cnewNode.addInLink(cnewLink);
+          g.addNode(newNode);
+          cg.addNode(cnewNode);
+          // OK so I need to make a new matcher and give it the selection, action, and input
+          g.addLink(newLink, null); //don't worry about groups for now
+          cg.addLink(cnewLink, null); //don't worry about groups for now
+          g.getNode(parseInt(currentnode.id(),10)).addOutLink(newLink);
+          cg.getNode(parseInt(currentnode.id(),10)).addOutLink(cnewLink);
           g.redoLinkDepths();
           cg.redoLinkDepths();
-          //ChosenUI.CTAT.ToolTutor.tutor.traceLinks([cnewLink]);
+          ChosenUI.CTAT.ToolTutor.tutor.getTracer().resetTracer();//traceLinks([cnewLink]);
 
           cy.json(JSON.parse(buildJSON(g)));
           layout = cy.layout({
@@ -887,36 +926,38 @@ CTATPathTracer = function(graphDivID, givenInterfaceFilePath){
       }
       var destNode = g.getNode(destNodeID);
       let tp = g.getBestSubpath(currentstate, destNode);  //let tp = g.getBestSubpath(g.getStartNode(), destNode);
-      if (tp == null)     //for buggy edges now change later such that it will only be for nodes which cannot be reached
+      if (tp == null && currentstate!=destNode)     //for buggy edges now change later such that it will only be for nodes which cannot be reached
       {
           cy.nodes().removeClass('nodetraversed');
           cy.edges().removeClass('highlightcorrect');
           tp = g.getBestSubpath(g.getStartNode(), destNode);
           if (tp == null)
           {
+            console.log("path was not found");
             tp = findPathToNode(destNode);
             PA =tp.getSortedLinks();
             var newdest = g.getNode(PA[PA.length-1].getPrevNode());
             ChosenUI.CTAT.ToolTutor.tutor.goToState(newdest.getNodeName());
           }
           else {
+            console.log("path was incorrect state");
             PA =tp.getSortedLinks();
             ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
             pathflag1=0;
           }
+          window.onmessage(function(m){console.log("m",m);});   //window.onmessage( new MessageEvent('PA', {data:PA}));
       }
-      else {
-        //ChosenUI.CTAT.ToolTutor.tutor.goToState(destNode.getNodeName());
+      else if(currentstate!=destNode) {
+        console.log("path was found");
         PA =tp.getSortedLinks();
         pathflag=0;
         pathflag1=0;
+        window.onmessage(function(m){console.log("m",m);});   //window.onmessage( new MessageEvent('PA', {data:PA}));
       }
-      console.log("PA",PA);
       // PA.forEach(function(link)
       // {
       //     ChosenUI.CTATCommShell.commShell.processComponentAction(link.getDefaultSAI());
       // });
-      window.onmessage(function(m){console.log("m",m);});   //window.onmessage( new MessageEvent('PA', {data:PA}));
     });
 
     cy.bind('click', 'edge', function(edgeselected){
