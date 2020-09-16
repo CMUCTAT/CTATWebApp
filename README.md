@@ -1,2 +1,3 @@
 # CTAT Web App
-Need a bit more than this.
+Illustration from Gautam Yadav.
+![Overview of Cytoscape integration with GoldenLayout](Overview.gif "Overview of Cytoscape integration with GoldenLayout")
